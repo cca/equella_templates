@@ -21,8 +21,11 @@ fi
 # <#if foo != "">
 #   ${foo}
 # </#if>
-#
-# P.S. sed is the bomb
 
-sed -i 's|<#if (?\(.*\) == "")?><#else>|<#if \1 != "">|' **/*.ftl
-sed -i 's|<#else></#if>|</#if>|' **/*.ftl
+for file in **/*.ftl
+do
+    sed -i .bak 's|<#if \(.*\)==""><#else>|<#if \1 != "">|' "$file"
+    mv "${file}.bak" "${file}"
+    sed -i .bak 's|<#else></#if>|</#if>|' "$file"
+    mv "${file}.bak" "${file}"
+done
