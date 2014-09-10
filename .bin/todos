@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# included in every script
+source `dirname $0`/inc.sh
+
+arg=${1:-}
+
+if [ "$arg" = "-h" -o "$arg" = "--help" ]; then
+    echo "Usage: .bin/todos"
+    echo
+    echo "Show all '@todo' notes in source code"
+    echo "Should be run from project root (not from inside .bin folder)"
+    echo "Runs over all files inside all subfolders"
+    exit 0
+fi
+
+# default to ack if we have it
+command -v ack 2&>/dev/null && ack --ignore-dir .bin --ignore-case --after-context=2 '@todo'; exit
+# sigh…I guess grep will have to suffice
+grep -n1 -R --exclude-dir=.bin  '@todo' .

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# included in every script
+source `dirname $0`/inc.sh
+
+arg=${1:-}
+
+if [ "$arg" = "-h" -o "$arg" = "--help" ]; then
+    echo "Usage: .bin/if-else"
+    echo
+    echo "Remove empty clauses from if-else conditions"
+    echo "MUST be run from project root (not from inside .bin folder)"
+    echo "Runs over all .ftl files inside all subfolders"
+    exit 0
+fi
+
+# so from
+# <#if foo == ""><#else>
+#   ${foo}
+# </#if>
+# to
+# <#if foo != "">
+#   ${foo}
+# </#if>
+#
+# P.S. sed is the bomb
+
+sed -i 's|<#if (?\(.*\) == "")?><#else>|<#if \1 != "">|' **/*.ftl
+sed -i 's|<#else></#if>|</#if>|' **/*.ftl
