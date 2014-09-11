@@ -52,7 +52,7 @@
                         ${description}<br>
                     </#if>
                 </p>
-                <#list part.getAllSubtrees('otherWrapper') as tagWrap>
+                <#list part.getAllSubtrees('wrapperOther') as tagWrap>
                     <#assign tags = tagWrap.get('tags')>
                     <#if tags != "">
                         <p class='commImagelist'>${tags}</p>
