@@ -21,12 +21,18 @@ a[href=""] {
 <dl>
 <#list courseWork as courseWork>
     <#assign type = courseWork.get('courseWorkType')>
-    <#if type=='Course work'>
+    <#if type == 'Course work'>
 
         <#list titleInfo as titleInfo>
             <#assign title = titleInfo.get('title')>
-            <h2 id="title">${title}
-            </h2>
+            <h2 id="title">${title}</h2>
+        </#list>
+
+        <#list name as name>
+            <#if name.get('namePart') == 'Li, Yue' || name.get('namePart') == 'Roberts, Chloe' || name.get('namePart') == 'Lomboy, Donna Micaella'>
+            <#-- it's a norming essay, make sure people know -->
+                <p class="btn btn-warning"><a href="/access/hierarchy.do?topic=67233203-9e7c-4796-851a-9511d604d6f6">NORMING ESSAY</a></p>
+            </#if>
         </#list>
 
         <dt class="hide">Collection</dt>
@@ -66,27 +72,27 @@ a[href=""] {
                 </span></dd>
             </#if>
              -->
-            <#if (category!="")&&(specialPrograms=="")>
+            <#if (category != "" && specialPrograms == "")>
                 <dd><span id="WrLitcoursestuff"><strong>Course category: </strong>
                     <a href="${courseNameUrl}">${courseName}</a> —
                     <a href="${categoryUrl}">${category}</a>
                 </span></dd>
-            <#elseif (category!="")&&(specialPrograms!="")>
+            <#elseif (category != "" && specialPrograms != "")>
                 <dd><span id="WrLitcoursestuff"><strong>Course category: </strong>
                     <a href="${courseNameUrl}">${courseName}</a> —
                     <a href="${categoryUrl}">${category}</a> —
                     <a href="${specialProgramsUrl}">${specialPrograms}</a>
                 </span></dd>
-            <#elseif (category=="")&&(specialPrograms!="")>
+            <#elseif (category == "" && specialPrograms != "")>
                 <dd><span id="WrLitcoursestuff"><strong>Course category: </strong>
                     <a href="${courseNameUrl}">${courseName}</a> —
                     <a href="${specialProgramsUrl}">${specialPrograms}</a>
                 </span></dd>
-            <#elseif (category=="")&&(specialPrograms=="")>
+            <#elseif (category == "" && specialPrograms == "")>
                 <dd><span id="WrLitcoursestuff"><strong>Course category: </strong>
                     <a href="${courseNameUrl}">${courseName}</a>
                 </span></dd>
-            <#elseif (category!="")&&(IntroToLit!="")>
+            <#elseif (category != "" && IntroToLit != "")>
                 <dd><span id="WrLitcoursestuff"><strong>Course category: </strong>
                     <a href="${courseNameUrl}">${courseName}</a> —
                     ${IntroToLit}
@@ -94,6 +100,7 @@ a[href=""] {
             </#if>
         </#list>
 
+        <#-- commented out for assessment review 9/11/14
         <#list name as name>
             <#assign namePart = name.get('namePart')>
             <#if (namePart=="")><#else>
@@ -101,8 +108,6 @@ a[href=""] {
             </#if>
             <#list name.getAllSubtrees('subNameWrapper') as subName>
                 <#assign major = subName.get('major')>
-                <#-- NB: Power Search here is Humanities & Social Sciences division
-                will not return items by same major in another collection -->
                 <#assign majorUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
                 <#if (major=="")><#else>
                      — <a href="${majorUrl}">${major}</a>
@@ -110,6 +115,7 @@ a[href=""] {
             </#list>
             </dd>
         </#list>
+        -->
 
         <#assign draftOrFinal = courseWork.get('material')>
         <#assign draftProcess = courseWork.get('process')>
