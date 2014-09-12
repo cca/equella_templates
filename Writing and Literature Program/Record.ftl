@@ -30,8 +30,8 @@ a[href=""] {
 
         <#list name as name>
             <#if name.get('namePart') == 'Li, Yue' || name.get('namePart') == 'Roberts, Chloe' || name.get('namePart') == 'Lomboy, Donna Micaella'>
-            <#-- it's a norming essay, make sure people know -->
-                <p class="btn btn-warning"><a href="/access/hierarchy.do?topic=67233203-9e7c-4796-851a-9511d604d6f6">NORMING ESSAY</a></p>
+                <#-- it's a norming essay, make sure people know -->
+                <p><a class="btn btn-warning" href="/access/hierarchy.do?topic=67233203-9e7c-4796-851a-9511d604d6f6">NORMING ESSAY</a></p>
             </#if>
         </#list>
 
