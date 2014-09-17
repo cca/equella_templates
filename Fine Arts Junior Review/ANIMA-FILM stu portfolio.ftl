@@ -25,7 +25,7 @@
         <#list subNameWrapper as subNameWrapper>
             <#assign major = subNameWrapper.get('major')>
             <#-- <dt>${major} -->
-            <#assign majorUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%2F%3E%3Cmods%3E%3Cname%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
+            <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%2F%3E%3Cmods%3E%3Cname%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
             <#if (major=="")><#else>
               - ${major}
             </#if>
@@ -90,9 +90,9 @@
                     icon based on MIME type if no generated one is present -->
                     <#assign thumbUrl = 'https://vault.cca.edu/thumbs/${itemUuid}/${itemversion}/${uuid}'>
                 </#if>
-                <dd><strong>Artist Statement:</strong> <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">${full}</a></dd>
+                <dd><strong>Artist Statement:</strong> <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">${full}</a></dd>
                 <div class="image-juniorReviewDocs" style="margin-left: 20px;">
-                    <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                     <#-- these are required to be PDFs so we can
                     rely on the PDF icon -->
                     <img src="${thumbUrl}" alt="Artist's Statement"/></a>

@@ -30,8 +30,8 @@
                 <#assign full = itemAttachment.get('file')>
                 <#assign uuid = itemAttachment.get('uuid')>
                 <div id='image-single'>
-                    <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}">
-                    <img src="https://vault.cca.edu/items/${itemUuid}/${itemversion}/${thumb}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}">
+                    <img src="/items/${itemUuid}/${itemversion}/${thumb}"/></a>
                     <#list part as partAttachment>
                         <#assign parttitle = partAttachment.get('title')>
                         <#assign partextent = partAttachment.get('extent')>

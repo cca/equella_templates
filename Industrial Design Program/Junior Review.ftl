@@ -34,8 +34,8 @@ a[href=""] {
         <#list local as local>
             <#assign division = local.get('division')>
             <#assign department = local.get('department')>
-            <#assign divisionUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%2F%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
-            <#assign departmentUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
+            <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%2F%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
+            <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
             <dd class="collection"><a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a></dd>
         </#list>
 
@@ -47,13 +47,13 @@ a[href=""] {
         </#if>
         <#list name.getAllSubtrees('subNameWrapper') as subName>
             <#assign major = subName.get('major')>
-            <#assign majorUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
+            <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
                  — <a href="${majorUrl}">${major}</a>
         </#list>
 
         <#list origininfo as origininfo>
             <#assign dateCreated = origininfo.get('dateCreatedWrapper/dateCreated')>
-            <#assign dateCreatedUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EIndustrial+Design%3C%2Fdepartment%3E%3Ctags%2F%3E%3C%2Flocal%3E%3Cmods%3E%3Corigininfo%3E%3CdateCreatedWrapper%3E%3CdateCreated%3E${dateCreated}%3C%2FdateCreated%3E%3C%2FdateCreatedWrapper%3E%3C%2Forigininfo%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
+            <#assign dateCreatedUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EIndustrial+Design%3C%2Fdepartment%3E%3Ctags%2F%3E%3C%2Flocal%3E%3Cmods%3E%3Corigininfo%3E%3CdateCreatedWrapper%3E%3CdateCreated%3E${dateCreated}%3C%2FdateCreated%3E%3C%2FdateCreatedWrapper%3E%3C%2Forigininfo%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
              — Junior <a href="${dateCreatedUrl}">${dateCreated}</a>
         </#list>
         </dd>
@@ -75,8 +75,8 @@ a[href=""] {
             <#assign file = juniorReviewFiles.get('file')>
             <#if file == uuid>
                 <div class='image-studentWork'>
-                <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
                 <p class='caption'>
                 <#if projectFormat != ""><i>${projectFormat}</i></#if>
                 </p>

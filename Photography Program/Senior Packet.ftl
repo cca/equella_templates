@@ -34,7 +34,7 @@
         <dt class="hide">Collection</dt>
         <#list local as local>
             <#assign division = local.get('division')>
-            <#assign divisionUrl = "https://vault.cca.edu/access/searching.do?in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+            <#assign divisionUrl = "/access/searching.do?in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
             <dd class="collection">
                 <a href="${divisionUrl}">${division}</a>
             </dd>
@@ -48,8 +48,8 @@
             <#list subNameWrapper as subName>
                 <#assign major = subName.get('major')>
                 <#assign gradDate = subName.get('gradDate')>
-                <#assign majorUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
-                <#assign gradDateUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3CgradDate%3E${gradDate}%3C%2FgradDate%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+                <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+                <#assign gradDateUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3CgradDate%3E${gradDate}%3C%2FgradDate%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
                 <#if major != ""> — <a href="${majorUrl}">${major}</a></#if>
                 <#if gradDate != "">
                      — Graduated: <a href="${gradDateUrl}">${gradDate}</a>
@@ -65,10 +65,10 @@
             <#assign course = courseInfo.get('course')>
             <#assign facultyx = courseInfo.get('faculty')>
             <#assign section = courseInfo.get('section')>
-            <#assign departmentUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
-            <#assign courseUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
-            <#assign semesterUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
-            <#assign sectionUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+            <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+            <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+            <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+            <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
             <dt>Course Info</dt>
             <span id="coursestuff">
             <#if (semester != "undefined") && (semester != "")>
@@ -86,7 +86,7 @@
                 <#list faculty as faculty>
                     <#-- need to do assignment inside this loop -->
                     <#assign facultyName = faculty.get('/')>
-                    <#assign facultyUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${facultyName}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+                    <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${facultyName}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
                     <a href ="${facultyUrl}">${facultyName}</a><#if faculty_has_next> / </#if>
                 </#list>
             </#if>
@@ -110,7 +110,7 @@
             <#assign gallery = exhibitWrapper.get('gallery')>
             <#assign note = exhibitWrapper.get('note')>
             <#assign datex = exhibitWrapper.get('date')>
-            <#assign galleryUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%2F%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3ESenior+packet%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3CexhibitWrapper%3E%3Cgallery%3E${gallery}%3C%2Fgallery%3E%3C%2FexhibitWrapper%3E%3C%2Flocal%3E%3Cmods%3E%3Cname%3E%3CnamePart%2F%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+            <#assign galleryUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%2F%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3ESenior+packet%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3CexhibitWrapper%3E%3Cgallery%3E${gallery}%3C%2Fgallery%3E%3C%2FexhibitWrapper%3E%3C%2Flocal%3E%3Cmods%3E%3Cname%3E%3CnamePart%2F%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
             <#-- only show if we actually have something -->
             <#if gallery != "" || note != "" || datex != "">
                 <h4 style="color: #666;"><u>Senior Show Information</u></h4>
@@ -133,8 +133,8 @@
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
             <p class='artistDocs'><i><u>Show card</i></u></p>
-            <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-            <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+            <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
             <p class='artistDocs'>${full}</p>
             </div>
         </#if>
@@ -149,8 +149,8 @@
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
             <p class='artistDocs'><i><u>Installation shot</i></u></p>
-            <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-            <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+            <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
             <p class='artistDocs'>${full}</p>
             </div>
         </#if>
@@ -169,8 +169,8 @@
                         <#assign uuid = itemAttachment.get('uuid')>
                         <div class="image-artistDocs">
                         <p class='artistDocs'><i><u>Artist statement</u></i></p>
-                        <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                        <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                        <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                        <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
                         <p class='artistDocs'>
                         <#if full != "">
                             ${full}
@@ -190,8 +190,8 @@
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
             <p class='artistDocs'><i><u>Resume/CV</u></i></p>
-            <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-            <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+            <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
             <p class='artistDocs'>${full}</p>
             </div>
         </#if>
@@ -206,8 +206,8 @@
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
             <p class='artistDocs'><i><u>Image list</u></i></p>
-            <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-            <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+            <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
             <p class='artistDocs'>${full}</p>
             </div>
         </#if>
@@ -237,8 +237,8 @@
                 <#assign notes = seniorPacket.get('notes')>
                 <#if jpgFile==uuid>
                 <div class='image-photoSeniorPacket'>
-                    <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                    <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
                     <p class='photoImagelist'>
                     <#if title != ""><i>${title}<br></i></#if>
                     <#if semester != "">${semester}<br></#if>

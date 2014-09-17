@@ -42,7 +42,7 @@ this is the Guest ("Public User") ID in here -->
 <dl>
 <#list name as name>
 	<#assign namePart = name.get('namePart')>
-	<#assign namePartUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
+	<#assign namePartUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
 	<dt>
 		<a href="${namePartUrl}">${namePart}</a>
 </#list>
@@ -50,7 +50,7 @@ this is the Guest ("Public User") ID in here -->
 <#list lectureSeriesWrapper as lectureSeries>
 	<#assign series = lectureSeries.get('series')>
 	<#if series != "">
-		<#assign seriesUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3ClectureSeriesWrapper%3E%3Cseries%3E${series}%3C%2Fseries%3E%3C%2FlectureSeriesWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
+		<#assign seriesUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3ClectureSeriesWrapper%3E%3Cseries%3E${series}%3C%2Fseries%3E%3C%2FlectureSeriesWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
 		| <a href="${seriesUrl}">${series}</a>
 	</#if>
 </#list>
@@ -59,7 +59,7 @@ this is the Guest ("Public User") ID in here -->
 	<#assign year = yearOther.get('dateOther')>
 	<#if year != "">
 		<#-- note var is ${year} & not ${dateOther} -->
-		<#assign yearUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Corigininfo%3E%3CdateOtherWrapper%3E%3CdateOther%3E${year}%3C%2FdateOther%3E%3C%2FdateOtherWrapper%3E%3C%2Forigininfo%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
+		<#assign yearUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Corigininfo%3E%3CdateOtherWrapper%3E%3CdateOther%3E${year}%3C%2FdateOther%3E%3C%2FdateOtherWrapper%3E%3C%2Forigininfo%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
 		 | <a href="${yearUrl}">${year}</a>
 	</#if>
 </#list>
@@ -82,7 +82,7 @@ this is the Guest ("Public User") ID in here -->
 <#list locationp as locationp>
 	<#assign physicalLocation = locationp.get('physicalLocation')>
 	<#if physicalLocation != "">
-		<#assign physicalLocationUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Clocation%3E%3CphysicalLocation%3E${physicalLocation}%3C%2FphysicalLocation%3E%3C%2Flocation%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
+		<#assign physicalLocationUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Clocation%3E%3CphysicalLocation%3E${physicalLocation}%3C%2FphysicalLocation%3E%3C%2Flocation%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
 		<dd class="big">
 		Location: <a href="${physicalLocationUrl}">${physicalLocation}</a>
 		</dd>
@@ -96,7 +96,7 @@ this is the Guest ("Public User") ID in here -->
 	<dd class="big">
 	<#if haveRelease == ""><i>No release form on file</i>
 	<#elseif haveRelease != "">
-		<#assign releaseTypeUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3ClectureSeriesWrapper%3E%3CreleaseType%3E${releaseType}%3C%2FreleaseType%3E%3C%2FlectureSeriesWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
+		<#assign releaseTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3ClectureSeriesWrapper%3E%3CreleaseType%3E${releaseType}%3C%2FreleaseType%3E%3C%2FlectureSeriesWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=&sort=datemodified&dr=AFTER" />
 		Permitted release: <a href="${releaseTypeUrl}">${releaseType}</a>
 	</#if>
 	</dd>

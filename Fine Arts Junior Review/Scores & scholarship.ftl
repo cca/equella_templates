@@ -97,8 +97,8 @@
                 <#if full?ends_with(".zip")><#else>
 
                     <div class="image-juniorReviewDocs">
-                        <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                        <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                        <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                        <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
                         <p class='artistDocs'>${full}</p>
                     </div>
                 </#if>

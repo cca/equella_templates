@@ -26,7 +26,7 @@
     <#list local as local>
         <#assign division = local.get('division')>
         <#-- <dd>${division} -->
-        <#assign divisionUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdivision%3E${division}%3C%2Fdivision%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
+        <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdivision%3E${division}%3C%2Fdivision%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
         <dd class="collection"><a href="${divisionUrl}">${division}</a></dd>
     </#list>
 
@@ -67,8 +67,8 @@
             <#assign file = juniorReviewFiles.get('file')>
             <#if file==uuid>
                 <div class='image-studentWork'>
-                <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
                 <p class='caption'>
                 <#if projectFormat==""><#else><i>${projectFormat}</i></#if>
                 </p>

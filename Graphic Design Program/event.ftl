@@ -31,8 +31,8 @@
             <#-- <dd>${division} -->
             <#assign department = local.get('department')>
             <#-- <dd>${department} -->
-            <#assign divisionUrl = "https://vault.cca.edu/access/searching.do?in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
-            <#assign departmentUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
+            <#assign divisionUrl = "/access/searching.do?in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
+            <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
 
             <dd class="collection"><a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a></dd>
         </#list>
@@ -41,8 +41,8 @@
     <#list itemAttachments as itemAttachment>
         <#assign thumb = itemAttachment.get('thumbnail')>
         <#assign full = itemAttachment.get('file')>
-        <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}">
-        <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+        <a href="/file/${itemUuid}/${itemversion}/${full}">
+        <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
     </#list>
     </div>
 

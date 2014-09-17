@@ -29,8 +29,8 @@
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
                 <p class='artistDocs'><i><u><strong>Presentation</strong></i></u></p>
-                <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
                 <p class='artistDocs'>${full}</p>
             </div>
         </#if>
@@ -45,8 +45,8 @@
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
                 <p class='artistDocs'><i><u><strong>Written Response</strong></i></u></p>
-                <a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                <img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
                 <p class='artistDocs'>${full}</p>
             </div>
         </#if>
@@ -70,7 +70,7 @@
     <#list local as local>
         <#assign academicLevel = local.get('academicLevel')>
         <#-- <dd>${academicLevel} -->
-        <#assign academicLevelUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CacademicLevel%3E${academicLevel}%3C%2FacademicLevel%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
+        <#assign academicLevelUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CacademicLevel%3E${academicLevel}%3C%2FacademicLevel%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
             <#if (academicLevel=="")>
                 <#else> — <a href="${academicLevelUrl}">${academicLevel}</a>
             </#if>
