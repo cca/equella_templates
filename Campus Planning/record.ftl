@@ -1,3 +1,9 @@
+<#function escapeAmp str>
+    <#-- returns a URI-encoded "&amp;"
+    because we pass XML in the URI, we have to escape this way -->
+    <#return str?replace('&', '%26amp%3B')>
+</#function>
+
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
@@ -55,7 +61,8 @@
                 <#list part.getAllSubtrees('wrapperOther') as tagWrap>
                     <#assign tags = tagWrap.get('tags')>
                     <#if tags != "">
-                        <p class='commImagelist'>${tags}</p>
+                        <#assign tagUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3E${broadCategory}%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3E${escapeAmp(tags)}%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q=&sort=datemodified&dr=AFTER'>
+                        <p class='commImagelist'><a href="${tagUrl}">${tags}</a></p>
                     </#if>
                 </#list>
 
