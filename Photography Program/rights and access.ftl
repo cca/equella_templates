@@ -3,7 +3,6 @@
 <div style="clear:both;"></div>
 <#list local as local>
     <#assign viewLevel = local.get('viewLevel')>
-    <#-- <dd>${viewLevel} -->
     <#assign viewLevelUrl = "" />
     <#if viewLevel==""><#else>
     <dd class="rights">This item is ${viewLevel}.</#if>

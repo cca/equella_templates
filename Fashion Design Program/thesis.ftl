@@ -30,7 +30,6 @@
     <dt class="hide">Collection</dt>
     <#list local as local>
         <#assign division = local.get('division')>
-        <#-- <dd>${division} -->
         <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdivision%3E${division}%3C%2Fdivision%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
         <dd class="collection"><a href="${divisionUrl}">${division}</a></dd>
     </#list>
@@ -58,15 +57,14 @@
         <#if name_index==0 && (namePart !="")>
             <dt>Creator</dt><#else>
         </#if>
-        <#if (namePart=="")><#else>
+        <#if (namePart != "")>
             <dd>${namePart}
         </#if>
         <#list name.getAllSubtrees('subNameWrapper') as subName>
             <#assign major = subName.get('major')>
             <#assign affiliation = subName.get('affiliation')>
-            <#-- <dd>${major} -->
             <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
-            <#if (major=="")><#else>
+            <#if (major != "")>
                  — <a href="${majorUrl}">${major}</a>
             </#if>
         </#list>
@@ -80,11 +78,6 @@
         <#assign faculty = courseInfo.get('faculty')>
         <#assign section = courseInfo.get('section')>
         <#assign courseCategory = courseInfo.get('courseCategory')>
-        <#-- <dd>${course} -->
-        <#-- <dd>${semester} -->
-        <#-- <dd>${faculty} -->
-        <#-- <dd>${section} -->
-        <#-- <dd>${courseCategory} -->
         <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
         <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
         <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
@@ -106,9 +99,6 @@
 
         <#assign workType = courseWork.get('workType')>
         <#assign courseWorkTypeSpecific = courseWork.get('courseWorkTypeSpecific')>
-        <#-- <dd>${courseWorkType} -->
-        <#-- <dd>${workType} -->
-        <#-- <dd>${courseWorkTypeSpecific} -->
         <#assign courseWorkTypeUrl = "" />
         <#assign workTypeUrl = "" />
         <#assign courseWorkTypeSpecificUrl = "" />
@@ -120,7 +110,6 @@
 
         <#list seniorPacketWrapper as seniorPacketWrapper>
             <#assign phase = seniorPacketWrapper.get('phase')>
-            <#-- <dd>${phase} -->
             <#assign phaseUrl = "" />
                  — <a href="${phaseUrl}">${phase}</a>
         </#list>
@@ -129,9 +118,7 @@
         <#list local as local>
             <#assign theme = local.get('theme')>
             <#assign tagx = local.get('tags')>
-            <#-- <dd>${tags} -->
             <#assign tagUrl = "" />
-            <#-- <dd>${theme} -->
             <#assign themeUrl = "" />
              — <a href="${themeUrl}">${theme}</a>
             <#if tagx==""><#else>
@@ -144,7 +131,7 @@
 
         <#list modslevel as mods>
             <#assign abstract = mods.get('abstract')>
-            <#if (abstract=="")><#else>
+            <#if (abstract != "")>
                 <dd>${abstract}</dd>
             </#if>
         </#list>
@@ -155,7 +142,7 @@
         <dd><#if type=="remote">
             Related link: <a href="${full}">${full}
             </a>
-            <#else></#if>
+            </#if>
         </dd>
     </#list>
 

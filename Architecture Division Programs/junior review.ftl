@@ -25,7 +25,6 @@
     <dt class="hide">Collection</dt>
     <#list local as local>
         <#assign division = local.get('division')>
-        <#-- <dd>${division} -->
         <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdivision%3E${division}%3C%2Fdivision%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
         <dd class="collection"><a href="${divisionUrl}">${division}</a></dd>
     </#list>
@@ -38,14 +37,12 @@
         </#if>
         <#list name.getAllSubtrees('subNameWrapper') as subName>
             <#assign major = subName.get('major')>
-            <#-- <dd>${major} -->
             <#assign majorUrl = "" />
                  — <a href="${majorUrl}">${major}</a>
         </#list>
 
         <#list origininfo as origininfo>
             <#assign dateCreated = origininfo.get('dateCreatedWrapper/dateCreated')>
-            <#-- <dd>${dateCreated} -->
             <#assign dateCreatedUrl = "" />
              — Junior <a href="${dateCreatedUrl}">${dateCreated}</a>
         </#list>
@@ -54,7 +51,7 @@
 
     <#list modslevel as mods>
         <#assign abstract = mods.get('abstract')>
-        <#if (abstract=="")><#else>
+        <#if (abstract != "")>
             <dd>${abstract}</dd></#if>
     </#list>
 

@@ -82,5 +82,5 @@ a[href=""] {
          — <a href="${workTypeUrl}">${workType}</a>
     </#if>
 
-<#else></#if>
+</#if>
 </#list>

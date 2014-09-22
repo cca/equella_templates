@@ -152,7 +152,7 @@ a[href=""] {
         <dd><#if type == "remote">
             Related link: <a href="${full}">${full}
             </a>
-            <#else></#if>
+            </#if>
         </dd>
     </#list>
 

@@ -31,19 +31,13 @@
     <#assign faculty = courseInfo.get('faculty')>
     <#assign section = courseInfo.get('section')>
     <#assign firstYearDimension = courseInfo.get('firstYearDimension')>
-    <#-- <dd>${course} -->
-    <#-- <dd>${department} -->
-    <#-- <dd>${semester} -->
-    <#-- <dd>${faculty} -->
-    <#-- <dd>${section} -->
-    <#-- <dd>${firstYearDimension} -->
     <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
     <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
     <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
     <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
     <#assign firstYearDimensionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CfirstYearDimension%3E${firstYearDimension}%3C%2FfirstYearDimension%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=name&dr=AFTER" />
     <#assign departmentUrl = "" />
-    <#if (semester=="")><#else>
+    <#if (semester != "")>
     <dt>Course Information</dt>
     <span id="namestuff"><a href="${semesterUrl}">${semester}</a>
         <#if (department=="CORE Studio/First Year")>
@@ -79,22 +73,22 @@
     <#assign references = assignmentWrapper.get('references')>
 
     <dt>Assignment Information</dt>
-    <#if (description=="")><#else>
+    <#if (description != "")>
         <dd><strong>Description:</strong> ${description}</dd>
     </#if>
     <#if (assignmentDue=="") || (assignmentDue=="other")><#else>
         <dd><strong>Assignment occurred during:</strong> ${assignmentDue}</dd>
     </#if>
-    <#if (assignmentDueText=="")><#else>
+    <#if (assignmentDueText != "")>
         <dd><strong>Assignment occurred during:</strong> ${assignmentDueText}</dd>
     </#if>
     <#if (assignmentLength=="") || (assignmentLength=="other")><#else>
         <dd><strong>Assignment length:</strong> ${assignmentLength}</dd>
     </#if>
-    <#if (assignmentLengthText=="")><#else>
+    <#if (assignmentLengthText != "")>
         <dd><strong>Assignment length:</strong> ${assignmentLengthText}</dd>
     </#if>
-    <#if (references=="")><#else>
+    <#if (references != "")>
         <dd><strong>Assignment references:</strong> ${references}</dd>
     </#if>
 
@@ -108,20 +102,20 @@
         <#assign critiqueStrategy = local.get('critiqueStrategy')>
         <#assign ccaValuesx = local.get('ccaValues')>
         <#assign ccaValuesText = local.get('ccaValues_freetext')>
-        <#if (skillsx=="")><#else>
+        <#if (skillsx != "")>
             <dd><strong>Skills used in work:</strong>
             <#list skills as skills>
                 ${skills}<#if skills_has_next>; </#if>
             </#list>
             </dd>
         </#if>
-        <#if (skillsText=="")><#else>
+        <#if (skillsText != "")>
             <dd><strong>Other skills:</strong> ${skillsText}</dd>
         </#if>
-        <#if (thinkingProcesses=="")><#else>
+        <#if (thinkingProcesses != "")>
             <dd><strong>Thinking Processes:</strong> ${thinkingProcesses}</dd>
         </#if>
-        <#if (critiqueStrategy=="")><#else>
+        <#if (critiqueStrategy != "")>
             <dd><strong>Critique Strategy:</strong> ${critiqueStrategy}</dd>
         </#if>
 
@@ -132,7 +126,7 @@
             <#assign programLO = programLOWrapper.get('programLO')>
             <dd>${programLO}</dd>
         </#list>
-    <#else></#if>
+    </#if>
 
     <#if ('/local/assignmentWrapper/ccaLOWrapper/ccaLO')!=''>
         <dd><strong>CCA Learning Outcomes:</strong></dd>
@@ -140,7 +134,7 @@
             <#assign ccaLO = ccaLOWrapper.get('ccaLO')>
             <dd>${ccaLO}</dd>
         </#list>
-    <#else></#if>
+    </#if>
 
     <#if ('/local/assignmentWrapper/teachStrategyWrapper/teachStrategy')!=''>
         <dd><strong>Teaching Strategies:</strong></dd>
@@ -150,16 +144,16 @@
             <dd>${teachStrategy_freetext}</dd>
             <dd>${teachStrategy}</dd>
         </#list>
-    <#else></#if>
+    </#if>
 
-        <#if (ccaValuesx=="")><#else>
+        <#if (ccaValuesx != "")>
             <dd><strong>CCA Values:</strong>
             <#list ccaValues as ccaValues>
                 ${ccaValues}<#if ccaValues_has_next>; </#if>
             </#list>
             </dd>
         </#if>
-        <#if (ccaValuesText=="")><#else>
+        <#if (ccaValuesText != "")>
             <dd><strong>Other CCA Values:</strong> ${ccaValuesText}</dd>
         </#if>
     </#list>

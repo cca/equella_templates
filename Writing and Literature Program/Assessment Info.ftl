@@ -21,8 +21,6 @@
 <#list local as local>
     <#assign accreditation = local.get('accreditation')>
     <#assign rating = local.get('rating')>
-    <#-- <dd>${accreditation} -->
-    <#-- <dd>${rating} -->
     <#-- these URLs aren't used anywhere? -EP -->
     <#assign accreditationUrl = "" />
     <#assign ratingUrl = "" />

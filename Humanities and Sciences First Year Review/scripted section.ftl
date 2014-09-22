@@ -23,9 +23,8 @@
         <dd><strong>Student:</strong> ${namePart}
         <#list name.getAllSubtrees('subNameWrapper') as subName>
             <#assign major = subName.get('major')>
-            <#-- <dd>${major} -->
             <#assign majorUrl = "" />
-            <#if (major=="")><#else>
+            <#if (major != "")>
                  — ${major}
             </#if>
         </#list>
@@ -35,8 +34,6 @@
     <#list courseInfo as courseInfo>
         <#assign semester = courseInfo.get('semester')>
         <#assign department = courseInfo.get('department')>
-        <#-- <dd>${department} -->
-        <#-- <dd>${semester} -->
         <#assign semesterUrl = "" />
         <dd><strong>Semester of review:</strong> ${semester}</dd>
     </#list>
@@ -64,7 +61,7 @@
 
     <#list modslevel as mods>
         <#assign abstract = mods.get('abstract')>
-        <#if (abstract=="")><#else>
+        <#if (abstract != "")>
             <dd>Description: ${abstract}</dd>
         </#if>
     </#list>

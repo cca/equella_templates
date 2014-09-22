@@ -21,18 +21,16 @@
 <#list local as local>
     <#assign accreditation = local.get('accreditation')>
     <#assign rating = local.get('rating')>
-    <#-- <dd>${accreditation} -->
-    <#-- <dd>${rating} -->
     <#assign accreditationUrl = "" />
     <#assign ratingUrl = "" />
         <br />
         <h5 style="color: #936;"><center>Assessment information &amp; comments display ONLY to<br/>Graphic Design Faculty &amp; Staff and College Administrators.</center></h5>
-        <#if (accreditation=="")&&(rating=="")><#else>
+        <#if (accreditation=="")&&(rating != "")>
             <dt>Assessment</dt>
-            <#if (accreditation=="")><#else>
+            <#if (accreditation != "")>
                 <dd>Flagged for: <a href="${accreditationUrl}">${accreditation}</a></dd>
             </#if>
-            <#if (rating=="")><#else>
+            <#if (rating != "")>
                 <dd>Quality of work: <a href="${ratingUrl}">${rating}</a></dd>
             </#if>
         </#if>

@@ -26,7 +26,7 @@
             <#assign major = subNameWrapper.get('major')>
             <#-- <dt>${major} -->
             <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%2F%3E%3Cmods%3E%3Cname%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
-            <#if (major=="")><#else>
+            <#if (major != "")>
               - ${major}
             </#if>
         </#list>
@@ -102,5 +102,5 @@
     </#list>
     <div style="clear:both;"></div>
 
-    <#else></#if>
+    </#if>
 </#list>

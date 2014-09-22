@@ -210,10 +210,10 @@
                     ${waiverStatus}<br />
                 </p>
                 </div>
-            <#else></#if>
+            </#if>
         </#list>
     </#list>
     <dd><hr/></dd>
-<#else></#if>
+</#if>
 
 <div style="clear:both;"></div>

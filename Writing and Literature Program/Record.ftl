@@ -103,13 +103,13 @@ a[href=""] {
         <#-- commented out for assessment review 9/11/14
         <#list name as name>
             <#assign namePart = name.get('namePart')>
-            <#if (namePart=="")><#else>
+            <#if (namePart != "")>
                 <dd><strong>Student:</strong> ${namePart}
             </#if>
             <#list name.getAllSubtrees('subNameWrapper') as subName>
                 <#assign major = subName.get('major')>
                 <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
-                <#if (major=="")><#else>
+                <#if (major != "")>
                      — <a href="${majorUrl}">${major}</a>
                 </#if>
             </#list>
@@ -139,5 +139,5 @@ a[href=""] {
             </#if>
         </#list>
 
-<#else></#if>
+</#if>
 </#list>

@@ -8,9 +8,7 @@
 <dt class="hide">Collection</dt>
         <#list local as local>
             <#assign division = local.get('division')>
-            <#-- <dd>${division} -->
             <#assign department = local.get('department')>
-            <#-- <dd>${department} -->
             <#assign divisionUrl = "/access/searching.do?in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
             <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER"/>
             <dd class="collection"><a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a></dd>
@@ -35,15 +33,6 @@
     <#assign courseName = courseInfo.get('courseName')>
     <#assign XList = courseInfo.get('XList')>
     <#assign courseinfo = courseInfo.get('courseinfo')>
-    <#-- <dd>${course} -->
-    <#-- <dd>${semester} -->
-    <#-- <dd>${faculty} -->
-    <#-- <dd>${section} -->
-    <#-- <dd>${category} -->
-    <#-- <dd>${courseName} -->
-    <#-- <dd>${specialPrograms} -->
-    <#-- <dd>${XList} -->
-    <#-- <dd>${courseinfo} -->
     <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3EAssignment+template%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3Cdepartment%3EWriting+and+Literature%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
     <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3Cdepartment%3EWriting+and+Literature%3C%2Fdepartment%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3EAssignment+template%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
     <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3EAssignment+template%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3Cdepartment%3EWriting+and+Literature%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
@@ -97,9 +86,6 @@
     <#assign type = assignmentWrapper.get('type')>
     <#assign typeSpecific = assignmentWrapper.get('typeSpecific')>
     <#assign typeOther = assignmentWrapper.get('typeOther')>
-    <#-- <dd>${type} -->
-    <#-- <dd>${typeSpecific} -->
-    <#-- <dd>${typeOther} -->
     <#assign typeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EWriting+and+Literature%3C%2Fdepartment%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3EAssignment+template%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3CassignmentWrapper%3E%3Ctype%3E${type}%3C%2Ftype%3E%3C%2FassignmentWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
     <#assign typeSpecificUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3EAssignment+template%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3CassignmentWrapper%3E%3Ctype%3EAnalytical%3C%2Ftype%3E%3CtypeSpecific%3E${typeSpecific}%3C%2FtypeSpecific%3E%3C%2FassignmentWrapper%3E%3Cdepartment%3EWriting+and+Literature%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
     <#assign typeOtherUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3EAssignment+template%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3CassignmentWrapper%3E%3Ctype%3EAnalytical%3C%2Ftype%3E%3CtypeSpecific%3Eother+category+of+analysis%3C%2FtypeSpecific%3E%3CtypeOther%3E${typeOther}%3C%2FtypeOther%3E%3C%2FassignmentWrapper%3E%3Cdepartment%3EWriting+and+Literature%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
@@ -110,10 +96,10 @@
         </#if>
     </dd>
 
-    <#if (description=="")><#else>
+    <#if (description != "")>
         <dd><strong>Description:</strong> ${description}</dd>
     </#if>
-    <#if (references=="")><#else>
+    <#if (references != "")>
         <dd><strong>Assignment text / resources:</strong> ${references}</dd>
     </#if>
     <#if (assignmentDue=="") || (assignmentDue=="other")><#else>
@@ -136,7 +122,7 @@
         <#assign ccaLOx = local.get('ccaLearningOutcome')>
         <#assign programLOx = local.get('programLearningOutcomes')>
         <#assign skillsx = local.get('skills')>
-        <#if (critiqueStrategy=="")><#else>
+        <#if (critiqueStrategy != "")>
             <dd><strong>Feedback Strategy:</strong> ${critiqueStrategy}</dd>
         </#if>
 

@@ -12,8 +12,6 @@
     <#assign groupProject = courseWork.get('groupProject')>
     <#assign groupMembers = courseWork.get('groupMembers')>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
-    <#-- <dd>${groupProject} -->
-    <#-- <dd>${courseWorkType} -->
     <#assign groupProjectUrl = "" />
     <#assign courseWorkTypeUrl = "" />
     <#if courseWorkType=="Workshop / Events">
@@ -28,9 +26,7 @@
     <dt class="hide">Collection</dt>
         <#list local as local>
             <#assign division = local.get('division')>
-            <#-- <dd>${division} -->
             <#assign department = local.get('department')>
-            <#-- <dd>${department} -->
             <#assign divisionUrl = "/access/searching.do?in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
             <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
 
@@ -49,7 +45,6 @@
     <#assign objective = xml.getAllSubtrees('local/objective')>
     <#list local as local>
         <#assign objectivex = local.get('objective')>
-        <#-- <dd>${objective} -->
         <#assign objectiveUrl = "" />
         <#if objectivex==""><#else>
         <dd>Event type:
@@ -61,7 +56,7 @@
 
     <#list modslevel as mods>
         <#assign abstract = mods.get('abstract')>
-        <#if (abstract=="")><#else>
+        <#if (abstract != "")>
              — ${abstract}
         </#if>
     </#list>
@@ -70,7 +65,6 @@
     <#list origininfo as origininfo>
         <#assign dateCreated = origininfo.get('dateCreatedWrapper/dateCreated')>
         <#assign semesterCreated = origininfo.get('semesterCreated')>
-        <#-- <dd>${semesterCreated} -->
         <#assign semesterCreatedUrl = "" />
         <#if semesterCreated==""><#else>
             <dd>Date:
@@ -83,10 +77,9 @@
     <#assign name = xml.getAllSubtrees('mods/subject/name')>
     <#list subject as subject>
         <#assign namex = subject.get('name')>
-        <#if (namex=="")><#else>
+        <#if (namex != "")>
             <dd>Person(s) depicted:
             <#list name as name>
-                <#-- <dd>${name} -->
                 <#assign nameUrl = "" />
                 <#if name==""><#else>
                     <a href="${nameUrl}">${name}</a><#if name_has_next>, </#if>
@@ -96,6 +89,6 @@
         </#if>
     </#list>
 
-<#else></#if>
+</#if>
 
 </#list>

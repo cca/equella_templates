@@ -206,13 +206,13 @@ a[href=""] {
         <dd><#if type=="remote">
             Related link: <a href="${full}">${full}
             </a>
-        <#else></#if>
+        </#if>
         </dd>
     </#list>
 
     <#list modslevel as mods>
         <#assign abstract = mods.get('abstract')>
-        <#if (abstract=="")><#else>
+        <#if (abstract != "")>
             <dd>${abstract}</dd></#if>
     </#list>
 

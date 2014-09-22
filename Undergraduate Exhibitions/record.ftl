@@ -25,9 +25,6 @@
     <#assign sponsor = exhibitWrapper.get('sponsor')>
     <#assign showType = exhibitWrapper.get('@type')>
     <#assign datex = exhibitWrapper.get('date')>
-    <#-- <dd>${gallery} -->
-    <#-- <dd>${semester} -->
-    <#-- <dd>${showType} -->
     <#assign galleryUrl = "" />
     <#assign semesterUrl = "" />
     <#assign showTypeUrl = "" />
@@ -57,15 +54,6 @@
             <#assign courseName = courseInfo.get('courseName')>
             <#assign XList = courseInfo.get('XList')>
             <#assign specialPrograms = courseInfo.get('specialPrograms')>
-            <#-- <dd>${course} -->
-            <#-- <dd>${department} -->
-            <#-- <dd>${semester} -->
-            <#-- <dd>${faculty} -->
-            <#-- <dd>${section} -->
-            <#-- <dd>${courseCategory} -->
-            <#-- <dd>${courseName} -->
-            <#-- <dd>${XList} -->
-            <#-- <dd>${specialPrograms} -->
             <#assign specialProgramsUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CcourseCategory%3E${specialPrograms}%3C%2FcourseCategory%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
             <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
             <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
@@ -87,14 +75,14 @@
                 <dd><span id="VisStcoursestuff">
                     Course is cross-listed with <a href="${XListUrl}">${XList}</a>.
                 </dd>
-            <#else></#if>
-            <#if (courseCategory=="")><#else>
+            </#if>
+            <#if (courseCategory != "")>
                 <dd><span id="VisStcoursestuff">Course category:
                     <a href="${courseCategoryUrl}">${courseCategory}</a>
             </#if>
             <#if (specialPrograms!="")>
                 &amp <a href="${specialProgramsUrl}">${specialPrograms}</a>
-            <#else></#if>
+            </#if>
             </dd>
 
     <#elseif sponsor=="department / program">
@@ -117,8 +105,6 @@
     <#list subNameWrapper as subName>
         <#assign major = subName.get('major')>
         <#assign gradDate = subName.get('gradDate')>
-        <#-- <dd>${major} -->
-        <#-- <dd>${gradDate} -->
         <#assign majorUrl = "" />
         <#assign gradDateUrl = "" />
         <#if (major=="")>
@@ -153,15 +139,15 @@
                 <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
                 <p class='photoImagelist'>
                     <#if title==""><#else><i>${title}</i></#if>
-                    <#if title!=""><br /><#else></#if>
+                    <#if title!=""><br /></#if>
                     <#if artistName==""><#else><i>${artistName}</i></#if>
-                    <#if artistName!=""><br /><#else></#if>
+                    <#if artistName!=""><br /></#if>
                     <#if semester==""><#else>${semester}</#if>
-                    <#if semester!=""><br /><#else></#if>
+                    <#if semester!=""><br /></#if>
                     <#if keyword==""><#else>${keyword}</#if>
-                    <#if keyword!=""><br /><#else></#if>
+                    <#if keyword!=""><br /></#if>
                     <#if formatSpecific==""><#else>${formatSpecific}</#if>
-                    <#if formatSpecific!=""><br /><#else></#if>
+                    <#if formatSpecific!=""><br /></#if>
                     <#if dimensions==""><#else>${dimensions}</#if>
                 </p>
             </div>

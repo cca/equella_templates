@@ -62,7 +62,7 @@
         <#list local as local>
             <#assign rating = local.get('rating')>
             <#assign awardText = local.get('award_freetext')>
-            <#if (rating=="")><#else><dd>Received <strong>${rating}</strong></#if>
+            <#if (rating != "")><dd>Received <strong>${rating}</strong></#if>
             <#if (awardText=="")></dd><#else>because <strong>${awardText}</strong></dd></#if>
 
 
@@ -70,13 +70,13 @@
     <#assign nominatedForx = local.get('nominatedFor')>
     <#assign nominatedText = local.get('nominated_freetext')>
 
-        <#if (nominatedForx=="")><#else>
+        <#if (nominatedForx != "")>
         <dd>Nominated for:
             <#list nominatedFor as nominatedFor>
             <strong>${nominatedFor}</strong><#if nominatedFor_has_next>; </#if>
             </#list>
         </dd></#if>
-        <#if (awardx=="")><#else>
+        <#if (awardx != "")>
         <dd>Awarded:
             <#list award as award>
             <strong>${award}</strong><#if award_has_next>; </#if>

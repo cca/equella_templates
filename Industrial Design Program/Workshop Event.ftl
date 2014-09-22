@@ -89,7 +89,7 @@ a[href=""] {
 
     <#list modslevel as mods>
         <#assign abstract = mods.get('abstract')>
-        <#if (abstract=="")><#else>
+        <#if (abstract != "")>
             <dd>Description: ${abstract}</dd></#if>
     </#list>
 

@@ -22,8 +22,6 @@
     <#list local as local>
         <#assign department = local.get('department')>
         <#assign division = local.get('division')>
-        <#-- <dd>${division} -->
-        <#-- <dd>${department} -->
         <dt class="hide">Division</dt>
         <#assign divisionUrl = "" />
         <#assign departmentUrl = "" />
@@ -75,7 +73,7 @@
             <span id="coursestuff">
                 <#if XList!="">
                     (Cross-listed as ${XList}.)
-                <#else></#if>
+                </#if>
             </span>
         </#if>
     </#list>
@@ -99,7 +97,7 @@
     <#if courseWorkType != "">
         ${courseWorkType}
     </#if>
-    <#if (courseWorkType!="")&&(projectTitle!="")> | <#else></#if>
+    <#if (courseWorkType!="")&&(projectTitle!="")> | </#if>
     <#if projectTitle != "">
         Project Number ${projectTitle}
     </#if>
@@ -179,15 +177,15 @@
                 <#if file==uuid>
                     <p class='photoImagelist'>
                     <#if format != "">${format}</#if>
-                    <#if format!=""><br /><#else></#if>
+                    <#if format!=""><br /></#if>
                     <#if formatSpecific != "">${formatSpecific}</#if>
-                    <#if formatSpecific!=""><br /><#else></#if>
+                    <#if formatSpecific!=""><br /></#if>
                     <#if assignNumber != "">Assgn: ${assignNumber}</#if>
-                    <#if assignNumber!=""><br /><#else></#if>
+                    <#if assignNumber!=""><br /></#if>
                     <#if exerciseNumber != "">Exercise: ${exerciseNumber}</#if>
-                    <#if exerciseNumber!=""><br /><#else></#if>
+                    <#if exerciseNumber!=""><br /></#if>
                     </p>
-                <#else></#if>
+                </#if>
                 </#list>
             </#list>
         </div>

@@ -41,11 +41,11 @@
                             <#else>
                                 <p class='caption'>
                                     <#if parttitle==""><#else><em>${parttitle} </em></#if>
-                                    <#if parttitle!=""><br /> <#else></#if>
+                                    <#if parttitle!=""><br /> </#if>
                                     <#if partextent==""><#else> ${partextent}</#if>
                                 </p>
                             </#if>
-                        <#else></#if>
+                        </#if>
                     </#list>
                 </div>
             </#list>
