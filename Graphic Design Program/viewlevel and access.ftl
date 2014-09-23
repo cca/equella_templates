@@ -1,20 +1,12 @@
-<#assign modslevel = xml.getAllSubtrees('mods')>
-<#assign local = xml.getAllSubtrees('local')>
 <dt class="hide">Rights</dt>
 <dd class="rights">
-<#list local as local>
-    <#assign viewLevel = local.get('viewLevel')>
-    <#if viewLevel==""><#else>
-    This item is ${viewLevel}.</#if>
-    </#list>
+    <#assign viewLevel = xml.get('local/viewLevel')>
+    <#if viewLevel != "">This item is ${viewLevel}.</#if>
 
-<#list modslevel as mods>
-    <#assign accessCondition = mods.get('accessCondition')>
+    <#assign accessCondition = xml.get('mods/accessCondition')>
     <#if viewLevel=="">
         ${accessCondition}.</br>
     <#else>
         <br>${accessCondition}.</br>
     </#if>
-
-</#list>
 </dd>
