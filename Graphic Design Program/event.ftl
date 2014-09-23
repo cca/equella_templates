@@ -32,15 +32,6 @@ a[href=""] {
                 <dd class="collection"><a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a></dd>
             </#list>
 
-        <div id="images">
-        <#list itemAttachments as itemAttachment>
-            <#assign uuid = itemAttachment.get('uuid')>
-            <#assign full = itemAttachment.get('file')>
-            <a href="/file/${itemUuid}/${itemversion}/${full}">
-            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-        </#list>
-        </div>
-
         <#assign objective = xml.getAllSubtrees('local/objective')>
         <#list local as local>
             <#assign objectivex = local.get('objective')>
@@ -76,7 +67,7 @@ a[href=""] {
             <#assign names = subject.list('name')>
             <#if (names?size > 0)>
                 <dd>Person(s) depicted:
-                <#list name as name>
+                <#list names as name>
                     <#-- @todo fix URL -->
                     <#assign nameUrl = "" />
                     <#if name != "">
@@ -86,6 +77,15 @@ a[href=""] {
                 </dd>
             </#if>
         </#list>
+
+        <div id="images">
+        <#list itemAttachments as itemAttachment>
+            <#assign uuid = itemAttachment.get('uuid')>
+            <#assign full = itemAttachment.get('file')>
+            <a href="/file/${itemUuid}/${itemversion}/${full}">
+            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+        </#list>
+        </div>
 
     </#if>
 </#list>
