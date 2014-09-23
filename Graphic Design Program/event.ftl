@@ -16,7 +16,7 @@ a[href=""] {
 
 <#list courseWork as courseWork>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
-    <#if courseWorkType == "Workshop / Events" || courseWorkType == "Events">
+    <#if courseWorkType == "Workshop / Events">
 
     <dl>
         <#assign title = xml.get('mods/titleInfo/title')>
