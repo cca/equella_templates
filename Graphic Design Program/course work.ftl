@@ -32,17 +32,16 @@
             <dd class="collection"><a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a></dd>
         </#list>
 
-            <div id="images">
-            <#list itemAttachments as itemAttachment>
-                <#assign thumb = itemAttachment.get('thumbnail')>
-                <#assign full = itemAttachment.get('file')>
-                <#if full?contains("http://") || full?ends_with(".zip")><#else>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                    <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
-                </#if>
-            </#list>
-            </div>
-
+        <div id="images">
+        <#list itemAttachments as itemAttachment>
+            <#assign uuid = itemAttachment.get('uuid')>
+            <#assign full = itemAttachment.get('file')>
+            <#if full?contains("http://") || full?ends_with(".zip")><#else>
+                <a href="/file/${itemUuid}/${itemversion}/${full}">
+                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+            </#if>
+        </#list>
+        </div>
 
         <#list nameInfo as nameInfo>
             <#assign name = nameInfo.get('namePart')>
@@ -135,6 +134,9 @@
 
             <dd>Copyright authorization: <a href="${typeUrl}">${type}</a></dd>
         </#list>
-
-</#if>
+    </#if>
 </#list>
+
+<script>
+$('#images a').fancybox();
+</script>
