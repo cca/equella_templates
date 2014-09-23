@@ -1,13 +1,10 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign titleInfo = xml.getAllSubtrees('mods/titleInfo')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign nameInfo = xml.getAllSubtrees('mods/name')>
 <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
 <#assign physdesc = xml.getAllSubtrees('mods/physicalDescription')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign subject = xml.getAllSubtrees('mods/subject')>
-<#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
@@ -22,12 +19,8 @@
     <#if courseWorkType=="Course work">
 
     <dl>
-        <#list titleInfo as titleInfo>
-            <#assign title = titleInfo.get('title')>
-            <#assign subTitle = titleInfo.get('subTitle')>
-            <h2 id="title">${title}
-            </h2>
-        </#list>
+        <#assign title = xml.get('mods/titleInfo/title')>
+        <h2 id="title">${title}</h2>
 
         <dt class="hide">Collection</dt>
         <#list local as local>
@@ -82,7 +75,7 @@
             <#assign courseNameUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CcourseName%3E${courseName}%3C%2FcourseName%3E%3C%2FcourseInfo%3E%3Cdepartment%3EGraphic+Design%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
             <#assign XListUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CXList%3E${XList}%3C%2FXList%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
 
-            <#if (semester=="")><i>no course selected</i><#else>
+            <#if (semester == "")><i>no course selected</i><#else>
             <span id="coursestuff" style="font-size: 11.5px;">
                 <a href="${semesterUrl}">${semester}</a>
                  — <a href="${courseUrl}">${course}</a>
@@ -98,8 +91,7 @@
             </span>
             <span id="coursestuff" style="font-size: 11.5px;">
                 Course number / category: <a href="${courseNameUrl}">${courseName}</a>
-                <#if (courseCategory=="")>
-                <#elseif (courseCategory!="")>
+                <#if (courseCategory != "")>
                      — <a href="${courseCategoryUrl}">${courseCategory}</a>
                 </#if>
             </span>
@@ -120,19 +112,19 @@
         <#list itemAttachments as itemAttachment>
             <#assign type = itemAttachment.get('@type')>
             <#assign full = itemAttachment.get('file')>
-            <dd><#if type=="remote">
-                Related link: <a href="${full}" target="_blank">${full}</a>
+            <dd><#if type == "remote">
+                Related link: <a href="${full}">${full}</a>
             </#if>
             </dd>
         </#list>
 
         <dd>
-        <#if groupProject=="individual project">
+        <#if groupProject == "individual project">
             This was an <a href="${groupProjectUrl}">${groupProject}</a>.
-        <#elseif groupProject=="group project">
+        <#elseif groupProject == "group project">
             This was a <a href="${groupProjectUrl}">${groupProject}</a>
         </#if>
-        <#if groupMembers==""><#else>
+        <#if groupMembers != "">
             with ${groupMembers}.
         </#if>
         </dd>
