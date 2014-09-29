@@ -6,7 +6,6 @@
 
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign titleInfo = xml.getAllSubtrees('mods/titleInfo')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign name = xml.getAllSubtrees('mods/name')>
 <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
@@ -31,14 +30,11 @@ a[href=""] {
 <dl>
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if (courseWorkType =="Senior thesis project")>
-
-    <#list titleInfo as titleInfo>
-        <#assign title = titleInfo.get('title')>
-        <#assign subTitle = titleInfo.get('subTitle')>
-        <h2 id="title">${title}
-        </h2></dl>
-    </#list>
+<#if (courseWorkType == "Senior thesis project")>
+        <#assign title = xml.get('mods/titleInfo/title')>
+        <#assign subTitle = xml.get('mods/titleInfo/subTitle')>
+        <h2 id="title">${title}</h2>
+</dl>
 
     <dt class="hide">Collection</dt>
         <#list local as local>
@@ -52,18 +48,17 @@ a[href=""] {
     <div id="images">
     <#list xml.getAllSubtrees('mods/part/number') as imageFile>
     <#list itemAttachments as itemAttachment>
-        <#assign thumb = itemAttachment.get('thumbnail')>
+        <#assign uuid = itemAttachment.get('uuid')>
         <#assign full = itemAttachment.get('file')>
         <#if imageFile.get('/') = itemAttachment.get('uuid')>
             <#if full?contains("http://") || full?ends_with(".zip")><#else>
                 <a href="/file/${itemUuid}/${itemversion}/${full}">
-                <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
             </#if>
         </#if>
     </#list>
     </#list>
     </div>
-
 
     <#assign name = xml.getAllSubtrees('mods/name')>
     <#list name as name>
@@ -103,11 +98,11 @@ a[href=""] {
         <#if course == "undefined" || course == "Events">
             <#else> — <a href="${courseUrl}">${course}</a>
         </#if>
-        <#if faculty == "undefined">
-            <#else> — <a href="${facultyUrl}">${faculty}</a>
+        <#if faculty != "undefined">
+             — <a href="${facultyUrl}">${faculty}</a>
         </#if>
-        <#if section == "undefined">
-            <#else> — <a href="${sectionUrl}">${section}</a>
+        <#if section != "undefined">
+             — <a href="${sectionUrl}">${section}</a>
         </#if>
         </span>
     </#list>
@@ -159,13 +154,12 @@ a[href=""] {
     <#list xml.getAllSubtrees('local/artistDocWrapper/resumeCVFile') as resumeCVFile>
         <#list itemAttachments as itemAttachment>
         <#if resumeCVFile.get('/') = itemAttachment.get('uuid')>
-            <#assign thumb = itemAttachment.get('thumbnail')>
             <#assign full = itemAttachment.get('file')>
             <#assign uuid = itemAttachment.get('uuid')>
             <dt>Resume/CV</dt>
             <div class="image-artistDocs">
-            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-            <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+            <a href="/file/${itemUuid}/${itemversion}/${full}">
+            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
             <p class='artistDocs'>${full}</p>
             </div>
         </#if>

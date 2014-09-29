@@ -6,12 +6,8 @@
 
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign titleInfo = xml.getAllSubtrees('mods/titleInfo')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign name = xml.getAllSubtrees('mods/name')>
-<#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
 <#assign physdesc = xml.getAllSubtrees('mods/physicalDescription')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
@@ -29,12 +25,10 @@ a[href=""] {
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#if (courseWorkType =="Course work")>
 
-	<#list titleInfo as titleInfo>
-		<#assign title = titleInfo.get('title')>
-		<#assign subTitle = titleInfo.get('subTitle')>
-		<h2 id="title">${title}</h2>
-		</dl>
-	</#list>
+	<#assign title = xml.get('mods/titleInfo/title')>
+	<#assign subTitle = xml.get('mods/titleInfo/subTitle')>
+	<h2 id="title">${title}</h2>
+</dl>
 
 	<dt class="hide">Collection</dt>
 		<#list local as local>
@@ -48,11 +42,11 @@ a[href=""] {
 
 		<div id="images">
 			<#list itemAttachments as itemAttachment>
-				<#assign thumb = itemAttachment.get('thumbnail')>
+				<#assign uuid = itemAttachment.get('uuid')>
 				<#assign full = itemAttachment.get('file')>
 				<#if full?contains("http://") || full?ends_with(".zip")><#else>
 					<a href="/file/${itemUuid}/${itemversion}/${full}">
-					<img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+					<img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
 				</#if>
 			</#list>
 		</div>
@@ -170,12 +164,10 @@ a[href=""] {
 		</#if>
 	</#list>
 
-	<#list modslevel as mods>
-		<#assign abstract = mods.get('abstract')>
-		<#if abstract != "">
-			<dd>${abstract}</dd>
-		</#if>
-	</#list>
+	<#assign abstract = xml.get('mods/abstract')>
+	<#if abstract != "">
+		<dd>${abstract}</dd>
+	</#if>
 
 	<dd>
 		<#assign groupProject = courseWork.get('groupProject')>

@@ -1,13 +1,7 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign titleInfo = xml.getAllSubtrees('mods/titleInfo')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign name = xml.getAllSubtrees('mods/name')>
-<#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
-<#assign physdesc = xml.getAllSubtrees('mods/physicalDescription')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign subject = xml.getAllSubtrees('mods/subject')>
-<#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
 <#assign origininfo = xml.getAllSubtrees('mods/origininfo')>
@@ -23,14 +17,12 @@ a[href=""] {
 <dl>
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if (courseWorkType =="Workshops / Events")>
+<#if (courseWorkType == "Workshop / Events")>
 
-    <#list titleInfo as titleInfo>
-        <#assign title = titleInfo.get('title')>
-        <#assign subTitle = titleInfo.get('subTitle')>
-        <h2 id="title">${title}</h2>
+    <#assign title = xml.get('mods/titleInfo/title')>
+    <#assign subTitle = xml.get('mods/titleInfo/subTitle')>
+    <h2 id="title">${title}</h2>
 </dl>
-    </#list>
 
     <dt class="hide">Collection</dt>
         <#list local as local>
@@ -38,23 +30,21 @@ a[href=""] {
             <#assign department = local.get('department')>
             <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%2F%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
             <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
-
             <dd class="collection"><a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a></dd>
         </#list>
 
     <div id="images">
     <#list itemAttachments as itemAttachment>
-        <#assign thumb = itemAttachment.get('thumbnail')>
+        <#assign uuid = itemAttachment.get('uuid')>
         <#assign full = itemAttachment.get('file')>
         <#if full?contains("http://") || full?ends_with(".zip")><#else>
             <a href="/file/${itemUuid}/${itemversion}/${full}">
-            <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
         </#if>
     </#list>
     </div>
 
     <dt>Workshop / Event Information</dt>
-
     <#list local as local>
         <#assign objective = local.get('objective')>
         <#-- @todo fix this URL -->
@@ -87,11 +77,8 @@ a[href=""] {
             </#if>
         </#list>
 
-    <#list modslevel as mods>
-        <#assign abstract = mods.get('abstract')>
-        <#if (abstract != "")>
-            <dd>Description: ${abstract}</dd></#if>
-    </#list>
+    <#assign abstract = xml.get('mods/abstract')>
+    <#if (abstract != "")><dd>Description: ${abstract}</dd></#if>
 
     <#assign name = xml.getAllSubtrees('mods/subject/name')>
     <#list subject as subject>

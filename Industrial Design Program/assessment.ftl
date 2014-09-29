@@ -1,4 +1,3 @@
-
 <#function currentUserIsMemberOf targetGroup>
   <#assign allowedGroupID = "" >
   <#list user.searchGroups("") as group>
@@ -15,7 +14,7 @@
 
 <#assign local = xml.getAllSubtrees('local')>
 <#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
-<!#-- Administrator only information-->
+<#-- Administrator only information -->
 <#if currentUserIsMemberOf("System Administrators")||currentUserIsMemberOf("Library Administrator")||currentUserIsMemberOf("College Administrators")||currentUserIsMemberOf("Industrial Design Administrator")||currentUserIsMemberOf("Industrial Design Faculty")>
 
 <#list local as local>
@@ -49,10 +48,10 @@
             <#else>
             <dd>${type}:
         </#if>
-        <#if title==""><#else>
+        <#if title != "">
             <em>${title}</em></dd>
         </#if>
-        <#if note==""><#else>
+        <#if note != "">
             <dd>Note: ${note}</dd>
         </#if>
     </#if>

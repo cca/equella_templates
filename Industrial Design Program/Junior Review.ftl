@@ -1,10 +1,6 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign titleInfo = xml.getAllSubtrees('mods/titleInfo')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign name = xml.getAllSubtrees('mods/name')>
-<#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
 <#assign origininfo = xml.getAllSubtrees('mods/origininfo')>
@@ -23,12 +19,9 @@ a[href=""] {
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#if (courseWorkType =="Junior Review portfolio")>
 
-    <#list titleInfo as titleInfo>
-        <#assign title = titleInfo.get('title')>
-        <#assign subTitle = titleInfo.get('subTitle')>
-        <h2 id="title">${title}</h2>
+    <#assign title = xml.get('mods/titleInfo/title')>
+    <h2 id="title">${title}</h2>
 </dl>
-    </#list>
 
     <dt class="hide">Collection</dt>
         <#list local as local>
@@ -59,15 +52,12 @@ a[href=""] {
         </dd>
     </#list>
 
-    <#list modslevel as mods>
-        <#assign abstract = mods.get('abstract')>
-        <#if abstract != "">
-            <dd>${abstract}</dd>
-        </#if>
-    </#list>
+    <#assign abstract = xml.get('mods/abstract')>
+    <#if abstract != "">
+        <dd>${abstract}</dd>
+    </#if>
 
     <#list itemAttachments as itemAttachment>
-        <#assign thumb = itemAttachment.get('thumbnail')>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
         <#list juniorReviewFiles as juniorReviewFiles>
@@ -75,8 +65,8 @@ a[href=""] {
             <#assign file = juniorReviewFiles.get('file')>
             <#if file == uuid>
                 <div class='image-studentWork'>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                <a href="/file/${itemUuid}/${itemversion}/${full}">
+                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                 <p class='caption'>
                 <#if projectFormat != ""><i>${projectFormat}</i></#if>
                 </p>
@@ -84,6 +74,7 @@ a[href=""] {
             </#if>
         </#list>
     </#list>
+
     <div style="clear:both;"></div>
     <#list itemAttachments as itemAttachment>
         <#assign type = itemAttachment.get('@type')>
