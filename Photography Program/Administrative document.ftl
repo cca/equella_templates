@@ -22,15 +22,6 @@
 
     <dt>Document Details</dt>
 
-    <#list xml.getAllSubtrees('item/attachments/attachment') as attachment>
-        <#if attachment.get('@type') == 'remote'>
-            <#assign url = attachment.get('file')>
-            <dd>
-                <b>Link</b>: <a href="${url}">${url}</a>
-            </dd>
-        </#if>
-    </#list>
-
     <dd>Document Type: <a href="${courseWorkTypeUrl}">${courseWorkType}</a>
     <#if courseWorkTypeSpecific != ''>
         <#assign courseWorkTypeSpecificUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkTypeSpecific%3E${courseWorkTypeSpecific}%3C%2FcourseWorkTypeSpecific%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
@@ -44,6 +35,15 @@
     <#if dateCreated != "">
         <dd>Date created: ${dateCreated}</dd>
     </#if>
+
+    <#list xml.getAllSubtrees('item/attachments/attachment') as attachment>
+        <#if attachment.get('@type') == 'remote'>
+            <#assign url = attachment.get('file')>
+            <dd>
+                Link: <a href="${url}">${url}</a>
+            </dd>
+        </#if>
+    </#list>
 
     <#if accreditation != ''>
         <dd>
