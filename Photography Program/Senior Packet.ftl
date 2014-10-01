@@ -6,14 +6,11 @@
 
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign titleInfo = xml.getAllSubtrees('mods/titleInfo')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign name = xml.getAllSubtrees('mods/name')>
 <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
 <#assign date = xml.getAllSubtrees('mods/origininfo/dateCreatedWrapper')>
 <#assign physdesc = xml.getAllSubtrees('mods/physicalDescription')>
-<#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign exhibitWrapper = xml.getAllSubtrees('local/exhibitWrapper')>
@@ -26,10 +23,8 @@
     <#assign courseWorkType = courseWork.get('courseWorkType')>
     <#if (courseWorkType =="Senior packet")>
 
-        <#list titleInfo as titleInfo>
-            <#assign title = titleInfo.get('title')>
-            <h2 id="title">${title}</h2>
-        </#list>
+        <#assign title = xml.get('mods/titleInfo/title')>
+        <h2 id="title">${title}</h2>
 
         <dt class="hide">Collection</dt>
         <#list local as local>
@@ -43,7 +38,7 @@
         <dt>Creator</dt>
         <#list name as name>
             <#assign namePart = name.get('namePart')>
-            <#assign namePartUrl = 'https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
+            <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
             <dd><a href="${namePartUrl}">${namePart}</a>
             <#list subNameWrapper as subName>
                 <#assign major = subName.get('major')>
@@ -98,12 +93,10 @@
 
         <dt>Senior Packet</dt>
 
-        <#list modslevel as mods>
-            <#assign abstract = mods.get('abstract')>
-            <#if (abstract != "")>
-                <dd>Description: ${abstract}</dd>
-            </#if>
-        </#list>
+        <#assign abstract = xml.get('mods/abstract')>
+        <#if (abstract != "")>
+            <dd>Description: ${abstract}</dd>
+        </#if>
 
         <#assign date = xml.getAllSubtrees('local/exhibitWrapper/date')>
         <#list exhibitWrapper as exhibitWrapper>
@@ -156,7 +149,7 @@
         </#if>
         </#list>
         </#list>
-        <div style="clear:both;"></div>
+        <div class="clearfix"></div>
 
         <#-- only show if we actually have something -->
         <#if xml.get('local/artistDocWrapper/artistStatementFile') != "">
@@ -214,7 +207,7 @@
         </#list>
         </#list>
 
-        <div style="clear:both;"></div>
+        <div class="clearfix"></div>
 
         <h4 style="color: #666;"><u>Image List</u></h4>
         <#list itemAttachments as itemAttachment>
@@ -258,7 +251,6 @@
             </#list>
         </#list>
 
-<div style="clear:both;"></div>
 </dl>
 </#if>
 </#list>
