@@ -58,5 +58,19 @@
         <dd>Description: ${abstract}</dd>
     </#if>
 
+    <#-- print Bio/CV up above rest of attachments to highlight it -->
+    <#list xml.getAllSubtrees('item/attachments/attachment') as attachment>
+        <#assign file = attachment.get('file')>
+        <#if file?ends_with('.pdf') && workType == 'Faculty bios'>
+            <#assign uuid = attachment.get('uuid')>
+            <#assign itemUuid = xml.get('item/@id')>
+            <#assign itemVersion = xml.get('item/@version')>
+            <dd>
+                <a class="clearfix" href="/file/${itemUuid}/${itemVersion}/${file}"><img src="/thumbs/${itemUuid}/${itemVersion}/${uuid}" alt="bio or CV"></a>
+                <p>Bio/CV document (PDF)</p>
+            </dd>
+        </#if>
+    </#list>
+
     </dl>
 </#if>
