@@ -47,9 +47,9 @@
 
     <#if accreditation != ''>
         <dd>
+            <#-- @todo why doesn't this work?!? -->
             <#assign accreditationUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Caccreditation%3E${accreditation}%3C%2Faccreditation%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
-            Flagged for
-            <a href="${accreditationUrl}">${accreditation}</a>
+            Flagged for ${accreditation}
         </dd>
     </#if>
 
