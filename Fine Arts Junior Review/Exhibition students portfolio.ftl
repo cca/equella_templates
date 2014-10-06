@@ -38,6 +38,7 @@
         <dd>Description: ${abstract}</dd>
     </#if>
 
+    <div class="clearfix js-masonry" data-masonry-options='{ "columnWidth": 130, "itemSelector": ".image-juniorReviewWork" }'>
     <#list itemAttachments as itemAttachment>
         <#assign thumb = itemAttachment.get('thumbnail')>
         <#assign full = itemAttachment.get('file')>
@@ -50,7 +51,7 @@
                 <#if full?ends_with(".zip")>
                 <#elseif full?ends_with(".jpg")>
                     <div class='image-juniorReviewWork'>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
                     <p class='photoImagelist'>
                     <#if title != ""><i>${title}</i><br /></#if>
                     <#if ('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat')!=''>
@@ -72,7 +73,7 @@
                 <#elseif full?ends_with(".mov")>
                     <div class='image-juniorReviewMovImgWork'>
                         <a href="/items/${itemUuid}/${itemversion}/${full}" target="_blank">
-                        <img src="/p/r/6.1.r2275/com.tle.web.mimetypes.service/icons/quicktime.png"/></a>
+                        <img src="/p/r/6.1.r2275/com.tle.web.mimetypes.service/icons/quicktime.png" width="88" height="66"/></a>
                         <br/>
                     <p>
                         <#if title != ""><i>${title}</i><br /></#if>
@@ -97,7 +98,7 @@
                 <#else>
                     <div class='image-juniorReviewWork'>
                         <a href="/file/${itemUuid}/${itemversion}/${full}">
-                        <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
                     <p class='photoImagelist'>
                         <#if title != ""><i>${title}</i><br /></#if>
                         <#if ('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat')!=''>
@@ -121,6 +122,7 @@
             </#if>
         </#list>
     </#list>
+    </div>
 
     <#list xml.getAllSubtrees('local/artistDocWrapper/artistStatementFile') as artistStatementFile>
         <#list itemAttachments as itemAttachment>
@@ -137,7 +139,7 @@
                 </#if>
                 <dt>Artist Statement</dt>
                 <div>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="${thumbUrl}" alt="Artist's Statement"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="${thumbUrl}" alt="Artist's Statement" width="88" height="66"/></a>
                     <p class='artistDocs'><a href="/file/${itemUuid}/${itemversion}/${full}">${full}</a></p>
                 </div>
             </#if>
@@ -147,3 +149,5 @@
 <h4><i>Click on thumbnails below for image slideshow and accompanying video(s).</i></h4>
     </#if>
 </#list>
+
+<script src="//cdn.jsdelivr.net/masonry/3.1.5/masonry.min.js"></script>
