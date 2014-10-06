@@ -110,6 +110,7 @@
 </#list>
 
 <dd><i><u>Installation shots</i></u></dd>
+<div class="clearfix js-masonry" data-masonry-options='{ "columnWidth": 130, "itemSelector": ".image-undergradExhibit" }'>
 <#list itemAttachments as itemAttachment>
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
@@ -156,3 +157,5 @@
 
 <h4><i><strong>To view images as a slideshow, click on titles below.</strong></i></h4>
 </dl>
+
+<script src="//cdn.jsdelivr.net/masonry/3.1.5/masonry.min.js"></script>
