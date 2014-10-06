@@ -4,9 +4,7 @@
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign nameInfo = xml.getAllSubtrees('mods/name')>
 <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
-<#assign physdesc = xml.getAllSubtrees('mods/physicalDescription')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign local = xml.getAllSubtrees('local')>
 <#assign juniorReviewFiles = xml.getAllSubtrees('local/juniorReviewWrapper/fileWrapper')>
 
@@ -35,15 +33,11 @@
         <dt class="subHeading">${semester}</dt>
     </#list>
 
-    <div style="clear:both;"></div>
-    <#list modslevel as mods>
-        <#assign abstract = mods.get('abstract')>
-        <#if abstract != "">
-            <dd>Description: ${abstract}</dd>
-        </#if>
-    </#list>
+    <#assign abstract = xml.get('mods/abstract')>
+    <#if abstract != "">
+        <dd>Description: ${abstract}</dd>
+    </#if>
 
-    <div style="clear:both;"></div>
     <#list itemAttachments as itemAttachment>
         <#assign thumb = itemAttachment.get('thumbnail')>
         <#assign full = itemAttachment.get('file')>
@@ -58,8 +52,7 @@
                     <div class='image-juniorReviewWork'>
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class='photoImagelist'>
-                    <#if title != ""><i>${title}</i></#if>
-                    <#if (title!="")><br /></#if>
+                    <#if title != ""><i>${title}</i><br /></#if>
                     <#if ('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat')!=''>
                         <#list juniorReviewFiles.getAllSubtrees('projectFormatWrapper') as projectFormatWrapper>
                             <#assign projectFormat = projectFormatWrapper.get('projectFormat')>
@@ -82,16 +75,14 @@
                         <img src="/p/r/6.1.r2275/com.tle.web.mimetypes.service/icons/quicktime.png"/></a>
                         <br/>
                     <p>
-                        <#if title != ""><i>${title}</i></#if>
-                        <#if (title!="")><br /></#if>
+                        <#if title != ""><i>${title}</i><br /></#if>
                         <#if ('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat')!=''>
                             <#list juniorReviewFiles.getAllSubtrees('projectFormatWrapper') as projectFormatWrapper>
                                 <#assign projectFormat = projectFormatWrapper.get('projectFormat')>
                                 ${projectFormat}<br/>
                             </#list>
                         </#if>
-                        <#if extent != "">${extent}</#if>
-                        <#if extent!=""><br /></#if>
+                        <#if extent != "">${extent}<br /></#if>
                         <#if ('local/juniorReviewWrapper/fileWrapper/keywordWrapper/keyword')!=''>
                             <#list juniorReviewFiles.getAllSubtrees('keywordWrapper') as keywordWrapper>
                                 <#assign keyword = keywordWrapper.get('keyword')>
@@ -108,8 +99,7 @@
                         <a href="/file/${itemUuid}/${itemversion}/${full}">
                         <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class='photoImagelist'>
-                        <#if title != ""><i>${title}</i></#if>
-                        <#if title!=""><br /></#if>
+                        <#if title != ""><i>${title}</i><br /></#if>
                         <#if ('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat')!=''>
                             <#list juniorReviewFiles.getAllSubtrees('projectFormatWrapper') as projectFormatWrapper>
                                 <#assign projectFormat = projectFormatWrapper.get('projectFormat')>
@@ -124,9 +114,8 @@
                             </#list>
                         </#if>
 
-                        <#if extent != "">${extent}</#if>
-                        <#if extent != ""><br /></#if>
-                    </p>
+                        <#if extent != "">${extent}<br /></#if>
+                        </p>
                     </div>
                 </#if>
             </#if>
@@ -147,16 +136,14 @@
                     <#assign thumbUrl = '/thumbs/${itemUuid}/${itemversion}/${uuid}'>
                 </#if>
                 <dt>Artist Statement</dt>
-                <div class="image-juniorReviewDocs">
+                <div>
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="${thumbUrl}" alt="Artist's Statement"/></a>
                     <p class='artistDocs'><a href="/file/${itemUuid}/${itemversion}/${full}">${full}</a></p>
                 </div>
             </#if>
         </#list>
     </#list>
-    <div style="clear:both;"></div>
 
 <h4><i>Click on thumbnails below for image slideshow and accompanying video(s).</i></h4>
-
     </#if>
 </#list>
