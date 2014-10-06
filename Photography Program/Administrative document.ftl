@@ -20,6 +20,24 @@
         <a href="${divisionUrl}">${division}</a> | <a href="${departmentUrl}">Photography</a>
     </dd>
 
+    <#if courseWorkTypeSpecific == 'Alumni successes'>
+        <#list xml.getAllSubtrees('mods/name') as name>
+            <dt>Alumnus</dt>
+            <#assign namePart = name.get('namePart')>
+            <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
+            <dd><a href="${namePartUrl}">${namePart}</a>
+            <#list name.getAllSubtrees('subNameWrapper') as subName>
+                <#assign major = name.get('major')>
+                <#assign gradDate = subName.get('gradDate')>
+                <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+                <#assign gradDateUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3CgradDate%3E${gradDate}%3C%2FgradDate%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
+                <#if major != ""> — <a href="${majorUrl}">${major}</a></#if>
+                <#if gradDate != ""> — Graduated: <a href="${gradDateUrl}">${gradDate}</a></#if>
+            </#list>
+            </dd>
+        </#list>
+    </#if>
+
     <dt>Document Details</dt>
 
     <dd>Document Type: <a href="${courseWorkTypeUrl}">${courseWorkType}</a>
