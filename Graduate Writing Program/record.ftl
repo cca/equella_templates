@@ -55,7 +55,7 @@
 <#assign formSpecificUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformSpecific%3E${formSpecific}%3C%2FformSpecific%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER" />
 <#if (formBroad != "")>
     <dt>Project Description</dt>
-    <dd>Work type: <a href="${formBroadUrl}">${formBroad}</a> - <a href="${formSpecificUrl}">${formSpecific}</a>
+    <dd><b>Work type</b>: <a href="${formBroadUrl}">${formBroad}</a> - <a href="${formSpecificUrl}">${formSpecific}</a>
 </#if>
 
 <#assign courseWorkType = xml.get('local/courseWorkWrapper/courseWorkType')>
@@ -63,12 +63,28 @@
 <a href="${courseWorkTypeUrl}"> - ${courseWorkType}</a>
 </dd>
 
+<#assign genres = xml.list('mods/genreWrapper/genre')>
+<#if (genres?size > 0)>
+    <dd><b>Genre(s)</b>:
+    <#list genres as genre>
+        ${genre}<#if genre_has_next>, </#if>
+    </#list>
+    </dd>
+</#if>
+
 <#assign abstract = xml.get('mods/abstract')>
 <#if (abstract != "")>
-    <dd>Script/Dialogue: ${abstract}</dd>
+    <#-- branch of logic because Graphic Novel Workshop
+    stores different text type ("Script/Dialogue") in mods/abstract -->
+    <#if courseWorkType = "Graphic Novel Workshop">
+        <#assign label = "Script/Dialogue">
+    <#else>
+        <#assign label = "Additional Details">
+    </#if>
+    <dd><b>${label}</b>: ${abstract}</dd>
 </#if>
 
 <#assign note = xml.get('mods/noteWrapper/note')>
 <#if (note != "")>
-    <dd>Additional Notes: ${note}</dd>
+    <dd><b>Additional Notes</b>: ${note}</dd>
 </#if>
