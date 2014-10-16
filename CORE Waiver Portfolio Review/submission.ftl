@@ -1,21 +1,30 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign title = xml.getAllSubtrees('mods/titleInfo')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign name = xml.getAllSubtrees('mods/name')>
 <#assign projectWrapper = xml.getAllSubtrees('local/projectWrapper')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign assignmentWrapper = xml.getAllSubtrees('local/assignmentWrapper')>
 <#assign seniorPacketWrapper = xml.getAllSubtrees('local/seniorPacketWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
 
+<style>
+.image-juniorReviewWork {
+    min-height: 230px;
+}
+.image-juniorReviewWork.shorter {
+    min-height: 150px;
+}
+/* specificity…sigh */
+p.photoImagelist {
+    overflow: scroll !important;
+}
+</style>
+
 <dl>
-    <#list title as titleInfo>
-        <#assign title = titleInfo.get('title')>
-        <h2 id="title">${title}</h2>
-    </#list>
+    <#assign title = xml.get('mods/titleInfo/title')>
+    <h2 id="title">${title}</h2>
 
     <#list name as name>
         <#assign namePart = name.get('namePart')>
@@ -88,7 +97,6 @@
     <dd><strong><u>D1 PORTFOLIO</u></strong></dd>
 
     <#list itemAttachments as itemAttachment>
-        <#assign thumb = itemAttachment.get('thumbnail')>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
         <#list projectWrapper as D1Wrapper>
@@ -100,7 +108,7 @@
             <#assign description = D1Wrapper.get('description')>
             <#assign waiverStatus = D1Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class='image-juniorReviewWork' style="min-height: 230px;">
+                <div class='image-juniorReviewWork'>
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class='photoImagelist'>
                         <i>${title}</i><br />
@@ -114,14 +122,13 @@
             </#if>
         </#list>
     </#list>
-    <dd><hr/></dd>
+    <hr />
 </#if>
 
 <#if xml.get('local/courseWorkWrapper/file') != "">
     <dd><strong><u>2D PORTFOLIO</u></strong></dd>
 
     <#list itemAttachments as itemAttachment>
-        <#assign thumb = itemAttachment.get('thumbnail')>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
         <#list courseWork as D2Wrapper>
@@ -133,9 +140,9 @@
             <#assign description = D2Wrapper.get('assignmentDescription')>
             <#assign waiverStatus = D2Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class='image-juniorReviewWork' style="min-height: 230px;">
+                <div class="image-juniorReviewWork">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='photoImagelist'>
+                    <p class="photoImagelist">
                         <i>${title}</i><br />
                         ${format}<br/>
                         ${dimensions}<br />
@@ -147,7 +154,7 @@
             </#if>
         </#list>
     </#list>
-    <dd><hr/></dd>
+    <hr />
 </#if>
 
 <#if (xml.get('local/assignmentWrapper/file'))!="">
@@ -165,9 +172,9 @@
             <#assign description = D3Wrapper.get('description')>
             <#assign waiverStatus = D3Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class='image-juniorReviewWork' style="min-height: 230px;">
+                <div class="image-juniorReviewWork">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='photoImagelist'>
+                    <p class="photoImagelist">
                         <i>${title}</i><br />
                         ${format}<br/>
                         ${dimensions}<br />
@@ -179,10 +186,10 @@
             </#if>
         </#list>
     </#list>
-    <dd><hr/></dd>
+    <hr />
 </#if>
 
-<#if (xml.get('local/seniorPacketWrapper/file'))!="">
+<#if xml.get('local/seniorPacketWrapper/file') != "">
     <dd><strong><u>4D PORTFOLIO</u></strong><i> - Scroll down to thumbnails to access files</i></dd>
 
     <#list itemAttachments as itemAttachment>
@@ -198,9 +205,9 @@
             <#assign semester = D4Wrapper.get('semester')>
             <#assign description = D4Wrapper.get('notes')>
             <#assign waiverStatus = D4Wrapper.get('flaggedFor')>
-            <#if file==uuid>
-                <div class='image-juniorReviewWork' style="min-height: 150px;">
-                <p class='photoImagelist'>
+            <#if file == uuid>
+                <div class="image-juniorReviewWork shorter">
+                <p class="photoImagelist">
                     ${note}<br/>
                     <i>${title}</i><br />
                     ${format}<br/>
@@ -213,7 +220,5 @@
             </#if>
         </#list>
     </#list>
-    <dd><hr/></dd>
+    <hr />
 </#if>
-
-<div style="clear:both;"></div>
