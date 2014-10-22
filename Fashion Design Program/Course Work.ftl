@@ -189,6 +189,8 @@ a[href=""] {
             <#assign objectiveUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EFashion+Design%3C%2Fdepartment%3E%3Cobjective%3E${objective}%3C%2Fobjective%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
             <#if (tags?size > 0)>
                 <dd>Additional tags:
+                <#-- @todo fix this URL
+                ex: https://vault.cca.edu/items/9db1a174-2a18-41f4-826e-296d43864b16/1/ -->
                 <#if (objective != "" && tags?size > 0)><a href="${objectiveUrl}">${objective}</a>,
                 <#elseif objective != ""><a href="${objectiveUrl}">${objective}</a>
                 </#if>
