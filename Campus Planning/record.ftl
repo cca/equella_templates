@@ -22,22 +22,29 @@
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
     <#assign size = itemAttachment.get('size')>
+    <#assign type = itemAttachment.get('type')>
+
+    <#-- don't display links here, will do down below -->
+    <#if itemAttachment.get('@type') != 'remote'>
 
     <div class='image-photoSeniorPacket'>
         <#assign imgUrl = "/file/${itemUuid}/${itemversion}/${full}">
         <#assign thumbUrl = "/thumbs/${itemUuid}/${itemversion}/${uuid}">
         <#-- attachment > 10mb? set a class on it
         so we don't do fancybox down at the bottom -->
-        <#if (size?has_content && size?number > 10000000)>
-            <#-- Masonry layout needs width/height attrs to know how to
-            rearrange them
-            onclick attr is how EQUELLA does its pop-ups -->
-            <a href="${imgUrl}" class="largeFile"
+
+            <#if (size?has_content && size?number > 10000000)>
+               <#-- Masonry layout needs width/height attrs to know how to
+              rearrange them
+                 onclick attr is how EQUELLA does its pop-ups -->
+
+              <a href="${imgUrl}" class="largeFile"
                 onclick="popup('/items/${itemUuid}/${itemversion}/${full}?.vi=toimg',null,'80%','80%');return false;">
                 <img src="${thumbUrl}" width="88" height="66"/></a>
-        <#else>
-            <a href="${imgUrl}"><img src="${thumbUrl}" width="88" height="66"/></a>
-        </#if>
+            <#else>
+              <a href="${imgUrl}"><img src="${thumbUrl}" width="88" height="66"/></a>
+            </#if>
+
 
         <#list parts as part>
             <#assign number = part.get('number')>
@@ -72,9 +79,20 @@
             </#if>
         </#list>
     </div>
+    </#if>
 </#list>
 </div>
 
+<#-- display link attachments -->
+<#list xml.getAllSubtrees('item/attachments/attachment') as attachment>
+    <#if attachment.get('@type') == 'remote'>
+        <#assign url = attachment.get('file')>
+        <dt>Link(s)</dt>
+        <dd>
+            <a href="${url}" target= _blank>${url}</a>
+        </dd>
+    </#if>
+</#list>
 </dl>
 
 <#-- modal boxes for images
