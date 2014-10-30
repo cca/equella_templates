@@ -21,12 +21,9 @@
 <#assign finalFile = courseWork.get('file')>
 <#if (courseWorkType =="Senior project")>
 
-    <#list titleInfo as titleInfo>
-        <#assign title = titleInfo.get('title')>
-        <#assign subTitle = titleInfo.get('subTitle')>
-        <h2 id="title">${title}</h2>
+    <#assign title = xml.get('mods/titleInfo/title')>
+    <h2 id="title">${title}</h2>
 </dl>
-    </#list>
 
     <dt class="hide">Collection</dt>
     <#list local as local>
@@ -118,7 +115,7 @@
     </#if>
     </dd>
     <#if selfEval != "">
-        <dd>Self evaluation: selfEval</dd>
+        <dd>Self evaluation: ${selfEval}</dd>
     </#if>
 
     <dt>File list</dt>
@@ -151,7 +148,6 @@
             </#if>
         </#list>
     </#list>
-
 
 </#if>
 </#list>
