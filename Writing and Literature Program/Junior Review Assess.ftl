@@ -12,7 +12,7 @@
   <#return false>
 </#function>
 
-<!#-- Administrator only information-->
+<#-- Administrator only information-->
 <#if currentUserIsMemberOf("System Administrators")||currentUserIsMemberOf("College Administrators")||currentUserIsMemberOf("Writing and Literature Administrator")||currentUserIsMemberOf("Writing and Literature External Reviewers")>
 <#assign local = xml.getAllSubtrees('local')>
 <#assign juniorReview = xml.getAllSubtrees('local/juniorReviewWrapper')>
