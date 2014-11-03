@@ -15,7 +15,7 @@
 
 <#assign local = xml.getAllSubtrees('local')>
 <#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
-<!#-- Administrator only information-->
+<#-- Administrator only information -->
 <#if currentUserIsMemberOf("System Administrators")||currentUserIsMemberOf("Library Administrator")||currentUserIsMemberOf("College Administrators")||currentUserIsMemberOf("Writing and Literature Administrator")||currentUserIsMemberOf("Writing and Literature External Reviewers")||currentUserIsMemberOf("Writing and Literature Faculty")>
 
 <#list local as local>
