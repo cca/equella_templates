@@ -51,16 +51,28 @@
 
 <#assign formBroad = xml.get('mods/physicalDescription/formBroad')>
 <#assign formSpecific = xml.get('mods/physicalDescription/formSpecific')>
-<#assign formBroadUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformBroad%3E${formBroad}%3C%2FformBroad%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER" />
-<#assign formSpecificUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformSpecific%3E${formSpecific}%3C%2FformSpecific%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER" />
-<#if (formBroad != "")>
-    <dt>Project Description</dt>
-    <dd><b>Work type</b>: <a href="${formBroadUrl}">${formBroad}</a> - <a href="${formSpecificUrl}">${formSpecific}</a>
-</#if>
-
-<#assign courseWorkType = xml.get('local/courseWorkWrapper/courseWorkType')>
-<#assign courseWorkTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3E${courseWorkType}%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER" />
-<a href="${courseWorkTypeUrl}"> - ${courseWorkType}</a>
+<dt>Project Description</dt>
+<dd><b>Work type</b>:
+    <#if formBroad != "">
+        <#assign formBroadUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformBroad%3E${formBroad}%3C%2FformBroad%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER" />
+        <a href="${formBroadUrl}">${formBroad}</a> -
+    </#if>
+    <#assign courseWorkType = xml.get('local/courseWorkWrapper/courseWorkType')>
+    <#if courseWorkType != "">
+        <#assign courseWorkTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3E${courseWorkType}%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER" />
+        <a href="${courseWorkTypeUrl}">${courseWorkType}</a> -
+    </#if>
+    <#assign courseWorkTypeSpecific = xml.get('local/courseWorkWrapper/courseWorkTypeSpecific')>
+    <#if courseWorkTypeSpecific != "">
+        <#assign courseWorkTypeSpecificUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkTypeSpecific%3E${courseWorkTypeSpecific}%3C%2FcourseWorkTypeSpecific%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER" />
+        <a href="${courseWorkTypeSpecificUrl}">${courseWorkTypeSpecific}</a>
+    </#if>
+    <#-- only print separator if courseWorkTypeSpecific isn't the last term -->
+    <#if courseWorkTypeSpecific != "" && formSpecific != ""> - </#if>
+    <#if formSpecific != "">
+        <#assign formSpecificUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformSpecific%3E${formSpecific}%3C%2FformSpecific%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER" />
+        <a href="${formSpecificUrl}">${formSpecific}</a>
+    </#if>
 </dd>
 
 <#assign genres = xml.list('mods/genreWrapper/genre')>
