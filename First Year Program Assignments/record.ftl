@@ -1,28 +1,10 @@
-<#function currentUserIsMemberOf targetGroup>
-    <#assign allowedGroupID = "" >
-    <#list user.searchGroups("") as group>
-        <#if group.getName() == targetGroup>
-            <#assign allowedGroupID = group.getUniqueID()>
-            <#break>
-        </#if>
-    </#list>
-    <#if allowedGroupID != "" && user.isMemberOfGroup(allowedGroupID)>
-        <#return true>
-    </#if>
-    <#return false>
-</#function>
-
-<#assign title = xml.getAllSubtrees('mods/titleInfo')>
 <#assign local = xml.getAllSubtrees('local')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign assignmentWrapper = xml.getAllSubtrees('local/assignmentWrapper')>
 <dl>
-<#list title as titleInfo>
-    <#assign title = titleInfo.get('title')>
-    <h2 id="title">${title}
-    </h2>
-</#list>
+    <#assign title = xml.get('mods/titleInfo/title')>
+    <h2 id="title">${title}</h2>
 
 <#list courseInfo as courseInfo>
     <#assign semester = courseInfo.get('semester')>
@@ -41,22 +23,19 @@
     <dt>Course Information</dt>
     <span id="namestuff"><a href="${semesterUrl}">${semester}</a>
         <#if (department=="CORE Studio/First Year")>
-            <#else> — <a href="${departmentUrl}">${department}</a>
+             — <a href="${departmentUrl}">${department}</a>
         </#if>
         <#if (firstYearDimension=="undefined")>
-            <#else> — <a href="${firstYearDimensionUrl}">${firstYearDimension}</a>
+             — <a href="${firstYearDimensionUrl}">${firstYearDimension}</a>
         </#if>
         <#if (course=="undefined")>
-            <#else> — <a href="${courseUrl}">${course}</a>
+             — <a href="${courseUrl}">${course}</a>
         </#if>
-        <#-- Administrator only information-->
-        <#if currentUserIsMemberOf("First Year External Reviewers")><#else>
-            <#if faculty=="undefined">
-                <#else> — <a href="${facultyUrl}">${faculty}</a>
-            </#if>
-            <#if section=="undefined">
-                <#else> — <a href="${sectionUrl}">${section}</a>
-            </#if>
+        <#if faculty=="undefined">
+             — <a href="${facultyUrl}">${faculty}</a>
+        </#if>
+        <#if section=="undefined">
+             — <a href="${sectionUrl}">${section}</a>
         </#if>
     </span>
     </dd>
