@@ -25,16 +25,16 @@
         <#if (department=="CORE Studio/First Year")>
              — <a href="${departmentUrl}">${department}</a>
         </#if>
-        <#if (firstYearDimension=="undefined")>
+        <#if (firstYearDimension=="undefined" && firstYearDimension != "")>
              — <a href="${firstYearDimensionUrl}">${firstYearDimension}</a>
         </#if>
-        <#if (course=="undefined")>
+        <#if (course=="undefined" && course != "")>
              — <a href="${courseUrl}">${course}</a>
         </#if>
-        <#if faculty=="undefined">
+        <#if faculty != "undefined" && faculty != "">
              — <a href="${facultyUrl}">${faculty}</a>
         </#if>
-        <#if section=="undefined">
+        <#if section != "undefined" && section != "">
              — <a href="${sectionUrl}">${section}</a>
         </#if>
     </span>
@@ -55,13 +55,13 @@
     <#if (description != "")>
         <dd><strong>Description:</strong> ${description}</dd>
     </#if>
-    <#if (assignmentDue=="") || (assignmentDue=="other")><#else>
+    <#if (assignmentDue != "" || assignmentDue != "other")>
         <dd><strong>Assignment occurred during:</strong> ${assignmentDue}</dd>
     </#if>
     <#if (assignmentDueText != "")>
         <dd><strong>Assignment occurred during:</strong> ${assignmentDueText}</dd>
     </#if>
-    <#if (assignmentLength=="") || (assignmentLength=="other")><#else>
+    <#if (assignmentLength != "" || assignmentLength != "other")>
         <dd><strong>Assignment length:</strong> ${assignmentLength}</dd>
     </#if>
     <#if (assignmentLengthText != "")>
@@ -98,32 +98,31 @@
             <dd><strong>Critique Strategy:</strong> ${critiqueStrategy}</dd>
         </#if>
 
+        <#if ('/local/assignmentWrapper/programLOWrapper/programLO')!=''>
+            <dd><strong>Program Learning Outcomes:</strong></dd>
+            <#list assignmentWrapper.getAllSubtrees('programLOWrapper') as programLOWrapper>
+                <#assign programLO = programLOWrapper.get('programLO')>
+                <dd>${programLO}</dd>
+            </#list>
+        </#if>
 
-    <#if ('/local/assignmentWrapper/programLOWrapper/programLO')!=''>
-        <dd><strong>Program Learning Outcomes:</strong></dd>
-        <#list assignmentWrapper.getAllSubtrees('programLOWrapper') as programLOWrapper>
-            <#assign programLO = programLOWrapper.get('programLO')>
-            <dd>${programLO}</dd>
-        </#list>
-    </#if>
+        <#if ('/local/assignmentWrapper/ccaLOWrapper/ccaLO')!=''>
+            <dd><strong>CCA Learning Outcomes:</strong></dd>
+            <#list assignmentWrapper.getAllSubtrees('ccaLOWrapper') as ccaLOWrapper>
+                <#assign ccaLO = ccaLOWrapper.get('ccaLO')>
+                <dd>${ccaLO}</dd>
+            </#list>
+        </#if>
 
-    <#if ('/local/assignmentWrapper/ccaLOWrapper/ccaLO')!=''>
-        <dd><strong>CCA Learning Outcomes:</strong></dd>
-        <#list assignmentWrapper.getAllSubtrees('ccaLOWrapper') as ccaLOWrapper>
-            <#assign ccaLO = ccaLOWrapper.get('ccaLO')>
-            <dd>${ccaLO}</dd>
-        </#list>
-    </#if>
-
-    <#if ('/local/assignmentWrapper/teachStrategyWrapper/teachStrategy')!=''>
-        <dd><strong>Teaching Strategies:</strong></dd>
-        <#list assignmentWrapper.getAllSubtrees('teachStrategyWrapper') as teachStrategyWrapper>
-            <#assign teachStrategy = teachStrategyWrapper.get('teachStrategy')>
-            <#assign teachStrategy_freetext = teachStrategyWrapper.get('teachStrategy_freetext')>
-            <dd>${teachStrategy_freetext}</dd>
-            <dd>${teachStrategy}</dd>
-        </#list>
-    </#if>
+        <#if ('/local/assignmentWrapper/teachStrategyWrapper/teachStrategy')!=''>
+            <dd><strong>Teaching Strategies:</strong></dd>
+            <#list assignmentWrapper.getAllSubtrees('teachStrategyWrapper') as teachStrategyWrapper>
+                <#assign teachStrategy = teachStrategyWrapper.get('teachStrategy')>
+                <#assign teachStrategy_freetext = teachStrategyWrapper.get('teachStrategy_freetext')>
+                <dd>${teachStrategy_freetext}</dd>
+                <dd>${teachStrategy}</dd>
+            </#list>
+        </#if>
 
         <#if (ccaValuesx != "")>
             <dd><strong>CCA Values:</strong>
