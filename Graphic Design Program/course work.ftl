@@ -36,8 +36,11 @@
         <#list itemAttachments as itemAttachment>
             <#assign uuid = itemAttachment.get('uuid')>
             <#assign full = itemAttachment.get('file')>
-            <#if full?contains("http://") || full?ends_with(".zip")><#else>
-                <a href="/file/${itemUuid}/${itemversion}/${full}">
+            <#if full?ends_with(".pdf")>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" class="pdf">
+                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+            <#elseif ! full?contains("http://") && ! full?ends_with(".zip")>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" class="img">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
             </#if>
         </#list>
@@ -138,5 +141,5 @@
 </#list>
 
 <script>
-$('#images a').fancybox();
+$('#images a.img').fancybox();
 </script>

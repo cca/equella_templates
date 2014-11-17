@@ -6,17 +6,17 @@
 <#assign local = xml.getAllSubtrees('local')>
 <#assign origininfo = xml.getAllSubtrees('mods/origininfo')>
 
-<style scoped>
-/* disable links that point nowhere */
-a[href=""] {
-  color: #4b4842; /* default text color */
-  pointer-events: none;
-}
-</style>
-
 <#list courseWork as courseWork>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
     <#if courseWorkType == "Workshop / Events">
+
+    <style scoped>
+    /* disable links that point nowhere */
+    a[href=""] {
+      color: #4b4842; /* default text color */
+      pointer-events: none;
+    }
+    </style>
 
     <dl>
         <#assign title = xml.get('mods/titleInfo/title')>
@@ -82,14 +82,18 @@ a[href=""] {
         <#list itemAttachments as itemAttachment>
             <#assign uuid = itemAttachment.get('uuid')>
             <#assign full = itemAttachment.get('file')>
-            <a href="/file/${itemUuid}/${itemversion}/${full}">
-            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+            <#if full?ends_with(".pdf")>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" class="pdf">
+                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+            <#elseif ! full?contains("http://") && ! full?ends_with(".zip")>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" class="img">
+                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+            </#if>
         </#list>
         </div>
 
+    <script>
+    $('#images a.img').fancybox();
+    </script>
     </#if>
 </#list>
-
-<script>
-$('#images a').fancybox();
-</script>
