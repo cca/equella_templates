@@ -1,23 +1,20 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign title = xml.getAllSubtrees('mods/titleInfo')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign nameInfo = xml.getAllSubtrees('mods/name')>
-<#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
-<#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign local = xml.getAllSubtrees('local')>
 <#assign juniorReviewFiles = xml.getAllSubtrees('local/juniorReviewWrapper/fileWrapper')>
 
 <#list local as local>
     <#assign objective = local.get('objective')>
-    <#if (objective=="exhibition photographs")>
+    <#if (objective == "exhibition photographs")>
 
     <dl>
         <h2 id="title">Junior Review Portfolio</h2>
 
-    <#list nameInfo as nameInfo>
-        <#assign name = nameInfo.get('namePart')>
+    <#assign name = xml.get('mods/name/namePart')>
+    <#if name != "">
         <dt class="indentNoLine">${name}
+        <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
         <#list subNameWrapper as subNameWrapper>
             <#assign major = subNameWrapper.get('major')>
             <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%2F%3E%3Cmods%3E%3Cname%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
@@ -26,12 +23,10 @@
             </#if>
         </#list>
         </dt>
-    </#list>
+    </#if>
 
-    <#list courseInfo as courseInfo>
-        <#assign semester = courseInfo.get('semester')>
-        <dt class="subHeading">${semester}</dt>
-    </#list>
+    <#assign semester = xml.get('local/courseInfo/semester')>
+    <dt class="subHeading">${semester}</dt>
 
     <#assign abstract = xml.get('mods/abstract')>
     <#if abstract != "">
@@ -40,21 +35,21 @@
 
     <div class="clearfix js-masonry" data-masonry-options='{ "columnWidth": 130, "itemSelector": ".image-juniorReviewWork" }'>
     <#list itemAttachments as itemAttachment>
-        <#assign thumb = itemAttachment.get('thumbnail')>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
         <#list juniorReviewFiles as juniorReviewFiles>
             <#assign file = juniorReviewFiles.get('file')>
             <#assign title = juniorReviewFiles.get('title')>
             <#assign extent = juniorReviewFiles.get('extent')>
-            <#if file==uuid>
+            <#if file == uuid>
                 <#if full?ends_with(".zip")>
+                <#-- print nothing, skip this attachment -->
                 <#elseif full?ends_with(".jpg")>
                     <div class='image-juniorReviewWork'>
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
                     <p class='photoImagelist'>
                     <#if title != ""><i>${title}</i><br /></#if>
-                    <#if ('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat')!=''>
+                    <#if xml.get('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat') != ''>
                         <#list juniorReviewFiles.getAllSubtrees('projectFormatWrapper') as projectFormatWrapper>
                             <#assign projectFormat = projectFormatWrapper.get('projectFormat')>
                             ${projectFormat}<br/>
@@ -72,8 +67,7 @@
 
                 <#elseif full?ends_with(".mov")>
                     <div class='image-juniorReviewMovImgWork'>
-                        <a href="/items/${itemUuid}/${itemversion}/${full}" target="_blank">
-                        <img src="/p/r/6.1.r2275/com.tle.web.mimetypes.service/icons/quicktime.png" width="88" height="66"/></a>
+                        <a href="/items/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/p/r/6.1.r2275/com.tle.web.mimetypes.service/icons/quicktime.png" width="88" height="66"/></a>
                         <br/>
                     <p>
                         <#if title != ""><i>${title}</i><br /></#if>
@@ -97,8 +91,7 @@
 
                 <#else>
                     <div class='image-juniorReviewWork'>
-                        <a href="/file/${itemUuid}/${itemversion}/${full}">
-                        <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
+                        <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
                     <p class='photoImagelist'>
                         <#if title != ""><i>${title}</i><br /></#if>
                         <#if ('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat')!=''>
@@ -127,19 +120,12 @@
     <#list xml.getAllSubtrees('local/artistDocWrapper/artistStatementFile') as artistStatementFile>
         <#list itemAttachments as itemAttachment>
             <#if artistStatementFile.get('/') = itemAttachment.get('uuid')>
-                <#assign thumb = itemAttachment.get('thumb')>
                 <#assign full = itemAttachment.get('file')>
                 <#assign uuid = itemAttachment.get('uuid')>
-                <#if thumb != ''>
-                    <#assign thumbUrl = '/file/${itemUuid}/${itemversion}/${thumb}'>
-                <#else>
-                    <#-- this is more foolproof — appears to assign a generic
-                    icon based on MIME type if no generated one is present -->
-                    <#assign thumbUrl = '/thumbs/${itemUuid}/${itemversion}/${uuid}'>
-                </#if>
+                <#assign thumb = '/thumbs/${itemUuid}/${itemversion}/${uuid}'>
                 <dt>Artist Statement</dt>
                 <div>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="${thumbUrl}" alt="Artist's Statement" width="88" height="66"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="${thumb}" alt="Artist's Statement" width="88" height="66"/></a>
                     <p class='artistDocs'><a href="/file/${itemUuid}/${itemversion}/${full}">${full}</a></p>
                 </div>
             </#if>
