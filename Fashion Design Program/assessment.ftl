@@ -1,21 +1,16 @@
-<#function currentUserIsMemberOf targetGroup>
-  <#assign allowedGroupID = "" >
-  <#list user.searchGroups("") as group>
-    <#if group.getName() == targetGroup>
-      <#assign allowedGroupID = group.getUniqueID()>
-      <#break>
+<#function userIsMemberOf groupName>
+  <#list user.getGroups() as group>
+    <#if group.getName() == groupName>
+      <#return true>
     </#if>
   </#list>
-  <#if allowedGroupID != "" && user.isMemberOfGroup(allowedGroupID)>
-    <#return true>
-  </#if>
   <#return false>
 </#function>
 
 <#assign local = xml.getAllSubtrees('local')>
 <#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
-<!#-- Administrator only information-->
-<#if currentUserIsMemberOf("System Administrators")||currentUserIsMemberOf("Library Administrator")||currentUserIsMemberOf("College Administrators")||currentUserIsMemberOf("Fashion Design Administrator")||currentUserIsMemberOf("Fashion Design Faculty")>
+<#-- Administrator only information-->
+<#if userIsMemberOf("System Administrators") || userIsMemberOf("Library Administrator") || userIsMemberOf("College Administrators") || userIsMemberOf("Fashion Design Administrator") || userIsMemberOf("Fashion Design Faculty")>
 
 <#list local as local>
     <#assign accreditation = local.get('accreditation')>

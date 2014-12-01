@@ -1,19 +1,15 @@
-<#function currentUserIsMemberOf targetGroup>
-  <#assign allowedGroupID = "" >
-  <#list user.searchGroups("") as group>
-    <#if group.getName() == targetGroup>
-      <#assign allowedGroupID = group.getUniqueID()>
-      <#break>
+<#function userIsMemberOf groupName>
+  <#list user.getGroups() as group>
+    <#if group.getName() == groupName>
+      <#return true>
     </#if>
   </#list>
-  <#if allowedGroupID != "" && user.isMemberOfGroup(allowedGroupID)>
-    <#return true>
-  </#if>
   <#return false>
 </#function>
 
 <#-- Administrator only information-->
-<#if currentUserIsMemberOf("System Administrators")||currentUserIsMemberOf("College Administrators")||currentUserIsMemberOf("Fine Arts Division Administrators")||currentUserIsMemberOf("Fine Arts workstudy")>
+<#if userIsMemberOf("System Administrators") || userIsMemberOf("College Administrators") || userIsMemberOf("Fine Arts Division Administrators") || userIsMemberOf("Fine Arts workstudy")>
+
 <#assign local = xml.getAllSubtrees('local')>
 <#assign juniorReview = xml.getAllSubtrees('local/juniorReviewWrapper')>
 <#assign award = xml.getAllSubtrees('local/award')>

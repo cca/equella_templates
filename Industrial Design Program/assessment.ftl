@@ -1,23 +1,16 @@
-<#function currentUserIsMemberOf targetGroup>
-  <#assign allowedGroupID = "" >
-  <#list user.searchGroups("") as group>
-    <#if group.getName() == targetGroup>
-      <#assign allowedGroupID = group.getUniqueID()>
-      <#break>
+<#function userIsMemberOf groupName>
+  <#list user.getGroups() as group>
+    <#if group.getName() == groupName>
+      <#return true>
     </#if>
   </#list>
-  <#if allowedGroupID != "" && user.isMemberOfGroup(allowedGroupID)>
-    <#return true>
-  </#if>
   <#return false>
 </#function>
 
-<#assign local = xml.getAllSubtrees('local')>
-<#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
 <#-- Administrator only information -->
-<#if currentUserIsMemberOf("System Administrators")||currentUserIsMemberOf("Library Administrator")||currentUserIsMemberOf("College Administrators")||currentUserIsMemberOf("Industrial Design Administrator")||currentUserIsMemberOf("Industrial Design Faculty")>
+<#if userIsMemberOf("System Administrators") || userIsMemberOf("Library Administrator") || userIsMemberOf("College Administrators") || userIsMemberOf("Industrial Design Administrator") || userIsMemberOf("Industrial Design Faculty")>
 
-<#list local as local>
+<#list xml.getAllSubtrees('local') as local>
     <#assign accreditation = local.get('accreditation')>
     <#assign rating = local.get('rating')>
     <#assign accreditationUrl = "" />
@@ -37,16 +30,15 @@
     </#if>
 </#list>
 
-<#list relateditem as relateditem>
+<#list xml.getAllSubtrees('mods/relateditem') as relateditem>
     <#assign title = relateditem.get('title')>
     <#assign note = relateditem.get('note')>
     <#assign type = relateditem.get('@type')>
-    <#if (title == "" && note== "")><#else>
+    <#if (title != "" || note != "")>
         <dt>Related publication(s)</dt>
-        <#if type=="">
-            <dd>
-            <#else>
-            <dd>${type}:
+        <dd>
+        <#if type != "">
+            ${type}:
         </#if>
         <#if title != "">
             <em>${title}</em></dd>

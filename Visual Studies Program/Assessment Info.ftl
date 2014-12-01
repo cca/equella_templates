@@ -1,14 +1,9 @@
-<#function currentUserIsMemberOf targetGroup>
-  <#assign allowedGroupID = "" >
-  <#list user.searchGroups("") as group>
-    <#if group.getName() == targetGroup>
-      <#assign allowedGroupID = group.getUniqueID()>
-      <#break>
+<#function userIsMemberOf groupName>
+  <#list user.getGroups() as group>
+    <#if group.getName() == groupName>
+      <#return true>
     </#if>
   </#list>
-  <#if allowedGroupID != "" && user.isMemberOfGroup(allowedGroupID)>
-    <#return true>
-  </#if>
   <#return false>
 </#function>
 
@@ -20,7 +15,7 @@
 
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#-- Administrator only information-->
-<#if currentUserIsMemberOf("System Administrators")||currentUserIsMemberOf("Library Administrator")||currentUserIsMemberOf("College Administrators")||currentUserIsMemberOf("Visual Studies Administrator")||currentUserIsMemberOf("Visual Studies Faculty")>
+<#if userIsMemberOf("System Administrators") || userIsMemberOf("Library Administrator") || userIsMemberOf("College Administrators") || userIsMemberOf("Visual Studies Administrator") || userIsMemberOf("Visual Studies Faculty")>
 
 <#list courseInfo as courseInfo>
     <#assign courseinfo = courseInfo.get('courseinfo')>

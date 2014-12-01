@@ -1,19 +1,14 @@
-<#function currentUserIsMemberOf targetGroup>
-  <#assign allowedGroupID = "" >
-  <#list user.searchGroups("") as group>
-    <#if group.getName() == targetGroup>
-      <#assign allowedGroupID = group.getUniqueID()>
-      <#break>
+<#function userIsMemberOf groupName>
+  <#list user.getGroups() as group>
+    <#if group.getName() == groupName>
+      <#return true>
     </#if>
   </#list>
-  <#if allowedGroupID != "" && user.isMemberOfGroup(allowedGroupID)>
-    <#return true>
-  </#if>
   <#return false>
 </#function>
 
 <#-- Administrator only information-->
-<#if currentUserIsMemberOf("College Administrators") || currentUserIsMemberOf("First Year Administrator") || currentUserIsMemberOf("Library Administrator") || currentUserIsMemberOf("First Year Faculty") || currentUserIsMemberOf("First Year Coordinators") || currentUserIsMemberOf("First Year TA") || currentUserIsMemberOf("First Year External Reviewers")>
+<#if userIsMemberOf("College Administrators") || userIsMemberOf("First Year Administrator") || userIsMemberOf("Library Administrator") || userIsMemberOf("First Year Faculty") || userIsMemberOf("First Year Coordinators") || userIsMemberOf("First Year TA") || userIsMemberOf("First Year External Reviewers")>
 	<h4 style="color: #936; text-align:center;">Assignment, assessment information and comments display ONLY</h4>
 	<h4 style="color: #936; text-align:center;">to First Year Faculty &amp; Staff, College Administrators, and External Reviewers.<hr></h4>
 

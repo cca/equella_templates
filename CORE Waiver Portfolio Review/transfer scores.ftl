@@ -8,22 +8,17 @@
 
 <#attempt>
 
-    <#function currentUserIsMemberOf targetGroup>
-      <#assign allowedGroupID = "" >
-      <#list user.searchGroups("") as group>
-        <#if group.getName() == targetGroup>
-          <#assign allowedGroupID = group.getUniqueID()>
-          <#break>
+    <#function userIsMemberOf groupName>
+      <#list user.getGroups() as group>
+        <#if group.getName() == groupName>
+          <#return true>
         </#if>
       </#list>
-      <#if allowedGroupID != "" && user.isMemberOfGroup(allowedGroupID)>
-        <#return true>
-      </#if>
-     <#return false>
+      <#return false>
     </#function>
 <#-- Administrator only information-->
 
-    <#if currentUserIsMemberOf("First Year Portfolio Waiver Reviewers")>
+    <#if userIsMemberOf("First Year Portfolio Waiver Reviewers")>
 
     <h5 style="color: #936; text-align:center;">Information below displays ONLY to First Year Portfolio Waiver Coordinators and College Administrators.</h5>
 
