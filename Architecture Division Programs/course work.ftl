@@ -16,7 +16,7 @@
 <#assign workType = xml.getAllSubtrees('local/courseWorkWrapper/workType')>
 <#list courseWork as courseWork>
 <#assign submissionType = courseWork.get('submissionType')>
-<#if (submissionType =="Course work")>
+<#if (submissionType == "Course work")>
 
     <#assign tag = xml.getAllSubtrees('local/tags')>
     <#list local as local>
@@ -61,7 +61,7 @@
         <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pafcc42be-462c-483e-b2ed-98ffcd15ff3d&q=&sort=datemodified&dr=AFTER" />
         <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pafcc42be-462c-483e-b2ed-98ffcd15ff3d&q=&sort=datemodified&dr=AFTER" />
 
-        <#if (semester=="")||(semester=="undefined")><#else>
+        <#if (semester=="") || (semester=="undefined")><#else>
 
             <span id="coursestuff"><strong>Course</strong>:
                 <a href="${semesterUrl}">${semester}</a>

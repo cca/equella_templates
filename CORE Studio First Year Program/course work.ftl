@@ -66,27 +66,27 @@
         <#if (semester != "")>
         <dt>Course Info</dt>
         <span id="namestuff"><a href="${semesterUrl}">${semester}</a>
-            <#if (firstYearDimension=="undefined")||(firstYearDimension=="")>
+            <#if (firstYearDimension=="undefined") || (firstYearDimension=="")>
                 <#else> — <a href="${firstYearDimensionUrl}">${firstYearDimension}</a>
             </#if>
             <#if (semester=="Fall 2013")>
-                <#if (separateCourse=="undefined")||(separateCourse=="")>
+                <#if (separateCourse=="undefined") || (separateCourse=="")>
                     <#else> — <a href="${separateCourseUrl}">${separateCourse}</a>
                 </#if>
-                <#if (studioCourse=="undefined")||(studioCourse=="")>
+                <#if (studioCourse=="undefined") || (studioCourse=="")>
                     <#else> — <a href="${studioCourseUrl}">${studioCourse}</a>
                 </#if>
             <#elseif (semester!="Fall 2013")>
-                <#if (course=="undefined")||(course=="")>
+                <#if (course=="undefined") || (course=="")>
                     <#else> — <a href="${courseUrl}">${course}</a>
                 </#if>
             </#if>
 
-                <#if (faculty=="undefined")||(faculty=="")>
+                <#if (faculty=="undefined") || (faculty=="")>
                     <#else> — <a href="${facultyUrl}">${faculty}</a>
                 </#if>
 
-                <#if (section=="undefined")||(section=="")>
+                <#if (section=="undefined") || (section=="")>
                     <#else> — <a href="${sectionUrl}">${section}</a>
                 </#if> <!-- test comment -->
 
