@@ -1,81 +1,71 @@
-
-<#function currentUserIsMemberOf targetGroup>
-  <#assign allowedGroupID = "" >
-  <#list user.searchGroups("") as group>
-    <#if group.getName() == targetGroup>
-      <#assign allowedGroupID = group.getUniqueID()>
-      <#break>
+<#function userIsMemberOf groupName>
+  <#list user.getGroups() as group>
+    <#if group.getName() == groupName>
+      <#return true>
     </#if>
   </#list>
-  <#if allowedGroupID != "" && user.isMemberOfGroup(allowedGroupID)>
-    <#return true>
-  </#if>
   <#return false>
 </#function>
 
 <#assign local = xml.getAllSubtrees('local')>
 <#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
 <#-- Administrator only information -->
-<#if currentUserIsMemberOf("System Administrators")||currentUserIsMemberOf("Library Administrator")||currentUserIsMemberOf("College Administrators")||currentUserIsMemberOf("Writing and Literature Administrator")||currentUserIsMemberOf("Writing and Literature External Reviewers")||currentUserIsMemberOf("Writing and Literature Faculty")>
+<#if userIsMemberOf("System Administrators") || userIsMemberOf("Library Administrator") || userIsMemberOf("College Administrators") || userIsMemberOf("Writing and Literature Administrator") || userIsMemberOf("Writing and Literature External Reviewers") || userIsMemberOf("Writing and Literature Faculty")>
 
 <#list local as local>
     <#assign accreditation = local.get('accreditation')>
     <#assign rating = local.get('rating')>
     <#-- these URLs aren't used anywhere? -EP -->
-    <#assign accreditationUrl = "" />
-    <#assign ratingUrl = "" />
+    <#assign accreditationUrl = "">
+    <#assign ratingUrl = "">
     <#if accreditation != "">
         <br />
         <h5 style="color: #936;">Information below displays ONLY to Writing and Literature Faculty &amp; Staff and College Administrators.</h5>
         <#if accreditation != "">
             <dt>Assessment information</dt>
-            <#if accreditation != "">
-                <dd><strong>Flagged for:</strong> ${accreditation}</dd>
-            </#if>
-                <dd><strong>Assessment of work:</strong>
-                <#if (rating=="")> <em>(No rating assigned)</em>
-                <#elseif (rating=="High")> Strong
-                <#elseif (rating=="Medium")> Satisfactory
-                <#elseif (rating=="Low")> Developing
-                <#elseif (rating=="Inadequate")> Inadequate
+            <dd><strong>Flagged for:</strong> ${accreditation}</dd>
+            <dd><strong>Assessment of work:</strong>
+            <#if (rating == "")> <em>(No rating assigned)</em>
+                <#-- @todo translating values in the display seems like
+                a bad idea, should change how they're stored maybe?
+                —ep 2014-12-01 -->
+                <#elseif (rating == "High")> Strong
+                <#elseif (rating == "Medium")> Satisfactory
+                <#elseif (rating == "Low")> Developing
+                <#elseif (rating == "Inadequate")> Inadequate
                 </dd>
             </#if>
         </#if>
     </#if>
-</#list>
 
-<#assign skills = xml.getAllSubtrees('local/skills')>
-<#assign programLearningOutcomes = xml.getAllSubtrees('local/programLearningOutcomes')>
-<#assign ccaLearningOutcome = xml.getAllSubtrees('local/ccaLearningOutcome')>
-<#list local as local>
-    <#assign skillsx = local.get('skills')>
+    <#assign skills = local.list('skills')>
     <#assign skillsText = local.get('skills_freetext')>
-    <#if skillsx != "">
+    <#if skills?size != 0>
         <dd><strong>Skills Learning Outcomes:</strong></dd>
-        <#list skills as skills>
-            <dd>${skills}</dd>
+        <#list skills as skill>
+            <dd>${skill}</dd>
         </#list>
     </#if>
     <#if skillsText != "">
         <dd><strong>Other skills:</strong> ${skillsText}</dd>
     </#if>
 
-    <#assign programLearningOutcomesx = local.get('programLearningOutcomes')>
-    <#assign ccaLearningOutcomex = local.get('ccaLearningOutcome')>
-    <#if programLearningOutcomesx != "">
+    <#assign programLearningOutcomes = local.list('programLearningOutcomes')>
+    <#assign ccaLearningOutcomes = local.list('ccaLearningOutcome')>
+    <#if programLearningOutcomes?size != 0>
         <dd><strong>Knowledge Learning Outcomes:</strong>
-            <#list programLearningOutcomes as programLearningOutcomes>
-                <dd>${programLearningOutcomes}</dd>
+            <#list programLearningOutcomes as programLearningOutcome>
+                ${programLearningOutcome}<br>
             </#list>
         </dd>
     </#if>
-    <#if ccaLearningOutcomex != "">
+    <#if ccaLearningOutcomes?size != 0>
         <dd><strong>CCA Learning Outcomes:</strong>
-            <#list ccaLearningOutcome as ccaLearningOutcome>
-                <dd>${ccaLearningOutcome}</dd>
+            <#list ccaLearningOutcomes as ccaLearningOutcome>
+                ${ccaLearningOutcome}<br>
             </#list>
         </dd>
     </#if>
-</#list>
 
+</#list>
 </#if>
