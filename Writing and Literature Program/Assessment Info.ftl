@@ -7,17 +7,12 @@
   <#return false>
 </#function>
 
-<#assign local = xml.getAllSubtrees('local')>
-<#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
 <#-- Administrator only information -->
 <#if userIsMemberOf("System Administrators") || userIsMemberOf("Library Administrator") || userIsMemberOf("College Administrators") || userIsMemberOf("Writing and Literature Administrator") || userIsMemberOf("Writing and Literature External Reviewers") || userIsMemberOf("Writing and Literature Faculty")>
 
-<#list local as local>
+<#list xml.getAllSubtrees('local') as local>
     <#assign accreditation = local.get('accreditation')>
     <#assign rating = local.get('rating')>
-    <#-- these URLs aren't used anywhere? -EP -->
-    <#assign accreditationUrl = "">
-    <#assign ratingUrl = "">
     <#if accreditation != "">
         <br />
         <h5 style="color: #936;">Information below displays ONLY to Writing and Literature Faculty &amp; Staff and College Administrators.</h5>
@@ -33,8 +28,8 @@
                 <#elseif (rating == "Medium")> Satisfactory
                 <#elseif (rating == "Low")> Developing
                 <#elseif (rating == "Inadequate")> Inadequate
-                </dd>
             </#if>
+            </dd>
         </#if>
     </#if>
 

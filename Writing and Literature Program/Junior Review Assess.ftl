@@ -10,24 +10,15 @@
 <#-- Administrator only information-->
 <#if userIsMemberOf("System Administrators") || userIsMemberOf("College Administrators") || userIsMemberOf("Writing and Literature Administrator") || userIsMemberOf("Writing and Literature External Reviewers")>
 
-<#assign local = xml.getAllSubtrees('local')>
-<#assign juniorReview = xml.getAllSubtrees('local/juniorReviewWrapper')>
-<#assign award = xml.getAllSubtrees('local/award')>
-<#assign rating = xml.getAllSubtrees('local/rating')>
-<#assign nominatedFor = xml.getAllSubtrees('local/nominatedFor')>
-<#assign itemUuid = xml.get('item/@id')>
-<#assign itemversion = xml.get('item/@version')>
-<#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
-<br />
-<h5 style="color: #936;">Information below displays ONLY to Writing and Literature Faculty, Staff and College Administrators.</h5>
+<#-- no need for red <h5> saying "info only displays to admins"
+since that's done in the template before ("Assessment Info") -->
 
-<dl>
-<#list courseWork as courseWork>
-    <#assign type = courseWork.get('courseWorkType')>
-    <#if type=='Junior Review portfolio'>
+    <#if xml.get('local/courseWorkWrapper/courseWorkType') == 'Junior Review portfolio'>
+        <#assign itemUuid = xml.get('item/@id')>
+        <#assign itemversion = xml.get('item/@version')>
+        <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 
-        <#list juniorReview as juniorReview>
+        <#list xml.getAllSubtrees('local/juniorReviewWrapper') as juniorReview>
             <#assign historContext = juniorReview.get('historContext')>
             <#assign contempContext = juniorReview.get('contempContext')>
             <#assign visComm = juniorReview.get('visComm')>
@@ -42,7 +33,7 @@
             <#assign overall = juniorReview.get('overallQuality')>
 
             <dt>Junior Review Assessment</dt>
-    <div style="clear:both;"></div>
+
             <dd><i>Averaged juror scores are displayed for each category.</i></dd>
 
             <dd class="subject">Technical execution & knowledge of craft: <strong>${techMaterialSkill}</strong></dd>
@@ -55,38 +46,35 @@
             <dd class="subject">Overall Quality of Work: <strong>${overall}</strong></dd>
             <div style="clear:both;"></div>
 
-            <#list local as local>
-                <#assign rating = local.get('rating')>
-                <#assign awardText = local.get('award_freetext')>
-                <#if (rating != "")><dd>Received <strong>${rating}</strong></#if>
-                <#if (awardText=="")></dd><#else>because <strong>${awardText}</strong></dd></#if>
+            <#assign rating = xml.get('local/rating')>
+            <#assign awardText = xml.get('local/award_freetext')>
+            <#if (rating != "")>
+                <dd>Received <strong>${rating}</strong>
+            </#if>
+            <#if (awardText != "")>
+                because <strong>${awardText}</strong>
+            </#if>
+            <#if rating != ""></dd></#if>
 
-                <#assign awardx = local.get('award')>
-                <#assign nominatedForx = local.get('nominatedFor')>
-                <#assign nominatedText = local.get('nominated_freetext')>
+            <#assign awards = xml.list('local/award')>
+            <#assign nominatedFors = xml.list('local/nominatedFor')>
+            <#assign nominatedText = xml.get('local/nominated_freetext')>
 
-                <#if (nominatedForx != "")>
-                    <dd class="subject">Nominations:
-                    <#list nominatedFor as nominatedFor>
-                        <strong>received ${nominatedFor}</strong><#if nominatedFor_has_next>; </#if>
-                    </#list></dd>
-                </#if>
-                <#if (awardx != "")>
-                    <dd class="subject">Awarded:
-                    <#list award as award>
-                        <strong>${award}</strong><#if award_has_next>; </#if>
-                    </#list>
-                    </dd>
-                </#if>
-                <dd class="subject">Piece recommended for ACH: <strong>${nominatedText}</strong></dd>
-            </#list>
-
-            <div style="clear:both;"></div>
-
+            <#if (nominatedFors?size != 0)>
+                <dd class="subject">Nominations:
+                <#list nominatedFors as nominatedFor>
+                    <strong>received ${nominatedFor}</strong><#if nominatedFor_has_next>; </#if>
+                </#list>
+                </dd>
+            </#if>
+            <#if (awards?size != 0)>
+                <dd class="subject">Awarded:
+                <#list awards as award>
+                    <strong>${award}</strong><#if award_has_next>; </#if>
+                </#list>
+                </dd>
+            </#if>
+            <dd class="subject">Piece recommended for ACH: <strong>${nominatedText}</strong></dd>
         </#list>
-
     </#if>
-</#list>
-
 </#if>
-</dl>
