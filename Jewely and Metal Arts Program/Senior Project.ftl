@@ -181,16 +181,11 @@
                 <#if uuid == lowResFile>
                     <#assign title = seniorPacket.get('title')>
                     <#assign semester = seniorPacket.get('date')>
-                    <#assign formatBroad = seniorPacket.get('formatBroad')>
-                    <#if formatBroad == "other">
-                        <#-- formatOther is an "other" formatBroad -->
-                        <#assign formatBroad = seniorPacket.get('formatOther')>
-                    </#if>
                     <#assign formatSpecific = seniorPacket.get('formatSpecific')>
                     <#-- duration is dimensions -->
                     <#assign dimensions = seniorPacket.get('duration')>
                     <#-- note: where file is stored & which files we want to
-                    display will vary by collection -->
+                    display vary by collection -->
                     <#assign technique = seniorPacket.get('technique')>
                     <#assign notes = seniorPacket.get('notes')>
                     <div class='image-photoSeniorPacket'>
@@ -201,7 +196,11 @@
                         in our theme -->
                         <#if title != ""><i>${title}</i></#if>
                         <#if semester != "">${semester}<br></#if>
-                        <#if formatBroad != "">${formatBroad}<br></#if>
+                        <#list seniorPacket.list('formatBroad') as formatBroad>
+                            <#if formatBroad != "other">${formatBroad}<br></#if>
+                        </#list>
+                        <#-- the text for formatBroad == "other" value -->
+                        <#if formatOther != "">${formatOther}<br></#if>
                         <#if formatSpecific != "">${formatSpecific}<br></#if>
                         <#if dimensions != "">${dimensions}<br></#if>
                         <#if technique != "">${technique}<br></#if>
