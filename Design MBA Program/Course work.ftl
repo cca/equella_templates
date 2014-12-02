@@ -1,5 +1,8 @@
-<#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign type = xml.get('local/courseWorkWrapper/courseWorkType')>
+
+<#if type == 'Course work'>
+
+<#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign local = xml.getAllSubtrees('local')>
 
 <style scoped>
@@ -14,7 +17,7 @@ a[href=""] {
 </style>
 
 <dl>
-<#if type == 'Course work'>
+
 <#list local as local>
 
     <#assign title = xml.get('mods/titleInfo/title')>
@@ -69,8 +72,10 @@ a[href=""] {
     </#if>
 
     <#assign abstract = xml.get('mods/abstract')>
-    <#if abstract != "">
+    <#assign note = xml.get('mods/noteWrapper/note')>
+    <#if abstract != "" || note != "">
         <dt>Description</dt>
+        <dd>${note}</dd><br>
         <dd>${abstract}</dd><br>
     </#if>
 
