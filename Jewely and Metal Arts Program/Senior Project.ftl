@@ -53,12 +53,14 @@
             </dd>
         </#list>
 
-        <#assign faculty = xml.get('local/courseInfo/faculty')>
-        <#if faculty != "">
-            <dd>
+        <#assign faculties = xml.list('local/courseInfo/faculty')>
+        <#if faculties?size != 0>
+        <dd><b>Faculty Advisor<#if (faculties?size > 1)>s</#if></b>:
+        <#list faculties as faculty>
                 <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
-                <b>Faculty Advisor</b>: <a href ="${facultyUrl}">${faculty}</a>
-            </dd>
+                <a href ="${facultyUrl}">${faculty}</a><#if faculty_has_next>, </#if>
+        </#list>
+        </dd>
         </#if>
 
         <dt>Senior Project</dt>
