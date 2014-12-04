@@ -1,9 +1,20 @@
-<#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
-
-<#if courseWork.get('courseWorkType') == 'Course work'>
+<#if xml.get('local/courseWorkWrapper/courseWorkType') == 'Course work'>
 <dl>
+
+<#-- @todo what PS does Diversity Studies go in? -->
+<#assign powerSearch = ''>
+
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
+<#-- @todo what division is DIVST in? all college? -->
+<#assign division = xml.get('local/division')>
+<#assign department = xml.get('local/department')>
+<#assign departmentUrl = "/access/searching.do?in=Ce628c67e-886e-414b-af7f-cb0e6adaae07&q=&sort=datemodified&dr=AFTER" />
+<dd class="collection">
+    <#-- once we know division, need to make link for it
+    also update departmentUrl to be link w/in that division's PS -->
+    <a href="${departmentUrl}">${department}</a>
+</dd>
 
 <dt>Creator(s)</dt>
 <#list xml.getAllSubtrees('mods/name') as name>
@@ -18,8 +29,8 @@
     </#list>
 </#list>
 
-<#assign academicLevel = local.get('local/academicLevel')>
-<#assign academicLevelUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CacademicLevel%3E${academicLevel}%3C%2FacademicLevel%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
+<#assign academicLevel = xml.get('local/academicLevel')>
+<#assign academicLevelUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CacademicLevel%3E${academicLevel}%3C%2FacademicLevel%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
     <#if (academicLevel != "")>
         — <a href="${academicLevelUrl}">${academicLevel}</a>
     </#if>
@@ -31,10 +42,10 @@
     <#assign course = courseInfo.get('course')>
     <#assign faculty = courseInfo.get('faculty')>
     <#assign section = courseInfo.get('section')>
-    <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
+    <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
     <#assign departmentUrl = "" />
     <#if (semester != "")>
         <dt>Course Info</dt>
@@ -54,7 +65,7 @@
     <dd>Work type: ${formBroad}</dd>
 </#if>
 
-<#list courseWork as courseWork>
+<#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
     <#assign materials = courseWork.list('material')>
     <#if (materials?size != 0)>
         <dd>Material(s):
