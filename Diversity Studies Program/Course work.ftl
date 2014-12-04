@@ -1,36 +1,31 @@
-<#assign name = xml.getAllSubtrees('mods/name')>
-<#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
-<#assign local = xml.getAllSubtrees('local')>
 
+<#if courseWork.get('courseWorkType') == 'Course work'>
 <dl>
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
 
 <dt>Creator(s)</dt>
-<#list name as name>
+<#list xml.getAllSubtrees('mods/name') as name>
     <#assign namePart = name.get('namePart')>
     <dd>${namePart}
     <#list name.getAllSubtrees('subNameWrapper') as subName>
         <#assign major = subName.get('major')>
-        <#assign majorUrl = "" />
+        <#assign majorUrl = "">
         <#if (major != "")>
-             — ${major}
+             — <a href="${majorUrl}">${major}</a>
         </#if>
     </#list>
-
 </#list>
 
-<#list local as local>
-    <#assign academicLevel = local.get('academicLevel')>
-    <#assign academicLevelUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CacademicLevel%3E${academicLevel}%3C%2FacademicLevel%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-        <#if (academicLevel != "")>
-            — <a href="${academicLevelUrl}">${academicLevel}</a>
-        </#if>
-    </dd>
-</#list>
+<#assign academicLevel = local.get('local/academicLevel')>
+<#assign academicLevelUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CacademicLevel%3E${academicLevel}%3C%2FacademicLevel%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
+    <#if (academicLevel != "")>
+        — <a href="${academicLevelUrl}">${academicLevel}</a>
+    </#if>
+</dd>
 
-<#list courseInfo as courseInfo>
+<#list xml.getAllSubtrees('local/courseInfo') as courseInfo>
     <#assign semester = courseInfo.get('semester')>
     <#assign department = courseInfo.get('department')>
     <#assign course = courseInfo.get('course')>
@@ -48,7 +43,7 @@
             — ${course}
             — ${faculty}
             — ${section}
-            </span>
+        </span>
     </#if>
 
 </#list>
@@ -61,7 +56,7 @@
 
 <#list courseWork as courseWork>
     <#assign materials = courseWork.list('material')>
-    <#if (materials?size > 0)>
+    <#if (materials?size != 0)>
         <dd>Material(s):
             <#list materials as material>
                 ${material}<#if material_has_next>; </#if>
@@ -79,8 +74,15 @@
         <dd>Project type: ${groupProject}</dd>
     </#if>
 
+    <#assign groupMembers = courseWork.get('groupMembers')>
+    <#if (groupMembers != "")>
+        <dd>Group members: ${groupMembers}</dd>
+    </#if>
+
     <#assign abstract = xml.get('mods/abstract')>
     <#if (abstract != "")>
         <dd>Description: ${abstract}</dd>
     </#if>
 </#list>
+
+</#if>
