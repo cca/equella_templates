@@ -85,9 +85,10 @@
 
 <#-- display link attachments -->
 <#list xml.getAllSubtrees('item/attachments/attachment') as attachment>
+    <#-- only print Links header once -->
+    <#if attachment_index == 1><dt>Link(s)</dt></#if>
     <#if attachment.get('@type') == 'remote'>
         <#assign url = attachment.get('file')>
-        <dt>Link(s)</dt>
         <dd>
             <a href="${url}" target= _blank>${url}</a>
         </dd>
