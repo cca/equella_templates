@@ -10,47 +10,31 @@
     <#if (courseWorkType == "Senior packet")>
 <style>
 div.image-studentWork {
+    /* necessary b/c we later override max */
     min-height: 230px;
-    max-height:230px;
-    width:  174px;
-    max-width:  174px;
-    margin-top:20px;
-    margin-bottom:  10px;
-}
-
-div.image-studentWork > a {
-    width: 110px;
-    display: block;
-    margin: auto;
-}
-
-/* get rid of dotted underline */
-div.image-studentWork > a:hover {
-    border: none;
-}
-
-div.image-studentWork > a:hover img {
-    border-color:black;
-}
-
-.image-studentWork.shorter {
-    min-height: 150px;
-}
-
-p.photoImagelist {
+    max-height: 230px;
+    width: 174px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     overflow: hidden;
-    width: 154px;
+}
+/* get rid of dotted underline */
+.image-studentWork > a:hover {
+    border: 0;
+}
+div.image-studentWork > a:hover img {
+    border-color: #000;
+}
+p.photoImagelist {
     max-width: 154px;
     padding: 10px;
-    text-overflow: ellipsis;
     white-space: nowrap;
     margin-left: 0 !important;
+    z-index: 10;
 }
-
 div.image-studentWork:hover {
     overflow: visible;
 }
-
 div.image-studentWork:hover p.photoImagelist {
     max-height: 1000px;
     background: #eee;
@@ -58,16 +42,14 @@ div.image-studentWork:hover p.photoImagelist {
     position: absolute;
     white-space: normal;
 }
-
 .photoImagelist i {
     border-bottom: 1px dotted #bbb;
-    padding-bottom: 7px;
+    margin-bottom: .5em;
     font-weight: bold;
 }
 .attachments {
     position: static;
 }
-
 .sm-left-margin {
     margin-left: 1px;
 }
@@ -261,6 +243,7 @@ div.image-studentWork:hover p.photoImagelist {
                 <#assign title = seniorPacket.get('title')>
                 <#assign date = seniorPacket.get('date')>
                 <#assign forms = seniorPacket.list('formatBroad')>
+                <#assign temperature = seniorPacket.get('formatOther')>
                 <#assign materials = seniorPacket.list('formatSpecific')>
                 <#-- heightINCH is full dimensions string -->
                 <#assign dimensions = seniorPacket.get('heightINCH')>
@@ -268,9 +251,14 @@ div.image-studentWork:hover p.photoImagelist {
                 display will vary by collection -->
                 <#assign jpgFile = seniorPacket.get('lowResFile')>
                 <#assign file = seniorPacket.get('hiResFile')>
+                <#-- building techniques -->
                 <#assign techniques = seniorPacket.list('technique')>
+                <#-- finishing techniques -->
                 <#assign techniqueOthers = seniorPacket.list('techniqueOther')>
+                <#-- combine into one list -->
+                <#assign allTechniques = techniques + techniqueOthers>
                 <#assign tags = seniorPacket.list('tags')>
+                <#assign description = seniorPacket.get('notes')>
                 <#if file == uuid>
                 <div class='image-studentWork'>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
@@ -288,6 +276,14 @@ div.image-studentWork:hover p.photoImagelist {
                         </#list><br>
                     </#if>
 
+                    <#-- building techniques -->
+                    <#if allTechniques?size != 0>
+                        <b>Techniques:</b>&nbsp;
+                        <#list allTechniques as technique>
+                            ${technique}<#if technique_has_next>, </#if>
+                        </#list><br>
+                    </#if>
+
                     <#if materials?size != 0>
                         <b>Materials:</b>&nbsp;
                         <#list materials as material>
@@ -295,26 +291,17 @@ div.image-studentWork:hover p.photoImagelist {
                         </#list><br>
                     </#if>
 
-                    <#-- building techniques -->
-                    <#if techniques?size != 0>
-                        <b>Techniques:</b>&nbsp;
-                        <#list techniques as technique>
-                            ${technique}<#if technique_has_next>, </#if>
-                        </#list><br>
-                    </#if>
-                    <#-- finishing techniques -->
-                    <#if techniqueOthers?size != 0>
-                        <#list techniqueOthers as techniqueOther>
-                            ${techniqueOther}<#if techniqueOther_has_next>, </#if>
-                        </#list><br>
-                    </#if>
+                    <#if dimensions != "">${dimensions}<br></#if>
+                    <#if temperature != ""><b>Firing temp.:</b>&nbsp;${temperature}<br></#if>
 
                     <#if tags?size != 0>
                         <b>Themes:</b>&nbsp;
                         <#list tags as tag>
                             ${tag}<#if tag_has_next>, </#if>
-                        </#list>
+                        </#list><br>
                     </#if>
+
+                    <#if description != "">${description}</#if>
                     </p>
                 </div>
 
