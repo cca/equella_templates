@@ -339,7 +339,7 @@
     </#if>
 </#list>
 
-<#if xml.exists('mods/location')>
+<#if xml.get('mods/location') != "">
     <dt class="loc">Location</dt>
     <#list locationp as locationp>
         <#assign physicalLocation = locationp.get('physicalLocation')>
