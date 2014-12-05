@@ -92,11 +92,10 @@ div.image-studentWork:hover p.photoImagelist {
             </dd>
         </#if>
 
-        <dt>Creator</dt>
         <#list xml.getAllSubtrees('mods/name') as name>
             <#assign namePart = name.get('namePart')>
             <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
-            <dd><a href="${namePartUrl}">${namePart}</a>
+            <dd style="margin-left: 1px;"><b>Creator: </b><a href="${namePartUrl}">${namePart}</a>
             <#list xml.getAllSubtrees('mods/name/subNameWrapper') as subName>
                 <#assign major = subName.get('major')>
                 <#assign gradDate = subName.get('gradDate')>
@@ -104,7 +103,7 @@ div.image-studentWork:hover p.photoImagelist {
                 <#assign gradDateUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3CgradDate%3E${gradDate}%3C%2FgradDate%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
                 <#if major != ""> — <a href="${majorUrl}">${major}</a></#if>
                 <#if gradDate != "">
-                     — <b>Graduated</b>: <a href="${gradDateUrl}">${gradDate}</a>
+                     — Graduated: <a href="${gradDateUrl}">${gradDate}</a>
                 </#if>
             </#list>
             </dd>
@@ -116,8 +115,7 @@ div.image-studentWork:hover p.photoImagelist {
             <#assign faculties = courseInfo.list('faculty')>
             <#assign courseUrl = "">
             <#assign semesterUrl = "">
-            <dt>Course Info</dt>
-            <dd>
+            <dd style="margin-left: 1px;"><b>Course Info: </b>
             <#if (semester != "undefined") && (semester != "")>
                 <a href="${semesterUrl}">${semester}</a>
             </#if>
@@ -135,7 +133,6 @@ div.image-studentWork:hover p.photoImagelist {
         </dd>
         </#list>
 
-        <dt>Senior Packet</dt>
         <#assign abstract = xml.get('mods/abstract')>
         <#if (abstract != "")>
             <dd><b>Description</b>: ${abstract}</dd>
@@ -152,12 +149,13 @@ div.image-studentWork:hover p.photoImagelist {
             <#if gallery != "" || note != "" || datex != "">
                 <h4><u>Senior Show Information</u></h4>
                 <dd>
-                <#if title != "">${title}</#if>
+                <#if title != ""><em>${title}</em></#if>
                 <#if gallery != ""> — <a href="${galleryUrl}">${gallery}</a></#if>
                 <#-- note is just a non-CCA gallery in SR Packet template -->
                 <#if note != "">${note}</#if>
                 <#if dates?size != 0> —
-                    <#list dates as date>${date}<#if date_has_next> through </#if>
+                    <#list dates as date>
+                        ${date}<#if date_has_next> through </#if>
                     </#list>
                 </#if>
                 </dd>
@@ -291,15 +289,16 @@ div.image-studentWork:hover p.photoImagelist {
                     <#-- p.photoImagelist i sets display: block
                     in our theme -->
                     <#if title != ""><i>${title}</i></#if>
-                    <#if semester != "">${semester}<br></#if>
+                    <#if date != "">${date}<br></#if>
+                    <#if heightINCH != "">${heightINCH}<br></#if>
 
                     <#if formatBroads?size != 0>
                         <b>Form(s):</b>&nbsp;
                         <#list formatBroads as formatBroad>
-                            <#-- don't print other but it's actual value,
+                            <#-- dont print other but its actual value,
                             which is stored elsewhere ("phase" for formatSpecific)
                             the 2nd "formatBroad_has_next" ensure the comma-sep.
-                            list doesn't get screwed up while we do this -->
+                            list doesnt get screwed up while we do this -->
                             <#if formatBroad != 'other...'>
                                 ${formatBroad}<#if formatBroad_has_next>, </#if>
                             <#else>
