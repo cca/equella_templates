@@ -1,58 +1,53 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign titleInfo = xml.getAllSubtrees('mods/titleInfo')>
-<#assign collection = xml.getAllSubtrees('mods/relatedItem')>
+<#assign titleInfos = xml.getAllSubtrees('mods/titleInfo')>
+<#assign collections = xml.getAllSubtrees('mods/relatedItem')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign name = xml.getAllSubtrees('mods/name')>
-<#assign physdesc = xml.getAllSubtrees('mods/physicalDescription')>
-<#assign physdescNote = xml.getAllSubtrees('mods/physicalDescriptionNote')>
+<#assign names = xml.getAllSubtrees('mods/name')>
+<#assign physdescs = xml.getAllSubtrees('mods/physicalDescription')>
+<#assign physdescNotes = xml.getAllSubtrees('mods/physicalDescriptionNote')>
 <#assign modslevel = xml.getAllSubtrees('mods')>
-<#assign originInfo = xml.getAllSubtrees('mods/originInfo')>
-<#assign date = xml.getAllSubtrees('mods/origininfo/dateCreatedWrapper')>
-<#assign dateOther = xml.getAllSubtrees('mods/origininfo/dateOtherWrapper')>
-<#assign subject = xml.getAllSubtrees('mods/subject')>
-<#assign relateditem = xml.getAllSubtrees('mods/relateditem')>
-<#assign genreWrapper = xml.getAllSubtrees('mods/genreWrapper')>
-<#assign locationp = xml.getAllSubtrees('mods/location')>
-<#assign part = xml.getAllSubtrees('mods/part')>
-<#assign noteWrapper = xml.getAllSubtrees('mods/noteWrapper')>
-<#assign local = xml.getAllSubtrees('local')>
-<#assign archivesWrapper = xml.getAllSubtrees('local/archivesWrapper')>
+<#assign originInfos = xml.getAllSubtrees('mods/originInfo')>
+<#assign dates = xml.getAllSubtrees('mods/origininfo/dateCreatedWrapper')>
+<#assign dateOthers = xml.getAllSubtrees('mods/origininfo/dateOtherWrapper')>
+<#assign subjects = xml.getAllSubtrees('mods/subject')>
+<#assign relateditems = xml.getAllSubtrees('mods/relateditem')>
+<#assign genreWrappers = xml.getAllSubtrees('mods/genreWrapper')>
+<#assign locations = xml.getAllSubtrees('mods/location')>
+<#assign parts = xml.getAllSubtrees('mods/part')>
+<#assign noteWrappers = xml.getAllSubtrees('mods/noteWrapper')>
+<#assign archivesWrappers = xml.getAllSubtrees('local/archivesWrapper')>
 
 <dl>
-<#list titleInfo as titleInfo>
+<#list titleInfos as titleInfo>
     <#assign title = titleInfo.get('title')>
     <#assign usage = titleInfo.get('@usage')>
     <#assign subTitle = titleInfo.get('subTitle')>
     <#assign partNumber = titleInfo.get('partNumber')>
-    <#if usage =="primary">
+    <#if usage == "primary">
         <h2 id="title">${title}
-            <#if subTitle=="">
-            <#else>: ${subTitle}</#if>
+            <#if subTitle != "">: ${subTitle}</#if>
         </h2>
     <#else>
-        <#if usage=="secondary">
+        <#if usage == "secondary">
             <#assign secondtitle = title>
         <#else>
-            <#if usage=="">
+            <#if usage == "">
                 <h2 id="title">${title}
-                <#if subTitle=="">
-                    <#else>: ${subTitle}</#if>
-                    </h2>
-                </#if>
+                    <#if subTitle != "">: ${subTitle}</#if>
+                </h2>
             </#if>
         </#if>
-        <#if titleInfo_index !=0>
-                <div id="secondtitle">Other title: ${secondtitle}
-                <#if subTitle=="">
-                    <#else>: ${subTitle}
-                </#if>
-                </div>
-            </#if>
+    </#if>
+    <#if titleInfo_index != 0>
+        <div id="secondtitle">Other title: ${secondtitle}
+            <#if subTitle != "">: ${subTitle}</#if>
+        </div>
+    </#if>
 </#list>
 
 <dt class="hide">Collection</dt>
-<#list collection as collection>
+<#list collections as collection>
     <#assign collectionTitle = collection.get('title')>
     <#assign collectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&sort=rank&dr=AFTER" />
     <dd class="collection"><a href="${collectionUrl}">${collectionTitle}</a></dd>
@@ -63,81 +58,87 @@
     <#assign thumb = itemAttachment.get('thumbnail')>
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
-    <#if full?ends_with(".tif")><#else>
-    <div id='image-single'>
-        <a href="/file/${itemUuid}/${itemversion}/${full}">
-            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
-        </a>
-        <#list part as partAttachment>
-            <#assign parttitle = partAttachment.get('title')>
-            <#assign partextent = partAttachment.get('extent')>
-            <#assign partnumber = partAttachment.get('number')>
-            <#if partnumber == uuid>
-                <#if parttitle != "" || partextent != "">
-                    <p class='caption'>
-                    <#if parttitle != ""><em>${parttitle} </em><br /> </#if>
-                    <#if partextent != ""> ${partextent}</#if>
-                    </p>
+    <#if ( ! full?ends_with(".tif") )>
+        <#list parts as part>
+            <#assign parttitle = part.get('title')>
+            <#assign partextent = part.get('extent')>
+            <#-- there can be multiple attachments per part
+            each one's UUID is in mods/part/number -->
+            <#assign partnumbers = part.list('number')>
+            <#-- partdetail is used to hide speaker release forms
+            or other confidential attachments -->
+            <#assign partdetail = part.get('detail')>
+            <#list partnumbers as partnumber>
+                <#if partnumber == uuid && partdetail != 'yes'>
+                    <div id='image-single'>
+                        <a href="/file/${itemUuid}/${itemversion}/${full}">
+                            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
+                        </a>
+                        <#if parttitle != "" || partextent != "">
+                            <p class='caption'>
+                            <#if parttitle != ""><em>${parttitle}</em><br /></#if>
+                            <#if partextent != ""> ${partextent}</#if>
+                            </p>
+                        </#if>
+                    </div>
                 </#if>
-            </#if>
+            </#list>
         </#list>
-    </div>
     </#if>
 </#list>
 </div>
 
-<#list name as name>
+<#list names as name>
     <#assign namePart = name.get('namePart')>
     <#assign namePartDate = name.get('namePartDate')>
     <#assign role = name.get('role/roleTerm')>
-    <#if name_index == 0 && (namePart !="" || namePartDate != "")>
+    <#if name_index == 0 && (namePart != "" || namePartDate != "")>
         <dt>Creator(s)</dt>
     </#if>
 
     <dd>${namePart}
-            <#if namePartDate != "" && (role=="")>
-                (${namePartDate})
-            </#if>
-            <#if role!="" && (namePartDate=="")>
-                (${role})
-            </#if>
-            <#if role!="" && namePartDate!="">
-                (${namePartDate}) - ${role}
-            </#if>
+    <#if namePartDate != "" && (role == "")>
+        (${namePartDate})
+    </#if>
+    <#if role != "" && (namePartDate == "")>
+        (${role})
+    </#if>
+    <#if role != "" && namePartDate != "">
+        (${namePartDate}) - ${role}
+    </#if>
 
-        <#list name.getAllSubtrees('subNameWrapper') as subName>
-            <#assign affiliation = subName.get('affiliation')>
-            <#assign gradDate = subName.get('gradDate')>
-            <#assign department = subName.get('department')>
-            <#assign major = subName.get('major')>
-            <#assign constituent = subName.get('constituent')>
-            <#assign description = subName.get('description')>
-            <span id="namestuff">
-                <#if affiliation=="" || affiliation=="CCAC" || affiliation=="CSAC" || affiliation=="CCA">
-                <#else>
-                ${affiliation} - </#if>
-                <#if constituent != "">
-                    ${constituent}
-                </#if>
-                <#if department != "">
-                    - ${department}
-                </#if>
-                <#if major != "">
-                    - ${major}
-                </#if>
-                <#if gradDate != "">
-                    - ${gradDate}
-                </#if>
-                <#if description != "">
-                    - ${description}
-                </#if>
-            </span>
-        </#list>
-
+    <#list name.getAllSubtrees('subNameWrapper') as subName>
+        <#assign affiliation = subName.get('affiliation')>
+        <#assign gradDate = subName.get('gradDate')>
+        <#assign department = subName.get('department')>
+        <#assign major = subName.get('major')>
+        <#assign constituent = subName.get('constituent')>
+        <#assign description = subName.get('description')>
+        <span id="namestuff">
+            <#if affiliation != "" && affiliation != "CCAC" && affiliation != "CSAC" && affiliation != "CCA">
+                ${affiliation} -
+            </#if>
+            <#if constituent != "">
+                ${constituent}
+            </#if>
+            <#if department != "">
+                - ${department}
+            </#if>
+            <#if major != "">
+                - ${major}
+            </#if>
+            <#if gradDate != "">
+                - ${gradDate}
+            </#if>
+            <#if description != "">
+                - ${description}
+            </#if>
+        </span>
+    </#list>
     </dd>
 </#list>
 
-<#list date as date>
+<#list dates as date>
     <#assign dateCreated = date.get('dateCreated')>
     <#assign datequalifier = date.get('@qualifier')>
     <#assign dateStart = date.get('pointStart')>
@@ -169,7 +170,7 @@
 </#list>
 <br />
 
-<#list dateOther as dateOther>
+<#list dateOthers as dateOther>
     <#assign dateother = dateOther.get('dateOther')>
     <#assign dateothertype = dateOther.get('dateOther/@type')>
     <#assign dateOtherqualifier = dateOther.get('dateOther/@qualifier')>
@@ -183,11 +184,11 @@
     </#if>
 </#list>
 
-<#list physdesc as physdesc>
+<#list physdescs as physdesc>
     <#assign formBroad = physdesc.get('formBroad')>
     <#assign formSpecific = physdesc.get('formSpecific')>
     <#assign extent = physdesc.get('extent')>
-    <#if formBroad !="" || formSpecific != "">
+    <#if formBroad != "" || formSpecific != "">
         <#if physdesc_index == 0><dt>Work type &amp; Measurements</dt></#if>
         <#assign formBroadUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformBroad%3E${formBroad}%3C%2FformBroad%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&sort=rank&dr=AFTER" />
         <dd><a href="${formBroadUrl}">${formBroad?cap_first}</a>
@@ -199,48 +200,47 @@
     <#if extent != "">
         <dd>${extent}</dd>
     </#if>
-        <#list physdescNote as physdescNote>
-            <#assign physNote = physdescNote.get('note')>
-            <#assign physnoteType = physdescNote.get('note/@type')>
-            <#if physNote != "">
-                <dd>${physnoteType?cap_first}: ${physNote}</dd>
-            </#if>
-        </#list>
+    <#list physdescNotes as physdescNote>
+        <#assign physNote = physdescNote.get('note')>
+        <#assign physnoteType = physdescNote.get('note/@type')>
+        <#if physNote != "">
+            <dd>${physnoteType?cap_first}: ${physNote}</dd>
+        </#if>
+    </#list>
 </#list>
+
 <#if partNumber != "">
-            <dd>Number: ${partNumber}</dd>
+    <dd>Number: ${partNumber}</dd>
 </#if>
 
-<#list modslevel as mods>
-    <#assign abstract = mods.get('abstract')>
-    <#assign toc = mods.get('tableOfContents')>
-    <#if abstract != "">
-        <#if mods_index == 0>
-            <dt>Description</dt>
-        </#if>
-    </#if>
-        <#if abstract!= ""><dd class="abstract">${abstract}</dd></#if>
-    <#if toc!= "">
-    <dt>Table of Contents</dt>
-    <dd>${toc}</dd></#if>
-</#list>
-<#list noteWrapper as noteWrapper>
-        <#assign note = noteWrapper.get('note')>
-        <#assign noteType = noteWrapper.get('note/@type')>
-<#if note != "">
-    <#if noteWrapper_index == 0><dt>Notes</dt></#if>
+<#assign abstract = xml.get('mods/abstract')>
+<#assign toc = xml.get('mods/tableOfContents')>
+<#if abstract != "">
+    <dt>Description</dt>
+    <dd class="abstract">${abstract}</dd>
 </#if>
-    <#if note != "" && noteType != "">
-        <dd>${noteType?cap_first}:
-        ${note}
-        </dd>
-    <#elseif noteType == "" && note != "">
-        <dd>${note}</dd>
+<#if toc!= "">
+    <dt>Table of Contents</dt>
+    <dd>${toc}</dd>
+</#if>
+
+<#list noteWrappers as noteWrapper>
+    <#assign note = noteWrapper.get('note')>
+    <#assign noteType = noteWrapper.get('note/@type')>
+    <#if note != "">
+        <#if noteWrapper_index == 0><dt>Notes</dt></#if>
+        <#if noteType != "">
+            <dd>${noteType?cap_first}:
+            ${note}
+            </dd>
+        <#elseif noteType == "">
+            <dd>${note}</dd>
+        </#if>
     </#if>
 </#list>
 
 <div class="clearfix">
-<#list originInfo as originInfo>
+<#list originInfos as originInfo>
     <#assign publisher = originInfo.get('publisher')>
     <#assign place = originInfo.get('place')>
     <#assign edition = originInfo.get('edition')>
@@ -259,13 +259,13 @@
 </#list>
 </div>
 
-<#list subject as subject>
+<#list subjects as subject>
     <#assign topic = subject.get('topic')>
     <#assign geographic = subject.get('geographic')>
     <#assign name = subject.get('name')>
     <#assign temporal = subject.get('temporal')>
     <#assign topicCONA = subject.get('topicCONA')>
-    <#if subject_index == 0 && (topic !="" || geographic !="" || name !="" || temporal !="" || topicCONA !="")>
+    <#if subject_index == 0 && (topic != "" || geographic != "" || name != "" || temporal != "" || topicCONA != "")>
         <dt>Subject(s)</dt>
     </#if>
     <#if topic != "">
@@ -287,17 +287,17 @@
         <dd class="subject">Depicted subject: <a href="${topicCONAUrl}">${topicCONA}</a></dd>
     </#if>
 </#list>
-<div class="clearfix" >
-    <#list modslevel as mods>
-        <#assign photoClassification = mods.get('photoClassification')>
-        <#assign photoClassificationUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphotoClassification%3E${photoClassification}%3C%2FphotoClassification%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&sort=rank&dr=AFTER" />
-        <#if photoClassification != "">
-            <dd class="subject">CCA/C subject: <a href="${photoClassificationUrl}">${photoClassification}</a></dd>
-        </#if>
-    </#list>
-</div>
 
-<#list genreWrapper as genreWrapper>
+<#assign photoClassification = xml.get('mods/photoClassification')>
+<#assign photoClassificationUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphotoClassification%3E${photoClassification}%3C%2FphotoClassification%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&sort=rank&dr=AFTER" />
+<#if photoClassification != "">
+    <div class="clearfix" >
+        <dd class="subject">CCA/C subject: <a href="${photoClassificationUrl}">${photoClassification}</a></dd>
+    </div>
+</#if>
+
+
+<#list genreWrappers as genreWrapper>
     <#assign genre = genreWrapper.get('genre')>
     <#if genre != "">
         <#if genreWrapper_index == 0>
@@ -307,7 +307,7 @@
     </#if>
 </#list>
 
-<#list relateditem as relateditem>
+<#list relateditems as relateditem>
     <#assign title = relateditem.get('title')>
     <#assign location = relateditem.get('location')>
     <#assign note = relateditem.get('note')>
@@ -329,7 +329,7 @@
     </#if>
 </#list>
 
-<#list archivesWrapper as archivesWrapper>
+<#list archivesWrappers as archivesWrapper>
     <#assign series = archivesWrapper.get('series')>
     <#assign subseries = archivesWrapper.get('subseries')>
     <#if series != "">
@@ -339,12 +339,12 @@
     </#if>
 </#list>
 
-<#if xml.get('mods/location') != "">
+<#if xml.get('mods/location') != ''>
     <dt class="loc">Location</dt>
-    <#list locationp as locationp>
-        <#assign physicalLocation = locationp.get('physicalLocation')>
-        <#assign copyInformation = locationp.getAllSubtrees('copyInformation')>
-        <#list copyInformation as copyInformation>
+    <#list locations as location>
+        <#assign physicalLocation = location.get('physicalLocation')>
+        <#assign copyInformations = location.getAllSubtrees('copyInformation')>
+        <#list copyInformations as copyInformation>
             <#assign sublocation = copyInformation.get('sublocation')>
             <#assign sublocationDetail = copyInformation.get('sublocationDetail')>
             <#assign shelfLocator = copyInformation.get('shelfLocator')>
