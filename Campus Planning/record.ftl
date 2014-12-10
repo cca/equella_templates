@@ -83,15 +83,16 @@
 </#list>
 </div>
 
-<#-- display link attachments -->
+<#-- link attachments
+hide header at first, then reveal if a URL attachment shows up -->
+<dt class="hide link-attachments">Link(s)</dt>
 <#list xml.getAllSubtrees('item/attachments/attachment') as attachment>
-    <#-- only print Links header once -->
-    <#if attachment_index == 1><dt>Link(s)</dt></#if>
-    <#if attachment.get('@type') == 'remote'>
-        <#assign url = attachment.get('file')>
+    <#assign url = attachment.get('file')>
+    <#if attachment.get('@type') == 'remote' && url != "">
         <dd>
-            <a href="${url}" target= _blank>${url}</a>
+            <a href="${url}" target="_blank">${url}</a>
         </dd>
+        <style>dt.link-attachments { display: block }</style>
     </#if>
 </#list>
 </dl>
