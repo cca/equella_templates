@@ -83,10 +83,10 @@ a[href=""] {
 			<#if (course != "undefined" && course != "Events")>
 				— <a href="${courseUrl}">${course}</a>
 			</#if>
-			<#if faculty != "undefined" && faculty ! = "">
+			<#if (faculty != "undefined" && faculty != "")>
 				— <a href="${facultyUrl}">${faculty}</a>
 			</#if>
-			<#if section != "undefined" && section ! = "">
+			<#if (section != "undefined" && section != "")>
 				— <a href="${sectionUrl}">${section}</a>
 			</#if>
 		</span>
