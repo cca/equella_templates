@@ -1,3 +1,9 @@
+<#function escapeAmp str>
+    <#-- returns a URI-encoded "&amp;"
+    because we pass XML in the URI, we have to escape this way -->
+    <#return str?replace('&', '%26amp%3B')>
+</#function>
+
 <#assign courseWorkType = xml.get('local/courseWorkWrapper/courseWorkType')>
 <#if courseWorkType == "Administrative document" || courseWorkType == "Program Portfolio document">
     <dl>
@@ -42,14 +48,14 @@
     <dt>Document Details</dt>
 
     <#assign workType = xml.get('local/courseWorkWrapper/workType')>
-    <#assign courseWorkTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EVisual+Critical+Studies%3C%2Fdepartment%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3E${courseWorkType}%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
+    <#assign courseWorkTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EVisual+Critical+Studies%3C%2Fdepartment%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3E${escapeAmp(courseWorkType)}%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
     <dd>Document Type: <a href="${courseWorkTypeUrl}">${courseWorkType}</a>
     <#if courseWorkTypeSpecific != ''>
-        <#assign courseWorkTypeSpecificUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EVisual+Critical+Studies%3C%2Fdepartment%3E%3CcourseWorkWrapper%3E%3CcourseWorkTypeSpecific%3E${courseWorkTypeSpecific}%3C%2FcourseWorkTypeSpecific%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER'>
+        <#assign courseWorkTypeSpecificUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EVisual+Critical+Studies%3C%2Fdepartment%3E%3CcourseWorkWrapper%3E%3CcourseWorkTypeSpecific%3E${escapeAmp(courseWorkTypeSpecific)}%3C%2FcourseWorkTypeSpecific%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER'>
         | <a href="${courseWorkTypeSpecificUrl}">${courseWorkTypeSpecific}</a>
     </#if>
     <#if workType != '' && workType != 'undefined'>
-        <#assign workTypeUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EVisual+Critical+Studies%3C%2Fdepartment%3E%3CcourseWorkWrapper%3E%3CworkType%3E${workType}%3C%2FworkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER'>
+        <#assign workTypeUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EVisual+Critical+Studies%3C%2Fdepartment%3E%3CcourseWorkWrapper%3E%3CworkType%3E${escapeAmp(workType)}%3C%2FworkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER'>
         | <a href="${workTypeUrl}">${workType}</a>
     </#if>
     </dd>

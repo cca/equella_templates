@@ -4,7 +4,7 @@
     <#if viewLevel != "">This item is ${viewLevel}.</#if>
 
     <#assign accessCondition = xml.get('mods/accessCondition')>
-    <#if viewLevel=="">
+    <#if viewLevel == "">
         ${accessCondition}.</br>
     <#else>
         <br>${accessCondition}.</br>
