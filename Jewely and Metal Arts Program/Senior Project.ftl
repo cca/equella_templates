@@ -184,6 +184,7 @@
                     <#assign title = seniorPacket.get('title')>
                     <#assign semester = seniorPacket.get('date')>
                     <#assign formatSpecific = seniorPacket.get('formatSpecific')>
+                    <#assign formatOther = seniorPacket.get('formatOther')>
                     <#-- duration is dimensions -->
                     <#assign dimensions = seniorPacket.get('duration')>
                     <#-- note: where file is stored & which files we want to
@@ -194,22 +195,19 @@
                         <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                         <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                         <p class='photoImagelist'>
-                        <#-- p.photoImagelist i sets display: block
-                        in our theme -->
-                        <#if title != ""><i>${title}</i></#if>
-                        <#if semester != "">${semester}<br></#if>
-                        <#list seniorPacket.list('formatBroad') as formatBroad>
-                            <#if formatBroad != "other">${formatBroad}<br></#if>
-                        </#list>
-                        <#-- the text for formatBroad == "other" value -->
-                        <#if formatOther != "">${formatOther}<br></#if>
-                        <#if formatSpecific != "">${formatSpecific}<br></#if>
-                        <#if dimensions != "">${dimensions}<br></#if>
-                        <#if technique != "">${technique}<br></#if>
-                        <#if notes != "">${notes}</#if>
-                        <#list seniorPacket.getAllSubtrees('tags') as tag>
-                            ${tag}<#if tag_has_next>, </#if>
-                        </#list>
+                            <#-- p.photoImagelist i sets display: block
+                            in our theme -->
+                            <#if title != ""><i>${title}</i></#if>
+                            <#if semester != "">${semester}<br></#if>
+                            <#list seniorPacket.list('formatBroad') as formatBroad>
+                                <#if formatBroad != "other">${formatBroad}<br></#if>
+                            </#list>
+                            <#-- the text for formatBroad == "other" value -->
+                            <#if formatOther != "">${formatOther}<br></#if>
+                            <#if formatSpecific != "">${formatSpecific}<br></#if>
+                            <#if dimensions != "">${dimensions}<br></#if>
+                            <#if technique != "">${technique}<br></#if>
+                            <#if notes != "">${notes}</#if>
                         </p>
                     </div>
                 </#if>
