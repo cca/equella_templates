@@ -144,9 +144,9 @@ a[href=""] {
 
             <dd>Copyright authorization: <a href="${typeUrl}">${type}</a></dd>
         </#list>
+
+        <script>
+        $('#images a.img').fancybox();
+        </script>
     </#if>
 </#list>
-
-<script>
-$('#images a.img').fancybox();
-</script>
