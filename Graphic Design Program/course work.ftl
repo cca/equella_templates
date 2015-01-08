@@ -10,6 +10,13 @@
 <#assign local = xml.getAllSubtrees('local')>
 <#assign copyright = xml.getAllSubtrees('local/creativeCommons')>
 
+<style>
+a[href=""] {
+    color: #4b4842; /* default text color */
+    pointer-events: none;
+}
+</style>
+
 <#list courseWork as courseWork>
     <#assign groupProject = courseWork.get('groupProject')>
     <#assign groupMembers = courseWork.get('groupMembers')>
