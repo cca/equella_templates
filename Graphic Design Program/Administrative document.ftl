@@ -49,7 +49,13 @@
     </#if>
     <#if workType != '' && workType != 'undefined'>
         <#assign workTypeUrl = ''>
+        <#-- keep metadata generic ("Junior Review") while
+        catering to GRAPH's unique terminology -->
+        <#if workType == 'Junior Review'>
+        | <a href="${workTypeUrl}">Level 3 Review</a>
+        <#else>
         | <a href="${workTypeUrl}">${workType}</a>
+        </#if>
     </#if>
     </dd>
     <#if dateCreated != "">
