@@ -4,6 +4,7 @@
 <#assign name = xml.getAllSubtrees('mods/name')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 
+<#if xml.get('local/courseWorkWrapper/courseWorkType') == 'Course work'>
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
@@ -99,4 +100,6 @@
 <#assign note = xml.get('mods/noteWrapper/note')>
 <#if (note != "")>
     <dd><b>Additional Notes</b>: ${note}</dd>
+</#if>
+
 </#if>
