@@ -17,6 +17,23 @@
 <#assign parts = xml.getAllSubtrees('mods/part')>
 <#assign noteWrappers = xml.getAllSubtrees('mods/noteWrapper')>
 <#assign archivesWrappers = xml.getAllSubtrees('local/archivesWrapper')>
+<#-- find out if user is in a library-related group -->
+<#function userIsMemberOf groupName>
+  <#list user.getGroups() as group>
+    <#if group.getName() == groupName>
+      <#return true>
+    </#if>
+  </#list>
+  <#return false>
+</#function>
+<#assign isLibStaff = false>
+<#assign groups = ['Library Contributors', 'Library Administrator', 'Library Workstudy', 'System Administrators']>
+<#list groups as group>
+    <#if userIsMemberOf(group)>
+        <#assign isLibStaff = true>
+        <#break>
+    </#if>
+</#list>
 
 <dl>
 <#list titleInfos as titleInfo>
@@ -58,7 +75,7 @@
     <#assign thumb = itemAttachment.get('thumbnail')>
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
-    <#if ( ! full?ends_with(".tif") )>
+    <#if ( ! full?ends_with('.tif') || isLibStaff )>
         <#list parts as part>
             <#assign parttitle = part.get('title')>
             <#assign partextent = part.get('extent')>
