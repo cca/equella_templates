@@ -14,14 +14,6 @@
 <#if (courseWorkType == "Course work")>
 
 <dl>
-<style scoped>
-/* disable links that point nowhere */
-a[href=""] {
-  color: #4b4842; /* default text color */
-  pointer-events: none;
-}
-</style>
-
     <#assign title = xml.get('mods/titleInfo/title')>
     <#assign subTitle = xml.get('mods/titleInfo/subTitle')>
     <h2 id="title">${title} <#if subTitle != "">${subTitle}</#if></h2>

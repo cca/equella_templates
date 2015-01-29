@@ -10,14 +10,6 @@
     <#assign courseWorkType = courseWork.get('courseWorkType')>
     <#if courseWorkType == "Workshop / Events">
 
-    <style scoped>
-    /* disable links that point nowhere */
-    a[href=""] {
-      color: #4b4842; /* default text color */
-      pointer-events: none;
-    }
-    </style>
-
     <dl>
         <#assign title = xml.get('mods/titleInfo/title')>
         <h2 id="title">${title}</h2>

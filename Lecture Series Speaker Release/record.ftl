@@ -11,13 +11,6 @@
 <#assign lectureSeriesWrapper = xml.getAllSubtrees('local/lectureSeriesWrapper')>
 <#assign relatedItem = xml.getAllSubtrees('mods/relateditem')>
 
-<style scoped>
-/* disable links that point nowhere */
-a[href=""] {
-  color: #4b4842; /* default text color */
-  pointer-events: none;
-}
-</style>
 <#-- if Guest user, hide attachments
 this is the Guest ("Public User") ID in here -->
 <#if user.getID() == 'ed48d1dd-6b07-4e8b-ab80-049bc04496f9'>

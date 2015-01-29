@@ -9,14 +9,6 @@
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 
-<style scoped>
-/* disable links that point nowhere */
-a[href=""] {
-  color: #4b4842; /* default text color */
-  pointer-events: none;
-}
-</style>
-
 <dl>
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>

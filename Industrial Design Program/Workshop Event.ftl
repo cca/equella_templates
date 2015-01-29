@@ -6,14 +6,6 @@
 <#assign local = xml.getAllSubtrees('local')>
 <#assign origininfo = xml.getAllSubtrees('mods/origininfo')>
 
-<style scoped>
-/* disable links that point nowhere */
-a[href=""] {
-  color: #4b4842; /* default text color */
-  pointer-events: none;
-}
-</style>
-
 <dl>
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>

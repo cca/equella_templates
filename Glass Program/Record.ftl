@@ -21,14 +21,6 @@
 <#assign extentWrapper = xml.getAllSubtrees('local/extentWrapper')>
 <#assign seniorPacket = xml.getAllSubtrees('local/seniorPacketWrapper')>
 
-<style scoped>
-/* disable links that point nowhere */
-a[href=""] {
-  color: #4b4842; /* default text color */
-  pointer-events: none;
-}
-</style>
-
 <dl>
 <#list titleInfo as titleInfo>
     <#assign title = titleInfo.get('title')>
