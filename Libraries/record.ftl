@@ -36,28 +36,20 @@
 </#list>
 
 <dl>
+<#assign titled = false>
 <#list titleInfos as titleInfo>
     <#assign title = titleInfo.get('title')>
     <#assign usage = titleInfo.get('@usage')>
     <#assign subTitle = titleInfo.get('subTitle')>
     <#assign partNumber = titleInfo.get('partNumber')>
-    <#if usage == "primary">
+    <#if (usage == "primary" || usage == "") && ! titled>
+        <#assign titled = true>
         <h2 id="title">${title}
             <#if subTitle != "">: ${subTitle}</#if>
         </h2>
-    <#else>
-        <#if usage == "secondary">
-            <#assign secondtitle = title>
-        <#else>
-            <#if usage == "">
-                <h2 id="title">${title}
-                    <#if subTitle != "">: ${subTitle}</#if>
-                </h2>
-            </#if>
-        </#if>
     </#if>
-    <#if titleInfo_index != 0>
-        <div id="secondtitle">Other title: ${secondtitle}
+    <#if usage == "secondary">
+        <div id="secondtitle">Other title: ${title}
             <#if subTitle != "">: ${subTitle}</#if>
         </div>
     </#if>
