@@ -155,7 +155,7 @@
 </#list>
 </#list>
 
-<h4><i><strong>To view images as a slideshow, click on titles below.</strong></i></h4>
+<h4 class="clearfix"><i><strong>To view images as a slideshow, click on titles below.</strong></i></h4>
 </dl>
 
 <script src="//cdn.jsdelivr.net/masonry/3.1.5/masonry.min.js"></script>
