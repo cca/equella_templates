@@ -8,68 +8,7 @@
 <#list courseWork as courseWork>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
     <#if (courseWorkType == "Senior packet")>
-<style>
-div.image-studentWork {
-    min-height: 230px;
-    max-height:230px;
-    width:  174px;
-    max-width:  174px;
-    margin-top:20px;
-    margin-bottom:  10px;
-}
-
-div.image-studentWork > a {
-    width: 110px;
-    display: block;
-    margin: auto;
-}
-
-/* get rid of dotted underline */
-div.image-studentWork > a:hover {
-    border: none;
-}
-
-div.image-studentWork > a:hover img {
-    border-color:black;
-}
-
-.image-studentWork.shorter {
-    min-height: 150px;
-}
-
-p.photoImagelist {
-    overflow: hidden;
-    width: 154px;
-    max-width: 154px;
-    padding: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-left: 0 !important;
-}
-
-div.image-studentWork:hover {
-    overflow: visible;
-}
-
-div.image-studentWork:hover p.photoImagelist {
-    max-height: 1000px;
-    background: #eee;
-    height: auto;
-    position: absolute;
-    white-space: normal;
-}
-
-.photoImagelist i {
-    border-bottom: 1px dotted #bbb;
-    padding-bottom: 7px;
-    font-weight: bold;
-}
-.attachments {
-    position: static;
-}
-</style>
     <dl>
-
         <#assign exhibitWrapper = xml.getAllSubtrees('local/exhibitWrapper')>
         <#assign artistDoc = xml.getAllSubtrees('local/artistDocWrapper')>
         <#assign department = xml.get('local/department')>
