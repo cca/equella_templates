@@ -9,44 +9,6 @@
     <#assign courseWorkType = courseWork.get('courseWorkType')>
     <#if (courseWorkType == "Senior packet")>
 <style>
-div.image-studentWork {
-    /* necessary b/c we later override max */
-    min-height: 230px;
-    max-height: 230px;
-    width: 174px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    overflow: hidden;
-}
-/* get rid of dotted underline */
-.image-studentWork > a:hover {
-    border: 0;
-}
-div.image-studentWork > a:hover img {
-    border-color: #000;
-}
-p.photoImagelist {
-    max-width: 154px;
-    padding: 10px;
-    white-space: nowrap;
-    margin-left: 0 !important;
-    z-index: 10;
-}
-div.image-studentWork:hover {
-    overflow: visible;
-}
-div.image-studentWork:hover p.photoImagelist {
-    max-height: 1000px;
-    background: #eee;
-    height: auto;
-    position: absolute;
-    white-space: normal;
-}
-.photoImagelist i {
-    border-bottom: 1px dotted #bbb;
-    margin-bottom: .5em;
-    font-weight: bold;
-}
 .attachments {
     position: static;
 }
@@ -260,13 +222,11 @@ div.image-studentWork:hover p.photoImagelist {
                 <#assign tags = seniorPacket.list('tags')>
                 <#assign description = seniorPacket.get('notes')>
                 <#if file == uuid>
-                <div class='image-studentWork'>
+                <div class='image-with-metadata'>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='photoImagelist'>
-                    <#-- p.photoImagelist i sets display: block
-                    in our theme -->
-                    <#if title != ""><i>${title}</i></#if>
+                    <p class='metadata'>
+                    <#if title != ""><span class="title">${title}</span></#if>
                     <#if date != "">${date}<br></#if>
 
                     <#if forms?size != 0>
