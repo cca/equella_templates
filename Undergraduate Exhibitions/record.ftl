@@ -110,7 +110,7 @@
 </#list>
 
 <dd><i><u>Installation shots</i></u></dd>
-<div class="clearfix js-masonry" data-masonry-options='{ "columnWidth": 130, "itemSelector": ".image-undergradExhibit" }'>
+<div class="clearfix">
 <#list itemAttachments as itemAttachment>
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
@@ -122,16 +122,16 @@
         <#assign dimensions = projectWrapper.get('dimensions')>
         <#assign keyword = projectWrapper.get('keyword')>
         <#assign fileA = projectWrapper.get('fileA')>
-        <#if fileA==uuid>
+        <#if fileA == uuid>
             <#if full?ends_with(".zip")><#else>
-            <div class="image-undergradExhibit">
+            <div class="image-with-metadata">
                 <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
-                <p class='photoImagelist'>
-                    <#if title != ""><i>${title}</i><br /></#if>
-                    <#if artistName != ""><i>${artistName}</i><br /></#if>
-                    <#if semester != "">${semester}<br /></#if>
-                    <#if keyword != "">${keyword}<br /></#if>
-                    <#if formatSpecific != "">${formatSpecific}<br /></#if>
+                <p class='metadata'>
+                    <#if title != ""><span class="title">${title}</span><br></#if>
+                    <#if artistName != "">by ${artistName}<br></#if>
+                    <#if semester != "">${semester}<br></#if>
+                    <#if keyword != "">${keyword}<br></#if>
+                    <#if formatSpecific != "">${formatSpecific}<br></#if>
                     <#if dimensions != "">${dimensions}</#if>
                 </p>
             </div>
@@ -146,10 +146,10 @@
     <#if showcardFile.get('/') = itemAttachment.get('uuid')>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
-        <div class="image-artistDocs clearfix">
         <dd><i><u>Show card</i></u></dd>
-        <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-        <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+        <div>
+            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
         </div>
     </#if>
 </#list>
@@ -157,5 +157,3 @@
 
 <h4><i><strong>To view images as a slideshow, click on titles below.</strong></i></h4>
 </dl>
-
-<script src="//cdn.jsdelivr.net/masonry/3.1.5/masonry.min.js"></script>
