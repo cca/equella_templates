@@ -278,12 +278,10 @@ dd { margin-left: 0; }
                 <#assign tagOther = seniorPacket.get('phase')>
                 <#assign notes = seniorPacket.get('notes')>
                 <#if file == uuid>
-                <div class='image-studentWork'>
+                <div class='image-with-metadata'>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='photoImagelist'>
-                    <#-- p.photoImagelist i sets display: block
-                    in our theme -->
-                    <#if title != ""><i>${title}</i></#if>
+                    <p class='metadata'>
+                    <#if title != ""><span class="title">${title}</span></#if>
                     <#if date != "">${date}<br></#if>
                     <#if formatBroad != "">
                         <b>Form:</b>&nbsp;${formatBroad}<br>
