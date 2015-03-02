@@ -9,64 +9,6 @@
 <#assign seniorPacketWrapper = xml.getAllSubtrees('local/seniorPacketWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
 
-<style>
-div.image-studentWork {
-    min-height: 230px;
-    max-height:230px;
-    width:  174px;
-    max-width:  174px;
-    margin-top:20px;
-    margin-bottom:  10px;
-}
-
-div.image-studentWork > a {
-    width: 110px;
-    display: block;
-    margin: auto;
-}
-
-/* get rid of dotted underline */
-div.image-studentWork > a:hover {
-    border: none;
-}
-
-div.image-studentWork > a:hover img {
-    border-color:black;
-}
-
-.image-studentWork.shorter {
-    min-height: 150px;
-}
-
-p.photoImagelist {
-    overflow: hidden;
-    width: 154px;
-    max-width: 154px;
-    padding: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-left: 0 !important;
-}
-
-div.image-studentWork:hover {
-    overflow: visible;
-}
-
-div.image-studentWork:hover p.photoImagelist {
-    max-height: 1000px;
-    background: #eee;
-    height: auto;
-    position: absolute;
-    white-space: normal;
-}
-
-.photoImagelist i {
-    border-bottom: 1px dotted #bbb;
-    padding-bottom: 7px;
-    font-weight: bold;
-}
-</style>
-
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
@@ -153,10 +95,10 @@ div.image-studentWork:hover p.photoImagelist {
             <#assign description = D1Wrapper.get('description')>
             <#assign waiverStatus = D1Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class='image-studentWork'>
+                <div class='image-with-metadata'>
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='photoImagelist'>
-                        <#if title != ""><i>${title}</i><br></#if>
+                    <p class='metadata'>
+                        <#if title != ""><span class="title">${title}</span><br></#if>
                         <#if format != "">${format}<br></#if>
                         <#if dimensions != "">${dimensions}<br></#if>
                         <#if semester != "">${semester}<br></#if>
@@ -185,10 +127,10 @@ div.image-studentWork:hover p.photoImagelist {
             <#assign description = D2Wrapper.get('assignmentDescription')>
             <#assign waiverStatus = D2Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class="image-studentWork">
+                <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class="photoImagelist">
-                        <#if title != ""><i>${title}</i><br></#if>
+                    <p class="metadata">
+                        <#if title != ""><span class="title">${title}</span><br></#if>
                         <#if format != "">${format}<br></#if>
                         <#if dimensions != "">${dimensions}<br></#if>
                         <#if semester != "">${semester}<br></#if>
@@ -217,10 +159,10 @@ div.image-studentWork:hover p.photoImagelist {
             <#assign description = D3Wrapper.get('description')>
             <#assign waiverStatus = D3Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class="image-studentWork">
+                <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class="photoImagelist">
-                        <#if title != ""><i>${title}</i><br></#if>
+                    <p class="metadata">
+                        <#if title != ""><span class="title">${title}</span><br></#if>
                         <#if format != "">${format}<br></#if>
                         <#if dimensions != "">${dimensions}<br></#if>
                         <#if semester != "">${semester}<br></#if>
@@ -251,10 +193,10 @@ div.image-studentWork:hover p.photoImagelist {
             <#assign description = D4Wrapper.get('notes')>
             <#assign waiverStatus = D4Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class="image-studentWork shorter">
-                <p class="photoImagelist">
+                <div class="image-with-metadata shorter">
+                <p class="metadata">
                     <#if note != "">${note}<br></#if>
-                    <#if title != ""><i>${title}</i><br></#if>
+                    <#if title != ""><span class="title">${title}</span><br></#if>
                     <#if format != "">${format}<br></#if>
                     <#if duration != "">${duration}<br></#if>
                     <#if semester != "">${semester}<br></#if>
