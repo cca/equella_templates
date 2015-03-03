@@ -155,5 +155,5 @@
 </#list>
 </#list>
 
-<h4><i><strong>To view images as a slideshow, click on titles below.</strong></i></h4>
+<h4 class="clearfix"><i><strong>To view images as a slideshow, click on titles below.</strong></i></h4>
 </dl>
