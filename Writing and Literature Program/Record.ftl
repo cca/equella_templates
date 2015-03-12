@@ -2,7 +2,6 @@
 <#assign itemversion = xml.get('item/@version')>
 <#assign name = xml.getAllSubtrees('mods/name')>
 <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
-<#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign assignmentWrapper = xml.getAllSubtrees('local/assignmentWrapper')>
