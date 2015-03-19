@@ -8,9 +8,8 @@
     <dd><b>Competition:</b> ${xml.get('local/award')}</dd>
 
     <h3>Applicant Information</h3>
-    <dd><b>Phone:</b> ${xml.get('/local/collectedWork/studentPhone')}</dd>
-    <dd><b>Address:</b> ${xml.get('/mods/location/physicalLocation')}</dd>
-    <dd><b>Student ID:</b> ${xml.get('/mods/identifier')}</dd>
+    <dd><b>Email:</b> ${xml.get('mods/name/subNameWrapper/email')}</dd>
+    <dd><b>Student ID:</b> ${xml.get('mods/identifier')}</dd>
 
     <#if xml.exists('local/projectWrapper/fileA')>
         <h3>2D & 3D Works</h3>
