@@ -4,6 +4,40 @@
     <#return str?replace('&', '%26amp%3B')>
 </#function>
 
+<style>
+/* excerpted from zebratable.css
+at p/r/6.3.r2083/com.tle.web.sections.equella/css/component/zebratable.css
+with the version string in there making the URL un-reusable */
+table.zebra {
+	width: 100%;
+	margin: 10px 0;
+}
+table.zebra tr th {
+	color: #666; /* to match color of headers */
+	text-align: left;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+table.zebra.large th {
+	padding: 13px 11px 12px;
+}
+table.zebra tr td {
+	text-align: left;
+	vertical-align: top;
+}
+table.zebra.large tr td {
+	font-size: 12px;
+	padding: 11px 11px 9px;
+	line-height: 1.5;
+}
+
+/* override our own customizations */
+table.zebra.large tbody tr.odd td:hover,
+table.zebra.large tbody tr.even td:hover {
+    padding-left: 11px;
+}
+</style>
+
 <#assign courseWorkType = xml.get('local/courseWorkWrapper/courseWorkType')>
 <#if (courseWorkType == "Mentorship Application")>
 <dl>
@@ -35,7 +69,7 @@
             <#assign gradDateUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3CgradDate%3E${gradDate}%3C%2FgradDate%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
             <#if major != ""> — <a href="${majorUrl}">${major}</a></#if>
             <#if gradDate != "">
-                 — Graduated: <a href="${gradDateUrl}">${gradDate}</a>
+                 — Graduating: <a href="${gradDateUrl}">${gradDate}</a>
             </#if>
         </#list>
         </dd>
@@ -171,6 +205,36 @@
             </#if>
         </#list>
     </#list>
+    </div>
+
+    <div class="clearfix">
+        <h4>Curriculum Plan Courses</h4>
+        <table class="zebra large">
+            <thead>
+                <tr>
+                    <th>Semester</th>
+                    <th>Course Title</th>
+                    <th>Credits</th>
+                </tr>
+            </thead>
+            <tbody>
+                <#assign odd = true>
+                <#list xml.getAllSubtrees('/local/individualizedWrapper/curriculumPlanWrapper') as wrapper>
+                <#-- alternate classes for the zebra striping style -->
+                    <#if odd>
+                        <#assign class = 'odd'>
+                    <#else>
+                        <#assign class = 'even'>
+                    </#if>
+                    <#assign odd = !odd>
+                    <tr class="${class}">
+                        <td>${wrapper.get('semester')}</td>
+                        <td>${wrapper.get('course')}</td>
+                        <td>${wrapper.get('credits')}</td>
+                    </tr>
+                </#list>
+            </tbody>
+        </table>
     </div>
 </dl>
 </#if>
