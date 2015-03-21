@@ -1,4 +1,26 @@
+<#function userIsMemberOf groupName>
+  <#list user.getGroups() as group>
+    <#if group.getName() == groupName>
+      <#return true>
+    </#if>
+  </#list>
+  <#return false>
+</#function>
 <#assign type = xml.get('local/courseWorkWrapper/courseWorkType')>
+
+<#-- if public user, hide all the things
+hide VAULT's wrapper basically: left, right columns, footer, non-logo stuff up top -->
+<#if !userIsMemberOf('Staff') && !userIsMemberOf('Faculty') && !userIsMemberOf('Student')>
+<style>
+#breadcrumbs,
+#menu,
+#col2,
+#helpAndOptions,
+#footer {
+    display: none;
+}
+</style>
+</#if>
 
 <#if type == 'Course work'>
 
@@ -10,6 +32,8 @@
     color: #b94a48;
 }
 </style>
+
+
 
 <dl>
 
