@@ -10,7 +10,7 @@
 
 <#-- if public user, hide all the things
 hide VAULT's wrapper basically: left, right columns, footer, non-logo stuff up top -->
-<#if !userIsMemberOf('Staff') && !userIsMemberOf('Faculty') && !userIsMemberOf('Student')>
+<#if !userIsMemberOf('Staff') && !userIsMemberOf('Faculty') && !userIsMemberOf('Student') && !userIsMemberOf('System Administrators')>
 <style>
 #breadcrumbs,
 #menu,
