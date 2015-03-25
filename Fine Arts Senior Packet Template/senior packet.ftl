@@ -8,66 +8,6 @@
 <#list courseWork as courseWork>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
     <#if (courseWorkType == "Senior packet")>
-<style>
-div.image-studentWork {
-    min-height: 230px;
-    max-height:230px;
-    width:  174px;
-    max-width:  174px;
-    margin-top:20px;
-    margin-bottom:  10px;
-}
-
-div.image-studentWork > a {
-    width: 110px;
-    display: block;
-    margin: auto;
-}
-
-/* get rid of dotted underline */
-div.image-studentWork > a:hover {
-    border: none;
-}
-
-div.image-studentWork > a:hover img {
-    border-color:black;
-}
-
-.image-studentWork.shorter {
-    min-height: 150px;
-}
-
-p.photoImagelist {
-    overflow: hidden;
-    width: 154px;
-    max-width: 154px;
-    padding: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-left: 0 !important;
-}
-
-div.image-studentWork:hover {
-    overflow: visible;
-}
-
-div.image-studentWork:hover p.photoImagelist {
-    max-height: 1000px;
-    background: #eee;
-    height: auto;
-    position: absolute;
-    white-space: normal;
-}
-
-.photoImagelist i {
-    border-bottom: 1px dotted #bbb;
-    padding-bottom: 7px;
-    font-weight: bold;
-}
-.attachments {
-    position: static;
-}
-</style>
     <dl>
 
         <#assign exhibitWrapper = xml.getAllSubtrees('local/exhibitWrapper')>
@@ -88,7 +28,7 @@ div.image-studentWork:hover p.photoImagelist {
             <#assign departmentUrl = "" />
             <#assign divisionUrl = "/access/searching.do?in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
             <dd class="collection">
-                ${department} | <a href="${divisionUrl}">${division}</a>
+                <a href="departmentUrl">${department}</a> | <a href="${divisionUrl}">${division}</a>
             </dd>
         </#if>
 
@@ -275,19 +215,19 @@ div.image-studentWork:hover p.photoImagelist {
                 <#assign heightINCH = seniorPacket.get('heightINCH')>
                 <#-- note: where file is stored & which files we want to
                 display will vary by collection -->
-                <#assign file = seniorPacket.get('file')>
+                <#assign file = seniorPacket.get('lowResFile')>
                 <#assign techniques = seniorPacket.list('technique')>
                 <#assign techniqueOther = seniorPacket.get('techniqueOther')>
                 <#-- concept is tags and conceptOther is notes -->
                 <#assign tags = seniorPacket.list('tags')>
                 <#assign notes = seniorPacket.get('notes')>
                 <#if file == uuid>
-                <div class='image-studentWork'>
+                <div class='image-with-metadata'>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='photoImagelist'>
+                    <p class='metadata'>
                     <#-- p.photoImagelist i sets display: block
                     in our theme -->
-                    <#if title != ""><i>${title}</i></#if>
+                    <#if title != ""><span class="title">${title}</span></#if>
                     <#if date != "">${date}<br></#if>
                     <#if heightINCH != "">${heightINCH}<br></#if>
 
