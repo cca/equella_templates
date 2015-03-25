@@ -25,17 +25,18 @@
         <#assign department = xml.get('local/department')>
         <#if division != "">
             <dt class="hide">Collection</dt>
+            <#-- insert URL for appropriate department here -->
             <#assign departmentUrl = "" />
             <#assign divisionUrl = "/access/searching.do?in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
             <dd class="collection">
-                <a href="departmentUrl">${department}</a> | <a href="${divisionUrl}">${division}</a>
+                <a href="departmentUrl">${escapeAmp(department)}</a> | <a href="${divisionUrl}">${escapeAmp(division)}</a>
             </dd>
         </#if>
 
         <#list xml.getAllSubtrees('mods/name') as name>
             <#assign namePart = name.get('namePart')>
             <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
-            <dd style="margin-left: 1px;"><b>Creator: </b><a href="${namePartUrl}">${namePart}</a>
+            <dd><b>Creator:</b> <a href="${namePartUrl}">${namePart}</a>
             <#list xml.getAllSubtrees('mods/name/subNameWrapper') as subName>
                 <#assign major = subName.get('major')>
                 <#assign gradDate = subName.get('gradDate')>
@@ -55,7 +56,7 @@
             <#assign faculties = courseInfo.list('faculty')>
             <#assign courseUrl = "">
             <#assign semesterUrl = "">
-            <dd style="margin-left: 1px;"><b>Course Info: </b>
+            <dd><b>Course Info:</b>&nbsp;
             <#if (semester != "undefined") && (semester != "")>
                 <a href="${semesterUrl}">${semester}</a>
             </#if>
@@ -102,33 +103,33 @@
         </#list>
 
         <#list xml.getAllSubtrees('local/exhibitWrapper/showcardFile') as showcardFile>
-        <#list itemAttachments as itemAttachment>
-        <#if showcardFile.get('/') = itemAttachment.get('uuid')>
-            <#assign full = itemAttachment.get('file')>
-            <#assign uuid = itemAttachment.get('uuid')>
-            <div class="image-artistDocs">
-            <p class='artistDocs'><i><u>Show card</i></u></p>
-            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-            <p class='artistDocs'>${full}</p>
-            </div>
-        </#if>
-        </#list>
+            <#list itemAttachments as itemAttachment>
+                <#if showcardFile.get('/') = itemAttachment.get('uuid')>
+                    <#assign full = itemAttachment.get('file')>
+                    <#assign uuid = itemAttachment.get('uuid')>
+                    <div class="image-artistDocs">
+                    <p class='artistDocs'><i><u>Show card</i></u></p>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class='artistDocs'>${full}</p>
+                    </div>
+                </#if>
+            </#list>
         </#list>
 
         <#list xml.getAllSubtrees('local/exhibitWrapper/installationShotFile') as installationShotFile>
-        <#list itemAttachments as itemAttachment>
-        <#if installationShotFile.get('/') = itemAttachment.get('uuid')>
-            <#assign full = itemAttachment.get('file')>
-            <#assign uuid = itemAttachment.get('uuid')>
-            <div class="image-artistDocs">
-            <p class='artistDocs'><i><u>Installation shot</i></u></p>
-            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-            <p class='artistDocs'>${full}</p>
-            </div>
-        </#if>
-        </#list>
+            <#list itemAttachments as itemAttachment>
+                <#if installationShotFile.get('/') = itemAttachment.get('uuid')>
+                    <#assign full = itemAttachment.get('file')>
+                    <#assign uuid = itemAttachment.get('uuid')>
+                    <div class="image-artistDocs">
+                    <p class='artistDocs'><i><u>Installation shot</i></u></p>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class='artistDocs'>${full}</p>
+                    </div>
+                </#if>
+            </#list>
         </#list>
         <div class="clearfix"></div>
 
@@ -160,10 +161,10 @@
                 <#assign full = itemAttachment.get('file')>
                 <#assign uuid = itemAttachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs'><i><u>Resume/CV</u></i></p>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>${full}</p>
+                    <p class='artistDocs'><i><u>Resume/CV</u></i></p>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class='artistDocs'>${full}</p>
                 </div>
             </#if>
         </#list>
@@ -174,10 +175,10 @@
                 <#assign full = itemAttachment.get('file')>
                 <#assign uuid = itemAttachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs'><i><u>Exit Review Presentation</u></i></p>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>${full}</p>
+                    <p class='artistDocs'><i><u>Exit Review Presentation</u></i></p>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class='artistDocs'>${full}</p>
                 </div>
             </#if>
         </#list>
@@ -188,10 +189,10 @@
                 <#assign full = itemAttachment.get('file')>
                 <#assign uuid = itemAttachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs'><i><u>Image list</u></i></p>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>${full}</p>
+                    <p class='artistDocs'><i><u>Image list</u></i></p>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class='artistDocs'>${full}</p>
                 </div>
             </#if>
         </#list>
@@ -260,6 +261,8 @@
                     <#if tags?size != 0>
                         <b>Concepts:</b>&nbsp;
                         <#list tags as tag>
+                            <#-- this handles multi-layer tags as we may see when
+                            using taxonomies, so Parent\Child => Parent: Child -->
                             <#if tag != 'other...'>
                                 ${tag?replace('\\', ': ')}<#if tag_has_next>, </#if>
                             <#else>
