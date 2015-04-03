@@ -1,16 +1,13 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign formBroad = xml.get('mods/physicalDescription/formBroad')>
 <#assign objective = xml.get('local/objective')>
+<#assign award = xml.get('local/award')>
 
 <dl>
     <h2 id="title">${xml.get('mods/titleInfo/title')}</h2>
 
     <dd><b>Creator:</b> ${xml.get('mods/name/namePart')}</dd>
-    <#if xml.exists('local/award')>
-        <dd><b>Competition:</b> ${xml.get('local/award')}</dd>
-    </#if>
-    <dd><b>Submission Type:</b> ${objective} | ${formBroad}</dd>
+    <dd><b>Competition:</b> ${award}</dd>
 
     <h3>Applicant Information</h3>
     <dd><b>Email:</b> ${xml.get('mods/name/subNameWrapper/email')}</dd>
@@ -93,7 +90,9 @@
     </#if> <#-- end visual work section -->
 
     <#if objective == 'written work'>
-        <#if formBroad == 'Critical/Nonfiction Works'>
+        <#if award == 'Graduate Writing - Critical/Nonfiction'>
+
+            <#if (xml.list('local/projectWrapper')?size > 0)>
             <div class="clearfix">
             <h3>Illustrative Images</h3>
 
@@ -122,9 +121,10 @@
                 </#list>
             </#list>
             </div>
+            </#if>
 
             <div class="clearfix">
-                <h3>Critical/Nonfiction Works</h3>
+                <h3>Critical/Nonfiction Writing</h3>
 
                 <#list xml.getAllSubtrees('item/attachments/attachment') as itemAttachment>
                     <#assign full = itemAttachment.get('file')>
@@ -141,9 +141,10 @@
             </div>
         </#if> <#-- end critical/nonfiction works section -->
 
-        <#if formBroad == 'Creative Works'>
+        <#-- creative writing section, cover both poetry & prose in one if stmt -->
+        <#if award?substring(0,27) == 'Graduate Writing - Creative'>
             <div class="clearfix">
-            <h3>Creative Works</h3>
+            <h3>Creative Writing</h3>
 
             <#list xml.getAllSubtrees('item/attachments/attachment') as itemAttachment>
                 <#assign full = itemAttachment.get('file')>
@@ -166,7 +167,7 @@
                 </#list>
             </#list>
             </div>
-        </#if> <#-- end creative works section -->
+        </#if> <#-- end creative writing section -->
 
     </#if> <#-- end written work section -->
 
