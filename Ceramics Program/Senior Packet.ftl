@@ -8,16 +8,15 @@
 <#list courseWork as courseWork>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
     <#if (courseWorkType == "Senior packet")>
-<style>
-.attachments {
-    position: static;
-}
-.sm-left-margin {
-    margin-left: 1px;
-}
-</style>
+    <style>
+    .attachments {
+        position: static;
+    }
+    .sm-left-margin {
+        margin-left: 1px;
+    }
+    </style>
     <dl>
-
         <#assign exhibitWrapper = xml.getAllSubtrees('local/exhibitWrapper')>
         <#assign artistDoc = xml.getAllSubtrees('local/artistDocWrapper')>
         <#assign department = xml.get('local/department')>
@@ -214,11 +213,14 @@
                 <#assign jpgFile = seniorPacket.get('lowResFile')>
                 <#assign file = seniorPacket.get('hiResFile')>
                 <#-- building techniques -->
-                <#assign techniques = seniorPacket.list('technique')>
+                <#assign technique = seniorPacket.list('technique')>
+                <#assign techniqueOther = seniorPacket.list('techniqueOther')>
                 <#-- finishing techniques -->
-                <#assign techniqueOthers = seniorPacket.list('techniqueOther')>
-                <#-- combine into one list -->
-                <#assign allTechniques = techniques + techniqueOthers>
+                <#assign process = seniorPacket.list('process')>
+                <#assign processOther = seniorPacket.list('processOther')>
+                <#-- combine all building/finishing techniques into 1 list -->
+                <#assign techniques = technique + techniqueOther>
+                <#assign processes = process + processOther>
                 <#assign tags = seniorPacket.list('tags')>
                 <#assign description = seniorPacket.get('notes')>
                 <#if file == uuid>
@@ -237,10 +239,18 @@
                     </#if>
 
                     <#-- building techniques -->
-                    <#if allTechniques?size != 0>
-                        <b>Techniques:</b>&nbsp;
-                        <#list allTechniques as technique>
+                    <#if techniques?size != 0>
+                        <b>Building Techniques:</b>&nbsp;
+                        <#list techniques as technique>
                             ${technique}<#if technique_has_next>, </#if>
+                        </#list><br>
+                    </#if>
+
+                    <#-- building techniques -->
+                    <#if processes?size != 0>
+                        <b>Finishing Techniques:</b>&nbsp;
+                        <#list processes as process>
+                            ${process}<#if process_has_next>, </#if>
                         </#list><br>
                     </#if>
 
