@@ -213,14 +213,11 @@
                 <#assign jpgFile = seniorPacket.get('lowResFile')>
                 <#assign file = seniorPacket.get('hiResFile')>
                 <#-- building techniques -->
-                <#assign technique = seniorPacket.list('technique')>
-                <#assign techniqueOther = seniorPacket.list('techniqueOther')>
+                <#assign techniques = seniorPacket.list('technique')>
+                <#assign techniqueOther = seniorPacket.get('techniqueOther')>
                 <#-- finishing techniques -->
-                <#assign process = seniorPacket.list('process')>
-                <#assign processOther = seniorPacket.list('processOther')>
-                <#-- combine all building/finishing techniques into 1 list -->
-                <#assign techniques = technique + techniqueOther>
-                <#assign processes = process + processOther>
+                <#assign processes = seniorPacket.list('process')>
+                <#assign processOther = seniorPacket.get('processOther')>
                 <#assign tags = seniorPacket.list('tags')>
                 <#assign description = seniorPacket.get('notes')>
                 <#if file == uuid>
@@ -242,15 +239,23 @@
                     <#if techniques?size != 0>
                         <b>Building Techniques:</b>&nbsp;
                         <#list techniques as technique>
-                            ${technique}<#if technique_has_next>, </#if>
+                            <#if technique != 'other...'>
+                                ${technique}<#if technique_has_next>, </#if>
+                            <#else>
+                                ${techniqueOther}<#if technique_has_next>, </#if>
+                            </#if>
                         </#list><br>
                     </#if>
 
-                    <#-- building techniques -->
+                    <#-- finishing techniques -->
                     <#if processes?size != 0>
                         <b>Finishing Techniques:</b>&nbsp;
                         <#list processes as process>
-                            ${process}<#if process_has_next>, </#if>
+                            <#if process != 'other...'>
+                                ${process}<#if process_has_next>, </#if>
+                            <#else>
+                                ${processOther}<#if process_has_next>, </#if>
+                            </#if>
                         </#list><br>
                     </#if>
 
@@ -261,7 +266,7 @@
                         </#list><br>
                     </#if>
 
-                    <#if dimensions != "">${dimensions}<br></#if>
+                    <#if dimensions != ""><b>Dimensions:</b>&nbsp;${dimensions}<br></#if>
                     <#if temperature != ""><b>Firing temp.:</b>&nbsp;${temperature}<br></#if>
 
                     <#if tags?size != 0>
