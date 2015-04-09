@@ -33,7 +33,7 @@
         <dd>Description: ${abstract}</dd>
     </#if>
 
-    <div class="clearfix js-masonry" data-masonry-options='{ "columnWidth": 130, "itemSelector": ".image-juniorReviewWork" }'>
+    <div class="clearfix js-masonry" data-masonry-options='{ "columnWidth": 130, "itemSelector": ".image-juniorReviewWork, .image-juniorReviewMovImgWork" }'>
     <#list itemAttachments as itemAttachment>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
@@ -86,8 +86,6 @@
                         </#if>
                     </p>
                     </div>
-
-                <div style="clear:both;"></div>
 
                 <#else>
                     <div class='image-juniorReviewWork'>
