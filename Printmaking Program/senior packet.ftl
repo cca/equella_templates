@@ -9,7 +9,6 @@
     <#assign courseWorkType = courseWork.get('courseWorkType')>
     <#if (courseWorkType == "Senior packet")>
     <dl>
-
         <#assign exhibitWrapper = xml.getAllSubtrees('local/exhibitWrapper')>
         <#assign artistDoc = xml.getAllSubtrees('local/artistDocWrapper')>
         <#assign department = xml.get('local/department')>
@@ -209,6 +208,7 @@
                 <#assign date = seniorPacket.get('date')>
                 <#-- use loFi for display -->
                 <#assign file = seniorPacket.get('lowResFile')>
+                <#assign videoFile = seniorPacket.get('fileTypeA')>
                 <#-- formatOther is either single or multiple processes
                 while technique is list of processes -->
                 <#assign numTechniques = seniorPacket.get('formatOther')>
@@ -217,36 +217,48 @@
                 <#-- height/widthINCH are paper/image dimensions in inches -->
                 <#assign paperSize = seniorPacket.get('heightINCH')>
                 <#assign imageSize = seniorPacket.get('widthINCH')>
+                <#-- depthInch is "dimensions" for technique = "book" -->
+                <#assign dimensions = seniorPacket.get('depthINCH')>
+                <#-- only shows for technique = "video" -->
+                <#assign duration = seniorPacket.get('duration')>
                 <#-- tags/keywords -->
                 <#assign tags = seniorPacket.list('tags')>
                 <#-- Description -->
                 <#assign notes = seniorPacket.get('notes')>
-                <#if file == uuid>
-                <div class='image-with-metadata'>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='metadata'>
-                    <#-- p.photoImagelist i sets display: block
-                    in our theme -->
-                    <#if title != ""><span class="title">${title}</span></#if>
-                    <#if date != "">${date}<br></#if>
-
-                    <#if techniques?size != 0>
-                        <b>${numTechniques}:</b>&nbsp;
-                        <#list techniques as technique>
-                            <#if technique != 'other...'>
-                                ${technique}<#if technique_has_next>, </#if>
-                            <#else>
-                                ${techniqueOther}<#if technique_has_next>, </#if>
-                            </#if>
-                        </#list><br>
+                <#if file == uuid || videoFile == uuid>
+                    <#-- handle case in which video attachment is a URL -->
+                    <#if itemAttachment.get('@type') == 'remote'>
+                        <#assign url = full>
+                    <#else>
+                        <#assign url = "/file/${itemUuid}/${itemversion}/${full}">
                     </#if>
+                    <div class='image-with-metadata'>
+                        <a href="${url}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <p class='metadata'>
+                        <#-- p.photoImagelist i sets display: block
+                        in our theme -->
+                        <#if title != ""><span class="title">${title}</span></#if>
+                        <#if date != "">${date}<br></#if>
 
-                    <#if paperSize != ""><b>Paper size:</b> ${paperSize}<br></#if>
-                    <#if imageSize != ""><b>Image size:</b> ${imageSize}<br></#if>
-                    <#if notes != "">${notes}<br></#if>
-                    </p>
-                </div>
+                        <#if techniques?size != 0>
+                            <b>${numTechniques}:</b>&nbsp;
+                            <#list techniques as technique>
+                                <#if technique != 'other...'>
+                                    ${technique}<#if technique_has_next>, </#if>
+                                <#else>
+                                    ${techniqueOther}<#if technique_has_next>, </#if>
+                                </#if>
+                            </#list><br>
+                        </#if>
 
+                        <#if paperSize != ""><b>Paper size:</b> ${paperSize}<br></#if>
+                        <#if imageSize != ""><b>Image size:</b> ${imageSize}<br></#if>
+                        <#if dimensions != ""><b>Dimensions:</b> ${dimensions}<br></#if>
+                        <#if duration != ""><b>Duration:</b> ${duration}<br></#if>
+
+                        <#if notes != "">${notes}<br></#if>
+                        </p>
+                    </div>
                 </#if>
             </#list>
         </#list>
