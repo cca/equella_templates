@@ -69,7 +69,7 @@
                 — <a href ="${facultyUrl}">${faculty}</a>
             </#if>
             <#if section!= "">
-                <a href="${sectionUrl}">${section}</a>
+                — <a href="${sectionUrl}">${section}</a>
             </#if>
         </dd>
         </#list>
