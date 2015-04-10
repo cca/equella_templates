@@ -52,23 +52,24 @@
         <#list xml.getAllSubtrees('local/courseInfo') as courseInfo>
             <#assign semester = courseInfo.get('semester')>
             <#assign course = courseInfo.get('course')>
-            <#assign faculties = courseInfo.list('faculty')>
-            <#assign courseUrl = "">
-            <#assign semesterUrl = "">
+            <#assign faculty = courseInfo.get('faculty')>
+            <#assign section = courseInfo.get('section')>
+            <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
+            <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
+            <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
+            <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
             <dd><b>Course Info:</b>&nbsp;
-            <#if (semester != "undefined") && (semester != "")>
+            <#if semester != "">
                 <a href="${semesterUrl}">${semester}</a>
             </#if>
-            <#if (course != "undefined") && (course != "")>
+            <#if course != "">
                 — <a href ="${courseUrl}">${course}</a>
             </#if>
-            <#if (faculties?size != 0)>
-                —
-                <#list faculties as faculty>
-                    <#-- need to do this assignment inside of loop -->
-                    <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER" />
-                    <a href ="${facultyUrl}">${faculty}</a><#if faculty_has_next> / </#if>
-                </#list>
+            <#if faculty != "">
+                — <a href ="${facultyUrl}">${faculty}</a>
+            </#if>
+            <#if section!= "">
+                <a href="${sectionUrl}">${section}</a>
             </#if>
         </dd>
         </#list>
