@@ -206,29 +206,35 @@
                 <#assign title = seniorPacket.get('title')>
                 <#assign date = seniorPacket.get('date')>
                 <#assign formatBroads = seniorPacket.list('formatBroad')>
+                <#-- formatOther is often the "other..." write-in for formatBroad -->
                 <#assign formatOther = seniorPacket.get('formatOther')>
-                <#-- interdisciplinarity is formatSpecific and interdisciplinarity is phase -->
+                <#-- these are very much up to departments & phase is often not used  -->
                 <#assign formatSpecifics = seniorPacket.list('formatSpecific')>
                 <#assign phase = seniorPacket.get('phase')>
-                <#-- heightINCH is dimensions -->
+                <#-- most departments only use a subset of these for dimensions -->
                 <#assign heightINCH = seniorPacket.get('heightINCH')>
+                <#assign widthINCH = seniorPacket.get('widthINCH')>
+                <#assign depthINCH = seniorPacket.get('depthINCH')>
+                <#assign duration = seniorPacket.get('duration')>
                 <#-- note: where file is stored & which files we want to
-                display will vary by collection -->
+                display will vary by collection, lowResFile is default for
+                web-ready images like JPGs -->
                 <#assign file = seniorPacket.get('lowResFile')>
                 <#assign techniques = seniorPacket.list('technique')>
                 <#assign techniqueOther = seniorPacket.get('techniqueOther')>
-                <#-- concept is tags and conceptOther is notes -->
                 <#assign tags = seniorPacket.list('tags')>
+                <#-- open-ended description -->
                 <#assign notes = seniorPacket.get('notes')>
                 <#if file == uuid>
                 <div class='image-with-metadata'>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class='metadata'>
-                    <#-- p.photoImagelist i sets display: block
-                    in our theme -->
                     <#if title != ""><span class="title">${title}</span></#if>
                     <#if date != "">${date}<br></#if>
                     <#if heightINCH != "">${heightINCH}<br></#if>
+                    <#if widthINCH != "">${widthINCH}<br></#if>
+                    <#if depthINCH != "">${depthINCH}<br></#if>
+                    <#if duration != "">${duration}<br></#if>
 
                     <#if formatBroads?size != 0>
                         <b>Form(s):</b>&nbsp;
