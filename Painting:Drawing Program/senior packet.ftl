@@ -168,20 +168,6 @@
             </#if>
         </#list>
 
-        <#assign exitPresentation = xml.get('mods/part/number')>
-        <#list itemAttachments as itemAttachment>
-            <#if exitPresentation == itemAttachment.get('uuid')>
-                <#assign full = itemAttachment.get('file')>
-                <#assign uuid = itemAttachment.get('uuid')>
-                <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Exit Review Presentation</u></i></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>${full}</p>
-                </div>
-            </#if>
-        </#list>
-
         <#assign imageListFile = xml.get('local/artistDocWrapper/imageListFile')>
         <#list itemAttachments as itemAttachment>
             <#if imageListFile == itemAttachment.get('uuid')>
@@ -205,24 +191,28 @@
             <#list xml.getAllSubtrees('local/seniorPacketWrapper') as seniorPacket>
                 <#assign title = seniorPacket.get('title')>
                 <#assign date = seniorPacket.get('date')>
-                <#assign formatBroads = seniorPacket.list('formatBroad')>
-                <#-- formatOther is often the "other..." write-in for formatBroad -->
-                <#assign formatOther = seniorPacket.get('formatOther')>
-                <#-- these are very much up to departments & phase is often not used  -->
-                <#assign formatSpecifics = seniorPacket.list('formatSpecific')>
-                <#assign phase = seniorPacket.get('phase')>
-                <#-- most departments only use a subset of these for dimensions -->
-                <#assign heightINCH = seniorPacket.get('heightINCH')>
-                <#assign widthINCH = seniorPacket.get('widthINCH')>
-                <#assign depthINCH = seniorPacket.get('depthINCH')>
+                <#-- form is radio button, so only 1 value not a list
+                formatOther isn't used in PNTDR -->
+                <#assign form = seniorPacket.get('formatBroad')>
+                <#-- edit box so this is just 1 value, not a list  -->
+                <#assign materials = seniorPacket.get('formatSpecific')>
+                <#-- duration used for both 2/3D dimensions & 4D duration -->
                 <#assign duration = seniorPacket.get('duration')>
-                <#-- note: where file is stored & which files we want to
-                display will vary by collection, lowResFile is default for
-                web-ready images like JPGs -->
-                <#assign file = seniorPacket.get('lowResFile')>
-                <#assign techniques = seniorPacket.list('technique')>
-                <#assign techniqueOther = seniorPacket.get('techniqueOther')>
-                <#assign tags = seniorPacket.list('tags')>
+
+                <#-- low res file is optional, so use it only if we have it -->
+                <#if seniorPacket.get('lowResFile') != "">
+                    <#assign file = seniorPacket.get('lowResFile')>
+                <#else>
+                    <#assign file = seniorPacket.get('hiResFile')>
+                </#if>
+
+                <#assign mediums = seniorPacket.list('technique')>
+                <#assign mediumOther = seniorPacket.get('techniqueOther')>
+
+                <#assign themes = seniorPacket.list('tags')>
+                <#-- "phase" is the "other..." option for themes -->
+                <#assign themeOther = seniorPacket.get('phase')>
+
                 <#-- open-ended description -->
                 <#assign notes = seniorPacket.get('notes')>
                 <#if file == uuid>
@@ -231,60 +221,34 @@
                     <p class='metadata'>
                     <#if title != ""><span class="title">${title}</span></#if>
                     <#if date != "">${date}<br></#if>
-                    <#if heightINCH != "">${heightINCH}<br></#if>
-                    <#if widthINCH != "">${widthINCH}<br></#if>
-                    <#if depthINCH != "">${depthINCH}<br></#if>
+                    <#if form != "">${form}<br></#if>
+
+                    <#if mediums?size != 0>
+                        <b>Techniques:</b>&nbsp;
+                        <#list mediums as medium>
+                            <#if medium != 'other...'>
+                                ${medium}<#if medium_has_next>, </#if>
+                            <#else>
+                                ${mediumOther}<#if medium_has_next>, </#if>
+                            </#if>
+                        </#list><br>
+                    </#if>
+
+                    <#if materials != "">${materials}<br></#if>
                     <#if duration != "">${duration}<br></#if>
 
-                    <#if formatBroads?size != 0>
-                        <b>Form(s):</b>&nbsp;
-                        <#list formatBroads as formatBroad>
-                            <#-- dont print other but its actual value,
-                            which is stored elsewhere ("phase" for formatSpecific)
-                            the 2nd "formatBroad_has_next" ensure the comma-sep.
-                            list doesnt get screwed up while we do this -->
-                            <#if formatBroad != 'other...'>
-                                ${formatBroad}<#if formatBroad_has_next>, </#if>
-                            <#else>
-                                ${formatOther}<#if formatBroad_has_next>, </#if>
-                            </#if>
-                        </#list><br>
-                    </#if>
-
-                    <#if techniques?size != 0>
-                        <b>Techniques:</b>&nbsp;
-                        <#list techniques as technique>
-                            <#if technique != 'other...'>
-                                ${technique}<#if technique_has_next>, </#if>
-                            <#else>
-                                ${techniqueOther}<#if technique_has_next>, </#if>
-                            </#if>
-                        </#list><br>
-                    </#if>
-
-                    <#if tags?size != 0>
+                    <#if themes?size != 0>
                         <b>Concepts:</b>&nbsp;
-                        <#list tags as tag>
-                            <#-- this handles multi-layer tags as we may see when
-                            using taxonomies, so Parent\Child => Parent: Child -->
-                            <#if tag != 'other...'>
-                                ${tag?replace('\\', ': ')}<#if tag_has_next>, </#if>
+                        <#list themes as theme>
+                            <#if theme != 'other...'>
+                                ${theme}<#if theme_has_next>, </#if>
                             <#else>
-                                ${notes}<#if tag_has_next>, </#if>
+                                ${themeOther}<#if theme_has_next>, </#if>
                             </#if>
                         </#list><br>
                     </#if>
 
-                    <#if formatSpecifics?size != 0>
-                        <b>Interdisciplinarity:</b>&nbsp;
-                        <#list formatSpecifics as formatSpecific>
-                            <#if formatSpecific != 'other...'>
-                                ${formatSpecific}<#if formatSpecific_has_next>, </#if>
-                            <#else>
-                                ${phase}<#if formatSpecific_has_next>, </#if>
-                            </#if>
-                        </#list><br>
-                    </#if>
+                    <#if notes != "">${notes}</#if>
                     </p>
                 </div>
 
