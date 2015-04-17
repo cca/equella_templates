@@ -27,50 +27,46 @@
     <#assign courseNameUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CcourseName%3E${courseName}%3C%2FcourseName%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER" />
     <#assign XListUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CXList%3E${XList}%3C%2FXList%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER" />
     <dt class="subHeading">
-    <a href="${semesterUrl}">${semester}</a>
-    <#if division != "undefined">
-        | <a href="${divisionUrl}">${division}</a>
-    </#if>
-    <#if department != "undefined">
-        | <a href="${departmentUrl}">${department}</a>
-    </#if></dt><br/>
-    <dt class="subHeading">
-    <#if courseName != "undefined">
-        <a href="${courseNameUrl}">${courseName}</a>
-    </#if>
-    <#if course != "undefined">
-        | <a href="${courseUrl}">${course}</a>
-    </#if>
-    <#if section != "undefined">
-        | <a href="${sectionUrl}">${section}</a>
-    </#if>
-    </dt>
-    <br/>
-    <dt class="subHeading">
+        <a href="${semesterUrl}">${semester}</a>
+        <#if division != "undefined">
+            | <a href="${divisionUrl}">${division}</a>
+        </#if>
+        <#if department != "undefined">
+            | <a href="${departmentUrl}">${department}</a>
+        </#if></dt><br/>
+        <dt class="subHeading">
+        <#if courseName != "undefined">
+            <a href="${courseNameUrl}">${courseName}</a>
+        </#if>
+        <#if course != "undefined">
+            | <a href="${courseUrl}">${course}</a>
+        </#if>
+        <#if section != "undefined">
+            | <a href="${sectionUrl}">${section}</a>
+        </#if>
+    </dt><br>
+
     <#if faculty != "undefined">
-        <a href="${facultyUrl}">${faculty}</a>
+        <dt class="subHeading">
+            <a href="${facultyUrl}">${faculty}</a>
+        </dt><br>
     </#if>
-    </dt>
-    <br/>
+
     <#if XList != "undefined" && XList != "">
         <dt class="subHeading">
-         Course is cross-listed with <a href="${XListUrl}">${XList}</a>.
-         </dt>
-         <br/>
+             Course is cross-listed with <a href="${XListUrl}">${XList}</a>.
+         </dt><br>
     </#if>
-    <#-- there's gotta be a way to do this with fewer if stmts
-    but whatever this works -->
+
     <#if courseCategory != "" || specialPrograms != "">
         <dt class="subHeading">Course category:
-    </#if>
-    <#if courseCategory != "">
-        <a href="${courseCategoryUrl}">${courseCategory}</a>
-    </#if>
-    <#if courseCategory != "" && specialPrograms != "">&amp;</#if>
-    <#if specialPrograms != "">
-         <a href="${specialProgramsUrl}">${specialPrograms}</a>
-    </#if>
-    <#if courseCategory != "" || specialPrograms != "">
+        <#if courseCategory != "">
+            <a href="${courseCategoryUrl}">${courseCategory}</a>
+        </#if>
+        <#if courseCategory != "" && specialPrograms != "">&amp;</#if>
+        <#if specialPrograms != "">
+             <a href="${specialProgramsUrl}">${specialPrograms}</a>
+        </#if>
         </dt>
     </#if>
 </#list>
