@@ -1,18 +1,18 @@
-<#function escapeAmp str>
-    <#-- returns a URI-encoded "&amp;"
-    because we pass XML in the URI, we have to escape this way -->
-    <#return str?replace('&', '%26amp%3B')>
+<#function encode str>
+    <#-- 2 encodings:
+    1) return a URI-encoded "&amp;"
+    because we pass XML in the URI, we have to escape this way
+    2) encode "+" e.g. in course titles like "Form + Space"    -->
+    <#return str?replace('&', '%26amp%3B')?replace('+', '%2B')>
 </#function>
 
-<#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
-<#list courseWork as courseWork>
-    <#assign courseWorkType = courseWork.get('courseWorkType')>
-    <#if (courseWorkType == "Senior packet")>
+<#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
+<#assign courseWorkType = courseWork.get('courseWorkType')>
+    <#if courseWorkType == "Senior packet">
     <dl>
-        <#assign exhibitWrapper = xml.getAllSubtrees('local/exhibitWrapper')>
         <#assign itemUuid = xml.get('item/@id')>
         <#assign itemversion = xml.get('item/@version')>
-        <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
+        <#assign attachments = xml.getAllSubtrees('item/attachments/attachment')>
         <#-- this is the Fine Arts Division power search ID -->
         <#assign powerSearch = 'Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4'>
 
@@ -27,7 +27,7 @@
             <#assign departmentUrl = "" />
             <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&dr=AFTER" />
             <dd class="collection">
-                <a href="departmentUrl">${escapeAmp(department)}</a> | <a href="${divisionUrl}">${escapeAmp(division)}</a>
+                <a href="departmentUrl">${encode(department)}</a> | <a href="${divisionUrl}">${encode(division)}</a>
             </dd>
         </#if>
 
@@ -53,7 +53,7 @@
             <#assign course = courseInfo.get('course')>
             <#assign faculty = courseInfo.get('faculty')>
             <#assign section = courseInfo.get('section')>
-            <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
+            <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${encode(course)}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
             <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
             <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
             <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
@@ -74,11 +74,11 @@
         </#list>
 
         <#assign abstract = xml.get('mods/abstract')>
-        <#if (abstract != "")>
+        <#if abstract != "">
             <dd><b>Description</b>: ${abstract}</dd>
         </#if>
 
-        <#list exhibitWrapper as exhibitWrapper>
+        <#list xml.getAllSubtrees('local/exhibitWrapper') as exhibitWrapper>
             <#assign dates = exhibitWrapper.list('date')>
             <#assign title = exhibitWrapper.get('title')>
             <#assign gallery = exhibitWrapper.get('gallery')>
@@ -102,10 +102,10 @@
         </#list>
 
         <#list xml.getAllSubtrees('local/exhibitWrapper/showcardFile') as showcardFile>
-            <#list itemAttachments as itemAttachment>
-                <#if showcardFile.get('/') = itemAttachment.get('uuid')>
-                    <#assign full = itemAttachment.get('file')>
-                    <#assign uuid = itemAttachment.get('uuid')>
+            <#list attachmentss as attachment>
+                <#if showcardFile.get('/') = attachment.get('uuid')>
+                    <#assign full = attachment.get('file')>
+                    <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
                     <p class='artistDocs'><i><u>Show card</i></u></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
@@ -117,10 +117,10 @@
         </#list>
 
         <#list xml.getAllSubtrees('local/exhibitWrapper/installationShotFile') as installationShotFile>
-            <#list itemAttachments as itemAttachment>
-                <#if installationShotFile.get('/') = itemAttachment.get('uuid')>
-                    <#assign full = itemAttachment.get('file')>
-                    <#assign uuid = itemAttachment.get('uuid')>
+            <#list attachments as attachment>
+                <#if installationShotFile.get('/') = attachment.get('uuid')>
+                    <#assign full = attachment.get('file')>
+                    <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
                     <p class='artistDocs'><i><u>Installation shot</i></u></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
@@ -136,10 +136,10 @@
         <#assign artistStatementFile = xml.get('local/artistDocWrapper/artistStatementFile')>
         <#if artistStatementFile != "">
             <h4><u>Artist Documents</u></h4>
-            <#list itemAttachments as itemAttachment>
-                <#if artistStatementFile == itemAttachment.get('uuid')>
-                    <#assign full = itemAttachment.get('file')>
-                    <#assign uuid = itemAttachment.get('uuid')>
+            <#list attachments as attachment>
+                <#if artistStatementFile == attachment.get('uuid')>
+                    <#assign full = attachment.get('file')>
+                    <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
                     <p class='artistDocs'><i><u>Artist statement</u></i></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
@@ -155,10 +155,10 @@
         </#if>
 
         <#assign resumeCVFile = xml.get('local/artistDocWrapper/resumeCVFile')>
-        <#list itemAttachments as itemAttachment>
-            <#if resumeCVFile == itemAttachment.get('uuid')>
-                <#assign full = itemAttachment.get('file')>
-                <#assign uuid = itemAttachment.get('uuid')>
+        <#list attachments as attachment>
+            <#if resumeCVFile == attachment.get('uuid')>
+                <#assign full = attachment.get('file')>
+                <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
                     <p class='artistDocs'><i><u>Resume/CV</u></i></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
@@ -169,10 +169,10 @@
         </#list>
 
         <#assign exitPresentation = xml.get('mods/part/number')>
-        <#list itemAttachments as itemAttachment>
-            <#if exitPresentation == itemAttachment.get('uuid')>
-                <#assign full = itemAttachment.get('file')>
-                <#assign uuid = itemAttachment.get('uuid')>
+        <#list attachments as attachment>
+            <#if exitPresentation == attachment.get('uuid')>
+                <#assign full = attachment.get('file')>
+                <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
                     <p class='artistDocs'><i><u>Exit Review Presentation</u></i></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
@@ -183,10 +183,10 @@
         </#list>
 
         <#assign imageListFile = xml.get('local/artistDocWrapper/imageListFile')>
-        <#list itemAttachments as itemAttachment>
-            <#if imageListFile == itemAttachment.get('uuid')>
-                <#assign full = itemAttachment.get('file')>
-                <#assign uuid = itemAttachment.get('uuid')>
+        <#list attachments as attachment>
+            <#if imageListFile == attachment.get('uuid')>
+                <#assign full = attachment.get('file')>
+                <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
                     <p class='artistDocs'><i><u>Image list</u></i></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
@@ -199,9 +199,9 @@
 
         <div class="clearfix">
         <h4><u>Image List</u></h4>
-        <#list itemAttachments as itemAttachment>
-            <#assign full = itemAttachment.get('file')>
-            <#assign uuid = itemAttachment.get('uuid')>
+        <#list attachments as attachment>
+            <#assign full = attachment.get('file')>
+            <#assign uuid = attachment.get('uuid')>
             <#list xml.getAllSubtrees('local/seniorPacketWrapper') as seniorPacket>
                 <#assign title = seniorPacket.get('title')>
                 <#assign date = seniorPacket.get('date')>
