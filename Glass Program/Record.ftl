@@ -6,7 +6,7 @@
 
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if courseWorkType == 'Course work' || courseWorkType == 'Events' || courseWorkType == 'Senior packet'>
+<#if courseWorkType == 'Course work' || courseWorkType == 'Events'>
 
 <#assign powerSearch = 'Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4'>
 <#assign itemUuid = xml.get('item/@id')>
@@ -25,7 +25,7 @@
         <a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a>
     </dd>
 
-    <#if courseWorkType =="Course work">
+    <#if courseWorkType == "Course work">
         <div id="images">
         <#list xml.getAllSubtrees('item/attachments/attachment') as attachment>
             <#assign full = attachment.get('file')>
