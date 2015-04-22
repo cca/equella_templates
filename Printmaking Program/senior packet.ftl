@@ -167,35 +167,6 @@
                 </div>
             </#if>
         </#list>
-
-        <#assign exitPresentation = xml.get('mods/part/number')>
-        <#list itemAttachments as itemAttachment>
-            <#if exitPresentation == itemAttachment.get('uuid')>
-                <#assign full = itemAttachment.get('file')>
-                <#assign uuid = itemAttachment.get('uuid')>
-                <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Exit Review Presentation</u></i></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>${full}</p>
-                </div>
-            </#if>
-        </#list>
-
-        <#assign imageListFile = xml.get('local/artistDocWrapper/imageListFile')>
-        <#list itemAttachments as itemAttachment>
-            <#if imageListFile == itemAttachment.get('uuid')>
-                <#assign full = itemAttachment.get('file')>
-                <#assign uuid = itemAttachment.get('uuid')>
-                <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Image list</u></i></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>${full}</p>
-                </div>
-            </#if>
-        </#list>
-
         <div class="clearfix"></div>
 
         <div class="clearfix">
