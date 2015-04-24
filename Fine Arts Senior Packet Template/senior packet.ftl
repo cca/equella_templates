@@ -27,7 +27,7 @@
             <#assign departmentUrl = "" />
             <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&dr=AFTER" />
             <dd class="collection">
-                <a href="departmentUrl">${encode(department)}</a> | <a href="${divisionUrl}">${encode(division)}</a>
+                <a href="${departmentUrl}">${encode(department)}</a> | <a href="${divisionUrl}">${encode(division)}</a>
             </dd>
         </#if>
 
