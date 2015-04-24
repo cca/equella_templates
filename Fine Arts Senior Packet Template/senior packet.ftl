@@ -102,7 +102,7 @@
         </#list>
 
         <#list xml.getAllSubtrees('local/exhibitWrapper/showcardFile') as showcardFile>
-            <#list attachmentss as attachment>
+            <#list attachments as attachment>
                 <#if showcardFile.get('/') = attachment.get('uuid')>
                     <#assign full = attachment.get('file')>
                     <#assign uuid = attachment.get('uuid')>
