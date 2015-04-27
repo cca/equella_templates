@@ -1,7 +1,7 @@
-<#function escapeAmp str>
+<#function encode str>
     <#-- returns a URI-encoded "&amp;"
     because we pass XML in the URI, we have to escape this way -->
-    <#return str?replace('&', '%26amp%3B')>
+    <#return str?replace('&', '%26amp%3B')?replace('+', '%2B')>
 </#function>
 
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
@@ -24,10 +24,10 @@
         <#if division != "">
             <dt class="hide">Collection</dt>
             <#-- insert URL for appropriate department here -->
-            <#assign departmentUrl = "" />
-            <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&dr=AFTER" />
+            <#assign departmentUrl = "https://vault.cca.edu/access/searching.do?in=C93cd1700-48ae-4e2d-8821-3130f0e4260b&q=&type=standard&dr=AFTER">
+            <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&dr=AFTER">
             <dd class="collection">
-                <a href="departmentUrl">${escapeAmp(department)}</a> | <a href="${divisionUrl}">${escapeAmp(division)}</a>
+                <a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a>
             </dd>
         </#if>
 
@@ -53,7 +53,7 @@
             <#assign course = courseInfo.get('course')>
             <#assign faculty = courseInfo.get('faculty')>
             <#assign section = courseInfo.get('section')>
-            <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
+            <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${encode(course)}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
             <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
             <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
             <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
