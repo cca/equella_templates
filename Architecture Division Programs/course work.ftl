@@ -6,15 +6,17 @@
 <dl>
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign submissionType = courseWork.get('submissionType')>
-<#if (submissionType == "Course work")>
+<#if submissionType == "Course work">
 
     <#assign department = xml.get('local/department')>
     <#assign division = xml.get('local/division')>
     <dt class="hide">Division</dt>
     <#assign divisionUrl = "/access/searching.do?in=C1ca1ba6f-e327-4557-9b7e-25e1bba1b359&q=&type=standard&dr=AFTER">
-    <#assign departmentUrl = "https://vault.cca.edu/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&type=standard&dr=AFTER">
     <dd class="collection">
-        <a href="${departmentUrl}">${department}</a>&nbsp;|&nbsp;
+        <#if department != "">
+            <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&type=standard&dr=AFTER">
+            <a href="${departmentUrl}">${department}</a>&nbsp;|&nbsp;
+        </#if>
         <a href="${divisionUrl}">${division}</a>
     </dd>
 
@@ -48,8 +50,7 @@
         <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER" />
         <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER" />
 
-        <#if (semester=="") || (semester=="undefined")><#else>
-
+        <#if semester != "" && semester != "undefined">
             <span id="coursestuff"><strong>Course</strong>:
                 <a href="${semesterUrl}">${semester}</a>
                  — <a href="${departmentUrl}">${department}</a>
@@ -58,7 +59,7 @@
                  — <a href="${sectionUrl}">${section}</a>
             </span>
             <span id="coursestuff">
-                <#if XList!="">
+                <#if XList != "">
                     (Cross-listed as ${XList}.)
                 </#if>
             </span>
@@ -84,7 +85,7 @@
     <#if courseWorkType != "">
         ${courseWorkType}
     </#if>
-    <#if (courseWorkType !="" && projectTitle != "")> | </#if>
+    <#if courseWorkType !="" && projectTitle != ""> | </#if>
     <#if projectTitle != "">
         Project Number ${projectTitle}
     </#if>
@@ -172,6 +173,5 @@
     </#list>
     </div>
     <div style="clear:both;"></div>
-
 </#if>
 </#list>
