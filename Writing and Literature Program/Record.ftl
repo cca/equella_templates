@@ -23,6 +23,8 @@
         </dd>
         <br />
 
+        <#--  hide course info for internal assessment activity
+        temporary, set on 4/30/15
         <#list courseInfo as courseInfo>
             <#assign semester = courseInfo.get('semester')>
             <#assign course = courseInfo.get('course')>
@@ -89,6 +91,7 @@
             </#list>
             </dd>
         </#list>
+        -->
 
         <#assign draftOrFinal = courseWork.get('material')>
         <#assign draftProcess = courseWork.get('process')>
