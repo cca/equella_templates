@@ -12,24 +12,35 @@
 
 <#list xml.getAllSubtrees('local') as local>
     <#assign accreditation = local.get('accreditation')>
-    <#assign rating = local.get('rating')>
-    <#if accreditation != "">
+    <#assign useInReview = local.get('assessmentWrapper/useInReview')>
+    <#if accreditation != "" || useInReview == 'yes'>
         <br />
         <h5 style="color: #936;">Information below displays ONLY to Writing and Literature Faculty &amp; Staff and College Administrators.</h5>
         <#if accreditation != "">
             <dt>Assessment information</dt>
             <dd><strong>Flagged for:</strong> ${accreditation}</dd>
             <dd><strong>Assessment of work:</strong>
-            <#if (rating == "")> <em>(No rating assigned)</em>
+            <#assign rating = local.get('rating')>
+            <#if rating == ""> <em>(No rating assigned)</em>
                 <#-- @todo translating values in the display seems like
                 a bad idea, should change how they're stored maybe?
                 —ep 2014-12-01 -->
-                <#elseif (rating == "High")> Strong
-                <#elseif (rating == "Medium")> Satisfactory
-                <#elseif (rating == "Low")> Developing
-                <#elseif (rating == "Inadequate")> Inadequate
+                <#elseif rating == "High"> Strong
+                <#elseif rating == "Medium"> Satisfactory
+                <#elseif rating == "Low"> Developing
+                <#elseif rating == "Inadequate"> Inadequate
             </#if>
             </dd>
+        </#if>
+
+        <#if useInReview == 'yes'>
+            <#list local.getAllSubtrees('assessmentWrapper') as wrapper>
+                <dd><b>Used in:</b> ${wrapper.get('date')} ${wrapper.get('type')}</dd>
+                <#assign id = xml.get('mods/identifier')>
+                <#if id != "">
+                    <dd><b>Anonymous ID:</b> ${id}</dd>
+                </#if>
+            </#list>
         </#if>
     </#if>
 

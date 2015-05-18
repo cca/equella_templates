@@ -9,7 +9,6 @@
 <#list courseWork as courseWork>
     <#assign type = courseWork.get('courseWorkType')>
     <#if type == 'Course work'>
-
         <#assign title = xml.get('mods/titleInfo/title')>
         <h2 id="title">${title}</h2>
 
@@ -23,8 +22,6 @@
         </dd>
         <br />
 
-        <#--  hide course info for internal assessment activity
-        temporary, set on 4/30/15
         <#list courseInfo as courseInfo>
             <#assign semester = courseInfo.get('semester')>
             <#assign course = courseInfo.get('course')>
@@ -91,7 +88,6 @@
             </#list>
             </dd>
         </#list>
-        -->
 
         <#assign draftOrFinal = courseWork.get('material')>
         <#assign draftProcess = courseWork.get('process')>
@@ -112,6 +108,5 @@
             </#list>
             </dd>
         </#if>
-
-</#if>
+    </#if>
 </#list>
