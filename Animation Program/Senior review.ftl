@@ -7,23 +7,20 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemVersion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign name = xml.getAllSubtrees('mods/name')>
 <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
-<#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
-<#assign local = xml.getAllSubtrees('local')>
 
 <dl>
-<#list courseWork as courseWork>
+<#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if (courseWorkType =="Senior review")>
+<#if courseWorkType == "Senior review">
 
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
 </dl>
 
     <dt class="hide">Collection</dt>
-    <#list local as local>
+    <#list xml.getAllSubtrees('local') as local>
         <#assign division = local.get('division')>
         <#assign department = local.get('department')>
         <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%2F%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
@@ -67,14 +64,13 @@
         <#if semester != "">
             <a href="${semesterUrl}">${semester}</a>
         </#if>
-        <#if semester != "" && course != ""> - </#if>
-        <#if course != "">
-             <a href="${courseUrl}">${course}</a>
+        <#if course != "" && course != "undefined">
+             — <a href="${courseUrl}">${course}</a>
         </#if>
-        <#if faculty != "">
+        <#if faculty != "" && faculty != "undefined">
              — <a href="${facultyUrl}">${faculty}</a>
         </#if>
-        <#if section != "">
+        <#if section != "" && section != "undefined">
              — <a href="${sectionUrl}">${section}</a>
         </#if>
         </dd>
