@@ -1,28 +1,23 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign name = xml.getAllSubtrees('mods/name')>
-<#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
-<#assign exhibitWrapper = xml.getAllSubtrees('local/exhibitWrapper')>
-<#assign local = xml.getAllSubtrees('local')>
 <#assign projectWrapper = xml.getAllSubtrees('local/projectWrapper')>
-<#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
+<#assign powerSearch = 'P618ad8c6-bc89-4f95-89e6-bc5225e38996'>
 
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
 
-<#assign date = xml.getAllSubtrees('local/exhibitWrapper/date')>
-<#list exhibitWrapper as exhibitWrapper>
+<#list xml.getAllSubtrees('local/exhibitWrapper') as exhibitWrapper>
     <#assign gallery = exhibitWrapper.get('gallery')>
     <#assign semester = exhibitWrapper.get('semester')>
     <#assign sponsor = exhibitWrapper.get('sponsor')>
     <#assign showType = exhibitWrapper.get('@type')>
-    <#assign datex = exhibitWrapper.get('date')>
+    <#assign dates = exhibitWrapper.list('date')>
     <#-- @todo fix these URLs -->
-    <#assign galleryUrl = "" />
-    <#assign semesterUrl = "" />
-    <#assign showTypeUrl = "" />
+    <#assign galleryUrl = "">
+    <#assign semesterUrl = "">
+    <#assign showTypeUrl = "">
     <#if semester != "">
         <dd style="font-size: 14px;"><strong>${semester}
     </#if>
@@ -32,14 +27,14 @@
     <#if showType != "">
          —  ${showType}</strong></dd>
     </#if>
-    <#if datex != "">
+    <#if dates?size != 0>
         <dd><strong>
-            <#list date as date>${date}<#if date_has_next> through </#if>
+            <#list dates as date>${date}<#if date_has_next> through </#if>
             </#list>
         </strong></dd>
     </#if>
 
-    <#list courseInfo as courseInfo>
+    <#list xml.getAllSubtrees('local/courseInfo') as courseInfo>
         <#assign department = courseInfo.get('department')>
         <#assign semester = courseInfo.get('semester')>
         <#assign course = courseInfo.get('course')>
@@ -49,16 +44,16 @@
         <#assign courseName = courseInfo.get('courseName')>
         <#assign XList = courseInfo.get('XList')>
         <#assign specialPrograms = courseInfo.get('specialPrograms')>
-        <#assign specialProgramsUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CcourseCategory%3E${specialPrograms}%3C%2FcourseCategory%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
-        <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
-        <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
-        <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
-        <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
-        <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
-        <#assign courseCategoryUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CcourseCategory%3E${courseCategory}%3C%2FcourseCategory%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
-        <#assign courseNameUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CcourseName%3E${courseName}%3C%2FcourseName%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
-        <#assign XListUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CXList%3E${XList}%3C%2FXList%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P618ad8c6-bc89-4f95-89e6-bc5225e38996&q=&sort=datemodified&dr=AFTER" />
-        <#if sponsor=="course">
+        <#assign specialProgramsUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CcourseCategory%3E${specialPrograms}%3C%2FcourseCategory%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=" />
+        <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=" />
+        <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=" />
+        <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=" />
+        <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=" />
+        <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=" />
+        <#assign courseCategoryUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CcourseCategory%3E${courseCategory}%3C%2FcourseCategory%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=" />
+        <#assign courseNameUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CcourseName%3E${courseName}%3C%2FcourseName%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=" />
+        <#assign XListUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CXList%3E${XList}%3C%2FXList%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=" />
+        <#if sponsor == "course">
             <dd><span id="VisStcoursestuff">
                 Sponsoring course: <a href="${semesterUrl}">${semester}</a>
                  — <a href="${departmentUrl}">${department}</a>
@@ -66,45 +61,42 @@
                  — <a href="${facultyUrl}">${faculty}</a>
                  — <a href="${sectionUrl}">${section}</a>
             </dd>
-            <#if (XList!="undefined")&&(XList!="")>
+            <#if (XList != "undefined" && XList != "")>
                 <dd><span id="VisStcoursestuff">
                     Course is cross-listed with <a href="${XListUrl}">${XList}</a>.
                 </dd>
             </#if>
-            <#if (courseCategory != "")>
+            <#if courseCategory != "">
                 <dd><span id="VisStcoursestuff">Course category:
                     <a href="${courseCategoryUrl}">${courseCategory}</a>
             </#if>
-            <#if (specialPrograms!="")>
+            <#if specialPrograms != "">
                 &amp; <a href="${specialProgramsUrl}">${specialPrograms}</a>
             </#if>
             </dd>
-        <#elseif sponsor=="department / program">
+        <#elseif sponsor == "department / program">
             <#if department != 'undefined'>
                 <dd>Sponsoring department / program: <a href="${departmentUrl}">${department}</a></dd>
             </#if>
-        <#elseif sponsor=="student club">
-            <#list local as local>
-                <#assign studentClub = local.get('studentClub')>
-                <dd>Sponsoring student club: ${studentClub}</dd>
-            </#list>
+        <#elseif sponsor == "student club">
+            <#assign studentClub = xml.get('local/studentClub')>
+            <dd>Sponsoring student club: ${studentClub}</dd>
         </#if>
     </#list>
 </#list>
 
-<#list name as name>
+<#list xml.getAllSubtrees('mods/name') as name>
     <#assign namePart = name.get('namePart')>
     <dd>${namePart}
-    <#list subNameWrapper as subName>
+    <#list xml.getAllSubtrees('mods/name/subNameWrapper') as subName>
         <#assign major = subName.get('major')>
         <#assign gradDate = subName.get('gradDate')>
-        <#assign majorUrl = "" />
-        <#assign gradDateUrl = "" />
-        <#if (major != "")>
+        <#assign majorUrl = "">
+        <#assign gradDateUrl = "">
+        <#if major != "">
              — ${major}
         </#if>
-        <#if (major != "") && (gradDate != "")>, ${gradDate}
-        </#if>
+        <#if (major != "" && gradDate != "")>, ${gradDate}</#if>
     </#list>
     </dd>
 </#list>
@@ -118,9 +110,8 @@
         <#assign title = projectWrapper.get('title')>
         <#assign artistName = projectWrapper.get('artistName')>
         <#assign semester = projectWrapper.get('semester')>
-        <#assign formatSpecific = projectWrapper.get('formatSpecific')>
         <#assign dimensions = projectWrapper.get('dimensions')>
-        <#assign keyword = projectWrapper.get('keyword')>
+        <#assign keywords = projectWrapper.list('keyword')>
         <#assign fileA = projectWrapper.get('fileA')>
         <#if fileA == uuid>
             <#if full?ends_with(".zip")><#else>
@@ -130,8 +121,11 @@
                     <#if title != ""><span class="title">${title}</span><br></#if>
                     <#if artistName != "">by ${artistName}<br></#if>
                     <#if semester != "">${semester}<br></#if>
-                    <#if keyword != "">${keyword}<br></#if>
-                    <#if formatSpecific != "">${formatSpecific}<br></#if>
+                    <#if keywords?size != 0>
+                        <#list keywords as keyword>
+                            ${keyword}<#if keyword_has_next>, </#if>
+                        </#list><br>
+                    </#if>
                     <#if dimensions != "">${dimensions}</#if>
                 </p>
             </div>
@@ -143,7 +137,7 @@
 
 <#list xml.getAllSubtrees('local/exhibitWrapper/showcardFile') as showcardFile>
 <#list itemAttachments as itemAttachment>
-    <#if showcardFile.get('/') = itemAttachment.get('uuid')>
+    <#if showcardFile.get('/') == itemAttachment.get('uuid')>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
         <dd><i><u>Show card</i></u></dd>
