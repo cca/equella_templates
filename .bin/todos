@@ -16,4 +16,4 @@ fi
 # default to ack if we have it
 command -v ack 2&>/dev/null && ack --ignore-dir .bin --ignore-case --after-context=2 '@todo'; exit
 # sigh…I guess grep will have to suffice
-grep -n1 -R --exclude-dir=.bin  '@todo' .
+grep -n1 -R --exclude-dir=.bin -i '@todo' .
