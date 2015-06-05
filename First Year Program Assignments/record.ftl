@@ -22,13 +22,13 @@
     <#if (semester != "")>
     <dt>Course Information</dt>
     <span id="namestuff"><a href="${semesterUrl}">${semester}</a>
-        <#if (department=="CORE Studio/First Year")>
+        <#if department != "undefined" && department != "">
              — <a href="${departmentUrl}">${department}</a>
         </#if>
-        <#if (firstYearDimension=="undefined" && firstYearDimension != "")>
+        <#if firstYearDimension != "undefined" && firstYearDimension != "">
              — <a href="${firstYearDimensionUrl}">${firstYearDimension}</a>
         </#if>
-        <#if (course=="undefined" && course != "")>
+        <#if course != "undefined" && course != "">
              — <a href="${courseUrl}">${course}</a>
         </#if>
         <#if faculty != "undefined" && faculty != "">
