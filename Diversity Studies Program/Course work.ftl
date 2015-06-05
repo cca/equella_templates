@@ -6,13 +6,12 @@
 
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
-<#-- @todo what division is DIVST in? all college? -->
 <#assign division = xml.get('local/division')>
 <#assign department = xml.get('local/department')>
 <#assign departmentUrl = "/access/searching.do?in=Ce628c67e-886e-414b-af7f-cb0e6adaae07&q=&sort=datemodified&dr=AFTER" />
 <dd class="collection">
-    <#-- once we know division, need to make link for it
-    also update departmentUrl to be link w/in that division's PS -->
+    <#-- Interdisciplinary Studies PS is yet to be made -->
+    ${division} |
     <a href="${departmentUrl}">${department}</a>
 </dd>
 
