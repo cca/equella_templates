@@ -20,7 +20,7 @@
     <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
     <#assign departmentUrl = '/access/searching.do?in=Cdd83789b-f726-47e1-8a5f-626450d226a0&sort=datemodified'>
     <dd class="collection">
-        <a href="${divisionUrl}">${division}</a> | <a href="${departmentUrl}">Photography</a>
+        <a href="${departmentUrl}">Photography</a> | <a href="${divisionUrl}">${division}</a>
     </dd>
 
     <#if courseWorkTypeSpecific == 'Alumni successes'>

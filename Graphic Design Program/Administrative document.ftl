@@ -17,7 +17,7 @@
     <#assign divisionUrl = "/access/searching.do?in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
     <#assign departmentUrl = '/access/searching.do?in=Cdd83789b-f726-47e1-8a5f-626450d226a0&sort=datemodified'>
     <dd class="collection">
-        <a href="${divisionUrl}">${division}</a> | <a href="${departmentUrl}">Photography</a>
+        <a href="${departmentUrl}">Graphic Design</a> | <a href="${divisionUrl}">${division}</a>
     </dd>
 
     <#if courseWorkTypeSpecific == 'Alumni successes'>

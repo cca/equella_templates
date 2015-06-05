@@ -18,12 +18,7 @@
     <#assign department = xml.get('local/department')>
     <#assign departmentUrl = '/access/searching.do?in=C49de1037-0279-41b4-8070-0f7ffcbae56d&sort=datemodified'>
     <dd class="collection">
-        <#if division != "">
-            <a href="${divisionUrl}">${division}</a>
-        </#if><#if division != "" && department != "">&nbsp;|&nbsp;</#if>
-        <#if department != "">
-            <a href="${departmentUrl}">${department}</a>
-        </#if>
+            <a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a>
     </dd>
 
     <#assign courseWorkTypeSpecific = xml.get('local/courseWorkWrapper/courseWorkTypeSpecific')>

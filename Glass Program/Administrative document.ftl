@@ -22,7 +22,7 @@ change these variables depending upon collection
     <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
     <#assign departmentUrl = '/access/searching.do?in=${collectionID}&sort=datemodified'>
     <dd class="collection">
-        <a href="${divisionUrl}">${division}</a> | <a href="${departmentUrl}">${xml.get('local/department')}</a>
+        <a href="${departmentUrl}">${xml.get('local/department')}</a> | <a href="${divisionUrl}">${division}</a>
     </dd>
 
     <#if courseWorkTypeSpecific == 'Alumni successes'>
