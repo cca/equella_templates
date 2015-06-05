@@ -35,10 +35,12 @@
 
     <dt class="hide">Collection</dt>
     <#list local as local>
+        <#assign department = local.get('department')>
+        <#assign departmentUrl = '/access/searching.do?in=Cdd83789b-f726-47e1-8a5f-626450d226a0&q=&type=standard'>
         <#assign division = local.get('division')>
         <#assign divisionUrl = "/access/searching.do?in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
         <dd class="collection">
-            <a href="${divisionUrl}">${division}</a>
+            <a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a>
         </dd>
     </#list>
 
