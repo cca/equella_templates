@@ -49,11 +49,13 @@ table.zebra.large tbody tr.even td:hover {
     <h2 id="title">${title}</h2>
 
     <#assign division = xml.get('local/division')>
+    <#assign department = xml.get('local/department')>
+    <#assign departmentUrl = '/access/searching.do?in=Ce6b0e79c-82c8-4521-9c80-861abb629a6e&q=&type=standard'>
     <#if division != "">
         <dt class="hide">Collection</dt>
         <#assign divisionUrl = "/access/searching.do?in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
         <dd class="collection">
-            <a href="${divisionUrl}">${division}</a>
+            <a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a>
         </dd>
     </#if>
 
