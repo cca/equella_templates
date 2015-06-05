@@ -19,9 +19,12 @@
 
 <dt class="hide">Collection</dt>
 <#list local as local>
+    <#assign departmentUrl = '/access/searching.do?in=C6fe8f55a-940e-4f26-a635-63b2b9995cd4&q=&type=standard'>
     <#assign division = local.get('division')>
     <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%2F%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
-    <dd class="collection"><a href="${divisionUrl}">${division}</a></dd>
+    <dd class="collection">
+        <a href="${departmentUrl}">${xml.get('local/department')}</a> | <a href="${divisionUrl}">${division}</a>
+    </dd>
 </#list>
 
 <div id="images">
@@ -29,7 +32,7 @@
     <#assign thumb = itemAttachment.get('thumbnail')>
     <#assign uuid = itemAttachment.get('uuid')>
     <#assign full = itemAttachment.get('file')>
-    <#-- @todo change #image-single rule in customer.css
+    <#-- @TODO change #image-single rule in customer.css
     can't have multiple items with identical IDs on a page -->
     <div id='image-single'>
         <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
