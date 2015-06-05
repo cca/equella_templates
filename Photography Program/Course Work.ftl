@@ -172,9 +172,8 @@
     <#list date as date>
         <#assign dateCreated = date.get('dateCreated')>
         <#if dateCreated != "">
-            <#-- @todo fix this url -->
-            <#assign dateCreatedUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Corigininfo%3E%3CdateCreatedWrapper%3E%3CdateCreated%3E${dateCreated}%3C%2FdateCreated%3E%3C%2FdateCreatedWrapper%3E%3C%2Forigininfo%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
-            <dd class="date">Date created: <a href="${dateCreatedUrl}">${dateCreated}</a></dd>
+            <#-- this is reformatted to a friendly looking date with JS -->
+            <dd class="date">Date created: ${dateCreated}</dd>
         </#if>
         <div style="clear:both;"></div>
     </#list>
