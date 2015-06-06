@@ -1,0 +1,24 @@
+@media print {
+    #breadcrumbs,
+    #col2,
+    #footer,
+    #header,
+    #topbar,
+    #wizard-navigation,
+    .no-print {
+        display: none;
+    }
+
+    #content-body .area {
+        border: 0 !important;
+    }
+
+    /* yes, all of these have widths specified & each needs to be overridden */
+    #content,
+    #content-bottom,
+    #content-inner,
+    .page-layout-menu-collapsed #content-body,
+    #col1 {
+        width: auto !important;
+    }
+}
