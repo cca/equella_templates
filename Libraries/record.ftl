@@ -368,3 +368,8 @@
         </#list>
     </#list>
 </#if>
+
+<#if xml.get('local/theme') == 'minimal'>
+    <br>
+    <dd><strong class="text-error">This is a minimal record, to be completed later. Some fields may be missing.</strong></dd>
+</#if>
