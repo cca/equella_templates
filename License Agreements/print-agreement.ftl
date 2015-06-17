@@ -3,15 +3,23 @@
 <#assign publisher = xml.get('/mods/originInfo/publisher')>
 <#assign extent = xml.get('/mods/physicalDescription/extent')>
 <#assign title = xml.get('/mods/titleInfo/title')>
-<#assign publisherAddress = xml.list('/mods/location/physicalLocation')?first>
+<#assign publisherAddress = xml.get('/mods/originInfo/place')>
 <#assign name = xml.get('/mods/name/namePart')>
 <#assign position = xml.get('/mods/name/subNameWrapper/description')>
-<#assign personAddress = xml.list('/mods/location/physicalLocation')?last>
-<#assign telephone = xml.get('/mods/name/subNameWrapper/staging')>
+<#assign personAddress = xml.get('/mods/location/physicalLocation')>
+<#assign telephone = xml.get('/mods/name/subNameWrapper/phone')>
 <#assign email = xml.get('/mods/name/subNameWrapper/email')>
 
-<#-- JS will reveal this if printing can be triggered automatically -->
-<p class="alert no-print" style="display:none"><b>This page will print automatically in a few seconds…</b></p>
+<div class="control alert no-print clearfix">
+    <ul class="standard">
+        <li><b>Review</b> the license agreement</li>
+        <li><b>Print</b> a copy</li>
+        <li><b>Sign</b> the copy</li>
+        <li><b>Upload</b> the signed copy at the bottom of this form</li>
+        <li><b>Save</b> this item by pressing the green Save button</li>
+    </ul>
+    <button style="float:right;" class="btn btn-primary" onclick="window.print();return false">&nbsp;Print&nbsp;<i class="icon-print"></i></button>
+</div>
 
 <p>This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date") between California College of the Arts, 5212 Broadway, Oakland, California, 94618 ("Owner") and ${publisher} ("Publisher").</p>
 <p>In consideration of the mutual promises contained herein and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties agree as follows:</p>
@@ -53,7 +61,7 @@
 <h2><u>IX. Fees</u></h2>
 <p>For use of Content as established in this Agreement, Publisher shall make payment to Owner as specified below. Payment shall be by check, payable to California College of the Arts, sent to Business Services Office, attn: Ken Tanzer, California College of the Arts, 1111 8th Street, San Francisco CA 94107.</p>
 <p>Specified fees: no charge</p>
-<p>Compensation will be delivery of one copy of the "Content" as a finished product, in hardcover if so published, to the "Owner" within two months of release date.</p>
+<p style="margin-left:3em;">Compensation will be delivery of one copy of the "Content" as a finished product, in hardcover if so published, to the "Owner" within two months of release date.</p>
 
 <h2><u>X. Acknowledgement; Source Citation</u></h2>
 <p>Acknowledgement for use of Content shall reference: California College of the Arts Libraries. Preferred attribution and source for Content is: from the ______________________________ at California College of the Arts Libraries, San Francisco, California. Abbreviations may be substituted to conform with editorial style.</p>
@@ -81,8 +89,8 @@
 
 <h2><u>XVII. Dispute Resolution</u></h2>
 <p>In the event any dispute or controversy arising out of or relating to this Agreement, the parties agree to exercise their best efforts to resolve the dispute as soon as possible. The parties shall, without delay, continue to perform their respective obligations under this Agreement which are not affected by the dispute.</p>
-<p>Mediation. In the event that the parties cannot by exercise of their best efforts resolve the party shall give to the other party written notice of its decision to do so, including a description of the issues subject to the dispute and a proposed resolution thereof. Designated representatives of both parties shall attempt to resolve the dispute within 90 days after such notice. If those designated representatives cannot resolve the dispute, the parties shall meet in or near San Francisco, California, and describe the dispute and their respective proposals for resolution to responsible executives of the disputing parties, who shall act in good faith to resolve the dispute. If the dispute is not resolved within 90 days after such meeting, the dispute shall be submitted to binding arbitration in accordance with the Arbitration provision of this Agreement.</p>
-<p>Arbitration. Any controversies or disputes arising out of or relating to this Agreement shall be resolved by binding arbitration in accordance with the then current Commercial Arbitration Rules of the American Arbitration Association. The parties shall endeavor to select a mutually acceptable arbitrator knowledgeable about issues relating to the subject matter of this Agreement. In the event the parties are unable to agree to such a selection, each party will select an arbitrator and the arbitrators in turn shall select a third arbitrator. The arbitration shall take place at a location that is in or near San Francisco, California. All documents, materials, and information in the possession of each party that are in any way relevant to the claim(s) or dispute(s) shall be made available to the other party for review and copying no later than 45 days after the notice of arbitration is served.</p>
+<p><u>Mediation</u>. In the event that the parties cannot by exercise of their best efforts resolve the party shall give to the other party written notice of its decision to do so, including a description of the issues subject to the dispute and a proposed resolution thereof. Designated representatives of both parties shall attempt to resolve the dispute within 90 days after such notice. If those designated representatives cannot resolve the dispute, the parties shall meet in or near San Francisco, California, and describe the dispute and their respective proposals for resolution to responsible executives of the disputing parties, who shall act in good faith to resolve the dispute. If the dispute is not resolved within 90 days after such meeting, the dispute shall be submitted to binding arbitration in accordance with the Arbitration provision of this Agreement.</p>
+<p><u>Arbitration</u>. Any controversies or disputes arising out of or relating to this Agreement shall be resolved by binding arbitration in accordance with the then current Commercial Arbitration Rules of the American Arbitration Association. The parties shall endeavor to select a mutually acceptable arbitrator knowledgeable about issues relating to the subject matter of this Agreement. In the event the parties are unable to agree to such a selection, each party will select an arbitrator and the arbitrators in turn shall select a third arbitrator. The arbitration shall take place at a location that is in or near San Francisco, California. All documents, materials, and information in the possession of each party that are in any way relevant to the claim(s) or dispute(s) shall be made available to the other party for review and copying no later than 45 days after the notice of arbitration is served.</p>
 <p>The arbitrator(s) shall not have the authority, power, or right to alter, change, amend, modify, add, or subtract from any provision of this Agreement or to award punitive damages. The arbitrator shall have the power to issue mandatory orders and restraining orders in connection with the arbitration. The award rendered by the arbitrator shall be final and binding on the parties, and judgment may be entered thereon in any court having jurisdiction. The agreement to arbitration shall be specifically enforceable under prevailing arbitration law. During the continuance of any arbitration proceeding, the parties shall continue to perform their respective obligations under this Agreement.</p>
 
 <h2><u>XVIII. Force Majeure</u></h2>
@@ -103,35 +111,52 @@
 <h2><u>XXIII. Notices</u></h2>
 <p>All notices given pursuant to this Agreement shall be in writing and may be hand delivered, or shall be deemed received within 5 days after mailing if sent by registered or certified mail, return receipt requested. If any notice is sent by facsimile or email, confirmation copies must be sent by mail or hand delivery to the specified address. Either party may from time to time change its Notice Address by written notice to the other party.</p>
 
-If to Owner:
-CCA Libraries ________________, representing
-California College of the Arts
-5212 Broadway
-Oakland
-California
-94618
+<div class="clearfix">
+    <div class="left">
+        <p><strong>If to Owner:</strong></p>
+        <p>CCA Libraries<br>
+        California College of the Arts<br>
+        5212 Broadway<br>
+        Oakland<br>
+        California<br>
+        94618</p>
+    </div>
 
-If to Publisher:
-_________________________
-_________________________
-_________________________
-_________________________
-_________________________
+    <div class="right">
+        <p><strong>If to Publisher:</strong></p>
+        ${name}, representing<br>
+        ${publisher}<br>
+        ${publisherAddress}</p>
+    </div>
+</div>
 
-<p>IN WITNESS WHEREOF, the parties have executed this Agreement by their respective, duly authorized representatives as of the date first above written.</p>
+<p><strong>IN WITNESS WHEREOF</strong>, the parties have executed this Agreement by their respective, duly authorized representatives as of the date first above written.</p>
 
-OWNER:
-BY: DATE: _________________________ Signature of Authorized Signatory of Owner
-Print Name: Annemarie Haar
-Title: Director of Libraries, California College of the Arts
-Address: 5212 Broadway Oakland CA 94618
-Telephone No.: 510-594-3657
-E-mail: ahaar@cca.edu
-PUBLISHER:
-BY: DATE: _________________________
-Signature of Authorized Signatory of Owner
-Print Name:
-Title:
-Address:
-Telephone No.: ( )
-E-mail: @
+<div class="clearfix">
+    <p class="low-margin"><strong>OWNER:</strong></p>
+    <p class="left">
+        BY: ___________________________<br>
+        Signature of Authorized Signatory of Owner
+    </p>
+    <p class="right">DATE: _________________________</p>
+</div>
+
+<p>Print Name: Annemarie Haar<br>
+Title: Director of Libraries, California College of the Arts<br>
+Address: 5212 Broadway Oakland CA 94618<br>
+Telephone No.: 510-594-3657<br>
+E-mail: <a href="mailto:ahaar@cca.edu" target="_blank">ahaar@cca.edu</a></p>
+
+<div class="clearfix">
+    <p class="low-margin"><strong>PUBLISHER:</strong></p>
+    <p class="left">
+        BY: ___________________________<br>
+        Signature of Authorized Signatory of Owner
+    </p>
+    <p class="right">DATE: _________________________</p>
+</div>
+<p>Print Name: ${name}<br>
+Title: ${title}<br>
+Address: ${personAddress}<br>
+Telephone No.: ${telephone}<br>
+E-mail: ${email}</p>

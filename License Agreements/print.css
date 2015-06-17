@@ -1,3 +1,20 @@
+/* body .area just for specificity */
+body .area .low-margin {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+body .area .left {
+    float: left;
+    width: 49%;
+}
+body .area .right {
+    float: right;
+    width: 49%;
+}
+body button .icon-print {
+    vertical-align: bottom;
+}
+
 @media print {
     #breadcrumbs,
     #col2,
