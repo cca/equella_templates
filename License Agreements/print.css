@@ -1,0 +1,51 @@
+/* body .area just for specificity */
+body .area .low-margin {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+body .area .left {
+    float: left;
+    width: 49%;
+}
+body .area .right {
+    float: right;
+    width: 49%;
+}
+body button .icon-print {
+    vertical-align: bottom;
+}
+.highlight {
+	background-color: yellow;
+}
+
+@media print {
+    .highlight {
+		background-color: inherit;
+	}
+
+    #breadcrumbs,
+    #col2,
+    #footer,
+    #header,
+    #topbar,
+    #wizard-navigation,
+    .no-print,
+    #p1c3,
+    #p2c3 { /* NOTE: these last 2 are the "Signed Form" attachment controls
+    & their IDs may change if more contrib wizard controls are added */
+        display: none;
+    }
+
+    #content-body .area {
+        border: 0 !important;
+    }
+
+    /* yes, all of these have widths specified & each needs to be overridden */
+    #content,
+    #content-bottom,
+    #content-inner,
+    .page-layout-menu-collapsed #content-body,
+    #col1 {
+        width: auto !important;
+    }
+}
