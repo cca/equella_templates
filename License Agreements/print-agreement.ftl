@@ -15,17 +15,17 @@
         <li><b>Review</b> the license agreement</li>
         <li><b>Print</b> a copy</li>
         <li><b>Sign</b> the copy</li>
-        <li><b>Upload</b> the signed copy at the bottom of this form</li>
+        <li><b>Upload</b> the signed copy <a href="#p1c3">at the bottom of this form</a></li>
         <li><b>Save</b> this item by pressing the green Save button</li>
     </ul>
     <button style="float:right;" class="btn btn-primary" onclick="window.print();return false">&nbsp;Print&nbsp;<i class="icon-print"></i></button>
 </div>
 
-<p>This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date") between California College of the Arts, 5212 Broadway, Oakland, California, 94618 ("Owner") and ${publisher} ("Publisher").</p>
+<p><span class="highlight">This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date") between California College of the Arts, 5212 Broadway, Oakland, California, 94618 ("Owner") and ${publisher} ("Publisher").</span></p>
 <p>In consideration of the mutual promises contained herein and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties agree as follows:</p>
 
 <h2><u>I. Licensed Material Content; Grant of License</u></h2>
-<p>The materials that are the subject of this Agreement shall consist of: ${extent} (hereinafter referred to as the "Content").</p>
+<p><span class="highlight">The materials that are the subject of this Agreement shall consist of: ${extent}</span> (hereinafter referred to as the "Content").</p>
 <p>Publisher acknowledges that the copyright and title to the Content and any trademarks or service marks relating thereto remain with Owner and/or its suppliers. Publisher shall not have right, title or interest in the Content except as expressly set forth in this Agreement. Owner hereby grants to Publisher non-exclusive use of the Content in accordance with this Agreement.</p>
 
 <h2><u>II. Delivery of Content to Publisher</u></h2>
@@ -60,11 +60,11 @@
 
 <h2><u>IX. Fees</u></h2>
 <p>For use of Content as established in this Agreement, Publisher shall make payment to Owner as specified below. Payment shall be by check, payable to California College of the Arts, sent to Business Services Office, attn: Ken Tanzer, California College of the Arts, 1111 8th Street, San Francisco CA 94107.</p>
-<p>Specified fees: no charge</p>
-<p style="margin-left:3em;">Compensation will be delivery of one copy of the "Content" as a finished product, in hardcover if so published, to the "Owner" within two months of release date.</p>
+<p><span class="highlight">Specified fees: no charge</span></p>
+<p style="margin-left:3em;"><span class="highlight">Compensation will be delivery of one copy of the "Content" as a finished product, in hardcover if so published, to the "Owner" within two months of release date.</span></p>
 
 <h2><u>X. Acknowledgement; Source Citation</u></h2>
-<p>Acknowledgement for use of Content shall reference: California College of the Arts Libraries. Preferred attribution and source for Content is: from the ______________________________ at California College of the Arts Libraries, San Francisco, California. Abbreviations may be substituted to conform with editorial style.</p>
+<p>Acknowledgement for use of Content shall reference: California College of the Arts Libraries. <span class="highlight">Preferred attribution and source for Content is: from the ______________________________ at California College of the Arts Libraries, San Francisco, California.</span> Abbreviations may be substituted to conform with editorial style.</p>
 
 <h2><u>XI. Assignment and Transfer</u></h2>
 <p>Except as specifically stated in this agreement, parties may not assign, directly or indirectly, all or part of its rights or obligations under this Agreement without the prior written consent of the other party, which consent shall not be unreasonably withheld or delayed. The right to renegotiate terms is reserved if the nature of the assignee is substantially different.</p>
@@ -124,7 +124,7 @@
 
     <div class="right">
         <p><strong>If to Publisher:</strong></p>
-        ${name}, representing<br>
+        <p>${name}, representing<br>
         ${publisher}<br>
         ${publisherAddress}</p>
     </div>

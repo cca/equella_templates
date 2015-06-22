@@ -14,15 +14,25 @@ body .area .right {
 body button .icon-print {
     vertical-align: bottom;
 }
+.highlight {
+	background-color: yellow;
+}
 
 @media print {
+    .highlight {
+		background-color: inherit;
+	}
+
     #breadcrumbs,
     #col2,
     #footer,
     #header,
     #topbar,
     #wizard-navigation,
-    .no-print {
+    .no-print,
+    #p1c3,
+    #p2c3 { /* NOTE: these last 2 are the "Signed Form" attachment controls
+    & their IDs may change if more contrib wizard controls are added */
         display: none;
     }
 
