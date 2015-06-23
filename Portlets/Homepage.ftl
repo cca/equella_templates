@@ -383,20 +383,8 @@ body #startTourBtn{
     </div>
 
     <div id="cp-contrib" style = "display: none;"><a href="https://vault.cca.edu/access/runwizard.do?method=newitem&itemdefUuid=f75326ab-977c-4873-8987-eaa419ecb773">Contribute to collection</a></div>
-            <#-- STUDENT COLLECTIONS IMAGES
-
-                How to add an image:
-
-                <a href=" [URL page for the image to link to] ">
-                    <img src=" [image source URL] ">
-                </a>
-
-            -->
-
-            <#-- LIBRARY COLLECTIONS IMAGES -->
 
     <div id = "libraryCollections" class="imgContainer">
-
         <a href="https://vault.cca.edu/items/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/">
             <img src="https://vault.cca.edu/file/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/13051706PS.jpg">
         </a>
@@ -442,10 +430,7 @@ body #startTourBtn{
         </a>
     </div>
 
-            <#-- COMMUNICATIONS IMAGES -->
-
     <div id = "communications" class="imgContainer">
-
         <a href="//vault.cca.edu/items/63b16c33-1187-4a72-bfc1-02886463e9d2/1/">
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/SFcampus03.jpg">
         </a>
@@ -489,37 +474,6 @@ body #startTourBtn{
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/01_SFCampusSkyline.jpg">
         </a>
     </div>
-
-    <#-- <div id = "studentCollections" class="imgContainer active">
-        <a href="//vault.cca.edu/items/84b50843-1694-486a-9721-c4d77ef7ed03/1/">
-            <img src="//vault.cca.edu/file/84b50843-1694-486a-9721-c4d77ef7ed03/1/IMG_5569.jpg">
-        </a>
-        <a href="//vault.cca.edu/items/72985609-cf82-4337-a17b-12444367d175/1/">
-            <img src="//vault.cca.edu/file/72985609-cf82-4337-a17b-12444367d175/1/01_Thought%20Forms.jpg">
-        </a>
-        <a href="//vault.cca.edu/items/9173ce52-3d12-48f4-a8f8-1a6942fed679/1/">
-            <img src="//vault.cca.edu/items/9173ce52-3d12-48f4-a8f8-1a6942fed679/1/07_p2_a1.jpg">
-        </a>
-                    <a href="//vault.cca.edu/items/ecbe9485-c9dc-429a-a53f-e44fdc5911b2/1/">
-            <img src="//vault.cca.edu/items/ecbe9485-c9dc-429a-a53f-e44fdc5911b2/1/03%20Study%20Model%202.jpg">
-        </a>
-                    <a href="//vault.cca.edu/items/ee5ae946-b670-4ac3-9060-24f0303911a3/1/">
-            <img src="//vault.cca.edu/items/ee5ae946-b670-4ac3-9060-24f0303911a3/1/table%20detail%283%29.jpg">
-        </a>
-                    <a href="//vault.cca.edu/items/0fd3f910-a476-45ac-bbf6-44296f4f732c/1/">
-            <img src="//vault.cca.edu/items/0fd3f910-a476-45ac-bbf6-44296f4f732c/1/eye.jpg">
-        </a>
-                     <a href="/items/96a9aaf9-8702-4aeb-a13c-4d21f9d8cbf9/1/">
-            <img src="//vault.cca.edu/items/96a9aaf9-8702-4aeb-a13c-4d21f9d8cbf9/1/Food%20Chain%20Mandala1.JPG">
-        </a>
-                    <a href="//vault.cca.edu/items/891b6e3d-b36f-402a-ad83-0f5b3da4bfab/1/">
-            <img src="//vault.cca.edu/items/891b6e3d-b36f-402a-ad83-0f5b3da4bfab/1/IMG_0650%283%29.JPG">
-        </a>
-                    <a href="//vault.cca.edu/items/9975a3d9-b8f4-4481-b0b5-673df9836119/2/">
-            <img src="//vault.cca.edu/items/9975a3d9-b8f4-4481-b0b5-673df9836119/2/LKTTJihpzZH-M98pm-7CpfTm2mjvXnR6asUwV5-Al46KXZtf_kch5bz_M5Av43ADmg%3Dw2204-h666.jpg">
-        </a>
-    </div>
-            -->
 </div>
 
 <#-- CAMPUS PLANNING IMAGES -->
@@ -545,14 +499,13 @@ body #startTourBtn{
         <img src="//vault.cca.edu/file/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/Zendesk%205.jpg">
     </a>
 
-    <div class="campPlanTitle" style = "position:absolute; width:100%!important; height:30px!important; line-height:30px!important; box-sizing:border-box; padding-left:30px;">
+    <div class="campPlanTitle" style="position:absolute; width:100%!important; height:30px!important; line-height:30px!important; box-sizing:border-box; padding-left:30px;">
     Spatial (Typologies)
     <span class="onClicker" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3ESpatial%20(Typologies)%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EMaking%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q=">Making</span>
     <span class="onClicker" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3ESpatial%20(Typologies)%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3ETeaching%20%26amp%3B%20Learning%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q=">Teaching & Learning</span>
     <span class="onClicker" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3ESpatial%20(Typologies)%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EResearch%20%26amp%3B%20Resources%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q=">Research & Resources</span>
     <span class="onClicker" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3ESpatial%20(Typologies)%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3ELiving%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Living </span>
     </div>
-
 
     <a href="//vault.cca.edu/items/1f3ee390-8bcd-4718-97ff-10db79473223/1/">
         <img src="//vault.cca.edu/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/ACCD%20CMTEL%20lab.jpg">
