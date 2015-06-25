@@ -32,11 +32,13 @@ advancedSearch parameters are:
     reverse — boolean for reverse order
     offset — first result index
     maxResults — integer number of results to get
+
+    @TODO: pull from UG Exhibits collection, too
 -->
 <#assign search = utils.searchAdvanced('', "/xml/local/rating like 'High'", true, order, reverse, offset, 40)>
 <#assign results = search.getResults()>
 
-<div class="clearfix">
+<div id="studentWork">
 <#list results as item>
     <#-- item information -->
     <#assign name = item.getName()>
@@ -49,8 +51,12 @@ advancedSearch parameters are:
     this avoids mime types for which we have a generic icon thumbnail
     or items lacking an attachment -->
     <#assign thumb = item.getXml().get('item/attachments/attachment/thumbnail')>
-    <#if thumb != "">
-        <a href="${url}" title="${name}"><img src="${thumbUrl}" onerror="$(this).css('display', 'none')" /></a>
+    <#assign filename = item.getXml().get('item/attachments/attachment/file')>
+    <#if thumb != "" && ! filename?starts_with('http')>
+        <#assign mimetype = mime.getMimeTypeForFilename(filename).getType()>
+        <#if mimetype?substring(0, 5) == 'image'>
+            <a href="${url}" title="${name}"><img src="${thumbUrl}" onerror="$(this).parent().remove()" /></a>
+        </#if>
     </#if>
 </#list>
 </div>
