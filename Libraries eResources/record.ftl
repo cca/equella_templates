@@ -1,10 +1,44 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign configID = xml.getAllSubtrees('mods/identifier')>
+<#assign attachments = xml.getAllSubtrees('item/attachments/attachment')>
+<#assign pages = xml.getAllSubtrees('mods/part/numberB')>
+<#assign configID = xml.get('mods/identifier')>
 
 <dl class="clearfix">
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
+
+<#if pages?size != 0>
+    <#-- HTML5 flipbook, see turnjs.com (jQuery dependency) -->
+    <script src="//cdn.jsdelivr.net/turn.js/3/turn.min.js"></script>
+    <style>
+    #flipbook {
+        width: 400px;
+        height: 300px;
+    }
+    #flipbook .turn-page {
+        background-color: #ccc;
+    }
+    #flipbook .turn-page img {
+        max-width: 100%;
+    }
+    </style>
+    <div id="flipbook">
+    <#list pages as page><#list attachments as attachment>
+        <#if attachment.get('uuid') == page.get('/')>
+            <div>
+                <img src="/file/${itemUuid}/${itemversion}/${attachment.get('file')}" />
+            </div>
+        </#if>
+    </#list></#list>
+    </div>
+    <script>
+	$($("#flipbook").turn({
+		width: 400,
+		height: 300
+	}));
+    </script>
+</#if>
 
 <#list xml.getAllSubtrees('mods/relateditem') as relateditem>
     <#assign title = relateditem.get('title')>
@@ -13,9 +47,9 @@
     <#assign @type = relateditem.get('@type')>
     <#if issuuLink == "">
         <div id="images">
-        <#list xml.getAllSubtrees('item/attachments/attachment') as itemAttachment>
-            <#assign full = itemAttachment.get('file')>
-            <#assign uuid = itemAttachment.get('uuid')>
+        <#list attachments as attachment>
+            <#assign full = attachment.get('file')>
+            <#assign uuid = attachment.get('uuid')>
             <#-- @todo multiple of the same ID problem here -->
             <div id="image-single">
                 <a href="/file/${itemUuid}/${itemversion}/${full}">
