@@ -92,7 +92,6 @@
 
 <#list modslevel as mods>
     <#assign abstract = mods.get('abstract')>
-    <#assign toc = mods.get('tableOfContents')>
     <#if abstract != "">
         <dd>Description: ${abstract}</dd>
     </#if>
