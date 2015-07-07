@@ -1,5 +1,5 @@
-<#assign itemUuid = xml.get('item/@id')>
-<#assign itemversion = xml.get('item/@version')>
+<#assign id = xml.get('item/@id')>
+<#assign version = xml.get('item/@version')>
 <#assign attachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign pages = xml.getAllSubtrees('mods/part/numberB')>
 <#assign configID = xml.get('mods/identifier')>
@@ -9,35 +9,99 @@
 <h2 id="title">${title}</h2>
 
 <#if pages?size != 0>
-    <#-- HTML5 flipbook, see turnjs.com (jQuery dependency) -->
-    <script src="//cdn.jsdelivr.net/turn.js/3/turn.min.js"></script>
-    <style>
-    #flipbook {
-        width: 400px;
-        height: 300px;
-    }
-    #flipbook .turn-page {
-        background-color: #ccc;
-    }
-    #flipbook .turn-page img {
-        max-width: 100%;
-    }
-    </style>
-    <div id="flipbook">
-    <#list pages as page><#list attachments as attachment>
-        <#if attachment.get('uuid') == page.get('/')>
-            <div>
-                <img src="/file/${itemUuid}/${itemversion}/${attachment.get('file')}" />
-            </div>
-        </#if>
-    </#list></#list>
+<#-- HTML5 flipbook, see turnjs.com (jQuery dependency) -->
+<script src="/file/44702ca8-1340-4e92-8a3b-86cab800098c/1/turn.min.js"></script>
+<style>
+/* Basic turnjs sample */
+.flipbook-viewport {
+	overflow: hidden;
+    /* 50px wider/taller than flipbook page */
+	width: 450px;
+	height: 650px;
+}
+
+.flipbook-viewport .container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin:auto;
+}
+
+.flipbook-viewport .flipbook {
+	width: 400px;
+	height: 600px;
+    /* = -.5 * height/width */
+	left: -200px;
+	top: -300px;
+}
+
+.flipbook-viewport .page {
+    /* = half flipbook width */
+	width:200px;
+	height:600px;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.flipbook .page {
+	-webkit-box-shadow:0 0 10px rgba(0,0,0,0.2);
+	-moz-box-shadow:0 0 10px rgba(0,0,0,0.2);
+	-ms-box-shadow:0 0 10px rgba(0,0,0,0.2);
+	-o-box-shadow:0 0 10px rgba(0,0,0,0.2);
+	box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.flipbook-viewport .page img {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin: 0;
+}
+
+.flipbook-viewport .shadow {
+	-webkit-transition: -webkit-box-shadow 0.5s;
+	-moz-transition: -moz-box-shadow 0.5s;
+	-o-transition: -webkit-box-shadow 0.5s;
+	-ms-transition: -ms-box-shadow 0.5s;
+
+	-webkit-box-shadow:0 0 10px #ccc;
+	-moz-box-shadow:0 0 10px #ccc;
+	-o-box-shadow:0 0 10px #ccc;
+	-ms-box-shadow:0 0 10px #ccc;
+	box-shadow:0 0 10px #ccc;
+}
+</style>
+<div class="flipbook-viewport">
+    <div class="container">
+        <div class="flipbook">
+        <#list pages as page><#list attachments as attachment>
+            <#if attachment.get('uuid') == page.get('/')>
+                <#assign file = attachment.get('file')>
+                <div>
+                    <img src="/file/${id}/${version}/${file}">
+                </div>
+            </#if>
+        </#list></#list>
+        </div>
     </div>
-    <script>
-	$($("#flipbook").turn({
-		width: 400,
-		height: 300
-	}));
-    </script>
+</div>
+<script>
+// Create the flipbook
+function loadApp() {
+    $('.flipbook').turn({
+        width: 400,
+        height: 600,
+        elevation: 50,
+        gradients: true,
+        autoCenter: true
+    })
+}
+$(document).ready(loadApp)
+</script>
 </#if>
 
 <#list xml.getAllSubtrees('mods/relateditem') as relateditem>
@@ -52,8 +116,8 @@
             <#assign uuid = attachment.get('uuid')>
             <#-- @todo multiple of the same ID problem here -->
             <div id="image-single">
-                <a href="/file/${itemUuid}/${itemversion}/${full}">
-                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                <a href="/file/${id}/${version}/${full}">
+                <img src="/thumbs/${id}/${version}/${uuid}"/></a>
                 <#list xml.getAllSubtrees('mods/part') as part>
                     <#assign parttitle = part.get('title')>
                     <#assign partextent = part.get('extent')>
