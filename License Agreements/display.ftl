@@ -41,7 +41,11 @@
         <dd><b>Publisher</b>: ${publisher}</dd>
     </#if>
     <#if publisherAddress != "">
-        <dd><b>Address</b><br>${publisherAddress}</dd>
+        <dd>
+            <b>Address</b>:<br>
+            <#-- display line breaks in address with <pre> tag -->
+            <pre>${publisherAddress}</pre>
+        </dd>
     </#if>
 
     <dt>Creator Information</dt>
@@ -52,7 +56,11 @@
         <dd><b>Position</b>: ${position}</dd>
     </#if>
     <#if personAddress != "">
-        <dd><b>Address</b>: ${personAddress}</dd>
+        <dd>
+            <b>Address</b>:<br>
+            <#-- display line breaks in address with <pre> tag -->
+            <pre>${personAddress}</pre>
+        </dd>
     </#if>
     <#if email != "">
         <dd><b>Email</b>: ${email}</dd>

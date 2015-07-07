@@ -21,7 +21,7 @@
     <button style="float:right;" class="btn btn-primary" onclick="window.print();return false">&nbsp;Print&nbsp;<i class="icon-print"></i></button>
 </div>
 
-<p><span class="highlight">This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date") between California College of the Arts, 5212 Broadway, Oakland, California, 94618 ("Owner") and ${publisher}("Publisher").</span></p>
+<p><span class="highlight">This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date") between California College of the Arts, 5212 Broadway, Oakland, California, 94618 ("Owner") and ${publisher} ("Publisher").</span></p>
 <p>In consideration of the mutual promises contained herein and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties agree as follows:</p>
 
 <h2><u>I. Licensed Material Content; Grant of License</u></h2>
@@ -128,7 +128,8 @@ other party, which consent shall not be unreasonably withheld or delayed. The ri
         <p><strong>If to Publisher:</strong></p>
         <p>${name}, representing<br>
         ${publisher}<br>
-        ${publisherAddress}</p>
+        <#-- display line breaks in address with <pre> tag -->
+        <pre>${publisherAddress}</pre></p>
     </div>
 </div>
 
@@ -159,6 +160,8 @@ E-mail: <a href="mailto:ahaar@cca.edu" target="_blank">ahaar@cca.edu</a></p>
 </div>
 <p>Print Name: ${name}<br>
 Title: ${title}<br>
-Address: ${personAddress}<br>
+Address:<br>
+<#-- display line breaks in address with <pre> tag -->
+<pre>${personAddress}</pre><br>
 Telephone No.: ${telephone}<br>
 E-mail: ${email}</p>

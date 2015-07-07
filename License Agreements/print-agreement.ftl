@@ -126,7 +126,8 @@
         <p><strong>If to Publisher:</strong></p>
         <p>${name}, representing<br>
         ${publisher}<br>
-        ${publisherAddress}</p>
+        <#-- display line breaks in address with <pre> tag -->
+        <pre>${publisherAddress}</pre></p>
     </div>
 </div>
 
@@ -157,6 +158,8 @@ E-mail: <a href="mailto:ahaar@cca.edu" target="_blank">ahaar@cca.edu</a></p>
 </div>
 <p>Print Name: ${name}<br>
 Title: ${title}<br>
-Address: ${personAddress}<br>
+Address:<br>
+<#-- display line breaks in address with <pre> tag -->
+<pre>${personAddress}</pre><br>
 Telephone No.: ${telephone}<br>
 E-mail: ${email}</p>
