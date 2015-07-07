@@ -59,7 +59,8 @@
 <h2><u>IX. Fees</u></h2>
 <p>For use of Content as established in this Agreement, Publisher shall make payment to Owner as specified below. Payment shall be by check, payable to California College of the Arts, sent to Business Services Office, attn: Ken Tanzer, California College of the Arts, 1111 8th Street, San Francisco CA 94107.</p>
 <p><span class="highlight">Specified fees: no charge</span></p>
-<p style="margin-left:3em;"><span class="highlight">Compensation will be delivery of one copy of the "Content" as a finished product, in DVD format, to the "Owner" within two months of release date.</span></p>
+<p style="margin-left:3em;"><span class="highlight">For publications created for educational purposes, by not-for-profit institutions, compensation will be delivery of one copy of the "Content" as a finished product, in DVD format, to the "Owner" within two months of release date.</span></p>
+<p><span class="highlight">In cases where the above criteria are not met, or when the Content requested requires an exceptional amount of work on the part of the Owner, additional fees may be charged.</span></p>
 
 <h2><u>X. Acknowledgement; Source Citation</u></h2>
 <p>Acknowledgement for use of Content shall reference: California College of the Arts Libraries. <span class="highlight">Preferred attribution and source for Content is: from the CCA/C Archives at California College of the Arts Libraries, San Francisco, California.</span> Abbreviations may be substituted to conform with editorial style.</p>
