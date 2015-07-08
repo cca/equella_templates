@@ -1,6 +1,7 @@
+<#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR')>
+
 <script src="https://vault.cca.edu/file/91b0c427-7c26-45bc-a550-27ed93165a9d/1/jquery.justifiedGallery.min.js"></script>
 <script src="https://vault.cca.edu/file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.js"></script>
-
 <#-- first role tested is role ID on live server, 2nd is dev -->
 <#-- check user role -->
 <#if user.hasRole('490b1b93-10cd-b8fa-3291-93c357efe57b')>
@@ -18,7 +19,7 @@
 window._ccaRole = '${role}';
 
 //Create tour button in top right corner
-$('body #body-inner').append('<div style = "color:#b35;" id = "startTourBtn">New? Take a tour</div>');
+$('body #body-inner').append('<div style="color:#b35;" id="startTourBtn">New? Take a tour</div>');
 //Check if tour has been started already, if so, change start button text and stop attention bouncing
 function checkTourStatus(){
    if (localStorage.tour_current_step == 7){
@@ -50,10 +51,10 @@ function checkTourStatus(){
 // Which 'how to' guide to include in 'contribute' step?
 var roleGuideSuggestion = "";
 if ( window._ccaRole == 'student' ){
-    roleGuideSuggestion = "<br><br><strong><a style = 'color:#d46!important;' target = '_blank' href='https://vault.cca.edu/file/5b76c993-efcb-40d1-bb9a-69614ebf01eb/2/general%20student%20course%20work%20submission.pdf'>How to Upload an Assignment</a></strong>";
+    roleGuideSuggestion = "<br><br><strong><a style='color:#d46!important;' target='_blank' href='https://vault.cca.edu/file/5b76c993-efcb-40d1-bb9a-69614ebf01eb/2/general%20student%20course%20work%20submission.pdf'>How to Upload an Assignment</a></strong>";
 }
 else if ( window._ccaRole == 'faculty' || window._ccaRole == 'staff' ){
-    roleGuideSuggestion = "<br><br><strong><a style = 'color:#d46!important;' target = '_blank' href='https://vault.cca.edu/file/c261de7d-bdf5-4c2b-b3e2-960cc38205af/1/fac%20assignment%20template%20submissionREVISED.pdf'>How to Create an Assignment Template</a></strong>";
+    roleGuideSuggestion = "<br><br><strong><a style='color:#d46!important;' target='_blank' href='https://vault.cca.edu/file/c261de7d-bdf5-4c2b-b3e2-960cc38205af/1/fac%20assignment%20template%20submissionREVISED.pdf'>How to Create an Assignment Template</a></strong>";
 }
 
 var tour = new Tour({
@@ -68,7 +69,7 @@ var tour = new Tour({
     element: "#menu>ul>li>a[href*='access/myresources.do']",
     title: "My Resources",
     backdrop: true,
-    content: "Once you've submitted an assignment or saved a draft you can view or make changes to it here.<br><br><strong><a style = 'color:#d46!important;' href='access/myresources.do?type=published'>Published</a></strong> : Finished & Submitted Assignments<br><br><strong><a style = 'color:#d46!important;' href='access/myresources.do?type=draft'>Drafts</a></strong> : Unsubmitted Assignments"
+    content: "Once you've submitted an assignment or saved a draft you can view or make changes to it here.<br><br><strong><a style='color:#d46!important;' href='access/myresources.do?type=published'>Published</a></strong> : Finished & Submitted Assignments<br><br><strong><a style='color:#d46!important;' href='access/myresources.do?type=draft'>Drafts</a></strong> : Unsubmitted Assignments"
   },
   {
     element: "#menu>ul>li>a[href*='access/searching.do']",
@@ -104,7 +105,7 @@ var tour = new Tour({
       orphan: true,
       title: "Fin",
       backdrop: true,
-      content: "<img width = '250px' src='file/b3371770-df58-4f29-8f1c-2f3c97f68298/1/thatsallfolks.gif'>"
+      content: "<img width='250px' src='file/b3371770-df58-4f29-8f1c-2f3c97f68298/1/thatsallfolks.gif'>"
   }
 ],
 onEnd: function (tour) {
@@ -205,7 +206,7 @@ $(function() {
     $('#pportlet_a0be8e7d-8171-4ffb-8d0e-48cc48170e07').clone().prependTo('#topwide').addClass('oldQS');
     $('#pportlet_a0be8e7d-8171-4ffb-8d0e-48cc48170e07:not(.oldQS)').remove();
     //Quick Search
-    $('.quick-search').prepend('<h3 style = "padding-left:30px;">Quick Search</h3><br><br>');
+    $('.quick-search').prepend('<h3 style="padding-left:30px;">Quick Search</h3><br><br>');
 
     $('.campPlanTitle').hide();
     $('.campPlanTitle').stop(true, true).clearQueue();
@@ -375,16 +376,16 @@ body #startTourBtn{
 }
 </style>
 
-<div id = "mainPageBox">
-    <div id = "mainTabs">
+<div id="mainPageBox">
+    <div id="mainTabs">
         <div data-target="#communications" class="mainTab active">Communications</div>
         <div data-target="#libraryCollections" class="mainTab">Library Collections</div>
         <div data-target="#campusPlanning" class="mainTab" id="campBtn">Campus Planning: Spatial Benchmarking</div>
     </div>
 
-    <div id="cp-contrib" style = "display: none;"><a href="https://vault.cca.edu/access/runwizard.do?method=newitem&itemdefUuid=f75326ab-977c-4873-8987-eaa419ecb773">Contribute to collection</a></div>
+    <div id="cp-contrib" style="display: none;"><a href="https://vault.cca.edu/access/runwizard.do?method=newitem&itemdefUuid=f75326ab-977c-4873-8987-eaa419ecb773">Contribute to collection</a></div>
 
-    <div id = "libraryCollections" class="imgContainer">
+    <div id="libraryCollections" class="imgContainer">
         <a href="https://vault.cca.edu/items/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/">
             <img src="https://vault.cca.edu/file/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/13051706PS.jpg">
         </a>
@@ -430,7 +431,7 @@ body #startTourBtn{
         </a>
     </div>
 
-    <div id = "communications" class="imgContainer">
+    <div id="communications" class="imgContainer">
         <a href="//vault.cca.edu/items/63b16c33-1187-4a72-bfc1-02886463e9d2/1/">
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/SFcampus03.jpg">
         </a>
@@ -477,8 +478,8 @@ body #startTourBtn{
 </div>
 
 <#-- CAMPUS PLANNING IMAGES -->
-<div id = "campusPlanning" class="imgContainer">
-    <div class="campPlanTitle" style = "position:absolute; width:100%!important; height:30px!important; line-height:30px!important; box-sizing:border-box; padding-left:30px;">
+<div id="campusPlanning" class="imgContainer">
+    <div class="campPlanTitle" style="position:absolute; width:100%!important; height:30px!important; line-height:30px!important; box-sizing:border-box; padding-left:30px;">
         Activities
         <span class="onClicker" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3EActivities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EAssembling%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Assembling </span>
         <span class="onClicker" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3EActivities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3ECirculation%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Circulation </span>
@@ -520,7 +521,7 @@ body #startTourBtn{
         <img src="//vault.cca.edu/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/Parsons%20NY.jpg">
     </a>
 
-    <div class="campPlanTitle" style = "position:absolute; width:100%!important; height:30px!important; line-height:30px!important; box-sizing:border-box; padding-left:30px;">
+    <div class="campPlanTitle" style="position:absolute; width:100%!important; height:30px!important; line-height:30px!important; box-sizing:border-box; padding-left:30px;">
     (Spatial) Qualities
         <span class="onClicker" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3E(Spatial)%20Qualities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EEnclosure%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Enclosure </span>
         <span class="onClicker" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3E(Spatial)%20Qualities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EAdjacency%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Adjacency </span>
@@ -542,3 +543,5 @@ body #startTourBtn{
         <img src="//vault.cca.edu/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/Kreysler%20_%20Associates%202.jpg">
     </a>
 </div>
+
+</#if>
