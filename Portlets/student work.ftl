@@ -12,10 +12,13 @@ taken from: http://freestyle-developments.co.uk/blog/?p=327 -->
 </#function>
 <#assign _rand = 0.36>
 
-<#--
-used to create pseudo-random results by randomizing a few of the advanced
-search parameters: order of results, reverse, and offset
--->
+<#-- retrieve pseudo-random results by randomizing a few of the advanced
+search parameters: order of results, reverse, & offset -->
+<#assign query = ''>
+<#-- retrieve highly rated student work & anything from Undergrad Exhibitions
+note that few items (≈400 as of 7/8/15) have a high rating & more are FYP -->
+<#assign where = "/xml/local/rating IS 'High' OR /xml/local/department IS 'Undergraduate Exhibitions'">
+<#assign onlyLive = true>
 <#assign order = rand(0, 2)>
 <#assign reverse = true>
 <#assign reverseNum = rand(0, 1)>
@@ -23,27 +26,18 @@ search parameters: order of results, reverse, and offset
     <#assign reverse = false>
 </#if>
 <#assign offset = rand(0, 10)>
-<#assign length = 40>
+<#assign maxResults = 50>
 <#-- hidden debugging information -->
 <div id="sw-debug" style="display:none">
 order: ${order}<br>
+<#-- have to explicitly cast booleans to strings or error occurs, well done Freemarker -->
 reverse: ${reverse?string}<br>
 offset: ${offset}<br>
-<a href="https://vault.cca.edu/api/search/?where=/xml/local/rating like 'High'&order=${order}&reverse=${reverse?string}&start=${offset}&length=${length}">search results via API</a>
+<#-- order isn't implemented properly here, the search API takes entirely different
+set of options (reverse, modified, name, rating instead of their enum integers) -->
+<a href="https://vault.cca.edu/api/search/?where=${where}&order=${order}&reverse=${reverse?string}&start=${offset}&length=${maxResults}">search results via API</a>
 </div>
-<#--
-advancedSearch parameters are:
-    query — free text query
-    where — xpath/SQL clause
-    onlyLive — boolean for whether to only return live items
-    orderType — 0: Ranking, 1: Date Modified, 2: Name
-    reverse — boolean for reverse order
-    offset — first result index
-    maxResults — integer number of results to get
-
-    @TODO pull from UG Exhibits collection, too
--->
-<#assign search = utils.searchAdvanced('', "/xml/local/rating like 'High'", true, order, reverse, offset, length)>
+<#assign search = utils.searchAdvanced(query, where, onlyLive, order, reverse, offset, maxResults)>
 <#assign results = search.getResults()>
 
 <div id="studentWork">
