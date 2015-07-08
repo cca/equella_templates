@@ -1,6 +1,7 @@
+<#if ! user.hasRole('SYSTEM_ADMINISTRATOR_ROLE')>
+
 <script src="https://vault.cca.edu/file/91b0c427-7c26-45bc-a550-27ed93165a9d/1/jquery.justifiedGallery.min.js"></script>
 <script src="https://vault.cca.edu/file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.js"></script>
-
 <#-- first role tested is role ID on live server, 2nd is dev -->
 <#-- check user role -->
 <#if user.hasRole('490b1b93-10cd-b8fa-3291-93c357efe57b')>
@@ -542,3 +543,5 @@ body #startTourBtn{
         <img src="//vault.cca.edu/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/Kreysler%20_%20Associates%202.jpg">
     </a>
 </div>
+
+</#if>
