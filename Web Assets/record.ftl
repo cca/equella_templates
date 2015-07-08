@@ -8,6 +8,10 @@
 	</h2>
 </div>
 
+<div>
+	<pre>${mods.abstract}</pre>
+</div>
+
 <h3>Relative URLs to Files</h3>
 <dd>
     <form action="SELF" method="GET">
