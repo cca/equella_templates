@@ -1,3 +1,6 @@
+<#-- NOTE in the portlets admin, load the Masonry JS library
+under "Client-side on-ready script" external JS files -->
+
 <#-- no built-in random number facility, use current time
 taken from: http://freestyle-developments.co.uk/blog/?p=327 -->
 <#function rand min max>
@@ -25,7 +28,7 @@ note that few items (≈400 as of 7/8/15) have a high rating & more are FYP -->
 <#if reverseNum = 1>
     <#assign reverse = false>
 </#if>
-<#assign offset = rand(0, 10)>
+<#assign offset = rand(0, 20)>
 <#assign maxResults = 50>
 <#-- hidden debugging information -->
 <div id="sw-debug" style="display:none">
@@ -40,8 +43,17 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
 <#assign search = utils.searchAdvanced(query, where, onlyLive, order, reverse, offset, maxResults)>
 <#assign results = search.getResults()>
 
+<div class="clearfix">
+<h3>Student Work</h3>
 <div id="studentWork">
+<#-- this "count" check limits the display to 20 images, works around the fact
+that the number of results with thumbnails can be *highly* variable
+(from 2 to 50 in tests!) making the display erratic -->
+<#assign count = 0>
 <#list results as item>
+    <#if count = 20>
+        <#break>
+    </#if>
     <#-- item information -->
     <#assign name = item.getName()>
     <#assign itemUuid = item.getUuid()>
@@ -60,8 +72,10 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         <#if mimetype?substring(0, 5) == 'image'>
             <#-- onerror attribute here removes images that 404
             @TODO is that still necessary with the conditions above? -->
+            <#assign count = count + 1>
             <a href="${url}" title="${name}"><img src="${thumbUrl}" onerror="$(this).parent().remove()" /></a>
         </#if>
     </#if>
 </#list>
+</div>
 </div>
