@@ -1,16 +1,16 @@
 <#-- no built-in random number facility, use current time
 taken from: http://freestyle-developments.co.uk/blog/?p=327 -->
 <#function rand min max>
-  <#local now = .now?long?c />
-  <#local randomNum = _rand + ("0." + now?substring(now?length-1) + now?substring(now?length-2))?number />
+  <#local now = .now?long?c>
+  <#local randomNum = _rand + ("0." + now?substring(now?length-1) + now?substring(now?length-2))?number>
   <#if (randomNum > 1)>
-    <#assign _rand = randomNum % 1 />
+    <#assign _rand = randomNum % 1>
   <#else>
-    <#assign _rand = randomNum />
+    <#assign _rand = randomNum>
   </#if>
-  <#return (min + ((max - min) * _rand))?round />
+  <#return (min + ((max - min) * _rand))?round>
 </#function>
-<#assign _rand = 0.36 />
+<#assign _rand = 0.36>
 
 <#--
 used to create pseudo-random results by randomizing a few of the advanced
@@ -23,6 +23,14 @@ search parameters: order of results, reverse, and offset
     <#assign reverse = false>
 </#if>
 <#assign offset = rand(0, 10)>
+<#assign length = 40>
+<#-- hidden debugging information -->
+<div id="sw-debug" style="display:none">
+order: ${order}<br>
+reverse: ${reverse?string}<br>
+offset: ${offset}<br>
+<a href="https://vault.cca.edu/api/search/?where=/xml/local/rating like 'High'&order=${order}&reverse=${reverse?string}&start=${offset}&length=${length}">search results via API</a>
+</div>
 <#--
 advancedSearch parameters are:
     query — free text query
@@ -33,9 +41,9 @@ advancedSearch parameters are:
     offset — first result index
     maxResults — integer number of results to get
 
-    @TODO: pull from UG Exhibits collection, too
+    @TODO pull from UG Exhibits collection, too
 -->
-<#assign search = utils.searchAdvanced('', "/xml/local/rating like 'High'", true, order, reverse, offset, 40)>
+<#assign search = utils.searchAdvanced('', "/xml/local/rating like 'High'", true, order, reverse, offset, length)>
 <#assign results = search.getResults()>
 
 <div id="studentWork">
@@ -52,9 +60,12 @@ advancedSearch parameters are:
     or items lacking an attachment -->
     <#assign thumb = item.getXml().get('item/attachments/attachment/thumbnail')>
     <#assign filename = item.getXml().get('item/attachments/attachment/file')>
+    <#-- filename check is to prevent remote/link attachments -->
     <#if thumb != "" && ! filename?starts_with('http')>
         <#assign mimetype = mime.getMimeTypeForFilename(filename).getType()>
         <#if mimetype?substring(0, 5) == 'image'>
+            <#-- onerror attribute here removes images that 404
+            @TODO is that still necessary with the conditions above? -->
             <a href="${url}" title="${name}"><img src="${thumbUrl}" onerror="$(this).parent().remove()" /></a>
         </#if>
     </#if>
