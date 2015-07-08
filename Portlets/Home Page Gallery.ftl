@@ -1,4 +1,4 @@
-<#if ! user.hasRole('SYSTEM_ADMINISTRATOR_ROLE')>
+<#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR')>
 
 <script src="https://vault.cca.edu/file/91b0c427-7c26-45bc-a550-27ed93165a9d/1/jquery.justifiedGallery.min.js"></script>
 <script src="https://vault.cca.edu/file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.js"></script>
