@@ -1,5 +1,11 @@
-<#-- NOTE in the portlets admin, load the Masonry JS library
-under "Client-side on-ready script" external JS files -->
+<#-- NOTE in the portlets admin, load the following CSS:
+- /file/0be6649f-15fa-45da-80ac-1a9c539a9418/2/dashboard-student-work.min.css
+- /file/3c22fa1f-f837-45af-a675-115894f6b1ae/2/justifiedGallery.min(2).css
+
+also load the following JS under "Client-side on-ready script":
+- /file/3c22fa1f-f837-45af-a675-115894f6b1ae/2/jquery.justifiedGallery.min.js
+and put student-work-home.js in the "Client-side script" box
+-->
 
 <#-- no built-in random number facility, use current time
 taken from: http://freestyle-developments.co.uk/blog/?p=327 -->
@@ -85,6 +91,7 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
     </#list>
     </div>
 
+    <#-- @TODO add titles for all pre-selected images -->
     <#-- library collection pre-selected images -->
     <div id="libraryCollections" style="display:none">
         <a href="/items/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/">
