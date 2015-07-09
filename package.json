@@ -1,0 +1,25 @@
+{
+  "name": "equella_templates",
+  "version": "1.0.0",
+  "description": "Freemarker templates for VAULT",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cca/equella_templates.git"
+  },
+  "author": "phette23 <phette23@gmail.com> (http://phette.net)",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/cca/equella_templates/issues"
+  },
+  "homepage": "https://github.com/cca/equella_templates#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-cssmin": "^0.12.3",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-uglify": "^0.9.1",
+    "load-grunt-tasks": "^3.2.0"
+  }
+}

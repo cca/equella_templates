@@ -1,3 +1,4 @@
 # ignore Google Drive icons
 Icon?
 *.pdf
+dist/*
