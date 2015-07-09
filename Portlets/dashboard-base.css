@@ -1,0 +1,81 @@
+/*********************************/
+/*     Fixing Equella Styles     */
+/*********************************/
+
+body #helpAndOptions {
+    display: none !important;
+}
+
+#topwide > .box:first-child{
+    display: block;
+}
+
+#ppfm3_portletDiv {
+    background: #fff;
+}
+
+.box_head {
+    display: none;
+}
+
+.box_content {
+    padding-top: 0px;
+    border-top: 0px !important;
+}
+
+/*********************************/
+/* END Fixing Equella Styles END */
+/*********************************/
+
+#mainPageBox {
+    width: 100%;
+    margin: auto;
+}
+
+.imgContainer {
+    width: 100%;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: none;
+}
+
+.imgContainer.active>a>img:hover {
+    opacity:.8;
+}
+
+.imgContainer.active img {
+    display: none;
+}
+
+.imgContainer.active {
+    display: block !important;
+}
+
+#mainTabs {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+.mainTab {
+    float: left;
+    padding: 5px 5px;
+    color: #333 !important;
+    cursor: pointer;
+    min-width: 130px;
+    text-align: center;
+}
+
+.mainTab:hover {
+    color: #000 !important;
+}
+
+.mainTab.active {
+    font-weight: bold;
+}
+
+body .tour-backdrop {
+    opacity: .5;
+}
