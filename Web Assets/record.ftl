@@ -9,7 +9,7 @@
 </div>
 
 <div>
-	<pre>${mods.abstract}</pre>
+	<pre>${xml.get('mods/abstract')}</pre>
 </div>
 
 <h3>Relative URLs to Files</h3>
