@@ -1,7 +1,15 @@
+<#-- load the following CSS files to go with this portlet:
+- /file/3c22fa1f-f837-45af-a675-115894f6b1ae/1/justifiedGallery.min.css
+- /file/0be6649f-15fa-45da-80ac-1a9c539a9418/2/dashboard-non-cca.min.css
+- /file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.css
+
+@TODO compile these three into one file to save on HTTP requests
+see Web Assets collection to find these -->
 <#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR')>
 
-<script src="https://vault.cca.edu/file/91b0c427-7c26-45bc-a550-27ed93165a9d/1/jquery.justifiedGallery.min.js"></script>
-<script src="https://vault.cca.edu/file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.js"></script>
+<#-- @TODO handle these the same as CSS files; move out of markup -->
+<script src="/file/91b0c427-7c26-45bc-a550-27ed93165a9d/1/jquery.justifiedGallery.min.js"></script>
+<script src="/file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.js"></script>
 <#-- first role tested is role ID on live server, 2nd is dev -->
 <#-- check user role -->
 <#if user.hasRole('490b1b93-10cd-b8fa-3291-93c357efe57b')>
@@ -51,10 +59,10 @@ function checkTourStatus(){
 // Which 'how to' guide to include in 'contribute' step?
 var roleGuideSuggestion = "";
 if ( window._ccaRole == 'student' ){
-    roleGuideSuggestion = "<br><br><strong><a style='color:#d46!important;' target='_blank' href='https://vault.cca.edu/file/5b76c993-efcb-40d1-bb9a-69614ebf01eb/2/general%20student%20course%20work%20submission.pdf'>How to Upload an Assignment</a></strong>";
+    roleGuideSuggestion = "<br><br><strong><a style='color:#d46!important;' target='_blank' href='/file/5b76c993-efcb-40d1-bb9a-69614ebf01eb/2/general%20student%20course%20work%20submission.pdf'>How to Upload an Assignment</a></strong>";
 }
 else if ( window._ccaRole == 'faculty' || window._ccaRole == 'staff' ){
-    roleGuideSuggestion = "<br><br><strong><a style='color:#d46!important;' target='_blank' href='https://vault.cca.edu/file/c261de7d-bdf5-4c2b-b3e2-960cc38205af/1/fac%20assignment%20template%20submissionREVISED.pdf'>How to Create an Assignment Template</a></strong>";
+    roleGuideSuggestion = "<br><br><strong><a style='color:#d46!important;' target='_blank' href='/file/c261de7d-bdf5-4c2b-b3e2-960cc38205af/1/fac%20assignment%20template%20submissionREVISED.pdf'>How to Create an Assignment Template</a></strong>";
 }
 
 var tour = new Tour({
@@ -167,40 +175,7 @@ $('#startTourBtn').click(function(){
 });
 
 checkTourStatus();
-</script>
 
-<style>
-    /*search box styling*/
-.onClicker {
-    float:right;
-    color:#2F6FA5;
-    padding-right:20px;
-}
-
-.onClicker:hover {
-    text-decoration:underline;
-    cursor:pointer;
-}
-
-#cp-contrib {
-    float: right;
-    margin-bottom: 1em;
-}
-
-#ppsp_s {
-    margin-top:-1px;
-}
-
-#ppsp_q {
-    width:685px;
-}
-
-#ppsp_q_autocomplete .prompt {
-    width:685px;
-}
-</style>
-
-<script>
 $(function() {
 
     $('#pportlet_a0be8e7d-8171-4ffb-8d0e-48cc48170e07').clone().prependTo('#topwide').addClass('oldQS');
@@ -345,37 +320,6 @@ $(function() {
 });
 </script>
 
-<style>
-/* for Campus Planning tab */
-.onClicker{
-    float:right;
-        color:#2F6FA5;
-    padding-right:20px;
-}
-
-.onClicker:hover{
-    text-decoration:underline;
-    cursor:pointer;
-}
-
-#cp-contrib {
-    float: right;
-    margin-bottom: 1em;
-}
-
-.campPlanTitle {
-    text-transform: uppercase;
-}
-
-.campPlanTitle > span {
-    text-transform: none;
-}
-
-body #startTourBtn{
-    top:31px;
-}
-</style>
-
 <div id="mainPageBox">
     <div id="mainTabs">
         <div data-target="#communications" class="mainTab active">Communications</div>
@@ -383,51 +327,51 @@ body #startTourBtn{
         <div data-target="#campusPlanning" class="mainTab" id="campBtn">Campus Planning: Spatial Benchmarking</div>
     </div>
 
-    <div id="cp-contrib" style="display: none;"><a href="https://vault.cca.edu/access/runwizard.do?method=newitem&itemdefUuid=f75326ab-977c-4873-8987-eaa419ecb773">Contribute to collection</a></div>
+    <div id="cp-contrib" style="display: none;"><a href="/access/runwizard.do?method=newitem&itemdefUuid=f75326ab-977c-4873-8987-eaa419ecb773">Contribute to collection</a></div>
 
     <div id="libraryCollections" class="imgContainer">
-        <a href="https://vault.cca.edu/items/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/">
-            <img src="https://vault.cca.edu/file/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/13051706PS.jpg">
+        <a href="/items/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/">
+            <img src="/file/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/13051706PS.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/aea1a5b3-439c-40b7-9108-201177493e57/1/">
-            <img src="https://vault.cca.edu/file/aea1a5b3-439c-40b7-9108-201177493e57/1/13051701PS.jpg">
+        <a href="/items/aea1a5b3-439c-40b7-9108-201177493e57/1/">
+            <img src="/file/aea1a5b3-439c-40b7-9108-201177493e57/1/13051701PS.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/5f86f540-3804-ada6-d23d-deba76285264/1/">
-            <img src="https://vault.cca.edu/file/5f86f540-3804-ada6-d23d-deba76285264/1/06050806PR.jpg">
+        <a href="/items/5f86f540-3804-ada6-d23d-deba76285264/1/">
+            <img src="/file/5f86f540-3804-ada6-d23d-deba76285264/1/06050806PR.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/1119c6ff-945b-49f2-a59a-aaf1906daf1d/1/">
-            <img src="https://vault.cca.edu/file/1119c6ff-945b-49f2-a59a-aaf1906daf1d/1/13051705PS.jpg">
+        <a href="/items/1119c6ff-945b-49f2-a59a-aaf1906daf1d/1/">
+            <img src="/file/1119c6ff-945b-49f2-a59a-aaf1906daf1d/1/13051705PS.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/64c18395-b855-4bca-a56a-39e3b9dceb6c/1/">
-            <img src="https://vault.cca.edu/file/64c18395-b855-4bca-a56a-39e3b9dceb6c/1/06050811PS.jpg">
+        <a href="/items/64c18395-b855-4bca-a56a-39e3b9dceb6c/1/">
+            <img src="/file/64c18395-b855-4bca-a56a-39e3b9dceb6c/1/06050811PS.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/e8c45774-fe75-1d59-5fed-e61e96690231/1/">
-            <img src="https://vault.cca.edu/file/e8c45774-fe75-1d59-5fed-e61e96690231/1/05122214CP.jpg">
+        <a href="/items/e8c45774-fe75-1d59-5fed-e61e96690231/1/">
+            <img src="/file/e8c45774-fe75-1d59-5fed-e61e96690231/1/05122214CP.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/89207d4c-c06f-871e-21c5-b09505ef2f04/1/">
-            <img src="https://vault.cca.edu/file/89207d4c-c06f-871e-21c5-b09505ef2f04/1/06050801PR.jpg">
+        <a href="/items/89207d4c-c06f-871e-21c5-b09505ef2f04/1/">
+            <img src="/file/89207d4c-c06f-871e-21c5-b09505ef2f04/1/06050801PR.jpg">
         </a>
-          <a href="https://vault.cca.edu/items/cc55c77f-74d6-5b36-c250-bee1ffd99b4b/1/">
-            <img src="https://vault.cca.edu/file/cc55c77f-74d6-5b36-c250-bee1ffd99b4b/1/06050812PR.jpg">
+          <a href="/items/cc55c77f-74d6-5b36-c250-bee1ffd99b4b/1/">
+            <img src="/file/cc55c77f-74d6-5b36-c250-bee1ffd99b4b/1/06050812PR.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/ff95c836-1236-ed70-1608-12f426442fe6/1/">
-            <img src="https://vault.cca.edu/file/ff95c836-1236-ed70-1608-12f426442fe6/1/06050802PR.jpg">
+        <a href="/items/ff95c836-1236-ed70-1608-12f426442fe6/1/">
+            <img src="/file/ff95c836-1236-ed70-1608-12f426442fe6/1/06050802PR.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/576f4150-48d2-3fac-7e65-b81eb9287f36/1/">
-            <img src="https://vault.cca.edu/file/576f4150-48d2-3fac-7e65-b81eb9287f36/1/06101202PR.jpg">
+        <a href="/items/576f4150-48d2-3fac-7e65-b81eb9287f36/1/">
+            <img src="/file/576f4150-48d2-3fac-7e65-b81eb9287f36/1/06101202PR.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/3b20fff3-0974-7958-ef34-47feba6418e8/1/">
-            <img src="https://vault.cca.edu/file/3b20fff3-0974-7958-ef34-47feba6418e8/1/07011307WA.jpg">
+        <a href="/items/3b20fff3-0974-7958-ef34-47feba6418e8/1/">
+            <img src="/file/3b20fff3-0974-7958-ef34-47feba6418e8/1/07011307WA.jpg">
         </a>
 
-        <a href="https://vault.cca.edu/items/415ee806-36ce-8ff2-147d-9fbc4de3f87e/1/">
-            <img src="https://vault.cca.edu/file/415ee806-36ce-8ff2-147d-9fbc4de3f87e/1/06052201PS.jpg">
+        <a href="/items/415ee806-36ce-8ff2-147d-9fbc4de3f87e/1/">
+            <img src="/file/415ee806-36ce-8ff2-147d-9fbc4de3f87e/1/06052201PS.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/1a227ece-b336-95df-9fae-b5d318949f8c/1/">
-            <img src="https://vault.cca.edu/file/1a227ece-b336-95df-9fae-b5d318949f8c/1/06110103BE.jpg">
+        <a href="/items/1a227ece-b336-95df-9fae-b5d318949f8c/1/">
+            <img src="/file/1a227ece-b336-95df-9fae-b5d318949f8c/1/06110103BE.jpg">
         </a>
-        <a href="https://vault.cca.edu/items/e6490676-0020-3a29-85b6-7a41352a383b/1/">
-            <img src="https://vault.cca.edu/file/e6490676-0020-3a29-85b6-7a41352a383b/1/05122201BE.jpg">
+        <a href="/items/e6490676-0020-3a29-85b6-7a41352a383b/1/">
+            <img src="/file/e6490676-0020-3a29-85b6-7a41352a383b/1/05122201BE.jpg">
         </a>
     </div>
 

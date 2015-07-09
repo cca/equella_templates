@@ -22,7 +22,8 @@ module.exports = function (grunt) {
               sourcemap: 'none'
             },
             files: {
-              'dist/dashboard-base.min.css': 'Portlets/dashboard-base.css'
+                'dist/dashboard-non-cca.min.css': 'Portlets/dashboard-non-cca.scss',
+                'dist/dashboard-student-work.min.css': 'Portlets/dashboard-student-work.scss'
             }
           }
         },
