@@ -27,6 +27,14 @@ module.exports = function (grunt) {
             }
           }
         },
+        // @TODO drop_console: true
+        uglify: {
+            dist: {
+                files: {
+                    'dist/home-gallery.min.js': 'Portlets/home-gallery.js'
+                }
+            }
+        },
         watch: {
           dist: {
             files: ['Portlets/*.{css,js,scss}'],
@@ -37,7 +45,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean',
-        'sass'
+        'sass',
+        'uglify'
     ]);
 
     grunt.registerTask('default', [
