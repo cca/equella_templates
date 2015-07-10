@@ -52,9 +52,9 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
 <#-- wraps whole section -->
 <div class="clearfix">
     <div id="mainTabs">
-        <div data-target="#studentWork" class="mainTab active">Student Work</div>
-        <div data-target="#libraryCollections" class="mainTab">Library Collections</div>
-        <div data-target="#campusPlanning" class="mainTab" id="campBtn">Campus Planning: Spatial Benchmarking</div>
+        <a data-target="#studentWork" class="mainTab active">Student Work</a>
+        <a data-target="#libraryCollections" class="mainTab">Library Collections</a>
+        <a data-target="#campusPlanning" class="mainTab" id="campBtn">Campus Planning: Spatial Benchmarking</a>
     </div>
 
     <div id="studentWork">

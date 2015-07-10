@@ -322,9 +322,9 @@ $(function() {
 
 <div id="mainPageBox">
     <div id="mainTabs">
-        <div data-target="#communications" class="mainTab active">Communications</div>
-        <div data-target="#libraryCollections" class="mainTab">Library Collections</div>
-        <div data-target="#campusPlanning" class="mainTab" id="campBtn">Campus Planning: Spatial Benchmarking</div>
+        <a data-target="#communications" class="mainTab active">Communications</a>
+        <a data-target="#libraryCollections" class="mainTab">Library Collections</a>
+        <a data-target="#campusPlanning" class="mainTab" id="campBtn">Campus Planning: Spatial Benchmarking</a>
     </div>
 
     <div id="cp-contrib" style="display: none;"><a href="/access/runwizard.do?method=newitem&itemdefUuid=f75326ab-977c-4873-8987-eaa419ecb773">Contribute to collection</a></div>

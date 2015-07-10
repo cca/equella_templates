@@ -27,51 +27,49 @@ body #helpAndOptions {
 /* END Fixing Equella Styles END */
 /*********************************/
 
-#mainPageBox {
-    width: 100%;
-    margin: auto;
-}
-
+// gallery container & images
 .imgContainer {
     width: 100%;
     border: 1px solid #ddd;
     box-sizing: border-box;
     border-radius: 5px;
     display: none;
+
+    &.active img {
+        display: none;
+    }
+
+    &.active {
+        display: block !important;
+
+        a img:hover {
+            opacity: .8;
+        }
+    }
 }
 
-.imgContainer.active>a>img:hover {
-    opacity:.8;
-}
-
-.imgContainer.active img {
-    display: none;
-}
-
-.imgContainer.active {
-    display: block !important;
-}
-
+// collection tabs for gallery
 #mainTabs {
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
     height: 40px;
-}
 
-.mainTab {
-    float: left;
-    padding: 5px 5px;
-    color: #333 !important;
-    cursor: pointer;
-    min-width: 130px;
-    text-align: center;
-}
+    .mainTab {
+        float: left;
+        padding: 5px 5px;
+        color: #333;
+        cursor: pointer;
+        min-width: 130px;
+        text-align: center;
 
-.mainTab:hover {
-    color: #000 !important;
-}
+        &:hover {
+            color: #000;
+            text-decoration: none;
+        }
 
-.mainTab.active {
-    font-weight: bold;
+        &.active {
+            font-weight: bold;
+        }
+    }
 }
