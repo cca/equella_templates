@@ -9,24 +9,25 @@ var alignImages = function ($el) {
 }
 
 var handleTabClick = function (event) {
-    $el = $(this)
+    var $el = $(this)
     // cache jQuery lookups
-    $target = $($el.data('target'))
-    $current = $($('.mainTab.active').data('target'))
+    , $target = $($el.data('target'))
+    , $activeTab = $('.tab.active')
+    , $active = $($activeTab.data('target'))
 
     // is selected gallery already visible? do nothing
     if ($target.is(':visible')) {
         return
     } else {
         // hide active gallery, remove active class from past tab
-        $current.hide()
-        $('.mainTab.active').removeClass('active')
-        // show new gallery, add active class to clicked tab
-        $target.show()
+        $active.hide()
+        $activeTab.removeClass('active')
+        // add active class to clicked tab, show new gallery
         $el.addClass('active')
+        $target.show()
         alignImages($target)
     }
 }
 
 alignImages($('#studentWork'))
-$('.mainTab').click(handleTabClick)
+$('.tab').click(handleTabClick)

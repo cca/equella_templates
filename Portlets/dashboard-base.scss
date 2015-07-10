@@ -55,7 +55,8 @@ body #helpAndOptions {
     box-sizing: border-box;
     height: 40px;
 
-    .mainTab {
+    .mainTab,
+    .tab {
         float: left;
         padding: 5px 5px;
         color: #333;
