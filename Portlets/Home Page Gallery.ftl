@@ -3,13 +3,14 @@
 - /file/0be6649f-15fa-45da-80ac-1a9c539a9418/2/dashboard-non-cca.min.css
 - /file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.css
 
+load the following JS files:
+- /file/91b0c427-7c26-45bc-a550-27ed93165a9d/1/jquery.justifiedGallery.min.js
+- /file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.js
+
 @TODO compile these three into one file to save on HTTP requests
 see Web Assets collection to find these -->
 <#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR')>
 
-<#-- @TODO handle these the same as CSS files; move out of markup -->
-<script src="/file/91b0c427-7c26-45bc-a550-27ed93165a9d/1/jquery.justifiedGallery.min.js"></script>
-<script src="/file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.js"></script>
 <#-- first role tested is role ID on live server, 2nd is dev -->
 <#-- check user role -->
 <#if user.hasRole('490b1b93-10cd-b8fa-3291-93c357efe57b')>
