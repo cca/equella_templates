@@ -1,7 +1,6 @@
 // @TODO break this out into tour.js file
 //Create tour button in top right corner
-// @TODO move style out of string
-$('body #body-inner').append('<div style="color:#b35;" id="startTourBtn">New? Take a tour</div>');
+$('body #body-inner').append('<div id="startTourBtn">New? Take a tour</div>');
 //Check if tour has been started already, if so, change start button text and stop attention bouncing
 function checkTourStatus(){
    if (localStorage.tour_current_step == 7){
