@@ -31,7 +31,10 @@ module.exports = function (grunt) {
         uglify: {
             dist: {
                 files: {
-                    'dist/home-gallery.min.js': 'Portlets/home-gallery.js'
+                    'dist/home-gallery.min.js': [
+                        'Portlets/home-gallery.js'
+                        , 'Portlets/tour.js'
+                    ]
                 }
             }
         },
