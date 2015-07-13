@@ -27,7 +27,6 @@ module.exports = function (grunt) {
             }
           }
         },
-        // @TODO drop_console: true
         uglify: {
             dist: {
                 files: {
@@ -37,6 +36,14 @@ module.exports = function (grunt) {
                         , 'Portlets/tour.js'
                     ]
                 }
+            },
+            options: {
+                compress: {
+                    drop_console: true,
+                    warnings: true
+                },
+                mangle: 'toplevel',
+                nameCache: '.uglify-name-cache'
             }
         },
         watch: {

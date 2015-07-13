@@ -2,3 +2,4 @@
 Icon?
 *.pdf
 dist/*
+.uglify-name-cache
