@@ -1,6 +1,7 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign attachments = xml.getAllSubtrees('item/attachments/attachment')>
+<#assign repos = xml.list('mods/relatedItem/location')>
 
 <div class="item-title-and-desc">
 	<h2 class="item-title-unselectable" data-itemuuid="${itemUuid}" data-itemversion="${itemversion}">
@@ -30,7 +31,16 @@
     </#list>
     </form>
 </dd>
-<br>
+
+<#if repos?size != 0>
+	<h3>GitHub Repositories</h3>
+	<dd><ul>
+	<#list repos as repo>
+		<li><a href="${repo}" target="_blank">${repo}</a></li>
+	</#list>
+	</ul></dd><br>
+</#if>
+
 <script>
 // when checkbox is checked, prepend site's domain to URL inputs
 $('.js-root').change(function () {
