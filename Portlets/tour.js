@@ -1,5 +1,3 @@
-// Create tour button in top right corner
-$('body #body-inner').append('<div id="startTourBtn">New? Take a tour</div>');
 // Check if tour has been started already, if so, change start button text and stop attention bouncing
 function checkTourStatus(){
    if (localStorage.tour_current_step == 7){
@@ -12,6 +10,36 @@ function checkTourStatus(){
         clearInterval(jumpy);
     }
 }
+
+// bounce function
+function jumpTourBtn(){
+    $('#startTourBtn').animate({
+        top:34
+    }, 150, function(){
+        $('#startTourBtn').animate({
+            top:44
+        }, 190, function(){
+            $('#startTourBtn').animate({
+        top:34
+    }, 150, function(){
+        $('#startTourBtn').animate({
+            top:44
+        }, 190, function(){
+
+        });
+
+    });
+        });
+
+    });
+}
+
+// run on document load
+$(function(){
+
+// Create tour button in top right corner
+$('body #body-inner').append('<div id="startTourBtn">New? Take a tour</div>');
+
 
 /*-------------------------------------
   Create tour object - BOOTSTRAP TOUR
@@ -29,15 +57,13 @@ function checkTourStatus(){
 */
 
 // Which 'how to' guide to include in 'contribute' step?
-var roleGuideSuggestion = "";
+var roleGuideSuggestion;
 // global variable _ccaRole provided by Freemarker template
 if ( _ccaRole == 'student' ){
-    // @TODO move style out of string
-    roleGuideSuggestion = "<br><br><strong><a style='color:#d46!important;' target='_blank' href='/file/5b76c993-efcb-40d1-bb9a-69614ebf01eb/2/general%20student%20course%20work%20submission.pdf'>How to Upload an Assignment</a></strong>";
+    roleGuideSuggestion = "<br><br><strong><a class='suggestion' target='_blank' href='/file/5b76c993-efcb-40d1-bb9a-69614ebf01eb/2/general%20student%20course%20work%20submission.pdf'>How to Upload an Assignment</a></strong>";
 }
 else if ( _ccaRole == 'faculty' || _ccaRole == 'staff' ){
-    // @TODO move style out of string
-    roleGuideSuggestion = "<br><br><strong><a style='color:#d46!important;' target='_blank' href='/file/c261de7d-bdf5-4c2b-b3e2-960cc38205af/1/fac%20assignment%20template%20submissionREVISED.pdf'>How to Create an Assignment Template</a></strong>";
+    roleGuideSuggestion = "<br><br><strong><a class='suggestion' target='_blank' href='/file/c261de7d-bdf5-4c2b-b3e2-960cc38205af/1/fac%20assignment%20template%20submissionREVISED.pdf'>How to Create an Assignment Template</a></strong>";
 }
 
 var tour = new Tour({
@@ -52,8 +78,7 @@ var tour = new Tour({
     element: "#menu>ul>li>a[href*='access/myresources.do']",
     title: "My Resources",
     backdrop: true,
-    // @TODO move style out of string
-    content: "Once you've submitted an assignment or saved a draft you can view or make changes to it here.<br><br><strong><a style='color:#d46!important;' href='access/myresources.do?type=published'>Published</a></strong> : Finished & Submitted Assignments<br><br><strong><a style='color:#d46!important;' href='access/myresources.do?type=draft'>Drafts</a></strong> : Unsubmitted Assignments"
+    content: "Once you've submitted an assignment or saved a draft you can view or make changes to it here.<br><br><strong><a class='suggestion' href='access/myresources.do?type=published'>Published</a></strong> : Finished & Submitted Assignments<br><br><strong><a style='color:#d46!important;' href='access/myresources.do?type=draft'>Drafts</a></strong> : Unsubmitted Assignments"
   },
   {
     element: "#menu>ul>li>a[href*='access/searching.do']",
@@ -93,44 +118,18 @@ var tour = new Tour({
   }
 ],
 onEnd: function (tour) {
-    // hack to make the shadow backdrop fade out instead of disappearing instantly
-    $('body').append('<div class="tour-backdrop"></div>');
-    $('.tour-backdrop').animate({
-        opacity:0
-    }, 1000, function(){
-        $('.tour-backdrop').remove();
-    });
-    $('html,body').animate({ scrollTop: 0 }, 1000);
-
-    checkTourStatus();
-}
+        // hack to make the shadow backdrop fade out instead of disappearing instantly
+        $('body').append('<div class="tour-backdrop"></div>');
+        $('.tour-backdrop').animate({ opacity:0 }, 1000, function() {
+            $('.tour-backdrop').remove();
+        });
+        $('html, body').animate({ scrollTop: 0 }, 1000);
+        checkTourStatus();
+    }
 });
 
 // bounce the start button to call attention every 3 sec.
 var jumpy = setInterval(jumpTourBtn, 3000);
-
-// bounce function
-function jumpTourBtn(){
-    $('#startTourBtn').animate({
-        top:34
-    }, 150, function(){
-        $('#startTourBtn').animate({
-            top:44
-        }, 190, function(){
-            $('#startTourBtn').animate({
-        top:34
-    }, 150, function(){
-        $('#startTourBtn').animate({
-            top:44
-        }, 190, function(){
-
-        });
-
-    });
-        });
-
-    });
-}
 
 // if user mouses over the button then stop bouncing
 $('#startTourBtn').mouseover(function(){
@@ -151,3 +150,5 @@ $('#startTourBtn').click(function(){
 });
 
 checkTourStatus();
+
+})
