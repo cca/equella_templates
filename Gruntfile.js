@@ -32,7 +32,8 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'dist/home-gallery.min.js': [
-                        'Portlets/home-gallery.js'
+                        'Portlets/reposition-quick-search.js'
+                        , 'Portlets/home-gallery.js'
                         , 'Portlets/tour.js'
                     ]
                 }
