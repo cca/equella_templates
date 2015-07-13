@@ -42,7 +42,9 @@ module.exports = function (grunt) {
                     drop_console: true,
                     warnings: true
                 },
-                mangle: 'toplevel',
+                mangle: {
+                    toplevel: true
+                },
                 nameCache: '.uglify-name-cache'
             }
         },

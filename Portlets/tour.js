@@ -1,13 +1,13 @@
 // Check if tour has been started already, if so, change start button text and stop attention bouncing
-function checkTourStatus(){
+function checkTourStatus(interval){
    if (localStorage.tour_current_step == 7){
        $('#startTourBtn').html('Restart Tour');
        localStorage.tour_current_step = 0;
-       clearInterval(jumpy);
+       clearInterval(interval);
    }
    else if (localStorage.tour_end == 'yes'){
         $('#startTourBtn').html('Continue tour');
-        clearInterval(jumpy);
+        clearInterval(interval);
     }
 }
 
@@ -124,7 +124,7 @@ onEnd: function (tour) {
             $('.tour-backdrop').remove();
         });
         $('html, body').animate({ scrollTop: 0 }, 1000);
-        checkTourStatus();
+        checkTourStatus(jumpy);
     }
 });
 
@@ -149,6 +149,6 @@ $('#startTourBtn').click(function(){
     });
 });
 
-checkTourStatus();
+checkTourStatus(jumpy);
 
 })
