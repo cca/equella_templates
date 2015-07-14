@@ -62,7 +62,7 @@
     <dd class="collection"><a href="${collectionUrl}">${collectionTitle}</a></dd>
 </#list>
 
-<div id="images" class="clearfix">
+<ul class="clearfix thumbnails">
 <#list itemAttachments as itemAttachment>
     <#assign thumb = itemAttachment.get('thumbnail')>
     <#assign full = itemAttachment.get('file')>
@@ -79,23 +79,23 @@
             <#assign partdetail = part.get('detail')>
             <#list partnumbers as partnumber>
                 <#if partnumber == uuid && partdetail != 'yes'>
-                    <div id='image-single'>
+                    <li class="thumbnail">
                         <a href="/file/${itemUuid}/${itemversion}/${full}">
                             <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
                         </a>
                         <#if parttitle != "" || partextent != "">
                             <p class='caption'>
-                            <#if parttitle != ""><em>${parttitle}</em><br /></#if>
+                            <#if parttitle != ""><em>${parttitle}</em><br></#if>
                             <#if partextent != ""> ${partextent}</#if>
                             </p>
                         </#if>
-                    </div>
+                    </li>
                 </#if>
             </#list>
         </#list>
     </#if>
 </#list>
-</div>
+</ul>
 
 <#list names as name>
     <#assign namePart = name.get('namePart')>
