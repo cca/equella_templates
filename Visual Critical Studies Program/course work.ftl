@@ -32,19 +32,23 @@
             <dd class="collection"><a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a></dd>
         </#list>
 
-        <div id="images">
+        <ul class="thumbnails">
         <#list itemAttachments as itemAttachment>
             <#assign uuid = itemAttachment.get('uuid')>
             <#assign full = itemAttachment.get('file')>
             <#if full?ends_with(".pdf")>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" class="pdf">
-                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                <li class="thumbnail">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" class="pdf">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                </li>
             <#elseif ! full?contains("http://") && ! full?ends_with(".zip")>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" class="img">
-                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                <li class="thumbnail">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" class="img">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                </li>
             </#if>
         </#list>
-        </div>
+        </ul>
 
         <#list nameInfo as nameInfo>
             <#assign name = nameInfo.get('namePart')>
@@ -141,5 +145,5 @@
 </#list>
 
 <script>
-$('#images a.img').fancybox();
+$('.thumbnails a.img').fancybox();
 </script>

@@ -27,19 +27,19 @@
     </dd>
 </#list>
 
-<div id="images">
+<ul class="thumbnails">
 <#list itemAttachments as itemAttachment>
     <#assign thumb = itemAttachment.get('thumbnail')>
     <#assign uuid = itemAttachment.get('uuid')>
     <#assign full = itemAttachment.get('file')>
     <#-- @TODO change #image-single rule in customer.css
     can't have multiple items with identical IDs on a page -->
-    <div id='image-single'>
+    <li class="thumbnail">
         <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
         <p class='caption'>${full}</p>
-    </div>
+    </li>
 </#list>
-</div>
+</ul>
 
 <div style="clear:both;"></div>
 
