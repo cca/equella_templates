@@ -28,7 +28,7 @@
     <#assign issuuLink = relateditem.get('note')>
     <#assign @type = relateditem.get('@type')>
     <#if issuuLink == "">
-        <div id="images">
+        <ul class="thumbnails">
         <#list attachments as attachment>
             <#assign full = attachment.get('file')>
             <#assign uuid = attachment.get('uuid')>
@@ -37,8 +37,7 @@
                 <#assign partextent = part.get('extent')>
                 <#assign partnumber = part.get('number')>
                 <#if partnumber == uuid>
-					<#-- @todo multiple of the same HTML ID problem here -->
-					<div id="image-single">
+					<li class="thumbnail">
 						<a href="/file/${id}/${version}/${full}">
 						<img src="/thumbs/${id}/${version}/${uuid}"/></a>
                     <#if parttitle != "" || partextent != "">
@@ -47,11 +46,11 @@
                             <#if partextent != ""> ${partextent}</#if>
                         </p>
                     </#if>
-		            </div>
+					</li>
                 </#if>
             </#list>
         </#list>
-        </div>
+		</ul>
     <#elseif issuuLink != "">
         <div data-configid="${configID}" style="width: 525px; height: 525px;" class="issuuembed"></div>
         <script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
