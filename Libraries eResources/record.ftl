@@ -1,10 +1,26 @@
-<#assign itemUuid = xml.get('item/@id')>
-<#assign itemversion = xml.get('item/@version')>
-<#assign configID = xml.getAllSubtrees('mods/identifier')>
+<#assign id = xml.get('item/@id')>
+<#assign version = xml.get('item/@version')>
+<#assign attachments = xml.getAllSubtrees('item/attachments/attachment')>
+<#assign parts = xml.getAllSubtrees('mods/part')>
+<#assign flipbookFiles = xml.list('mods/part/numberB')>
+<#assign configID = xml.get('mods/identifier')>
 
 <dl class="clearfix">
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
+
+<#list flipbookFiles as flipbookFile>
+	<#list attachments as attachment>
+		<#assign file = attachment.get('file')>
+		<#if attachment.get('uuid') == flipbookFile && file?ends_with('.html')>
+			<h3>View Book</h3>
+			<#-- we really want to call attention to this -->
+			<dd class="alert"><strong>
+				<a href="/file/${id}/${version}/${file}" target="_blank">View this title</a> as an interactive flipbook.
+			</strong></dd>
+		</#if>
+	</#list>
+</#list>
 
 <#list xml.getAllSubtrees('mods/relateditem') as relateditem>
     <#assign title = relateditem.get('title')>
@@ -13,27 +29,27 @@
     <#assign @type = relateditem.get('@type')>
     <#if issuuLink == "">
         <div id="images">
-        <#list xml.getAllSubtrees('item/attachments/attachment') as itemAttachment>
-            <#assign full = itemAttachment.get('file')>
-            <#assign uuid = itemAttachment.get('uuid')>
-            <#-- @todo multiple of the same ID problem here -->
-            <div id="image-single">
-                <a href="/file/${itemUuid}/${itemversion}/${full}">
-                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <#list xml.getAllSubtrees('mods/part') as part>
-                    <#assign parttitle = part.get('title')>
-                    <#assign partextent = part.get('extent')>
-                    <#assign partnumber = part.get('number')>
-                    <#if partnumber == uuid>
-                        <#if parttitle != "" || partextent != "" || partnumber != "">
-                            <p class='caption'>
-                                <#if parttitle != ""><em>${parttitle} </em><br></#if>
-                                <#if partextent != ""> ${partextent}</#if>
-                            </p>
-                        </#if>
+        <#list attachments as attachment>
+            <#assign full = attachment.get('file')>
+            <#assign uuid = attachment.get('uuid')>
+            <#list parts as part>
+                <#assign parttitle = part.get('title')>
+                <#assign partextent = part.get('extent')>
+                <#assign partnumber = part.get('number')>
+                <#if partnumber == uuid>
+					<#-- @todo multiple of the same HTML ID problem here -->
+					<div id="image-single">
+						<a href="/file/${id}/${version}/${full}">
+						<img src="/thumbs/${id}/${version}/${uuid}"/></a>
+                    <#if parttitle != "" || partextent != "">
+                        <p class="caption">
+                            <#if parttitle != ""><em>${parttitle}</em><br></#if>
+                            <#if partextent != ""> ${partextent}</#if>
+                        </p>
                     </#if>
-                </#list>
-            </div>
+		            </div>
+                </#if>
+            </#list>
         </#list>
         </div>
     <#elseif issuuLink != "">
