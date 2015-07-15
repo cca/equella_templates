@@ -22,6 +22,18 @@
 	</#list>
 </#list>
 
+<#assign filenames = xml.get('local/courseWorkWrapper/projectTitle')>
+<#if filenames != "">
+	<#assign pages = xml.list('local/courseWorkWrapper/file')?size>
+	<h3>View Book</h3>
+	<#-- Bookreader URL — it parses the values passed to it -->
+	<#assign url = 'http://vm-lib-www-dev-01/bookreader/?title=' + title?url + '&id=' + id?url + '&version=' + version?url + '&filenames=' + filenames?url + '&pages=' + pages>
+	<#-- we really want to call attention to this -->
+	<dd class="alert"><strong>
+		<a href="${url}" target="_blank">View this title</a> as an interactive flipbook.
+	</strong></dd>
+</#if>
+
 <#list xml.getAllSubtrees('mods/relateditem') as relateditem>
     <#assign title = relateditem.get('title')>
     <#assign location = relateditem.get('location')>
