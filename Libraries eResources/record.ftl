@@ -9,19 +9,6 @@
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
 
-<#list flipbookFiles as flipbookFile>
-	<#list attachments as attachment>
-		<#assign file = attachment.get('file')>
-		<#if attachment.get('uuid') == flipbookFile && file?ends_with('.html')>
-			<h3>View Book</h3>
-			<#-- we really want to call attention to this -->
-			<dd class="alert"><strong>
-				<a href="/file/${id}/${version}/${file}" target="_blank">View this title</a> as an interactive flipbook.
-			</strong></dd>
-		</#if>
-	</#list>
-</#list>
-
 <#assign filenames = xml.get('local/courseWorkWrapper/projectTitle')>
 <#if filenames != "">
 	<#assign pages = xml.list('local/courseWorkWrapper/file')?size>
@@ -29,9 +16,14 @@
 	<#-- Bookreader URL — it parses the values passed to it -->
 	<#assign url = 'http://vm-lib-www-dev-01/bookreader/?title=' + title?url + '&id=' + id?url + '&version=' + version?url + '&filenames=' + filenames?url + '&pages=' + pages>
 	<#-- we really want to call attention to this -->
-	<dd class="alert"><strong>
-		<a href="${url}" target="_blank">View this title</a> as an interactive flipbook.
-	</strong></dd>
+	<div class="thumbnail">
+		<a href="${url}" target="_blank">
+			<img src="/thumbs/${id}/${version}/" alt="${title}">
+		</a>
+		<#-- break needed b/c otherwise caption is awkwardly positioned -->
+		<br>
+		<strong><a class="caption" href="${url}" target="_blank">View this title</a> as an interactive flipbook.</strong>
+	</div>
 </#if>
 
 <#list xml.getAllSubtrees('mods/relateditem') as relateditem>
