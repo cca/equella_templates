@@ -12,9 +12,6 @@
     .attachments {
         position: static;
     }
-    .sm-left-margin {
-        margin-left: 1px;
-    }
     </style>
     <dl>
         <#assign exhibitWrapper = xml.getAllSubtrees('local/exhibitWrapper')>
@@ -47,7 +44,7 @@
         <#list name as name>
             <#assign namePart = name.get('namePart')>
             <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER'>
-            <dd class="sm-left-margin"><b>Creator: </b><a href="${namePartUrl}">${namePart}</a>
+            <dd><b>Creator: </b><a href="${namePartUrl}">${namePart}</a>
             <#list subNameWrapper as subName>
                 <#assign major = subName.get('major')>
                 <#assign gradDate = subName.get('gradDate')>
@@ -63,7 +60,7 @@
 
         <#assign faculties = xml.list('local/courseInfo/faculty')>
         <#if faculties?size != 0>
-            <dd class="sm-left-margin"><b>Faculty Advisor(s)</b>:
+            <dd><b>Faculty Advisor(s)</b>:
             <#list faculties as faculty>
                 <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
                 <a href ="${facultyUrl}">${faculty}</a><#if faculty_has_next>, </#if>
@@ -72,7 +69,9 @@
 
         <#assign abstract = xml.get('mods/abstract')>
         <#if (abstract != "")>
-            <dd class="sm-left-margin"><b>Description</b>: ${abstract}</dd>
+            <dd><b>Description</b>:<br>
+                <pre>${abstract}</pre>
+            </dd>
         </#if>
 
         <#list exhibitWrapper as exhibitWrapper>

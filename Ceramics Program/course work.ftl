@@ -88,7 +88,9 @@
 
         <#assign abstract = xml.get('mods/abstract')>
         <#if (abstract != "")>
-            <dd><b>Description</b>: ${abstract}</dd>
+            <dd><b>Description</b>:<br>
+                <pre>${abstract}</pre>
+            </dd>
         </#if>
 
         <div class="clearfix">
