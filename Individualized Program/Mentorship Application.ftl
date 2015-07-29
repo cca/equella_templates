@@ -159,11 +159,13 @@ table.zebra.large tbody tr.even td:hover {
     </#list>
 
     <#if website != "">
+        <#-- fix website URLs without schemes, causes broken link -->
+        <#if ! website?starts_with('http')>
+            <#assign website = 'http://' + website>
+        </#if>
         <div class="image-artistDocs">
-            <p class='artistDocs'><i><u>Website</u></i></p>
-            <p>
-                <a href="${website}" target="_blank">${website}</a>
-            </p>
+            <p class="artistDocs"><i><u>Website</u></i></p>
+            <p><a href="${website}">${website}</a></p>
         </div>
     </#if>
 

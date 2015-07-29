@@ -96,7 +96,7 @@
             <#assign dates = exhibitWrapper.list('date')>
             <#assign galleryUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%2F%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3ESenior+packet%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3CexhibitWrapper%3E%3Cgallery%3E${gallery}%3C%2Fgallery%3E%3C%2FexhibitWrapper%3E%3C%2Flocal%3E%3Cmods%3E%3Cname%3E%3CnamePart%2F%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
             <#-- only show if we actually have something -->
-            <#if gallery != "" || note != "" || datex != "">
+            <#if gallery != "" || note != "" || dates?size != 0>
                 <h4 style="color: #666;"><u>Senior Show Information</u></h4>
                 <dd>
                 <#if gallery != ""><a href="${galleryUrl}">${gallery}</a></#if>
@@ -186,9 +186,13 @@
         <#-- INDV uses Artist's Website too -->
         <#assign website = xml.get('mods/relatedItem/location')>
         <#if website != "">
+            <#-- fix website URLs without schemes, causes broken link -->
+            <#if ! website?starts_with('http')>
+                <#assign website = 'http://' + website>
+            </#if>
             <div class="image-artistDocs">
-                <p class='artistDocs'><i><u>Website</u></i></p>
-                <p><a href="${website}" target="_blank">${website}</a></p>
+                <p class="artistDocs"><i><u>Website</u></i></p>
+                <p><a href="${website}">${website}</a></p>
             </div>
         </#if>
 
