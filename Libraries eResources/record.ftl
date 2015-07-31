@@ -16,9 +16,9 @@
 	<#-- Bookreader URL — it parses the values passed to it -->
 	<#assign url = 'http://vm-lib-www-dev-01/bookreader/?title=' + title?url + '&id=' + id?url + '&version=' + version?url + '&filenames=' + filenames?url + '&pages=' + pages>
 	<#-- we really want to call attention to this -->
-	<div class="thumbnail">
+	<div class="thumbnail" style="text-align:left">
 		<a href="${url}" target="_blank">
-			<img src="/thumbs/${id}/${version}/" alt="${title}">
+			<img src="/file/${id}/${version}/${filenames}1.jpg" alt="${title}" style="max-width:250px;height:auto">
 		</a>
 		<#-- break needed b/c otherwise caption is awkwardly positioned -->
 		<br>
