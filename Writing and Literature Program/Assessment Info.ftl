@@ -22,7 +22,7 @@
             <dd><strong>Assessment of work:</strong>
             <#assign rating = local.get('rating')>
             <#if rating == ""> <em>(No rating assigned)</em>
-                <#-- @todo translating values in the display seems like
+                <#-- @TODO translating values in the display seems like
                 a bad idea, should change how they're stored maybe?
                 —ep 2014-12-01 -->
                 <#elseif rating == "High"> Strong
