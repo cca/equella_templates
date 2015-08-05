@@ -43,6 +43,11 @@
         </#if>
     </#list>
 
+    <dd><strong>Program Chair:</strong> ${xml.get('local/thesisWrapper/reader')}</dd>
+    <dd><strong>Internal Thesis Advisor:</strong> ${xml.get('local/thesisWrapper/advisor')}</dd>
+    <#-- nowhere left to put this metadata… -->
+    <dd><strong>External Thesis Advisor:</strong> ${xml.get('mods/noteWrapper/note')}</dd>
+
     <dt>Senior Thesis Information</dt>
 
     <#list xml.getAllSubtrees('mods/name') as name>
@@ -60,16 +65,11 @@
         </dd>
     </#list>
 
-    <#assign genres = xml.list('mods/genreWrapper/genre')>
-    <#assign otherGenre = xml.get('mods/noteWrapper/note')>
-    <#if (genres?size > 0)>
-        <dd><strong>Genre(s):</strong>
-        <#list genres as genre>
-            <#if genre != "other...">
-                ${genre}<#if genre_has_next>, </#if>
-            <#else>
-                ${otherGenre}<#if genre_has_next>, </#if>
-            </#if>
+    <#assign keywords = xml.list('local/tags')>
+    <#if keywords?size != 0>
+        <dd><strong>Keyword(s):</strong>
+        <#list keywords as keyword>
+                ${keyword}<#if keyword_has_next>, </#if>
         </#list>
         </dd>
     </#if>
