@@ -11,7 +11,7 @@
     <#assign nominatedFor = xml.get('local/nominatedFor')>
     <#assign award = xml.get('local/award')>
     <#if nominatedFor != "" || award != "">
-        <dt>Awards & Nominations</dt>
+        <h4 class="alert">Awards & Nominations</h4>
         <dd class="text-error">These fields display only for Faculty and Staff.</dd>
         <#if nominatedFor != ""><dd><strong>${nominatedFor}</strong></dd></#if>
         <#if award != ""><dd><strong>${award}</strong></dd></#if>

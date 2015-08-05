@@ -14,8 +14,8 @@
     <#assign accreditation = local.get('accreditation')>
     <#assign useInReview = local.get('assessmentWrapper/useInReview')>
     <#if accreditation != "" || useInReview == 'yes'>
-        <br />
-        <h5 style="color: #936;">Information below displays ONLY to Writing and Literature Faculty &amp; Staff and College Administrators.</h5>
+        <br>
+        <h4 class="alert">Information below displays ONLY to Writing and Literature Faculty &amp; Staff and College Administrators.</h4>
         <#if accreditation != "">
             <dt>Assessment information</dt>
             <dd><strong>Flagged for:</strong> ${accreditation}</dd>

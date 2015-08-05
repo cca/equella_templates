@@ -63,9 +63,9 @@
 <#if abstract != ""><dd class="abstract">${abstract}</dd></#if>
 
 <#-- Administrator only information-->
-<#if userIsMemberOf("System Administrators")>
+<#if userIsMemberOf('System Administrators')>
     <hr>
-    <h4 style="color: #936;">Contributor information displays ONLY to system admins.</h4>
+    <h4 class="alert">Contributor information displays ONLY to system admins.</h4>
 
     <#list xml.getAllSubtrees('mods/name') as name>
         <#assign namePart = name.get('namePart')>

@@ -13,17 +13,17 @@
 <#list xml.getAllSubtrees('local') as local>
     <#assign accreditation = local.get('accreditation')>
     <#assign rating = local.get('rating')>
-    <#assign accreditationUrl = "" />
-    <#assign ratingUrl = "" />
-    <#if (accreditation != "")>
-        <br />
-        <h5 style="color: #936;">Information below displays ONLY to Industrial Design Faculty &amp; Staff and College Administrators.</h5>
-        <#if (accreditation != "")>
+    <#assign accreditationUrl = "">
+    <#assign ratingUrl = "">
+    <#if accreditation != "">
+        <br>
+        <h4 class="alert">Information below displays ONLY to Industrial Design Faculty &amp; Staff and College Administrators.</h4>
+        <#if accreditation != "">
             <dt>Assessment Information</dt>
-            <#if (accreditation != "")>
+            <#if accreditation != "">
                 <dd>Flagged for: <a href="${accreditationUrl}">${accreditation}</a></dd>
             </#if>
-            <#if (rating != "")>
+            <#if rating != "">
                 <dd>Assessment of work: <a href="${ratingUrl}">${rating}</a></dd>
             </#if>
         </#if>

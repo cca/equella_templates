@@ -18,8 +18,9 @@
         <#-- @todo fix these URLs -->
         <#assign accreditationUrl = "" />
         <#assign ratingUrl = "" />
-            <br />
-            <h5 style="color: #936;"><center>Assessment information &amp; comments display ONLY to<br/>Graphic Design Faculty &amp; Staff and College Administrators.</center></h5>
+            <br>
+            <h4 class="alert">Assessment information &amp; comments display ONLY to<br>
+            Graphic Design Faculty &amp; Staff and College Administrators.</center></h4>
             <#if (accreditation == "" && rating != "")>
                 <dt>Assessment</dt>
                 <#if (accreditation != "")>

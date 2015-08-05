@@ -18,10 +18,9 @@
     </#function>
 <#-- Administrator only information-->
 
-    <#if userIsMemberOf("First Year Portfolio Waiver Reviewers")>
+    <#if userIsMemberOf("First Year Portfolio Waiver Reviewers") || userIsMemberOf('System Administrators')>
 
-    <h5 style="color: #936; text-align:center;">Information below displays ONLY to First Year Portfolio Waiver Coordinators and College Administrators.</h5>
-
+        <h4 class="alert">Information below displays ONLY to First Year Portfolio Waiver Coordinators and College Administrators.</h4>
         <#assign apIbCredits = xml.getAllSubtrees('local/portfolioWaiverWrapper/apIbCredits')>
         <#list portfolioWaiverWrapper as portfolioWaiverWrapper>
             <#assign apIbCreditsX = portfolioWaiverWrapper.get('apIbCredits')>
@@ -49,6 +48,6 @@
 
 <#recover>
 
-<dt>Confidential information could not display</dt>
+<h4 class="alert">Confidential information could not display</h4>
 
 </#attempt>

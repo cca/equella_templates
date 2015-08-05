@@ -18,8 +18,8 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<br />
-<h5 style="color: #936;">Information below displays ONLY to Undergrad Fine Arts Staff and College Administrators.</h5>
+<br>
+<h4 class="alert">Information below displays ONLY to Undergrad Fine Arts Staff and College Administrators.</h4>
 
 <#list juniorReview as juniorReview>
     <#assign historContext = juniorReview.get('historContext')>

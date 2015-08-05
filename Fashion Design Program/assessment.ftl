@@ -18,8 +18,8 @@
     <#assign accreditationUrl = "" />
     <#assign ratingUrl = "" />
     <#if (accreditation != "")>
-        <br />
-        <h5 style="color: #936;">Information below displays ONLY to Fashion Design Faculty &amp; Staff and College Administrators.</h5>
+        <br>
+        <h4 class="alert">Information below displays ONLY to Fashion Design Faculty &amp; Staff and College Administrators.</h4>
         <#if (accreditation != "")>
             <dt>Assessment Information</dt>
             <#if (accreditation != "")>
