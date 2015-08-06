@@ -7,6 +7,18 @@ also load the following JS under "Client-side on-ready script":
 and put student-work-home.js in the "Client-side script" box
 -->
 
+<#-- check user role, passing to client side, used in tour.js -->
+<#if user.hasRole('490b1b93-10cd-b8fa-3291-93c357efe57b')>
+    <#assign role = 'faculty'>
+<#elseif user.hasRole('c8038af0-fa3f-9a70-e5e1-3f768972203a')>
+    <#assign role = 'staff'>
+<#elseif user.hasRole('89ea364f-066e-1a3f-f70e-4b29f08e8448')>
+    <#assign role = 'student'>
+<#else>
+    <#assign role = 'public'>
+</#if>
+<script>window._ccaRole = '${role}'</script>
+
 <#-- no built-in random number facility, use current time
 taken from: http://freestyle-developments.co.uk/blog/?p=327 -->
 <#function rand min max>

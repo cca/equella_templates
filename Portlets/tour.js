@@ -1,4 +1,5 @@
-// Check if tour has been started already, if so, change start button text and stop attention bouncing
+// Check if tour has been started already
+// if so, change start button text and stop attention bouncing
 function checkTourStatus(interval){
    if (localStorage.tour_current_step == 7){
        $('#startTourBtn').html('Restart Tour');
@@ -39,7 +40,6 @@ $(function(){
 
 // Create tour button in top right corner
 $('body #body-inner').append('<div id="startTourBtn">New? Take a tour</div>');
-
 
 /*-------------------------------------
   Create tour object - BOOTSTRAP TOUR
