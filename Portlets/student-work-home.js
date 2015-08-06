@@ -25,23 +25,26 @@ var timers = []
 
 var showImages = function ($wrapper) {
     var height = 100
-    var $images = $wrapper.find('img')
 
     // clear existing timers
     $.each(timers, function(index, timer) {
         clearTimeout(timer)
     })
     // hide all images
-    $images.hide();
+    $wrapper.find('img').hide();
     // justified gallery
+    // dox: miromannino.github.io/Justified-Gallery/options-and-events/
     $wrapper.justifiedGallery({
-        rowHeight: height,
-        lastRow: 'hide'
+        lastRow: 'hide',
+        randomize: true,
+        rowHeight: height
     })
     // when layout's complete, fade in each image
     // each one has a 200s longer interval than the last
     .on('jg.complete', function() {
-        $images.each(function(index, img) {
+        // cannot cache lookup any earlier since .justifiedGallery call above
+        // changed the order of the DOM elements
+        $wrapper.find('img').each(function(index, img) {
             timers.push(
                 setTimeout(function() {
                     $(img).fadeIn();

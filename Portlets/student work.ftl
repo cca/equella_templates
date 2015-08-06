@@ -142,44 +142,41 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         </#list>
     </div>
 
-    <#-- campus planning pre-selected images -->
+    <#--
+        Campus Planning tab
+
+        again, searchAdvanced parameters inherit values from 1st usage
+        we only need to redefine the "where" value, pointing to CP collection
+    -->
+    <#assign where = "/xml/item/@itemdefid IS 'f75326ab-977c-4873-8987-eaa419ecb773'">
+    <#assign search = utils.searchAdvanced(query, where, onlyLive, order, reverse, offset, maxResults)>
+    <#assign results = search.getResults()>
+
     <div id="campusPlanning" style="display:none">
-        <a href="/items/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/">
-            <img src="/file/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/SFO%20T2%205.jpg">
-        </a>
-        <a href="/items/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/">
-            <img src="/file/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/SFO%20T2%207.jpg">
-        </a>
-        <a href="/items/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/">
-            <img src="/file/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/SFO%20T2,%20SF%202.jpg">
-        </a>
-        <a href="/items/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/">
-            <img src="/file/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/Zendesk%205.jpg">
-        </a>
-        <a href="/items/1f3ee390-8bcd-4718-97ff-10db79473223/1/">
-            <img src="/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/ACCD%20CMTEL%20lab.jpg">
-        </a>
-        <a href="/items/1f3ee390-8bcd-4718-97ff-10db79473223/1/">
-            <img src="/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/ACCD%20CMTEL%20lab%202.jpg">
-        </a>
-        <a href="/items/1f3ee390-8bcd-4718-97ff-10db79473223/1/">
-            <img src="/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/Parsons%20NY%202.jpg">
-        </a>
-        <a href="/items/1f3ee390-8bcd-4718-97ff-10db79473223/1/">
-            <img src="/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/Parsons%20NY.jpg">
-        </a>
-        <a href="/items/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/">
-            <img src="/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/European%20Ceramics%20Work%20Centre%20Netherlands%209.jpg">
-        </a>
-        <a href="/items/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/">
-            <img src="/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/Kreysler%20_%20Associates%205.jpg">
-        </a>
-        <a href="/items/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/">
-            <img src="/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/Kreysler%20_%20Associates%203.jpg">
-        </a>
-        <a href="/items/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/">
-            <img src="/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/Kreysler%20_%20Associates%202.jpg">
-        </a>
+        <#assign count = 0>
+        <#list results as item>
+            <#-- CP items tend to have wider thumbnails for whatever reason
+            so we insert fewer results from their search -->
+            <#if count = 12>
+                <#break>
+            </#if>
+            <#-- item information -->
+            <#assign name = item.getName()>
+            <#assign itemUuid = item.getUuid()>
+            <#assign version = item.getVersion()>
+            <#assign url = '/items/' + itemUuid + '/' + version + '/'>
+            <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=true'>
+
+            <#assign thumb = item.getXml().get('item/attachments/attachment/thumbnail')>
+            <#assign filename = item.getXml().get('item/attachments/attachment/file')>
+            <#if thumb != "" && ! filename?starts_with('http')>
+                <#assign mimetype = mime.getMimeTypeForFilename(filename).getType()>
+                <#if mimetype?substring(0, 5) == 'image'>
+                    <#assign count = count + 1>
+                    <a href="${url}" title="${name}"><img src="${thumbUrl}" /></a>
+                </#if>
+            </#if>
+        </#list>
     </div> <#-- end campus planning -->
 
 </div> <#-- end wrapper -->
