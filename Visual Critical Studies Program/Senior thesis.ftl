@@ -48,19 +48,16 @@
     <#-- nowhere left to put this metadata… -->
     <dd><strong>External Thesis Advisor:</strong> ${xml.get('mods/noteWrapper/note')}</dd>
 
-    <dt>Senior Thesis Information</dt>
+    <dt>Master's Thesis Information</dt>
 
     <#list xml.getAllSubtrees('mods/name') as name>
         <#assign namePart = name.get('namePart')>
         <#if namePart != "">
             <dd><strong>Student:</strong> ${namePart}
         </#if>
-        <#list name.getAllSubtrees('subNameWrapper') as subName>
-            <#assign major = subName.get('major')>
-            <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER" />
-            <#if (major != "")>
+        <#list name.list('subNameWrapper/major') as major>
+            <#assign majorUrl = "">
                  — <a href="${majorUrl}">${major}</a>
-            </#if>
         </#list>
         </dd>
     </#list>
