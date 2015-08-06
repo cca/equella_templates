@@ -24,7 +24,7 @@ var handleTabClick = function (event) {
 var timers = []
 
 var showImages = function ($wrapper) {
-    var height = $wrapper.attr('id') == 'studentWork' ? 90 : 130
+    var height = 100
     var $images = $wrapper.find('img')
 
     // clear existing timers
@@ -35,7 +35,8 @@ var showImages = function ($wrapper) {
     $images.hide();
     // justified gallery
     $wrapper.justifiedGallery({
-        rowHeight: height
+        rowHeight: height,
+        lastRow: 'hide'
     })
     // when layout's complete, fade in each image
     // each one has a 200s longer interval than the last
