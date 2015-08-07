@@ -6,12 +6,14 @@
 load the following JS files:
 - /file/91b0c427-7c26-45bc-a550-27ed93165a9d/1/jquery.justifiedGallery.min.js
 - /file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.js
-- /file/9e9a26b8-5d55-4d11-82f6-0f6e901c65a8/1/home-gallery.min.js
 
 @TODO compile both of these sets into a single file to save HTTP requests
 see Web Assets collection to find these -->
 <#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR')>
 
+<#-- easiest just to load this conditionally here
+if we load via portlet settings, it fires twice for System Administrators -->
+<script src="/file/9e9a26b8-5d55-4d11-82f6-0f6e901c65a8/2/home-gallery.min.js"></script>
 <#-- check user role, passing to client side
 used in bootstrap tour to differentiate -->
 <#if user.hasRole('490b1b93-10cd-b8fa-3291-93c357efe57b')>

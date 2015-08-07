@@ -1,12 +1,10 @@
-/*********************************/
-/*     Fixing Equella Styles     */
-/*********************************/
+//     Fixing Equella Styles
 
 body #helpAndOptions {
     display: none !important;
 }
 
-#topwide > .box:first-child{
+#topwide > .box:first-child {
     display: block;
 }
 
@@ -19,22 +17,24 @@ body #helpAndOptions {
     display: none;
 }
 
-.box_content {
-    padding-top: 0px;
-    border-top: 0px !important;
+.quick-search h3 {
+    padding-left: 30px;
 }
 
-/*********************************/
-/* END Fixing Equella Styles END */
-/*********************************/
+.box_content {
+    border-top: 0px !important;
+    padding-top: 0;
+}
+
+// END Fixing Equella Styles
 
 // gallery container & images
 .imgContainer {
-    width: 100%;
     border: 1px solid #ddd;
-    box-sizing: border-box;
     border-radius: 5px;
+    box-sizing: border-box;
     display: none;
+    width: 100%;
 
     &.active img {
         display: none;
@@ -51,18 +51,18 @@ body #helpAndOptions {
 
 // collection tabs for gallery
 #mainTabs {
-    width: 100%;
-    padding: 5px;
     box-sizing: border-box;
     height: 40px;
+    padding: 5px;
+    width: 100%;
 
     .mainTab,
     .tab {
-        float: left;
-        padding: 5px 5px;
         color: #333;
         cursor: pointer;
+        float: left;
         min-width: 130px;
+        padding: 5px;
         text-align: center;
 
         &:hover {
