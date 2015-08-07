@@ -28,25 +28,28 @@
         <#assign faculty = courseInfo.get('faculty')>
         <#assign section = courseInfo.get('section')>
         <#assign courseName = courseInfo.get('courseName')>
-        <#assign courseUrl = "" />
-        <#assign semesterUrl = "" />
-        <#assign facultyUrl = "" />
-        <#assign sectionUrl = "" />
-        <#assign courseNameUrl = "" />
+        <#assign courseUrl = "">
+        <#assign semesterUrl = "">
+        <#assign facultyUrl = "">
+        <#assign sectionUrl = "">
+        <#assign courseNameUrl = "">
         <#if semester == ""><i>no course selected</i><#else>
             <dd><strong>Course:</strong>
+            <#-- we'd typically display faculty in this section
+            but it's below since it needs to be specially labelled for VCS -->
             <a href="${semesterUrl}">${semester}</a>
                  — <a href="${courseUrl}">${course}</a>
-                 — <a href="${facultyUrl}">${faculty}</a>
                  — <a href="${sectionUrl}">${section}</a>
              </dd>
         </#if>
-    </#list>
 
-    <dd><strong>Program Chair:</strong> ${xml.get('local/thesisWrapper/reader')}</dd>
-    <dd><strong>Internal Thesis Advisor:</strong> ${xml.get('local/thesisWrapper/advisor')}</dd>
-    <#-- nowhere left to put this metadata… -->
-    <dd><strong>External Thesis Advisor:</strong> ${xml.get('mods/noteWrapper/note')}</dd>
+        <dd><strong>Program Chair:</strong> ${xml.get('local/thesisWrapper/reader')}</dd>
+        <#-- VSC PM wants Master's Thesis faculty labelled "Thesis Director" per email 8/7/15 -->
+        <dd><strong>Thesis Director:</strong> ${faculty}</dd>
+        <dd><strong>Internal Thesis Advisor:</strong> ${xml.get('local/thesisWrapper/advisor')}</dd>
+        <#-- nowhere left to put this metadata… -->
+        <dd><strong>External Thesis Advisor:</strong> ${xml.get('mods/noteWrapper/note')}</dd>
+    </#list>
 
     <dt>Master's Thesis Information</dt>
 
