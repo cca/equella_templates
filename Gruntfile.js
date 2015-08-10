@@ -23,7 +23,7 @@ module.exports = function (grunt) {
             },
             files: {
                 'dist/dashboard-non-cca.min.css': 'Portlets/dashboard-non-cca.scss',
-                'dist/dashboard-student-work.min.css': 'Portlets/dashboard-student-work.scss'
+                'dist/dashboard-cca.min.css': 'Portlets/dashboard-cca.scss'
             }
           }
         },
@@ -32,7 +32,7 @@ module.exports = function (grunt) {
                 files: {
                     'dist/home-gallery.min.js': [
                         'Portlets/reposition-quick-search.js'
-                        , 'Portlets/home-gallery.js'
+                        , 'Portlets/non-cca-home.js'
                         , 'Portlets/tour.js'
                     ]
                 }
