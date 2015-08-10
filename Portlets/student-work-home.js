@@ -24,7 +24,9 @@ var handleTabClick = function (event) {
 var timers = []
 
 var showImages = function ($wrapper) {
-    var height = 100
+    var id = $wrapper.attr('id')
+    var height = (id == 'campusPlanning' ? 67.5 : 90)
+    var captions = (id == 'campusPlanning' ?  false : true)
 
     // clear existing timers
     $.each(timers, function(index, timer) {
@@ -35,9 +37,10 @@ var showImages = function ($wrapper) {
     // justified gallery
     // dox: miromannino.github.io/Justified-Gallery/options-and-events/
     $wrapper.justifiedGallery({
-        lastRow: 'hide',
-        randomize: true,
-        rowHeight: height
+        'captions': captions,
+        'lastRow': 'hide',
+        'randomize': true,
+        'rowHeight': height
     })
     // when layout's complete, fade in each image
     // each one has a 200s longer interval than the last

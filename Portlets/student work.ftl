@@ -156,8 +156,9 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         <#assign count = 0>
         <#list results as item>
             <#-- CP items tend to have wider thumbnails for whatever reason
-            so we insert fewer results from their search -->
-            <#if count = 12>
+            so student-work-home.js sets their height to 3/4ths (67.5px) others
+            thus here we insert more results from the search -->
+            <#if count = 28>
                 <#break>
             </#if>
             <#-- item information -->

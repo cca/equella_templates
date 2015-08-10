@@ -9,7 +9,7 @@ load the following JS files:
 
 @TODO compile both of these sets into a single file to save HTTP requests
 see Web Assets collection to find these -->
-<#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR')>
+<#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR') && ! user.hasRole('089686f9-0d18-1d48-6db4-9deba144af59')>
 
 <#-- easiest just to load this conditionally here
 if we load via portlet settings, it fires twice for System Administrators -->
