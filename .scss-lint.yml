@@ -1,0 +1,17 @@
+linters:
+    # so many color references, some of which are fine (e.g. black, white)
+    # we'll ignore this but could activatve once the code base is cleaner
+    ColorVariable:
+        enabled: false
+    Comment:
+        enabled: false
+    # IDs are sadly necessary when customizing vendor sites
+    IdSelector:
+        enabled: false
+    # many selectors target EQUELLA HTML where we don't control format
+    # of IDs & class names, unable to meet this standard
+    SelectorFormat:
+        enabled: false
+
+    Indentation:
+        width: 4

@@ -1,4 +1,25 @@
-@import 'dashboard-base.scss';
-@import 'quick-search.scss';
-@import 'tour.scss';
-@import 'campus-planning.scss';
+@import 'dashboard-base';
+@import 'quick-search';
+@import 'tour';
+@import 'campus-planning';
+
+// gallery container & images
+.imgContainer {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: none;
+    width: 100%;
+
+    &.active {
+        display: block !important;
+
+        a img:hover {
+            opacity: .8;
+        }
+
+        img {
+            display: none;
+        }
+    }
+}

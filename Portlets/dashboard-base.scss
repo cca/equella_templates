@@ -22,32 +22,11 @@ body #helpAndOptions {
 }
 
 .box_content {
-    border-top: 0px !important;
+    border-top: 0 !important;
     padding-top: 0;
 }
 
 // END Fixing Equella Styles
-
-// gallery container & images
-.imgContainer {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-    display: none;
-    width: 100%;
-
-    &.active img {
-        display: none;
-    }
-
-    &.active {
-        display: block !important;
-
-        a img:hover {
-            opacity: .8;
-        }
-    }
-}
 
 // collection tabs for gallery
 #mainTabs {
