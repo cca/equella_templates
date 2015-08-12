@@ -30,9 +30,14 @@ module.exports = function (grunt) {
         uglify: {
             dist: {
                 files: {
-                    'dist/home-gallery.min.js': [
-                        'Portlets/reposition-quick-search.js'
+                    'dist/non-cca-home.min.js': [
+                        'Portlets/quick-search.js'
                         , 'Portlets/non-cca-home.js'
+                        , 'Portlets/tour.js'
+                    ],
+                    'dist/cca-home.min.js': [
+                        'Portlets/quick-search.js'
+                        , 'Portlets/cca-home.js'
                         , 'Portlets/tour.js'
                     ]
                 }
