@@ -14,15 +14,8 @@ $(function() {
     $('.imgContainer.active img').hide();
     // Initialize Justified Gallery Plugin, set row height to 130px
     $('.imgContainer').justifiedGallery({
-        rowHeight: 130,
-        sizeRangeSuffixes: {
-            'lt100': '',
-            'lt240': '',
-            'lt320': '',
-            'lt500': '',
-            'lt640': '',
-            'lt1024': ''
-        }
+        lastRow: 'hide',
+        rowHeight: 130
     }).on('jg.complete', function(e) {
         if ($('#campusPlanning').hasClass('active')) {
         timers.push(setTimeout(function() {
@@ -97,15 +90,8 @@ $(function() {
         $($(this).data('target')).addClass('active');
         // run justified gallery plugin on new container
         $('.imgContainer.active').justifiedGallery({
-            rowHeight: 130,
-            sizeRangeSuffixes: {
-                'lt100': '',
-                'lt240': '',
-                'lt320': '',
-                'lt500': '',
-                'lt640': '',
-                'lt1024': ''
-            }
+            lastRow: 'hide',
+            rowHeight: 130
         });
         //hide all images initially
         $('.imgContainer.active img').hide();
