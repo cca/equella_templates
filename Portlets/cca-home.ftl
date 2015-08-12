@@ -4,7 +4,7 @@
 
 also load the following JS under "Client-side on-ready script":
 - /file/3c22fa1f-f837-45af-a675-115894f6b1ae/2/jquery.justifiedGallery.min.js
-and put student-work-home.js in the "Client-side script" box
+- /file/9e9a26b8-5d55-4d11-82f6-0f6e901c65a8/3/cca-home.min.js
 -->
 
 <#-- check user role, passing to client side, used in tour.js -->
@@ -67,9 +67,10 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         <a data-target="#studentWork" class="tab active">Student Work</a>
         <a data-target="#libraryCollections" class="tab">Library Collections</a>
         <a data-target="#campusPlanning" class="tab">Campus Planning: Spatial Benchmarking</a>
+        <a href="/access/searching.do?in=all&type=gallery" class="tab link">Browse All Collections</a>
     </div>
 
-    <div id="studentWork">
+    <div id="studentWork" style="display:none">
     <#-- this "count" check limits the display to 20 images, works around the fact
     that the number of results with thumbnails can be *highly* variable
     (from 2 to 50 in tests!) making the display erratic -->

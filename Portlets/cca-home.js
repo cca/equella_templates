@@ -1,5 +1,3 @@
-// put under "Client-side on-ready script" in the portal admin
-
 var handleTabClick = function (event) {
     var $targetTab = $(this)
     // cache jQuery lookups
@@ -51,11 +49,14 @@ var showImages = function ($wrapper) {
             timers.push(
                 setTimeout(function() {
                     $(img).fadeIn();
-                }, 200 * index)
+                }, 150 * index)
             );
         })
     })
 }
 
-showImages($('#studentWork'))
-$('.tab').click(handleTabClick)
+// run on document load
+$(function(){
+    $('.tab:not(".link")').click(handleTabClick)
+    $('.tab.active').click()
+})
