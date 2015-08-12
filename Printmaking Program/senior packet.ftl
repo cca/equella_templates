@@ -202,7 +202,8 @@
                         <#assign url = "/file/${itemUuid}/${itemversion}/${full}">
                     </#if>
                     <div class='image-with-metadata'>
-                        <a href="${url}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <#-- rel=group needed for fancybox modal -->
+                        <a href="${url}" target="_blank" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                         <p class='metadata'>
                         <#-- p.photoImagelist i sets display: block
                         in our theme -->
@@ -234,5 +235,8 @@
         </div>
 
 </dl>
+<script>
+$('.image-with-metadata a').fancybox()
+</script>
 </#if>
 </#list>
