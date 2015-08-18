@@ -58,12 +58,12 @@
 <#-- if non-library staff, we remove the attachments section at bottom of pg -->
 <#if ! userIsMemberOf('System Administrators') && ! userIsMemberOf('Libraries') && ! userIsMemberOf('Library Contributors') && ! userIsMemberOf('Library Workstudy') && ! userIsMemberOf('Library Administrator')>
     <script>
-    $('#sc_attachments_div, #extras, .area h3:last-child').remove()
+    $(function{}($('#sc_attachments_div, #extras, .area h3:last-of-type').remove()))
     </script>
     <style>
     #sc_attachments_div,
     #extras,
-    .area h3:last-child {
+    .area h3:last-of-type {
         display: none;
     }
     </style>
