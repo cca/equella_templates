@@ -29,7 +29,7 @@
 			<#assign file = attachment.get('file')>
 			<#-- first page of book -->
 			<#if file?contains(filenames + '1.JPG')>
-				<img src="/file/${id}/${version}/${file}" alt="${title}" style="max-width:250px;height:auto">
+				<img src="/file/${id}/${version}/_THUMBS/${file}_PREVIEW_.jpeg" alt="${title}" style="max-width:250px;height:auto">
 			</#if>
 		</#list>
 	</a>
