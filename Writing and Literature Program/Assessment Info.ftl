@@ -9,13 +9,13 @@
 
 <#-- Administrator only information -->
 <#if userIsMemberOf("System Administrators") || userIsMemberOf("Library Administrator") || userIsMemberOf("College Administrators") || userIsMemberOf("Writing and Literature Administrator") || userIsMemberOf("Writing and Literature External Reviewers") || userIsMemberOf("Writing and Literature Faculty")>
+    <br>
+    <h4 class="alert">Information below displays ONLY to Writing and Literature Faculty &amp; Staff and College Administrators.</h4>
 
 <#list xml.getAllSubtrees('local') as local>
     <#assign accreditation = local.get('accreditation')>
     <#assign useInReview = local.get('assessmentWrapper/useInReview')>
     <#if accreditation != "" || useInReview == 'yes'>
-        <br>
-        <h4 class="alert">Information below displays ONLY to Writing and Literature Faculty &amp; Staff and College Administrators.</h4>
         <#if accreditation != "">
             <dt>Assessment information</dt>
             <dd><strong>Flagged for:</strong> ${accreditation}</dd>
