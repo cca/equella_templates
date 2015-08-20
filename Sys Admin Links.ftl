@@ -12,7 +12,7 @@
 <#assign base = '/items/${id}/${version}/'>
 
 <#if userIsMemberOf('System Administrators')>
-    <div class="alert alert-info" style="text-align:center;">
+    <div class="alert alert-info text-center">
         <h1>System Administrator Information</h1>
         <br>
         <a class="btn-primary btn" href="${base}<XML>">&lt;XML&gt;</a>
