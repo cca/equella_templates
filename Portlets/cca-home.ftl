@@ -64,10 +64,18 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
 <#-- wraps whole section -->
 <div class="clearfix">
     <div id="mainTabs">
-        <a data-target="#studentWork" class="tab active">Student Work</a>
-        <a data-target="#libraryCollections" class="tab">Library Collections</a>
-        <a data-target="#campusPlanning" class="tab">Campus Planning: Spatial Benchmarking</a>
-        <a href="/access/searching.do?in=all&type=gallery" class="tab link">Browse All Collections</a>
+        <a data-target="#studentWork" class="tab active"
+        onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'student work']);">
+        Student Work</a>
+        <a data-target="#libraryCollections" class="tab"
+        onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'library collections']);">
+        Library Collections</a>
+        <a data-target="#campusPlanning" class="tab"
+        onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'campus planning']);">
+        Campus Planning: Spatial Benchmarking</a>
+        <a href="/access/searching.do?in=all&amptype=gallery" class="tab link"
+        onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'browse all']);">
+        Browse All Collections</a>
     </div>
 
     <div id="studentWork" style="display:none">
@@ -96,7 +104,9 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
             <#assign mimetype = mime.getMimeTypeForFilename(filename).getType()>
             <#if mimetype?substring(0, 5) == 'image'>
                 <#assign count = count + 1>
-                <a href="${url}" title="${name}"><img src="${thumbUrl}" /></a>
+                <a href="${url}" title="${name}"
+                onclick="_gaq.push(['_trackEvent', 'gallery', 'item', 'student work']);">
+                <img src="${thumbUrl}" /></a>
             </#if>
         </#if>
     </#list>
@@ -137,7 +147,9 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
                 <#assign mimetype = mime.getMimeTypeForFilename(filename).getType()>
                 <#if mimetype?substring(0, 5) == 'image'>
                     <#assign count = count + 1>
-                    <a href="${url}" title="${name}"><img src="${thumbUrl}" /></a>
+                    <a href="${url}" title="${name}"
+                    onclick="_gaq.push(['_trackEvent', 'gallery', 'item', 'library collections']);">
+                    <img src="${thumbUrl}" /></a>
                 </#if>
             </#if>
         </#list>
@@ -157,7 +169,7 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         <#assign count = 0>
         <#list results as item>
             <#-- CP items tend to have wider thumbnails for whatever reason
-            so student-work-home.js sets their height to 3/4ths (67.5px) others
+            so cca-home.js sets their height to 3/4ths (67.5px) others
             thus here we insert more results from the search -->
             <#if count = 28>
                 <#break>
@@ -175,7 +187,9 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
                 <#assign mimetype = mime.getMimeTypeForFilename(filename).getType()>
                 <#if mimetype?substring(0, 5) == 'image'>
                     <#assign count = count + 1>
-                    <a href="${url}" title="${name}"><img src="${thumbUrl}" /></a>
+                    <a href="${url}" title="${name}"
+                    onclick="_gaq.push(['_trackEvent', 'gallery', 'item', 'campus planning']);">
+                    <img src="${thumbUrl}" /></a>
                 </#if>
             </#if>
         </#list>
