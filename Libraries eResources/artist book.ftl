@@ -22,7 +22,7 @@
 <#-- points to the root of our Internet Archive Bookreader instance -->
 <#assign iab = 'http://libraries.cca.edu/bookreader/'>
 <#-- Bookreader URL — it parses the values passed to it -->
-<#assign url = iab + '?title=' + title?url + '&id=' + id?url + '&version=' + version?url + '&filenames=' + filenames?url + '&pages=' + pages>
+<#assign url = iab + '?title=' + title?url + '&id=' + id?url + '&version=' + version?url + '&filenames=' + filenames?url + '&pages=' + pages + '#page/1/mode/2up'>
 <div class="thumbnail" style="text-align:left">
 	<a href="${url}" target="_blank">
 		<#list attachments as attachment>
