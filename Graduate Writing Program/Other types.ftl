@@ -33,6 +33,11 @@ for 2 simple, additional types of content submitted by faculty
         </#if>
     </dd>
 
+    <#assign rating = xml.get('local/rating')>
+    <#if rating != "">
+        <dd><b>Progress (1-10 rating)</b>: ${rating}</dd>
+    </#if>
+
     <#assign recommendations = xml.get('/local/projectWrapper/description')>
     <#if recommendations != ''>
         <dd>
