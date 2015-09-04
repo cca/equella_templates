@@ -7,12 +7,12 @@
 
 <#assign type = xml.get('mods/genreWrapper/genre')>
 <#if type != "">
-    <dd><b>Document Type</b>: ${type}</dd>
+    <dd><b>Document Type</b>: ${xml.get('/mods/physicalDescription/formSpecific')}, ${type}</dd>
 </#if>
 
-<#assign semester = xml.get('mods/originInfo/semesterCreated')>
-<#if semester != "">
-    <dd><b>Semester</b>: ${semester}</dd>
+<#assign year = xml.get('/mods/origininfo/dateCreatedWrapper/dateCreated')>
+<#if year != "">
+    <dd><b>Academic Year</b>: ${year}</dd>
 </#if>
 
 <#assign accreditors = xml.getAll('mods/subject/name')>
