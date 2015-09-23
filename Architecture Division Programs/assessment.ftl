@@ -19,7 +19,7 @@
     <#assign standards = xml.list('local/assessmentWrapper/standardWrapper/standardStaging')?sort>
     <#if accreditation != "" || standards?size != 0>
         <br>
-        <h4 class="alert">Information below displays only to Architecture Division Faculty & College Administrators</h4>
+        <h4 class="alert text-center">Information below displays only to Architecture Division Faculty & College Administrators</h4>
     </#if>
 
     <#if accreditation != "">
