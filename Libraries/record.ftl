@@ -183,7 +183,7 @@
     <#assign dateother = dateOther.get('dateOther')>
     <#assign dateothertype = dateOther.get('dateOther/@type')>
     <#assign dateOtherqualifier = dateOther.get('dateOther/@qualifier')>
-    <#if datecreated == "">
+    <#if dateCreated == "">
         <dt>Date(s)</dt>
     </#if>
     <#if dateother != "">
@@ -325,12 +325,14 @@
         <#if relateditem_index == 0>
             <dt>Related item</dt>
         </#if>
-        <dd>
-            <#if @type == "isReferencedBy">Referenced by:</#if>
-            <#if @type == "otherVersion">Other version:</#if>
-            <#if @type == "series">Series:</#if>
-            <em>${title}</em>
-        </dd>
+        <#if title != "">
+            <dd>
+                <#if @type == "isReferencedBy">Referenced by:</#if>
+                <#if @type == "otherVersion">Other version:</#if>
+                <#if @type == "series">Series:</#if>
+                <em>${title}</em>
+            </dd>
+        </#if>
         <#if location != "">
             <dd>Location: ${location}</dd>
         </#if>
