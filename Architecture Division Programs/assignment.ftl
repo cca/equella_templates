@@ -3,8 +3,8 @@
 <#assign attachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign powerSearch = 'Pafcc42be-462c-483e-b2ed-98ffcd15ff3d'>
 
-<dl>
 <#if xml.get('local/courseWorkWrapper/submissionType') == "Assignment">
+<dl>
 
     <#assign department = xml.get('local/department')>
     <#assign division = xml.get('local/division')>

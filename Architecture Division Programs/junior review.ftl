@@ -1,4 +1,3 @@
-
 <#if xml.get('local/courseWorkWrapper/submissionType') =="Junior review">
 <dl>
 
