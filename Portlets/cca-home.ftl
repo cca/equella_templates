@@ -73,7 +73,7 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         <a data-target="#campusPlanning" class="tab"
         onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'campus planning']);">
         Campus Planning: Spatial Benchmarking</a>
-        <a href="/access/searching.do?in=all&amptype=gallery" class="tab link"
+        <a href="/access/searching.do?in=all&type=gallery" class="tab link"
         onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'browse all']);">
         Browse All Collections</a>
     </div>
