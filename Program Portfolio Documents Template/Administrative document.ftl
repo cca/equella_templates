@@ -11,7 +11,7 @@ change these variables depending upon collection
     <dl>
     <#assign courseWorkTypeSpecific = xml.get('local/courseWorkWrapper/courseWorkTypeSpecific')>
     <#assign workType = xml.get('local/courseWorkWrapper/workType')>
-    <#assign courseWorkTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3E${courseWorkType}%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign courseWorkTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3E${courseWorkType}%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
     <#assign dateCreated = xml.get('mods/origininfo/dateCreatedWrapper/dateCreated')>
 
     <#assign title = xml.get('mods/titleInfo/title')>
@@ -19,7 +19,7 @@ change these variables depending upon collection
 
     <dt class="hide">Collection</dt>
     <#assign division = xml.get('local/division')>
-    <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&dr=AFTER">
     <#assign departmentUrl = '/access/searching.do?in=${collectionID}&sort=datemodified'>
     <dd class="collection">
         <a href="${divisionUrl}">${division}</a> | <a href="${departmentUrl}">${xml.get('local/department')}</a>
@@ -29,13 +29,13 @@ change these variables depending upon collection
         <#list xml.getAllSubtrees('mods/name') as name>
             <dt>Alumnus</dt>
             <#assign namePart = name.get('namePart')>
-            <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER'>
+            <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
             <dd><a href="${namePartUrl}">${namePart}</a>
             <#list name.getAllSubtrees('subNameWrapper') as subName>
                 <#assign major = name.get('major')>
                 <#assign gradDate = subName.get('gradDate')>
-                <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
-                <#assign gradDateUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3CgradDate%3E${gradDate}%3C%2FgradDate%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+                <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
+                <#assign gradDateUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3CgradDate%3E${gradDate}%3C%2FgradDate%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
                 <#if major != ""> — <a href="${majorUrl}">${major}</a></#if>
                 <#if gradDate != ""> — Graduated: <a href="${gradDateUrl}">${gradDate}</a></#if>
             </#list>
@@ -47,7 +47,7 @@ change these variables depending upon collection
 
     <dd>Document Type: <a href="${courseWorkTypeUrl}">${courseWorkType}</a>
     <#if courseWorkTypeSpecific != ''>
-        <#assign courseWorkTypeSpecificUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkTypeSpecific%3E${courseWorkTypeSpecific}%3C%2FcourseWorkTypeSpecific%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER'>
+        <#assign courseWorkTypeSpecificUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkTypeSpecific%3E${courseWorkTypeSpecific}%3C%2FcourseWorkTypeSpecific%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
         | <a href="${courseWorkTypeSpecificUrl}">${courseWorkTypeSpecific}</a>
     </#if>
     <#if workType != '' && workType != 'undefined'>
