@@ -1,19 +1,12 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign name = xml.getAllSubtrees('mods/name')>
-<#assign projectWrapper = xml.getAllSubtrees('local/projectWrapper')>
-<#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
-<#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
-<#assign assignmentWrapper = xml.getAllSubtrees('local/assignmentWrapper')>
-<#assign seniorPacketWrapper = xml.getAllSubtrees('local/seniorPacketWrapper')>
-<#assign local = xml.getAllSubtrees('local')>
 
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
 
-    <#list name as name>
+    <#list xml.getAllSubtrees('mods/name') as name>
         <#assign namePart = name.get('namePart')>
         <dd><strong>Student:</strong> ${namePart}
         <#list name.getAllSubtrees('subNameWrapper') as subName>
@@ -38,7 +31,7 @@
     </#list>
 
 <#assign firstYearDimension = xml.getAllSubtrees('local/courseInfo/firstYearDimension')>
-    <#list courseInfo as courseInfo>
+    <#list xml.getAllSubtrees('local/courseInfo') as courseInfo>
         <#assign semester = courseInfo.get('semester')>
         <#assign department = courseInfo.get('department')>
         <#assign firstYearDimensionX = courseInfo.get('firstYearDimension')>
@@ -61,32 +54,30 @@
             </#if>
         </#function>
         <#-- the waiver status' all got mapped into rather arbitrary areas -->
-        <#list local as local>
-            <#assign C100Waiver = local.get('projectWrapper/flaggedFor')>
-            <#assign C104Waiver = local.get('courseWorkWrapper/assignmentReferences')>
-            <#assign C108Waiver = local.get('assignmentWrapper/review')>
-            <#assign C112Waiver = local.get('seniorPacketWrapper/phase')>
-            <#-- if we have any of the waiver statuses, show 'em -->
-            <#if haveWaiver(C100Waiver) || haveWaiver(C104Waiver) || haveWaiver(C108Waiver) || haveWaiver(C112Waiver)>
-                <dd>
-                    <strong>Waiver Status:</strong><br />
-                    <#if haveWaiver(C100Waiver)>${C100Waiver}<br /></#if>
-                    <#if haveWaiver(C104Waiver)>${C104Waiver}<br /></#if>
-                    <#if haveWaiver(C108Waiver)>${C108Waiver}<br /></#if>
-                    <#if haveWaiver(C112Waiver)>${C112Waiver}<br /></#if>
-                </dd>
-            </#if>
-        </#list>
+        <#assign C100Waiver = xml.get('local/projectWrapper/flaggedFor')>
+        <#assign C104Waiver = xml.get('local/courseWorkWrapper/assignmentReferences')>
+        <#assign C108Waiver = xml.get('local/assignmentWrapper/review')>
+        <#assign C112Waiver = xml.get('local/seniorPacketWrapper/phase')>
+        <#-- if we have any of the waiver statuses, show 'em -->
+        <#if haveWaiver(C100Waiver) || haveWaiver(C104Waiver) || haveWaiver(C108Waiver) || haveWaiver(C112Waiver)>
+            <dd>
+                <strong>Waiver Status:</strong><br />
+                <#if haveWaiver(C100Waiver)>${C100Waiver}<br /></#if>
+                <#if haveWaiver(C104Waiver)>${C104Waiver}<br /></#if>
+                <#if haveWaiver(C108Waiver)>${C108Waiver}<br /></#if>
+                <#if haveWaiver(C112Waiver)>${C112Waiver}<br /></#if>
+            </dd>
+        </#if>
         <hr>
     </#list>
 
-<#if xml.get('local/projectWrapper/fileA') != "">
+<#if xml.exists('local/projectWrapper/fileA')>
     <dd><strong><u>D1 PORTFOLIO</u></strong></dd>
 
     <#list itemAttachments as itemAttachment>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
-        <#list projectWrapper as D1Wrapper>
+        <#list xml.getAllSubtrees('local/projectWrapper') as D1Wrapper>
             <#assign file = D1Wrapper.get('fileA')>
             <#assign title = D1Wrapper.get('title')>
             <#assign format = D1Wrapper.get('format')>
@@ -95,7 +86,7 @@
             <#assign description = D1Wrapper.get('description')>
             <#assign waiverStatus = D1Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class='image-with-metadata'>
+                <div class="image-with-metadata shorter">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class='metadata'>
                         <#if title != ""><span class="title">${title}</span><br></#if>
@@ -112,13 +103,13 @@
     <hr />
 </#if>
 
-<#if xml.get('local/courseWorkWrapper/file') != "">
+<#if xml.exists('local/courseWorkWrapper/file')>
     <dd><strong><u>2D PORTFOLIO</u></strong></dd>
 
     <#list itemAttachments as itemAttachment>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
-        <#list courseWork as D2Wrapper>
+        <#list xml.getAllSubtrees('local/courseWorkWrapper') as D2Wrapper>
             <#assign file = D2Wrapper.get('file')>
             <#assign title = D2Wrapper.get('projectTitle')>
             <#assign format = D2Wrapper.get('material')>
@@ -127,7 +118,7 @@
             <#assign description = D2Wrapper.get('assignmentDescription')>
             <#assign waiverStatus = D2Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class="image-with-metadata">
+                <div class="image-with-metadata shorter">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
                         <#if title != ""><span class="title">${title}</span><br></#if>
@@ -150,7 +141,7 @@
     <#list itemAttachments as itemAttachment>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
-        <#list assignmentWrapper as D3Wrapper>
+        <#list xml.getAllSubtrees('local/assignmentWrapper') as D3Wrapper>
             <#assign file = D3Wrapper.get('file')>
             <#assign title = D3Wrapper.get('title')>
             <#assign format = D3Wrapper.get('type')>
@@ -176,15 +167,14 @@
     <hr />
 </#if>
 
-<#if xml.get('local/seniorPacketWrapper/file') != "">
-    <dd><strong><u>4D PORTFOLIO</u></strong><i> - Scroll down to thumbnails to access files</i></dd>
+<#if xml.exists('local/seniorPacketWrapper/file')>
+    <dd><strong><u>4D PORTFOLIO</u></strong></dd>
 
     <#list itemAttachments as itemAttachment>
         <#assign thumb = itemAttachment.get('thumbnail')>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
-        <#assign note = itemAttachment.get('description')>
-        <#list seniorPacketWrapper as D4Wrapper>
+        <#list xml.getAllSubtrees('local/seniorPacketWrapper') as D4Wrapper>
             <#assign file = D4Wrapper.get('file')>
             <#assign title = D4Wrapper.get('title')>
             <#assign format = D4Wrapper.get('formatBroad')>
@@ -194,15 +184,15 @@
             <#assign waiverStatus = D4Wrapper.get('flaggedFor')>
             <#if file == uuid>
                 <div class="image-with-metadata shorter">
-                <p class="metadata">
-                    <#if note != "">${note}<br></#if>
-                    <#if title != ""><span class="title">${title}</span><br></#if>
-                    <#if format != "">${format}<br></#if>
-                    <#if duration != "">${duration}<br></#if>
-                    <#if semester != "">${semester}<br></#if>
-                    <#if description != "">${description}<br></#if>
-                    <#if waiverStatus != "">${waiverStatus}<br></#if>
-                </p>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class="metadata">
+                        <#if title != ""><span class="title">${title}</span><br></#if>
+                        <#if format != "">${format}<br></#if>
+                        <#if duration != "">${duration}<br></#if>
+                        <#if semester != "">${semester}<br></#if>
+                        <#if description != "">${description}<br></#if>
+                        <#if waiverStatus != "">${waiverStatus}<br></#if>
+                    </p>
                 </div>
             </#if>
         </#list>

@@ -1,7 +1,6 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign projectWrapper = xml.getAllSubtrees('local/projectWrapper')>
 <#-- @todo points at Syllabus Collection power search & is only used
 for courseInfo dynamic links—is this a sensible decision?
 only 1 item right now sponsored by course anyways, low priority
@@ -110,7 +109,7 @@ https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
 <#list itemAttachments as itemAttachment>
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
-    <#list projectWrapper as projectWrapper>
+    <#list xml.getAllSubtrees('local/projectWrapper') as projectWrapper>
         <#assign title = projectWrapper.get('title')>
         <#assign artistName = projectWrapper.get('artistName')>
         <#assign semester = projectWrapper.get('semester')>
@@ -119,9 +118,9 @@ https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
         <#assign fileA = projectWrapper.get('fileA')>
         <#if fileA == uuid>
             <#if full?ends_with(".zip")><#else>
-            <div class="image-with-metadata">
-                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
-                <p class='metadata'>
+            <div class="image-with-metadata shorter">
+                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"></a>
+                <p class="metadata">
                     <#if title != ""><span class="title">${title}</span><br></#if>
                     <#if artistName != "">by ${artistName}<br></#if>
                     <#if semester != "">${semester}<br></#if>
@@ -139,14 +138,14 @@ https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
 </#list>
 </div>
 
-<#list xml.getAllSubtrees('local/exhibitWrapper/showcardFile') as showcardFile>
+<#list xml.list('local/exhibitWrapper/showcardFile') as showcardFile>
 <#list itemAttachments as itemAttachment>
-    <#if showcardFile.get('/') == itemAttachment.get('uuid')>
+    <#if showcardFile == itemAttachment.get('uuid')>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
         <dd><i><u>Show card</i></u></dd>
         <div>
-            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+            <a href="/file/${itemUuid}/${itemversion}/${full}">
             <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
         </div>
     </#if>
