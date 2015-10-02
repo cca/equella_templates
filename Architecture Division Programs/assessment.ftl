@@ -17,9 +17,23 @@
 
     <#assign accreditation = xml.get('local/accreditation')>
     <#assign standards = xml.list('local/assessmentWrapper/standardWrapper/standardStaging')?sort>
-    <#if accreditation != "" || standards?size != 0>
+    <#assign nominations = xml.list('local/nominatedFor')>
+    <#assign awards = xml.list('local/award')>
+    <#if awards?size != 0 || nominations?size != 0 || accreditation != "" || standards?size != 0>
         <br>
         <h4 class="alert text-center">Information below displays only to Architecture Division Faculty & College Administrators</h4>
+    </#if>
+
+    <#if nominations?size != 0>
+        <dd><b>Nomination(s)</b>: <#list nominations as nomination>
+            ${nomination}<#if nomination_has_next>, </#if>
+        </#list></dd>
+    </#if>
+
+    <#if awards?size != 0>
+        <dd><b>Award(s)</b>: <#list awards as award>
+            ${award}<#if award_has_next>, </#if>
+        </#list></dd>
     </#if>
 
     <#if accreditation != "">
