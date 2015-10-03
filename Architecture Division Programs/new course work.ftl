@@ -71,20 +71,24 @@
     <#assign groupProjectNumber = courseWork.get('groupProjectNumber')>
     <#assign groupConstituents = courseWork.list('groupConstituents')>
     <#assign projectTitle = courseWork.get('projectTitle')>
+    <#assign assignment = courseWork.get('assignmentTitle')>
     <#assign courseWorkTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3E${courseWorkType}%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
     <#assign groupProjectUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CgroupProject%3E${groupProject}%3C%2FgroupProject%3E%3C%2FcourseWorkWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
     <#assign courseWorkTypeSpecificUrl = "">
 
     <dd><strong>Description</strong>:
-    <#if courseWorkType != "">
+    <#if courseWorkType != ''>
         ${courseWorkType}
     </#if>
-    <#if courseWorkType !="" && projectTitle != "">: </#if>
-    <#if courseWorkTypeSpecific != "">
+    <#if courseWorkType != '' && projectTitle != ''>: </#if>
+    <#if courseWorkTypeSpecific != ''>
         ${courseWorkTypeSpecific}
     </#if>
-    <#if projectTitle != "">
+    <#if projectTitle != ''>
         number ${projectTitle}
+    </#if>
+    <#if assignment != ''>
+        assignment ${assignment}
     </#if>
     </dd>
 
