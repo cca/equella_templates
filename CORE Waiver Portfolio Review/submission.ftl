@@ -86,10 +86,10 @@
             <#assign description = D1Wrapper.get('description')>
             <#assign waiverStatus = D1Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class="image-with-metadata shorter">
+                <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class='metadata'>
-                        <#if title != ""><span class="title">${title}</span><br></#if>
+                        <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
                         <#if dimensions != "">${dimensions}<br></#if>
                         <#if semester != "">${semester}<br></#if>
@@ -118,10 +118,10 @@
             <#assign description = D2Wrapper.get('assignmentDescription')>
             <#assign waiverStatus = D2Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class="image-with-metadata shorter">
+                <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
-                        <#if title != ""><span class="title">${title}</span><br></#if>
+                        <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
                         <#if dimensions != "">${dimensions}<br></#if>
                         <#if semester != "">${semester}<br></#if>
@@ -153,7 +153,7 @@
                 <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
-                        <#if title != ""><span class="title">${title}</span><br></#if>
+                        <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
                         <#if dimensions != "">${dimensions}<br></#if>
                         <#if semester != "">${semester}<br></#if>
@@ -183,10 +183,10 @@
             <#assign description = D4Wrapper.get('notes')>
             <#assign waiverStatus = D4Wrapper.get('flaggedFor')>
             <#if file == uuid>
-                <div class="image-with-metadata shorter">
+                <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
-                        <#if title != ""><span class="title">${title}</span><br></#if>
+                        <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
                         <#if duration != "">${duration}<br></#if>
                         <#if semester != "">${semester}<br></#if>
