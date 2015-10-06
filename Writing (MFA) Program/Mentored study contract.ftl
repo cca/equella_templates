@@ -26,12 +26,29 @@
     ${namePart}
         <#assign major = name.get('subNameWrapper/major')>
         <#if major != "">
-            <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%2F%3E%3Cmods%3E%3Cname%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
-            &nbsp;-&nbsp;<a href="${majorUrl}">${major}</a>
+            <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%2F%3E%3Cmods%3E%3Cname%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER">
+            &nbsp;—&nbsp;<a href="${majorUrl}">${major}</a>
         </#if>
     </dd>
 </#list>
 <dd><b>Mentor</b>: ${xml.get('local/courseInfo/faculty')}</dd>
+
+<#list xml.getAllSubtrees('local/courseInfo') as courseInfo>
+    <#assign semester = courseInfo.get('semester')>
+    <#assign course = courseInfo.get('course')>
+    <#assign faculty = courseInfo.get('faculty')>
+    <#assign section = courseInfo.get('section')>
+    <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER">
+    <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER">
+    <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P41b33eb0-0aa4-4c89-a895-381c43e5d27a&q=&sort=datemodified&dr=AFTER">
+    <#if (semester != "")>
+    <dd>
+        <b>Course</b>:&nbsp;<a href="${semesterUrl}">${semester}</a>
+        <#if (course != "")> — <a href="${courseUrl}">${course}</a></#if>
+        <#if section != ""> — <a href="${sectionUrl}">${section}</a></#if>
+    </dd>
+    </#if>
+</#list>
 
 <dt>Details</dt>
 <dd><b>Created</b>: ${xml.get('mods/dateCreatedWrapper/dateCreated')}</dd>
