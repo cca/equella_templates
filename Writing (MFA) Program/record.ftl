@@ -2,7 +2,6 @@
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign name = xml.getAllSubtrees('mods/name')>
-<#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 
 <#if xml.get('local/courseWorkWrapper/courseWorkType') == 'Course work'>
 <dl>
@@ -30,7 +29,7 @@
     </dd>
 </#list>
 
-<#list courseInfo as courseInfo>
+<#list xml.getAllSubtrees('local/courseInfo') as courseInfo>
     <#assign semester = courseInfo.get('semester')>
     <#assign course = courseInfo.get('course')>
     <#assign faculty = courseInfo.get('faculty')>

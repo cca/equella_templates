@@ -33,6 +33,13 @@ for 2 simple, additional types of content submitted by faculty
         </#if>
     </dd>
 
+    <#assign genres = xml.list('/mods/genreWrapper/genre')>
+    <#if genres?size != 0>
+        <dd><b>Genre(s)</b>: <#list genres as genre>
+            ${genre}<#if genre_has_next>, </#if>
+        </#list></dd>
+    </#if>
+
     <#assign rating = xml.get('local/rating')>
     <#if rating != "">
         <dd><b>Progress (1-10 rating)</b>: ${rating}</dd>
