@@ -106,34 +106,37 @@
         <dd><strong>Group members were</strong>: <#list groupConstituents as constituent>${constituent}<#if constituent_has_next>, </#if></#list></dd>
     </#if>
 
-<div id='images'>
+<div id="images">
     <#list itemAttachments as itemAttachment>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
-        <div class="image-studentWork">
-            <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-            <#list xml.getAllSubtrees('mods/part') as part>
-                <#assign file = part.get('number')>
+        <#list xml.getAllSubtrees('mods/part') as part>
+            <#assign file = part.get('number')>
+            <#if file == uuid>
                 <#list part.getAllSubtrees('wrapperOther') as other>
                     <#assign format = other.get('format')>
                     <#assign formatSpecific = other.get('formatSpecific')>
                     <#assign assignNumber = other.get('assignNumber')>
                     <#assign exerciseNumber = other.get('exerciseNumber')>
-                <#if file == uuid>
-                    <p class='photoImagelist'>
-                    <#if format != "">${format}</#if>
-                    <#if format!=""><br></#if>
-                    <#if formatSpecific != "">${formatSpecific}</#if>
-                    <#if formatSpecific!=""><br></#if>
-                    <#if assignNumber != "">Assgn: ${assignNumber}</#if>
-                    <#if assignNumber!=""><br></#if>
-                    <#if exerciseNumber != "">Exercise: ${exerciseNumber}</#if>
-                    <#if exerciseNumber!=""><br></#if>
-                    </p>
-                </#if>
+                    <#assign flag = other.get('flaggedFor')>
+                    <#-- construct element class based on flags
+                    will be visible to Communications if has "comm" -->
+                    <#assign class = "image-studentWork">
+                    <#if flag == 'shared with Communications'>
+                        <#assign class = class + " comm">
+                    </#if>
+                    <div class="${class}">
+                        <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <p class="photoImagelist">
+                            <#if format != ''>${format}<br></#if>
+                            <#if formatSpecific != ''>${formatSpecific}<br></#if>
+                            <#if assignNumber != ''>Assgn: ${assignNumber}<br></#if>
+                            <#if exerciseNumber != ''>Exercise: ${exerciseNumber}<br></#if>
+                        </p>
+                    </div>
                 </#list>
-            </#list>
-        </div>
+            </#if>
+        </#list>
     </#list>
     </div>
     <div style="clear:both;"></div>
