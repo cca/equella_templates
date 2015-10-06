@@ -1,0 +1,38 @@
+<!-- not really a portlet, used on a hierarchy page -->
+<!-- hide initial, unsorted list of semesters -->
+<style>.indent ul { display: none; } </style>
+<!-- load my semester sort library -->
+<script src="/file/ed8669bd-57c4-485f-8d68-a8442026bcee/1/semsort.min.js"></script>
+<script>
+var ss = require('semester-sort')
+
+$(function(){
+
+var semesterElements = {}
+var semesterStrings = []
+var $indent = $('.indent')
+
+$indent.find('ul').eq(0).find('li').each(function() {
+    var name = $(this).text()
+    // set hash key to semester name & value to a clone of its <li> node
+    semesterElements[name] = $(this).clone()
+    // Object.keys() on above would obviate need for this array of strings
+    semesterStrings.push(name)
+})
+
+// sort, reverse chronological
+semesterStrings.sort(ss).reverse()
+// remove the old list & create a new one
+$indent.find('ul').eq(0).remove()
+$indent.prepend('<ul></ul>')
+$list = $indent.find('ul').eq(0)
+
+// insert each cloned semester element, now in correct order
+$.each(semesterStrings, function(index, value) {
+    $list.append(semesterElements[value])
+})
+// reveal
+$list.show()
+
+})
+</script>
