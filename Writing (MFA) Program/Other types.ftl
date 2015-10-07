@@ -9,7 +9,6 @@ for 2 simple, additional types of content submitted by faculty
 <#assign courseWorkType = xml.get('local/courseWorkWrapper/courseWorkType')>
 
 <#if courseWorkType == 'Thesis Candidacy Narrative' || courseWorkType == '2nd Semester Advancement Review'>
-
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>

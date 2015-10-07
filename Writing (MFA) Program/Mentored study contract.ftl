@@ -5,7 +5,6 @@
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 
 <#if xml.get('local/courseWorkWrapper/courseWorkType') == 'Mentored study contract'>
-
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>

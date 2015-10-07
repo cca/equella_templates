@@ -4,11 +4,11 @@
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign powerSearch = 'Pe78fd93a-86cd-40a9-9382-e86897646a2d'>
 
-<#-- <dl> closed in viewLevel & access display -->
-<dl>
 <#list courseWork as courseWork>
     <#assign type = courseWork.get('courseWorkType')>
     <#if type == 'Course work'>
+    <#-- <dl> closed in viewLevel & access display -->
+    <dl>
         <#assign title = xml.get('mods/titleInfo/title')>
         <h2 id="title">${title}</h2>
 

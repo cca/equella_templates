@@ -4,10 +4,11 @@
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign powerSearch = 'Pe78fd93a-86cd-40a9-9382-e86897646a2d'>
 
-<dl>
+
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
     <#assign type = courseWork.get('courseWorkType')>
     <#if type == 'Junior Review portfolio'>
+    <dl>
 
         <#assign title = xml.get('mods/titleInfo/title')>
         <h2 id="title">${title}</h2>
