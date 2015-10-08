@@ -1,3 +1,4 @@
+<!-- sort semester reverse chronologically rather than alphabetically -->
 <!-- not really a portlet, used on a hierarchy page -->
 <!-- hide initial, unsorted list of semesters -->
 <style>.indent ul { display: none; } </style>
@@ -24,7 +25,7 @@ $indent.find('ul').eq(0).find('li').each(function() {
 semesterStrings.sort(ss).reverse()
 // remove the old list & create a new one
 $indent.find('ul').eq(0).remove()
-$indent.prepend('<ul></ul>')
+$indent.find('h4').after('<ul></ul>')
 $list = $indent.find('ul').eq(0)
 
 // insert each cloned semester element, now in correct order
