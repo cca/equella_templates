@@ -58,11 +58,11 @@
 <dt class="hide">Collection</dt>
 <#list collections as collection>
     <#assign collectionTitle = collection.get('title')>
-    <#assign collectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&sort=rank&dr=AFTER" />
+    <#assign collectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&dr=AFTER">
     <dd class="collection"><a href="${collectionUrl}">${collectionTitle}</a></dd>
 </#list>
 
-<ul class="clearfix thumbnails">
+<ul class="clearfix">
 <#list itemAttachments as itemAttachment>
     <#assign thumb = itemAttachment.get('thumbnail')>
     <#assign full = itemAttachment.get('file')>
@@ -79,12 +79,12 @@
             <#assign partdetail = part.get('detail')>
             <#list partnumbers as partnumber>
                 <#if partnumber == uuid && partdetail != 'yes'>
-                    <li class="thumbnail">
+                    <li class="image-with-metadata shorter">
                         <a href="/file/${itemUuid}/${itemversion}/${full}">
                             <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
                         </a>
                         <#if parttitle != "" || partextent != "">
-                            <p class='caption'>
+                            <p class="metadata">
                             <#if parttitle != ""><em>${parttitle}</em><br></#if>
                             <#if partextent != ""> ${partextent}</#if>
                             </p>
@@ -177,7 +177,7 @@
         </dd>
     </#if>
 </#list>
-<br />
+<br>
 
 <#list dateOthers as dateOther>
     <#assign dateother = dateOther.get('dateOther')>
@@ -199,9 +199,9 @@
     <#assign extent = physdesc.get('extent')>
     <#if formBroad != "" || formSpecific != "">
         <#if physdesc_index == 0><dt>Work type &amp; Measurements</dt></#if>
-        <#assign formBroadUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformBroad%3E${formBroad}%3C%2FformBroad%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&sort=rank&dr=AFTER" />
+        <#assign formBroadUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformBroad%3E${formBroad}%3C%2FformBroad%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER">
         <dd><a href="${formBroadUrl}">${formBroad?cap_first}</a>
-        <#assign formSpecificUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformSpecific%3E${formSpecific}%3C%2FformSpecific%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&sort=rank&dr=AFTER" />
+        <#assign formSpecificUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformSpecific%3E${formSpecific}%3C%2FformSpecific%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER">
         <#if formSpecific != "">
             — <a href="${formSpecificUrl}">${formSpecific}</a>
         </#if></dd>
@@ -283,9 +283,9 @@
     <#if geographic != "">
         <dd class="subject">Geographic: ${geographic}</dd>
     </#if>
-    <#assign temporalUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&sort=rank&dr=AFTER" />
-    <#assign topicCONAUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3CtopicCONA%3E${topicCONA}%3C%2FtopicCONA%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&sort=rank&dr=AFTER" />
-    <#assign nameUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E${name}%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&sort=name&dr=AFTER" />
+    <#assign temporalUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&dr=AFTER">
+    <#assign topicCONAUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3CtopicCONA%3E${topicCONA}%3C%2FtopicCONA%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&dr=AFTER">
+    <#assign nameUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E${name}%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER">
     <#if name != "">
         <dd class="subject">Name: <a href="${nameUrl}">${name}</a></dd>
     </#if>
@@ -298,7 +298,7 @@
 </#list>
 
 <#assign photoClassification = xml.get('mods/photoClassification')>
-<#assign photoClassificationUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphotoClassification%3E${photoClassification}%3C%2FphotoClassification%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&sort=rank&dr=AFTER" />
+<#assign photoClassificationUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphotoClassification%3E${photoClassification}%3C%2FphotoClassification%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&dr=AFTER">
 <#if photoClassification != "">
     <div class="clearfix" >
         <dd class="subject">CCA/C subject: <a href="${photoClassificationUrl}">${photoClassification}</a></dd>
