@@ -12,6 +12,8 @@
         <h2 id="title">Junior Review Portfolio</h2>
 
     <#assign name = xml.get('mods/name/namePart')>
+    <#-- @TODO indentNoLine adds deceptive blue coloring
+    makes this look like a link when it's not -->
     <#if name != "">
         <dt class="indentNoLine">${name}
         <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
@@ -45,9 +47,9 @@
                 <#if full?ends_with(".zip")>
                 <#-- print nothing, skip this attachment -->
                 <#elseif full?ends_with(".jpg")>
-                    <div class='image-juniorReviewWork'>
+                    <div class="image-juniorReviewWork">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
-                    <p class='photoImagelist'>
+                    <p class="photoImagelist">
                     <#if title != ""><i>${title}</i><br /></#if>
                     <#if xml.get('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat') != ''>
                         <#list juniorReviewFiles.getAllSubtrees('projectFormatWrapper') as projectFormatWrapper>
@@ -88,9 +90,9 @@
                     </div>
 
                 <#else>
-                    <div class='image-juniorReviewWork'>
+                    <div class="image-juniorReviewWork">
                         <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
-                    <p class='photoImagelist'>
+                    <p class="photoImagelist">
                         <#if title != ""><i>${title}</i><br /></#if>
                         <#if ('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat')!=''>
                             <#list juniorReviewFiles.getAllSubtrees('projectFormatWrapper') as projectFormatWrapper>
@@ -124,7 +126,7 @@
                 <dt>Artist Statement</dt>
                 <div>
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="${thumb}" alt="Artist's Statement" width="88" height="66"/></a>
-                    <p class='artistDocs'><a href="/file/${itemUuid}/${itemversion}/${full}">${full}</a></p>
+                    <p class="artistDocs"><a href="/file/${itemUuid}/${itemversion}/${full}">${full}</a></p>
                 </div>
             </#if>
         </#list>
