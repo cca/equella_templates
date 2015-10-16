@@ -26,17 +26,9 @@ hide VAULT's wrapper basically: left, right columns, footer, non-logo stuff up t
 
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign local = xml.getAllSubtrees('local')>
-
-<style scoped>
-.text-danger {
-    color: #b94a48;
-}
-</style>
-
-
+<#assign powerSearch = 'P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3'>
 
 <dl>
-
 <#list local as local>
 
     <#assign title = xml.get('mods/titleInfo/title')>
@@ -58,10 +50,10 @@ hide VAULT's wrapper basically: left, right columns, footer, non-logo stuff up t
     <#assign course = local.get('courseInfo/course')>
     <#assign faculty = local.get('courseInfo/faculty')>
     <#assign section = local.get('courseInfo/section')>
-    <#assign courseUrl = "" />
-    <#assign semesterUrl = "" />
-    <#assign facultyUrl = "" />
-    <#assign sectionUrl = "" />
+    <#assign courseUrl = "">
+    <#assign semesterUrl = "">
+    <#assign facultyUrl = "">
+    <#assign sectionUrl = "">
     <dt>Course</dt>
     <dd>
         <#if (semester=="")><i>no course selected</i><#else>
@@ -101,12 +93,13 @@ hide VAULT's wrapper basically: left, right columns, footer, non-logo stuff up t
     <#-- see the contrib wizard for details on these controls
     the language is from DMBA's project form -->
     <#if local.get('lectureSeriesWrapper/haveRelease') == "yes">
-    <dd><strong class="text-danger">Project involves a Mutual Confidentiality and Nondisclosure Agreement with a client.</strong></dd><br>
+    <dd><strong class="text-error">Project involves a Mutual Confidentiality and Nondisclosure Agreement with a client.</strong></dd><br>
     </#if>
 
     <#if local.get('viewLevelWrapper/viewLevel-A') == "yes">
-    <dd><strong class="text-danger">Images and description should not be published publicly. For internal CCA use only.</strong></dd><br>
+    <dd><strong class="text-error">Images and description should not be published publicly. For internal CCA use only.</strong></dd><br>
     </#if>
 
 </#list>
+</dl>
 </#if>
