@@ -22,7 +22,7 @@ hide VAULT's wrapper basically: left, right columns, footer, non-logo stuff up t
 </style>
 </#if>
 
-<#if type == 'Course work'>
+<#if type == 'Course work' || type == 'Senior thesis'>
 
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign local = xml.getAllSubtrees('local')>
@@ -39,35 +39,33 @@ hide VAULT's wrapper basically: left, right columns, footer, non-logo stuff up t
     <#assign department = local.get('department')>
     <#-- NOTE: division URL hard-coded in, kind of has to be (=H&S here)
     but students can't see division search! so useless link for them -->
-    <#-- @todo fill in these links if appropriate
-    <#assign divisionUrl = "/access/searching.do?in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
-    <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER"/>
+    <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EDesign+Strategy+MBA%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=">
     <dd class="collection"><a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a></dd>
     <br />
-    -->
 
     <#assign semester = local.get('courseInfo/semester')>
     <#assign course = local.get('courseInfo/course')>
     <#assign faculty = local.get('courseInfo/faculty')>
     <#assign section = local.get('courseInfo/section')>
-    <#assign courseUrl = "">
-    <#assign semesterUrl = "">
-    <#assign facultyUrl = "">
-    <#assign sectionUrl = "">
+    <#function search str>
+        <#return '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=%22' + str + '%22'>
+    </#function>
+    <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=">
+    <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=">
     <dt>Course</dt>
     <dd>
-        <#if (semester=="")><i>no course selected</i><#else>
+        <#if semester == ""><i>no course selected</i><#else>
             <a href="${semesterUrl}">${semester}</a>
-                 — <a href="${courseUrl}">${course}</a>
+                 — <a href="${search(course)}">${course}</a>
                  — <a href="${facultyUrl}">${faculty}</a>
-                 — <a href="${sectionUrl}">${section}</a>
+                 — <a href="${search(section)}">${section}</a>
         </#if>
     </dd>
     <dd>
         <#assign courseWorkTypeSpecific = local.get('courseWorkWrapper/courseWorkTypeSpecific')>
         <#if courseWorkTypeSpecific != "">
-            <#-- @todo link -->
-            ${courseWorkTypeSpecific}
+            <a href="${search(courseWorkTypeSpecific)}">${courseWorkTypeSpecific}</a>
         </#if>
     </dd>
 
