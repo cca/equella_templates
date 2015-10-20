@@ -8,7 +8,7 @@
 
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-    <#if courseWorkType == "Senior packet">
+    <#if courseWorkType == "Senior packet" || courseWorkType == "Course work">
     <dl>
         <#assign itemUuid = xml.get('item/@id')>
         <#assign itemversion = xml.get('item/@version')>
@@ -187,9 +187,9 @@
                 <#-- open-ended description -->
                 <#assign notes = seniorPacket.get('notes')>
                 <#if file == uuid>
-                <div class='image-with-metadata'>
+                <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='metadata'>
+                    <p class="metadata">
                     <#if title != ""><span class="title">${title}</span></#if>
                     <#if date != "">${date}<br></#if>
                     <#if dimensions != ""><b>Dimensions</b>:&nbsp;${dimensions}<br></#if>
