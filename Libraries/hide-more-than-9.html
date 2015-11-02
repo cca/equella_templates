@@ -1,0 +1,18 @@
+<button class="btn btn-info btn-large js-btn-show-all" style="display:none;padding:.3em"><i class="icon-picture"></i>&nbsp;See all images…</button>
+<script>
+// for items with numerous images
+// hide images of index > 9, show "see all…" btn that reveals the rest
+var $imgs = $('.image-with-metadata')
+if ($imgs.length > 9) {
+    // store HTML in DOM, hidden, rather than JS string
+    var $btn = $('.js-btn-show-all').detach()
+    var showall = function (ev) {
+        $imgs.slice(9).toggle('fast')
+        $btn.toggle()
+    }
+
+    $imgs.slice(9).hide()
+    $imgs.eq(8).after($btn)
+    $btn.show().on('click', showall)
+}
+</script>
