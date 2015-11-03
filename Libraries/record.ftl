@@ -334,7 +334,11 @@
             </dd>
         </#if>
         <#if location != "">
-            <dd>Location: ${location}</dd>
+            <#if location?starts_with('http')>
+                <dd>Location: <a href="${location}">${location}</a></dd>
+            <#else>
+                <dd>Location: ${location}</dd>
+            </#if>
         </#if>
         <#if note != ""><dd>Note: ${note}</dd></#if>
     </#if>
