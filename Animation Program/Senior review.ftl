@@ -10,14 +10,12 @@
 <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 
-<dl>
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#if courseWorkType == "Senior review">
-
+<dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
-</dl>
 
     <dt class="hide">Collection</dt>
     <#list xml.getAllSubtrees('local') as local>
@@ -150,6 +148,6 @@
             </#if>
         </#list>
     </#list>
-
+</dl>
 </#if>
 </#list>

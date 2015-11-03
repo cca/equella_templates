@@ -15,15 +15,14 @@
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
 
-<dl>
+
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#assign finalFile = courseWork.get('file')>
 <#if (courseWorkType =="Senior project")>
-
+<dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
-</dl>
 
     <dt class="hide">Collection</dt>
     <#list local as local>
@@ -148,6 +147,6 @@
             </#if>
         </#list>
     </#list>
-
+</dl>
 </#if>
 </#list>

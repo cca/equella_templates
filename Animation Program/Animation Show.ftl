@@ -10,17 +10,15 @@
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
 
-<dl>
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#assign finalFile = courseWork.get('file')>
 <#if courseWorkType == "Animation Show Submission">
-
+<dl>
     <#list titleInfo as titleInfo>
         <#assign title = titleInfo.get('title')>
         <#assign subTitle = titleInfo.get('subTitle')>
         <h2 id="title">${title}</h2>
-</dl>
     </#list>
 
     <dt class="hide">Collection</dt>
@@ -73,6 +71,6 @@
     <#if workType == ""><em>no work type selected</em><#else>
          — <a href="${workTypeUrl}">${workType}</a>
     </#if>
-
+</dl>
 </#if>
 </#list>
