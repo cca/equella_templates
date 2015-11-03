@@ -12,7 +12,6 @@
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#if (courseWorkType == "Course work")>
-
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <#assign subTitle = xml.get('mods/titleInfo/subTitle')>

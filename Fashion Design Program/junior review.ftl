@@ -10,10 +10,10 @@
 <#assign origininfo = xml.getAllSubtrees('mods/origininfo')>
 <#assign juniorReviewFiles = xml.getAllSubtrees('local/juniorReviewWrapper/fileWrapper')>
 
-<dl>
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#if (courseWorkType =="Junior review")>
+<dl>
 
     <#list titleInfo as titleInfo>
         <#assign title = titleInfo.get('title')>

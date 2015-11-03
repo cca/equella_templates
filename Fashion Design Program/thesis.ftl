@@ -4,10 +4,10 @@
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 
-<dl>
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#if (courseWorkType == "Senior thesis project")>
+<dl>
 
     <#assign title = xml.get('mods/titleInfo/title')>
     <#assign subTitle = xml.get('mods/titleInfo/subTitle')>
