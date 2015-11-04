@@ -19,14 +19,13 @@
 <#assign origininfo = xml.getAllSubtrees('mods/origininfo')>
 <#assign seniorPacketWrapper = xml.getAllSubtrees('local/seniorPacketWrapper')>
 
-<dl>
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#if (courseWorkType == "Senior thesis project")>
+    <dl>
         <#assign title = xml.get('mods/titleInfo/title')>
         <#assign subTitle = xml.get('mods/titleInfo/subTitle')>
         <h2 id="title">${title}</h2>
-</dl>
 
     <dt class="hide">Collection</dt>
         <#list local as local>
@@ -156,6 +155,7 @@
         </#if>
         </#list>
     </#list>
+    </dl>
 
 </#if>
 </#list>

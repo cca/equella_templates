@@ -6,14 +6,12 @@
 <#assign origininfo = xml.getAllSubtrees('mods/origininfo')>
 <#assign juniorReviewFiles = xml.getAllSubtrees('local/juniorReviewWrapper/fileWrapper')>
 
-<dl>
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#if (courseWorkType =="Junior Review portfolio")>
-
+<dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
-</dl>
 
     <dt class="hide">Collection</dt>
         <#list local as local>
@@ -76,5 +74,6 @@
             </#if>
         </dd>
     </#list>
+</dl>
 </#if>
 </#list>

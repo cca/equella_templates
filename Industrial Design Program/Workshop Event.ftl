@@ -6,15 +6,14 @@
 <#assign local = xml.getAllSubtrees('local')>
 <#assign origininfo = xml.getAllSubtrees('mods/origininfo')>
 
-<dl>
+
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
 <#if (courseWorkType == "Workshop / Events")>
-
+<dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <#assign subTitle = xml.get('mods/titleInfo/subTitle')>
     <h2 id="title">${title}</h2>
-</dl>
 
     <dt class="hide">Collection</dt>
         <#list local as local>
@@ -85,6 +84,6 @@
         </#if>
     </#list>
 
-
+</dl>
 </#if>
 </#list>
