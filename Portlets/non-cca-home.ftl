@@ -1,13 +1,10 @@
 <#-- load the following CSS files to go with this portlet:
 - /file/3c22fa1f-f837-45af-a675-115894f6b1ae/1/justifiedGallery.min.css
 - /file/0be6649f-15fa-45da-80ac-1a9c539a9418/2/dashboard-non-cca.min.css
-- /file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.css
 
 load the following JS files:
 - /file/3c22fa1f-f837-45af-a675-115894f6b1ae/2/jquery.justifiedGallery.min.js
-- /file/4d7bd7f2-3093-41be-a53a-e13afa8c2dbf/1/bootstrap-tour-standalone.min.js
 
-@TODO compile both of these sets into a single file to save HTTP requests
 see Web Assets collection to find these -->
 <#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR')>
 
@@ -25,10 +22,6 @@ used in bootstrap tour to differentiate -->
 <#else>
     <#assign role = 'public'>
 </#if>
-<script>
-//user role JS variable
-window._ccaRole = '${role}';
-</script>
 
 <div id="mainPageBox">
     <div id="mainTabs">

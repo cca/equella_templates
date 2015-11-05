@@ -33,7 +33,6 @@ module.exports = function (grunt) {
                     'dist/non-cca-home.min.js': [
                         'Portlets/quick-search.js'
                         , 'Portlets/non-cca-home.js'
-                        , 'Portlets/tour.js'
                     ],
                     'dist/cca-home.min.js': [
                         'Portlets/quick-search.js'
