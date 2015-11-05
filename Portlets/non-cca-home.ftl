@@ -4,9 +4,13 @@
 
 load the following JS files:
 - /file/3c22fa1f-f837-45af-a675-115894f6b1ae/2/jquery.justifiedGallery.min.js
-- /file/9e9a26b8-5d55-4d11-82f6-0f6e901c65a8/3/non-cca-home.min.js
 
 see Web Assets collection to find these -->
+<#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR')>
+
+<#-- easiest just to load this conditionally here
+if we load via portlet settings, it fires twice for System Administrators -->
+<script src="/file/9e9a26b8-5d55-4d11-82f6-0f6e901c65a8/3/non-cca-home.min.js"></script>
 
 <div id="mainPageBox">
     <div id="mainTabs">
@@ -175,3 +179,5 @@ see Web Assets collection to find these -->
         <img src="//vault.cca.edu/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/Kreysler%20_%20Associates%202.jpg">
     </a>
 </div>
+
+</#if>
