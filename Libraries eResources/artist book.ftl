@@ -13,6 +13,12 @@
 <#assign formBroad = xml.get('mods/physicalDescription/formBroad')>
 
 <#if formBroad == "artists' books (books)"><dl>
+<style>
+/* undo the terribly annoying display: inline in our theme */
+.itemsummary-layout .area p {
+    display: block;
+}
+</style>
 
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
@@ -23,6 +29,7 @@
 <#assign iab = 'http://libraries.cca.edu/bookreader/'>
 <#-- Bookreader URL — it parses the values passed to it -->
 <#assign url = iab + '?title=' + title?url + '&id=' + id?url + '&version=' + version?url + '&filenames=' + filenames?url + '&pages=' + pages + '#page/1/mode/2up'>
+<#assign catalogUrl = xml.get('mods/relateditem/location')>
 <div class="thumbnail" style="text-align:left">
 	<a href="${url}" target="_blank">
 		<#list attachments as attachment>
@@ -33,27 +40,14 @@
 			</#if>
 		</#list>
 	</a>
-	<#-- break needed b/c otherwise caption is awkwardly positioned -->
-	<br>
-	<strong><a class="caption" href="${url}" target="_blank">View this title as an interactive flipbook.</a></strong>
-	<br><br>
 </div>
+<p>
+    View an excerpt of this work as <a href="${url}" target="_blank">an interactive flipbook</a>. To see the complete work, visit the library. Find its location <a href="${catalogUrl}" target="_blank">via the library catalog</a>.
+</p>
 
-<#list xml.getAllSubtrees('mods/relateditem') as relateditem>
-    <#assign location = relateditem.get('location')>
-    <#if location != "">
-        <#if relateditem_index == 0>
-            <dt>Library Catalog Link</dt>
-        </#if>
-        <dd>
-            <em>
-	            <#if location != "" && location != "http://library.cca.edu/record=b">
-	                <a href="${location}">${location}</a>
-	            </#if>
-            </em>
-        </dd>
-    </#if>
-</#list>
+<h3>The Artists' Books Collection</h3>
+<p>This book is part of the CCA Libraries <cite>Artists' Books Collection</cite>, comprised of approximately 340 unique works. The collection includes works by faculty members, students, alumni, and internationally recognized artists. <a href="http://library.cca.edu/search~S1?/dArtists%27+books+collection.+CCA/dartists+books+collection+cca/-3%2C-1%2C0%2CB/exact&FF=dartists+books+collection+cca&1%2C338%2C">The Artists' Books Collection</a>, housed in the Meyer and Simpson Libraries, was developed to support study and teaching of bookworks as an art form. The collection is non-circulating but browsable within the library by request.</p>
+<p>You will find digital excerpts of each artist book <a href="/hierarchy.do?topic=a7b976d5-5316-44da-b06e-7374cd100075&page=1">in VAULT</a>. The online bookreader attempts to capture the diverse and intriguing nature of the book as art form. Enjoy!</p>
 
 <#-- if non-library staff, we remove the attachments section at bottom of pg -->
 <#if ! userIsMemberOf('System Administrators') && ! userIsMemberOf('Libraries') && ! userIsMemberOf('Library Contributors') && ! userIsMemberOf('Library Workstudy') && ! userIsMemberOf('Library Administrator')>
