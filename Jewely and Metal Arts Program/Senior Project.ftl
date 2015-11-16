@@ -184,7 +184,7 @@
                     <#assign technique = seniorPacket.get('technique')>
                     <#assign notes = seniorPacket.get('notes')>
                     <div class="image-with-metadata">
-                        <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                        <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
                         <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                         <p class="metadata">
                             <#if title != ""><span class="title">${title}</span></#if>
@@ -205,5 +205,8 @@
         </#list>
         </div>
     </dl>
+<script>
+$('.image-with-metadata a').fancybox()
+</script>
 </#if>
 </#list>
