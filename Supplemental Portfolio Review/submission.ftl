@@ -43,7 +43,6 @@
             <#assign format = wrapper.get('format')>
             <#assign semester = wrapper.get('semester')>
             <#assign description = wrapper.get('description')>
-            <#assign waiverStatus = wrapper.get('flaggedFor')>
             <#if file == uuid>
                 <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
@@ -52,7 +51,6 @@
                         <#if format != "">${format}<br></#if>
                         <#if semester != "">${semester}<br></#if>
                         <#if description != "">${description}<br></#if>
-                        <#if waiverStatus != "">${waiverStatus}<br></#if>
                     </p>
                 </div>
             </#if>
