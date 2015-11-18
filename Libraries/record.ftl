@@ -152,27 +152,32 @@
     <#assign datequalifier = date.get('@qualifier')>
     <#assign dateStart = date.get('pointStart')>
     <#assign dateEnd = date.get('pointEnd')>
+
     <#if dateCreated != "" || dateStart != "">
        <dt>Date(s)</dt>
     </#if>
-    <dd class="date clearfix">
+
     <#if dateCreated != "">
-       Date created: ${dateCreated}
+        <dd class="date clearfix">
+        <#-- NOTE: if you want nicely formatted dates with month names
+        the _month value only_ needs to be wrapped in a .js-date tag -->
+        Date created: <span class="js-date">${dateCreated}</span>
+        <#if datequalifier != "">
+             (${datequalifier})
+        </#if>
+        </dd>
     </#if>
-    <#if datequalifier != "">
-         (${datequalifier})
-    </#if>
-    </dd>
+
     <#if dateStart != "" || dateEnd != "">
-        <dd>
+        <dd class="date clearfix">
         <#if dateStart != "">
-            Date range: ${dateStart}
+            Date range: <span class="js-date">${dateStart}</span>
         </#if>
         <#if dateStart != "" && dateEnd != "">
             -
         </#if>
         <#if dateEnd != "">
-            ${dateEnd}
+            <span class="js-date">${dateEnd}</span>
         </#if>
         </dd>
     </#if>
@@ -181,15 +186,29 @@
 
 <#list dateOthers as dateOther>
     <#assign dateother = dateOther.get('dateOther')>
-    <#assign dateothertype = dateOther.get('dateOther/@type')>
+    <#assign dateOtherType = dateOther.get('dateOther/@type')>
     <#assign dateOtherqualifier = dateOther.get('dateOther/@qualifier')>
-    <#if dateCreated == "">
+
+    <#-- note that this refers to the _other_ date assigned above
+    prevents us from printing the "date(s)" label twice -->
+    <#if dateCreated == ''>
         <dt>Date(s)</dt>
     </#if>
-    <#if dateother != "">
-        <dd class="date">${dateothertype} date: ${dateother}
+    <#-- there's no field even targeting /mods/origininfo/dateOtherWrapper/dateOther
+     in the Libraries collection contribution wizard, this could never be true -->
+    <#if dateother != ''>
+        <dd class="date">${dateOtherType?cap_first} date: <span class="js-date">${dateother}</span>
             <#if dateOtherqualifier != ""> (${dateOtherqualifier})</#if>
-        </dd>
+        </dd><br>
+    </#if>
+    <#-- for the way CSP items format their exhibition dates -->
+    <#if dateOtherType != ''>
+        <#assign dateOtherStart = dateOther.get('pointStart')>
+        <#assign dateOtherEnd = dateOther.get('pointEnd')>
+        <dd class="date">
+            ${dateOtherType?cap_first} date(s): <span class="js-date">${dateOtherStart}</span>
+            <#if dateOtherEnd != ''> - <span class="js-date">${dateOtherEnd}</span></#if>
+        </dd><br>
     </#if>
 </#list>
 

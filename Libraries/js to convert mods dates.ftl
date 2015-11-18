@@ -18,17 +18,28 @@ var months = [null
 	, "December"
 ]
 // run on each date
-$('dd.date').each(function(i, el) {
+$('.js-date').each(function(i, el) {
 	// text is like "2015-02-22"
-	var date = $(el).text().replace('Date created: ', '').split('-')
-	var year = date[0]
+	// wish we could use Intl.DateTimeFormat but sometimes we're missing the day
+	// which means we can't make a complete JavaScript Date object
+	var dates = $(el).text().split('-')
+	var year = dates[0]
+	var month_num = parseInt(dates[1], 10)
 	// below guarding against any piece being missing
-	var month_num = parseInt(date[1], 10)
 	var month = months[month_num]
-	var day = date[2]
+	var day = dates[2]
+	var formattedDate = ''
 
-	var formattedDate = [month , day, ',', year].join(' ').replace(' ,', '')
-	$(el).text('Date created: ' + formattedDate)
+	// we assume we have at least a year
+	if (day && month) {
+		formattedDate = month + ' ' + day + ', ' + year
+	} else if (month) {
+		formattedDate = month + ', ' + year
+	} else {
+		formattedDate = year
+	}
+
+	$(el).text(formattedDate)
 })
 
 })(jQuery)
