@@ -1,22 +1,23 @@
+<#assign archivesWrappers = xml.getAllSubtrees('local/archivesWrapper')>
+<#assign collections = xml.getAllSubtrees('mods/relatedItem')>
+<#assign dateOthers = xml.getAllSubtrees('mods/origininfo/dateOtherWrapper')>
+<#assign dates = xml.getAllSubtrees('mods/origininfo/dateCreatedWrapper')>
+<#assign genreWrappers = xml.getAllSubtrees('mods/genreWrapper')>
+<#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign titleInfos = xml.getAllSubtrees('mods/titleInfo')>
-<#assign collections = xml.getAllSubtrees('mods/relatedItem')>
-<#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign names = xml.getAllSubtrees('mods/name')>
-<#assign physdescs = xml.getAllSubtrees('mods/physicalDescription')>
-<#assign physdescNotes = xml.getAllSubtrees('mods/physicalDescriptionNote')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
-<#assign originInfos = xml.getAllSubtrees('mods/originInfo')>
-<#assign dates = xml.getAllSubtrees('mods/origininfo/dateCreatedWrapper')>
-<#assign dateOthers = xml.getAllSubtrees('mods/origininfo/dateOtherWrapper')>
-<#assign subjects = xml.getAllSubtrees('mods/subject')>
-<#assign relateditems = xml.getAllSubtrees('mods/relateditem')>
-<#assign genreWrappers = xml.getAllSubtrees('mods/genreWrapper')>
 <#assign locations = xml.getAllSubtrees('mods/location')>
-<#assign parts = xml.getAllSubtrees('mods/part')>
+<#assign modslevel = xml.getAllSubtrees('mods')>
+<#assign names = xml.getAllSubtrees('mods/name')>
 <#assign noteWrappers = xml.getAllSubtrees('mods/noteWrapper')>
-<#assign archivesWrappers = xml.getAllSubtrees('local/archivesWrapper')>
+<#assign originInfos = xml.getAllSubtrees('mods/originInfo')>
+<#assign parts = xml.getAllSubtrees('mods/part')>
+<#assign physdescNotes = xml.getAllSubtrees('mods/physicalDescriptionNote')>
+<#assign physdescs = xml.getAllSubtrees('mods/physicalDescription')>
+<#assign powerSearch = 'P9f4a3509-8c49-6db9-de96-bb168bf80752'>
+<#assign relateditems = xml.getAllSubtrees('mods/relateditem')>
+<#assign subjects = xml.getAllSubtrees('mods/subject')>
+<#assign titleInfos = xml.getAllSubtrees('mods/titleInfo')>
 <#-- find out if user is in a library-related group -->
 <#function userIsMemberOf groupName>
   <#list user.getGroups() as group>
@@ -58,7 +59,7 @@
 <dt class="hide">Collection</dt>
 <#list collections as collection>
     <#assign collectionTitle = collection.get('title')>
-    <#assign collectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&dr=AFTER">
+    <#assign collectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
     <dd class="collection"><a href="${collectionUrl}">${collectionTitle}</a></dd>
 </#list>
 
@@ -277,10 +278,10 @@
             <dt>Publisher</dt>
         </#if>
         <dd class="subject">${publisher}</dd>
-        <#if edition!= "">
+        <#if edition != ''>
             <dd class="subject">Edition: ${edition}</dd>
         </#if>
-        <#if place!= "">
+        <#if place != ''>
             <dd class="subject">Pub location: ${place}</dd>
         </#if>
     </#if>
@@ -289,23 +290,27 @@
 
 <#list subjects as subject>
     <#assign topic = subject.get('topic')>
+    <#assign topicUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctopic%3E${topic}%3C%2Ftopic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign geographic = subject.get('geographic')>
+    <#assign geographicUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cgeographic%3E${geographic}%3C%2Fgeographic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign name = subject.get('name')>
+    <#assign nameUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E${name}%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER'>
     <#assign temporal = subject.get('temporal')>
+    <#assign temporalUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign topicCONA = subject.get('topicCONA')>
-    <#if subject_index == 0 && (topic != "" || geographic != "" || name != "" || temporal != "" || topicCONA != "")>
+    <#assign topicCONAUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3CtopicCONA%3E${topicCONA}%3C%2FtopicCONA%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <#if subject_index == 0 && (topic != '' || geographic != '' || name != '' || temporal != '' || topicCONA != '')>
         <dt>Subject(s)</dt>
     </#if>
-    <#if topic != "">
-        <dd class="subject">Topic: ${topic}</dd>
+    <#if topic != ''>
+        <dd class="subject">Topic: <a href="${topicUrl}">${topic}</a></dd>
     </#if>
-    <#if geographic != "">
-        <dd class="subject">Geographic: ${geographic}</dd>
+    <#if geographic != ''>
+        <#-- NB: is "geographic" really the best label here?
+        seems kind of obscure, c.f. how "time period" simplifies "temporal" -->
+        <dd class="subject">Geographic: <a href="${geographicUrl}">${geographic}</a></dd>
     </#if>
-    <#assign temporalUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&dr=AFTER">
-    <#assign topicCONAUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3CtopicCONA%3E${topicCONA}%3C%2FtopicCONA%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&dr=AFTER">
-    <#assign nameUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E${name}%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER">
-    <#if name != "">
+    <#if name != ''>
         <dd class="subject">Name: <a href="${nameUrl}">${name}</a></dd>
     </#if>
     <#if temporal != "">
@@ -317,13 +322,12 @@
 </#list>
 
 <#assign photoClassification = xml.get('mods/photoClassification')>
-<#assign photoClassificationUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphotoClassification%3E${photoClassification}%3C%2FphotoClassification%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P9f4a3509-8c49-6db9-de96-bb168bf80752&q=&dr=AFTER">
+<#assign photoClassificationUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphotoClassification%3E${photoClassification}%3C%2FphotoClassification%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
 <#if photoClassification != "">
     <div class="clearfix" >
         <dd class="subject">CCA/C subject: <a href="${photoClassificationUrl}">${photoClassification}</a></dd>
     </div>
 </#if>
-
 
 <#list genreWrappers as genreWrapper>
     <#assign genre = genreWrapper.get('genre')>
