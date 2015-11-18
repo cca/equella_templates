@@ -379,24 +379,3 @@
     <br>
     <dd><strong class="text-error">This is a minimal record, to be completed later. Some fields may be missing.</strong></dd>
 </#if>
-
-<script>
-(function() {
-    function init () {
-        $('.image-with-metadata a').fancybox();
-    }
-    // fancybox not loaded for anonymous users, we manually insert
-    if (!jQuery.fn.fancybox) {
-        // have to load via item, guests can't see the library EQUELLA loads
-        $.getScript('/file/2e16b41c-cbab-400d-98a6-6b2fc3967fe3/1/fancybox.js', init)
-        // URL has an EQUELLA version number in them, but prior version libraries should still be available
-        $('<link>').attr({
-            href: 'p/r/6.4.r1330/com.tle.web.sections.standard/css/jquerylib/fancybox/jquery.fancybox.css',
-            rel: 'stylesheet',
-            type: 'text/css'
-        }).appendTo('head');
-    } else {
-        init()
-    }
-})()
-</script>
