@@ -31,6 +31,8 @@
         <br>
     </#list>
 
+    <dd><b>Semester:</b> ${xml.get('local/courseInfo/semester')}</dd>
+
 <#if xml.exists('local/projectWrapper/fileA')>
     <h3>Portfolio</h3>
 
