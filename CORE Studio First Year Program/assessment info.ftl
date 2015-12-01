@@ -10,7 +10,8 @@
 <#-- Administrator only information-->
 <#if userIsMemberOf("College Administrators") || userIsMemberOf("First Year Administrator") || userIsMemberOf("Library Administrator") || userIsMemberOf("First Year Faculty") || userIsMemberOf("First Year Coordinators") || userIsMemberOf("First Year TA") || userIsMemberOf("First Year External Reviewers") || userIsMemberOf('System Administrators')>
 	<h4 class="alert">Assignment, assessment information and comments display ONLY<br>
-    to First Year Faculty &amp; Staff, College Administrators, and External Reviewers.<hr></h4>
+    to First Year Faculty &amp; Staff, College Administrators, and External Reviewers.</h4>
+    <hr>
 
 	<#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 
