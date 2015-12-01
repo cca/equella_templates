@@ -86,7 +86,7 @@ $(function() {
         //apply active class to new tab
          $(this).addClass('active');
         //update the active image container
-         $('.imgContainer.active').removeClass('active');
+        $('.imgContainer.active').removeClass('active');
         $($(this).data('target')).addClass('active');
         // run justified gallery plugin on new container
         $('.imgContainer.active').justifiedGallery({

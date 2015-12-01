@@ -14,12 +14,10 @@ if we load via portlet settings, it fires twice for System Administrators -->
 
 <div id="mainPageBox">
     <div id="mainTabs">
-        <a data-target="#communications" class="mainTab active">Communications</a>
-        <a data-target="#libraryCollections" class="mainTab">Library Collections</a>
-        <a data-target="#campusPlanning" class="mainTab" id="campBtn">Campus Planning: Spatial Benchmarking</a>
+        <a data-target="#communications" class="mainTab active" onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'communications']);">Communications</a>
+        <a data-target="#libraryCollections" class="mainTab" onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'library collections']);">Library Collections</a>
+        <a href="/searching.do?in=Cf75326ab-977c-4873-8987-eaa419ecb773&q=&type=gallery" class="mainTab" onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'campus planning']);">Campus Planning: Spatial Benchmarking</a>
     </div>
-
-    <div id="cp-contrib" style="display: none;"><a href="/access/runwizard.do?method=newitem&itemdefUuid=f75326ab-977c-4873-8987-eaa419ecb773">Contribute to collection</a></div>
 
     <div id="libraryCollections" class="imgContainer">
         <a href="/items/576d5b21-e96b-4c24-b8fc-5b9f80fe2998/1/">
@@ -74,7 +72,6 @@ if we load via portlet settings, it fires twice for System Administrators -->
         <a href="//vault.cca.edu/items/f90ffbc1-d648-41cc-9c3f-0c2a79d89990/1/">
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/13_CCA-Martinez-Oakland.jpg">
         </a>
-
         <a href="//vault.cca.edu/items/092e8fa5-7a9a-419d-b16e-a5978c4da7e0/1/">
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/10_CCA_ArchStudio.jpg">
         </a>
@@ -90,7 +87,6 @@ if we load via portlet settings, it fires twice for System Administrators -->
         <a href="//vault.cca.edu/items/c05ed9b7-6ae1-44db-bd42-32b3649468a5/1/">
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/08_CCA-Nave-interior.jpg">
         </a>
-
         <a href="//vault.cca.edu/items/135c3377-8b72-4a46-8781-8a588d8d0d26/1/">
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/07_CCA-GradCenter.jpg">
         </a>
@@ -100,7 +96,6 @@ if we load via portlet settings, it fires twice for System Administrators -->
         <a href="//vault.cca.edu/items/95fe2008-dbac-4bfb-b7ed-9bc31d5d83d4/1/">
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/06_CCA-GradCenter.jpg">
         </a>
-
         <a href="//vault.cca.edu/items/01d7929b-ae0e-4bcb-8e86-bd3d5437fbe9/1/">
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/04_CCA-Nave-interior.jpg">
         </a>
@@ -111,73 +106,6 @@ if we load via portlet settings, it fires twice for System Administrators -->
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/01_SFCampusSkyline.jpg">
         </a>
     </div>
-</div>
-
-<#-- CAMPUS PLANNING IMAGES -->
-<div id="campusPlanning" class="imgContainer">
-    <div class="campPlanTitle" style="position:absolute; width:100%!important; height:30px!important; line-height:30px!important; box-sizing:border-box; padding-left:30px;">
-        Activities
-        <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3EActivities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EAssembling%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Assembling </span>
-        <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3EActivities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3ECirculation%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Circulation </span>
-        <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3EActivities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3ERetreating%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Retreating </span>
-        <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3EActivities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EBreaking%20Bread%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Breaking Bread </span>
-    </div>
-    <a href="//vault.cca.edu/items/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/">
-        <img src="//vault.cca.edu/file/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/SFO%20T2%205.jpg">
-    </a>
-    <a href="//vault.cca.edu/items/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/">
-        <img src="//vault.cca.edu/file/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/SFO%20T2%207.jpg">
-    </a>
-
-    <a href="//vault.cca.edu/items/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/">
-        <img src="//vault.cca.edu/file/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/SFO%20T2,%20SF%202.jpg">
-    </a>
-    <a href="//vault.cca.edu/items/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/">
-        <img src="//vault.cca.edu/file/3cf238ed-af42-4208-ad04-6ed91e67fedd/1/Zendesk%205.jpg">
-    </a>
-
-    <div class="campPlanTitle" style="position:absolute; width:100%!important; height:30px!important; line-height:30px!important; box-sizing:border-box; padding-left:30px;">
-    Spatial (Typologies)
-    <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3ESpatial%20(Typologies)%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EMaking%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q=">Making</span>
-    <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3ESpatial%20(Typologies)%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3ETeaching%20%26amp%3B%20Learning%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q=">Teaching & Learning</span>
-    <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3ESpatial%20(Typologies)%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EResearch%20%26amp%3B%20Resources%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q=">Research & Resources</span>
-    <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3ESpatial%20(Typologies)%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3ELiving%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Living </span>
-    </div>
-
-    <a href="//vault.cca.edu/items/1f3ee390-8bcd-4718-97ff-10db79473223/1/">
-        <img src="//vault.cca.edu/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/ACCD%20CMTEL%20lab.jpg">
-    </a>
-    <a href="//vault.cca.edu/items/1f3ee390-8bcd-4718-97ff-10db79473223/1/">
-        <img src="//vault.cca.edu/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/ACCD%20CMTEL%20lab%202.jpg">
-    </a>
-    <a href="//vault.cca.edu/items/1f3ee390-8bcd-4718-97ff-10db79473223/1/">
-        <img src="//vault.cca.edu/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/Parsons%20NY%202.jpg">
-    </a>
-    <a href="//vault.cca.edu/items/1f3ee390-8bcd-4718-97ff-10db79473223/1/">
-        <img src="//vault.cca.edu/file/1f3ee390-8bcd-4718-97ff-10db79473223/1/Parsons%20NY.jpg">
-    </a>
-
-    <div class="campPlanTitle" style="position:absolute; width:100%!important; height:30px!important; line-height:30px!important; box-sizing:border-box; padding-left:30px;">
-    (Spatial) Qualities
-        <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3E(Spatial)%20Qualities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EEnclosure%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Enclosure </span>
-        <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3E(Spatial)%20Qualities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EAdjacency%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Adjacency </span>
-        <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3E(Spatial)%20Qualities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EDisplay%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Display </span>
-        <span class="onClicker" role="link" href="/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CgenreWrapper%3E%3Cgenre%3E(Spatial)%20Qualities%3C%2Fgenre%3E%3C%2FgenreWrapper%3E%3Cpart%3E%3CwrapperOther%3E%3Ctags%3EMaterials%3C%2Ftags%3E%3C%2FwrapperOther%3E%3C%2Fpart%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P63e19032-7c08-44ec-b3d4-24904a2c4ccd&q="> Materials </span>
-    </div>
-
-    <a href="//vault.cca.edu/items/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/">
-        <img src="//vault.cca.edu/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/European%20Ceramics%20Work%20Centre%20Netherlands%209.jpg">
-    </a>
-    <a href="//vault.cca.edu/items/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/">
-        <img src="//vault.cca.edu/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/Kreysler%20_%20Associates%205.jpg">
-    </a>
-    <a href="//vault.cca.edu/items/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/">
-        <img src="//vault.cca.edu/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/Kreysler%20_%20Associates%203.jpg">
-    </a>
-
-    <a href="//vault.cca.edu/items/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/">
-        <img src="//vault.cca.edu/file/dc6fa382-219c-4ebc-a5cd-50b97c711266/1/Kreysler%20_%20Associates%202.jpg">
-    </a>
 </div>
 
 </#if>
