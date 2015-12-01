@@ -92,7 +92,7 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         <#assign itemUuid = item.getUuid()>
         <#assign version = item.getVersion()>
         <#assign url = '/items/' + itemUuid + '/' + version + '/'>
-        <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=true'>
+        <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=preview'>
 
         <#-- check if the first attachment is an image
         this avoids mime types for which we have a generic icon thumbnail
@@ -139,7 +139,7 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
             <#assign itemUuid = item.getUuid()>
             <#assign version = item.getVersion()>
             <#assign url = '/items/' + itemUuid + '/' + version + '/'>
-            <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=true'>
+            <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=preview'>
 
             <#assign thumb = item.getXml().get('item/attachments/attachment/thumbnail')>
             <#assign filename = item.getXml().get('item/attachments/attachment/file')>
@@ -168,10 +168,10 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
     <div id="campusPlanning" style="display:none">
         <#assign count = 0>
         <#list results as item>
-            <#-- CP items tend to have wider thumbnails for whatever reason
-            so cca-home.js sets their height to 3/4ths (67.5px) others
-            thus here we insert more results from the search -->
-            <#if count = 28>
+            <#-- Campus Planning items tend to have _wider_ thumbnails
+            for some reason, giving them fewer total ensures more consistent
+            number of rows across the 3 tabs -->
+            <#if count = 16>
                 <#break>
             </#if>
             <#-- item information -->
@@ -179,7 +179,7 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
             <#assign itemUuid = item.getUuid()>
             <#assign version = item.getVersion()>
             <#assign url = '/items/' + itemUuid + '/' + version + '/'>
-            <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=true'>
+            <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=preview'>
 
             <#assign thumb = item.getXml().get('item/attachments/attachment/thumbnail')>
             <#assign filename = item.getXml().get('item/attachments/attachment/file')>
