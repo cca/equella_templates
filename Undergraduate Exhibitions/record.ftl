@@ -1,7 +1,7 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#-- @todo points at Syllabus Collection power search & is only used
+<#-- @TODO points at Syllabus Collection power search & is only used
 for courseInfo dynamic links—is this a sensible decision?
 only 1 item right now sponsored by course anyways, low priority
 https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
@@ -17,7 +17,7 @@ https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
     <#assign sponsor = exhibitWrapper.get('sponsor')>
     <#assign showType = exhibitWrapper.get('@type')>
     <#assign dates = exhibitWrapper.list('date')>
-    <#-- @todo fix these URLs -->
+    <#-- @TODO fix these URLs -->
     <#assign galleryUrl = "">
     <#assign semesterUrl = "">
     <#assign showTypeUrl = "">
@@ -119,7 +119,9 @@ https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
         <#if fileA == uuid>
             <#if full?ends_with(".zip")><#else>
             <div class="image-with-metadata shorter">
-                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"></a>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66">
+                </a>
                 <p class="metadata">
                     <#if title != ""><span class="title">${title}</span><br></#if>
                     <#if artistName != "">by ${artistName}<br></#if>
@@ -137,6 +139,7 @@ https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
     </#list>
 </#list>
 </div>
+<br><br>
 
 <#list xml.list('local/exhibitWrapper/showcardFile') as showcardFile>
 <#list itemAttachments as itemAttachment>
@@ -152,5 +155,5 @@ https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
 </#list>
 </#list>
 
-<h4 class="clearfix"><i><strong>To view images as a slideshow, click on titles below.</strong></i></h4>
+<h4 class="clearfix"><i><strong>To view images as a slideshow, click on their thumbnails above or titles below.</strong></i></h4>
 </dl>
