@@ -79,7 +79,7 @@
             or other confidential attachments -->
             <#assign partdetail = part.get('detail')>
             <#list partnumbers as partnumber>
-                <#if partnumber == uuid && partdetail != 'yes'>
+                <#if partnumber == uuid && partdetail != 'yes' && full?matches('(.tiff?)$', 'i')?size == 0>
                     <li class="image-with-metadata shorter">
                         <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group">
                             <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
