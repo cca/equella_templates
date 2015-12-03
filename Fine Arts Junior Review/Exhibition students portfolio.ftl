@@ -48,7 +48,7 @@
                 <#-- print nothing, skip this attachment -->
                 <#elseif full?ends_with(".jpg")>
                     <div class="image-juniorReviewWork">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
                     <p class="photoImagelist">
                     <#if title != ""><i>${title}</i><br /></#if>
                     <#if xml.get('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat') != ''>
@@ -68,7 +68,7 @@
                     </div>
 
                 <#elseif full?ends_with(".mov")>
-                    <div class='image-juniorReviewMovImgWork'>
+                    <div class="image-juniorReviewMovImgWork">
                         <a href="/items/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/p/r/6.1.r2275/com.tle.web.mimetypes.service/icons/quicktime.png" width="88" height="66"/></a>
                         <br/>
                     <p>
@@ -91,7 +91,7 @@
 
                 <#else>
                     <div class="image-juniorReviewWork">
-                        <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
+                        <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}" width="88" height="66"/></a>
                     <p class="photoImagelist">
                         <#if title != ""><i>${title}</i><br /></#if>
                         <#if ('local/juniorReviewWrapper/fileWrapper/projectFormatWrapper/projectFormat')!=''>
@@ -137,3 +137,6 @@
 </#list>
 
 <script src="//cdn.jsdelivr.net/masonry/3.1.5/masonry.min.js"></script>
+<script>
+    $('.image-juniorReviewWork a').fancybox()
+</script>
