@@ -11,6 +11,8 @@
 <#assign visStWrapper = xml.getAllSubtrees('local/visStWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
 
+<#if xml.get('local/courseWorkWrapper/courseWorkType') == 'Course work'>
+
 <dl>
 <#list titleInfo as titleInfo>
     <#assign title = titleInfo.get('title')>
@@ -111,3 +113,5 @@
         <dd><strong>Additional notes: </strong>${abstract}</dd>
     </#if>
 </#list>
+
+</#if>
