@@ -45,19 +45,26 @@
 <#list local as local>
 	<#assign departmentX = local.get('department')>
 	<#assign viewLevel = local.get('viewLevel')>
-		<dd>Department(s): 
+		<dd>Department(s):
 		<#list dept as dept>${dept}<#if dept_has_next>, </#if>
 		</#list></dd>
 
 		<div id="images">
 			<#list itemAttachments as itemAttachment>
 				<#assign thumb = itemAttachment.get('thumbnail')>
+				<#assign uuid = itemAttachment.get('uuid')>
 				<#assign full = itemAttachment.get('file')>
-					<a href="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-					<img src="https://vault.cca.edu/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+				<#if itemAttachment.get('@type') != 'remote'>
+						<a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+						<img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+				<#else>
+					<a href="${full}">
+						<img src="/thumbs/${itemUuid}/${itemversion}/${uuid}">
+					</a>
+				</#if>
 			</#list>
 		</div>
-	
+
 	<#list courseWorkWrapper as courseWork>
 		<#assign type = courseWork.get('courseWorkType')>
 			<dd>This <strong>${type}</strong> is intended for <strong>${viewLevel}</strong> use.</dd>
