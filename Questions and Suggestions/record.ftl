@@ -69,7 +69,15 @@
 
     <#list xml.getAllSubtrees('mods/name') as name>
         <#assign namePart = name.get('namePart')>
+        <#assign email = xml.get('item/owner/user/email')>
         <dd>Contributor: <strong>${namePart}</strong></dd>
+        <dd>Email: <strong>${email}</strong></dd>
+        <#assign firstname = xml.get('item/owner/user/givenname')>
+        <!-- specially crafted email link for this issue -->
+        <#assign url = 'mailto:' + email + '?subject=Re:%20' + title?url + '&body=' + 'Hi%20' + firstname + ',\n'>
+        <dd>
+            <a href="${url}" class="btn btn-default" target="_blank"><i class="icon-envelope"></i>&nbsp;Email this user</a>
+        </dd>
     </#list>
 </#if>
 
