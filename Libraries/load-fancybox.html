@@ -3,7 +3,7 @@ $(function(){
     // little tricky here, but we're filtering _out_ huge TIFF images
     // since loading them in fancybox crashes the browser
     $('.image-with-metadata a').filter(function(){
-        return !this.href.match(/(\.tiff?)$/i)
+        return this.href.match(/(\.(jpe?g|png)?)$/i)
     }).fancybox()
 })
 </script>
