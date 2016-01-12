@@ -42,7 +42,7 @@
                 onclick="popup('/items/${itemUuid}/${itemversion}/${full}?.vi=toimg',null,'80%','80%');return false;">
                 <img src="${thumbUrl}" width="88" height="66"/></a>
             <#else>
-              <a href="${imgUrl}"><img src="${thumbUrl}" width="88" height="66"/></a>
+              <a href="${imgUrl}" rel="group"><img src="${thumbUrl}" width="88" height="66"/></a>
             </#if>
 
 
