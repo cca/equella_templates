@@ -136,14 +136,16 @@
                 <#assign duration = file.get('extent')>
                 <#assign keywords = file.getAllSubtrees('keyWordWrapper')>
                 <div class="image-photoSeniorPacket">
-                <dd><strong>${format}</strong>:</dd>
-                <a href="/items/${itemUuid}/${itemVersion}/${full}"><img src="/thumbs/${itemUuid}/${itemVersion}/${uuid}"></a></p>
-                <p class="photoImagelist">
-                    <#if title != "">${title}<br></#if>
-                    <#if projectFormat != "">${projectFormat}</#if>
-                    <#if duration != ""> - ${duration}</#if>
-                    <#list keywords as keyword>${keyword}<#if keyword_has_next>, </#if></#list>
-                </p>
+                    <dd><strong>${format}</strong>:</dd>
+                    <a href="/items/${itemUuid}/${itemVersion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemVersion}/${uuid}"></a></p>
+                    <p class="photoImagelist">
+                        <#if title != "">${title}<br></#if>
+                        <#if projectFormat != "">${projectFormat}</#if>
+                        <#if duration != ""> - ${duration}</#if>
+                        <#list keywords as keyword>
+                            ${keyword}<#if keyword_has_next>, </#if>
+                        </#list>
+                    </p>
                 </div>
             </#if>
         </#list>
@@ -151,3 +153,11 @@
 </dl>
 </#if>
 </#list>
+<script>
+$(function(){
+    // little tricky here, but we're filtering to _only_ jpg/png images
+    $('.image-photoSeniorPacket a').filter(function(){
+        return this.href.match(/(\.(jpe?g|png)?)$/i)
+    }).fancybox()
+})
+</script>
