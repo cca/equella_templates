@@ -30,9 +30,9 @@
                 <#assign semester = wrapper.get('semester')>
                 <#assign notes = wrapper.get('description')>
                 <#if file == uuid>
-                    <div class='image-with-metadata'>
-                        <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                        <p class='metadata'>
+                    <div class="image-with-metadata">
+                        <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <p class="metadata">
                             <#if title != ""><span class="title">${title}</span><br></#if>
                             <#if medium != "">${medium}<br></#if>
                             <#if dimensions != "">${dimensions}<br></#if>
@@ -72,9 +72,9 @@
                         <#if notes != "">${notes}<br></#if>
                     </div>
                 <#elseif file == uuid>
-                    <div class='image-with-metadata'>
+                    <div class="image-with-metadata">
                         <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                        <p class='metadata'>
+                        <p class="metadata">
                             <#if title != ""><span class="title">${title}</span><br></#if>
                             <#if duration != "">${duration}<br></#if>
                             <#if semester != "">${semester}<br></#if>
@@ -107,9 +107,9 @@
                     <#assign semester = wrapper.get('semester')>
                     <#assign notes = wrapper.get('description')>
                     <#if file == uuid>
-                        <div class='image-with-metadata'>
-                            <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                            <p class='metadata'>
+                        <div class="image-with-metadata">
+                            <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                            <p class="metadata">
                                 <#if title != ""><span class="title">${title}</span><br></#if>
                                 <#if medium != "">${medium}<br></#if>
                                 <#if dimensions != "">${dimensions}<br></#if>
@@ -155,9 +155,9 @@
                     <#assign semester = wrapper.get('semester')>
                     <#assign notes = wrapper.get('description')>
                     <#if file == uuid>
-                        <div class='image-with-metadata'>
+                        <div class="image-with-metadata">
                             <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                            <p class='metadata'>
+                            <p class="metadata">
                                 <#if title != ""><span class="title">${title}</span><br></#if>
                                 <#if semester != "">${semester}<br></#if>
                                 <#if notes != "">${notes}<br></#if>
