@@ -1,10 +1,12 @@
 <#-- NOTE in the portlets admin, load the following CSS:
 - /file/0be6649f-15fa-45da-80ac-1a9c539a9418/2/dashboard-student-work.min.css
 - /file/3c22fa1f-f837-45af-a675-115894f6b1ae/2/justifiedGallery.min(2).css
+- https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/css/bootstrap-tour-standalone.min.css
 
 also load the following JS under "Client-side on-ready script":
 - /file/3c22fa1f-f837-45af-a675-115894f6b1ae/2/jquery.justifiedGallery.min.js
 - /file/9e9a26b8-5d55-4d11-82f6-0f6e901c65a8/3/cca-home.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour-standalone.min.js
 -->
 
 <#-- check user role, passing to client side, used in tour.js -->
