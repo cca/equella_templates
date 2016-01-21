@@ -184,7 +184,7 @@
             <#list xml.list('mods/part/number') as image>
                 <#if image == uuid>
                 <div class="image-studentWork">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                 </div>
                 </#if>
