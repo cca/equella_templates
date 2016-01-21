@@ -56,7 +56,7 @@
             <#assign file = juniorReviewFile.get('file')>
             <#if file == uuid>
                 <div class="image-with-metadata">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
                         <#if projectFormat != "">

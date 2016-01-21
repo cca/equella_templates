@@ -118,12 +118,12 @@
                 <#assign flag = part.get('wrapperOther/flaggedFor')>
                 <#-- construct element class based on flags
                 will be visible to Communications if has "comm" -->
-                <#assign class = "image-with-metadata shorter">
+                <#assign class = 'image-with-metadata shorter'>
                 <#if flag == 'shared with Communications'>
                     <#assign class = class + " comm">
                 </#if>
                 <div class="${class}">
-                    <a href="/file/${itemUuid}/${itemversion}/${file}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${file}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
                     <span class="title">${file}</span>
                     <#if format != ''>${format}<br></#if>
