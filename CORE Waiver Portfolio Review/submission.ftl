@@ -87,7 +87,7 @@
             <#assign waiverStatus = D1Wrapper.get('flaggedFor')>
             <#if file == uuid>
                 <div class="image-with-metadata">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class='metadata'>
                         <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
@@ -119,7 +119,7 @@
             <#assign waiverStatus = D2Wrapper.get('flaggedFor')>
             <#if file == uuid>
                 <div class="image-with-metadata">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
                         <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
@@ -151,7 +151,7 @@
             <#assign waiverStatus = D3Wrapper.get('flaggedFor')>
             <#if file == uuid>
                 <div class="image-with-metadata">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
                         <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
@@ -184,7 +184,7 @@
             <#assign waiverStatus = D4Wrapper.get('flaggedFor')>
             <#if file == uuid>
                 <div class="image-with-metadata">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
                         <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
