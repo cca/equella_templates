@@ -29,9 +29,8 @@
 	<#assign submissionType = communications.get('submissionType')>
 	<#assign configID = communications.get('configID')>
 	<#assign issuuLink = communications.get('note')>
-	<#if submissionType=="press image">
+	<#if submissionType == "press image">
 		<#list itemAttachments as itemAttachment>
-			<#assign thumb = itemAttachment.get('thumbnail')>
 			<#assign full = itemAttachment.get('file')>
 			<#assign uuid = itemAttachment.get('uuid')>
 			<#list jpgWrapper as jpgWrapper>
@@ -54,7 +53,6 @@
 	<#elseif (submissionType=="document") || ((submissionType=="publication") && (issuuLink==""))>
 		<div id="images">
 		<#list itemAttachments as itemAttachment>
-			<#assign thumb = itemAttachment.get('thumbnail')>
 			<#assign full = itemAttachment.get('file')>
 			<#assign uuid = itemAttachment.get('uuid')>
 			<a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
