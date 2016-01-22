@@ -27,7 +27,7 @@
     <#list itemAttachments as attachment>
         <#assign uuid = attachment.get('uuid')>
         <#assign file = attachment.get('file')>
-        <a href="/file/${itemUuid}/${itemversion}/${file}">
+        <a href="/file/${itemUuid}/${itemversion}/${file}" rel="group">
         <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
     </#list>
 </div>
