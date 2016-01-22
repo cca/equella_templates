@@ -98,10 +98,10 @@
                 <#assign full = attachment.get('file')>
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs label'>Show card</p>
+                <p class="artistDocs label">Show card</p>
                 <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>${full}</p>
+                <p class="artistDocs">${full}</p>
                 </div>
             </#if>
         </#list>
@@ -112,10 +112,10 @@
                 <#assign full = attachment.get('file')>
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs label'>Installation shot</p>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                <p class="artistDocs label">Installation shot</p>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>${full}</p>
+                <p class="artistDocs">${full}</p>
                 </div>
             </#if>
         </#list>
@@ -135,10 +135,10 @@
                 <#assign full = attachment.get('file')>
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs label'>Artist statement</p>
+                <p class="artistDocs label">Artist statement</p>
                 <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>
+                <p class="artistDocs">
                 <#if full != "">
                     ${full}
                 </#if>
@@ -152,10 +152,10 @@
                 <#assign full = attachment.get('file')>
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs label'>Resume/CV</p>
+                <p class="artistDocs label">Resume/CV</p>
                 <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>${full}</p>
+                <p class="artistDocs">${full}</p>
                 </div>
             </#if>
         </#list>
@@ -165,10 +165,10 @@
                 <#assign full = attachment.get('file')>
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs label'>Senior Thesis File</p>
+                <p class="artistDocs label">Senior Thesis File</p>
                 <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>
+                <p class="artistDocs">
                 <#if full != "">
                     ${full}
                 </#if>
@@ -204,9 +204,9 @@
                 <#assign tagOther = seniorPacket.get('phase')>
                 <#assign notes = seniorPacket.get('notes')>
                 <#if file == uuid>
-                <div class='image-with-metadata'>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='metadata'>
+                <div class="image-with-metadata">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class="metadata">
                     <#if title != ""><span class="title">${title}</span></#if>
                     <#if date != "">${date}<br></#if>
 
