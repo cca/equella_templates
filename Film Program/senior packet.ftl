@@ -139,9 +139,9 @@
                         <#assign url = '/file/${itemUuid}/${itemversion}/${videoFile}'>
                     </#if>
                 </#list>
-                <div class='image-with-metadata'>
-                    <a href="${url}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='metadata'>
+                <div class="image-with-metadata">
+                    <a href="${url}" target="_blank" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class="metadata">
                     <#if title != ""><span class="title">${title}</span></#if>
                     <#if logLine != ""><em>${logLine}</em><br></#if>
                     <#if date != "">${date}<br></#if>
