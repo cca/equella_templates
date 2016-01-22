@@ -1,21 +1,14 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign titleInfo = xml.getAllSubtrees('mods/titleInfo')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign name = xml.getAllSubtrees('mods/name')>
-<#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
-<#assign local = xml.getAllSubtrees('local')>
-<#assign origininfo = xml.getAllSubtrees('mods/origininfo')>
-<#assign juniorReviewFiles = xml.getAllSubtrees('local/juniorReviewWrapper/fileWrapper')>
 
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if (courseWorkType =="Junior review")>
+<#if courseWorkType == "Junior review">
 <dl>
 
-    <#list titleInfo as titleInfo>
+    <#list xml.getAllSubtrees('mods/titleInfo') as titleInfo>
         <#assign title = titleInfo.get('title')>
         <#assign subTitle = titleInfo.get('subTitle')>
         <h2 id="title">${title}
@@ -23,10 +16,14 @@
     </#list>
 
     <dt class="hide">Collection</dt>
-    <#list local as local>
+    <#list xml.getAllSubtrees('local') as local>
         <#assign division = local.get('division')>
-        <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdivision%3E${division}%3C%2Fdivision%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
-        <dd class="collection"><a href="${divisionUrl}">${division}</a></dd>
+        <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdivision%3E${division}%3C%2Fdivision%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER">
+        <#assign department = xml.get('local/department')>
+        <#assign departmentUrl = "/access/searching.do?in=C875c9189-6e48-40f2-a00e-c64bc714440c&q=&type=standard&dr=AFTER">
+        <dd class="collection">
+            <a href="${divisionUrl}">${division}</a>
+        </dd>
     </#list>
 
     <#assign name = xml.getAllSubtrees('mods/name')>
@@ -41,7 +38,7 @@
                  — <a href="${majorUrl}">${major}</a>
         </#list>
 
-        <#list origininfo as origininfo>
+        <#list xml.getAllSubtrees('mods/origininfo') as origininfo>
             <#assign dateCreated = origininfo.get('dateCreatedWrapper/dateCreated')>
             <#assign dateCreatedUrl = "" />
              — Junior <a href="${dateCreatedUrl}">${dateCreated}</a>
@@ -49,7 +46,7 @@
         </dd>
     </#list>
 
-    <#list modslevel as mods>
+    <#list xml.getAllSubtrees('mods') as mods>
         <#assign abstract = mods.get('abstract')>
         <#if (abstract != "")>
             <dd>${abstract}</dd></#if>
@@ -59,16 +56,16 @@
         <#assign thumb = itemAttachment.get('thumbnail')>
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
-        <#list juniorReviewFiles as juniorReviewFiles>
+        <#list xml.getAllSubtrees('local/juniorReviewWrapper/fileWrapper') as juniorReviewFiles>
             <#assign projectFormat = juniorReviewFiles.get('projectFormat')>
             <#assign file = juniorReviewFiles.get('file')>
-            <#if file==uuid>
-                <div class='image-studentWork'>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
-                <p class='caption'>
-                <#if projectFormat==""><#else><i>${projectFormat}</i></#if>
-                </p>
+            <#if file == uuid>
+                <div class="image-studentWork">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class="caption">
+                        <#if projectFormat != ""><i>${projectFormat}</i></#if>
+                    </p>
                 </div>
             </#if>
         </#list>

@@ -11,7 +11,7 @@
 
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if (courseWorkType == "Course work")>
+<#if courseWorkType == "Course work">
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <#assign subTitle = xml.get('mods/titleInfo/subTitle')>
@@ -19,15 +19,19 @@
 
     <dt class="hide">Collection</dt>
     <#assign division = xml.get('local/division')>
-    <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdivision%3E${division}%3C%2Fdivision%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER" />
-    <dd class="collection"><a href="${divisionUrl}">${division}</a></dd>
+    <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdivision%3E${division}%3C%2Fdivision%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pb0cd301e-6adf-48c5-59aa-9a7a2e7f9834&q=&sort=rank&dr=AFTER">
+    <#assign department = xml.get('local/department')>
+    <#assign departmentUrl = "/access/searching.do?in=C875c9189-6e48-40f2-a00e-c64bc714440c&q=&type=standard&dr=AFTER">
+    <dd class="collection">
+        <a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a>
+    </dd>
 
     <div id="images">
     <#list itemAttachments as itemAttachment>
         <#assign full = itemAttachment.get('file')>
         <#if ! full?contains("http://") && ! full?ends_with(".zip")>
             <#assign uuid = itemAttachment.get('uuid')>
-            <a href="/file/${itemUuid}/${itemversion}/${full}">
+            <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
             </a>
         </#if>
