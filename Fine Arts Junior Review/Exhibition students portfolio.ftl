@@ -137,6 +137,3 @@
 </#list>
 
 <script src="//cdn.jsdelivr.net/masonry/3.1.5/masonry.min.js"></script>
-<script>
-    $('.image-juniorReviewWork a').fancybox()
-</script>
