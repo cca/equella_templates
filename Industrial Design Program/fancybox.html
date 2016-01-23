@@ -1,0 +1,8 @@
+<script>
+$(function(){
+    // little tricky here, but we're filtering to _only_ jpg/png images
+    $('.image-with-metadata a, #images a, .image-studentWork a').filter(function(){
+        return this.href.match(/(\.(jpe?g|png)?)$/i)
+    }).fancybox()
+})
+</script>

@@ -8,7 +8,7 @@
 
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if (courseWorkType =="Junior Review portfolio")>
+<#if courseWorkType == "Junior Review portfolio">
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
@@ -54,12 +54,12 @@
             <#assign projectFormat = juniorReviewFiles.get('projectFormat')>
             <#assign file = juniorReviewFiles.get('file')>
             <#if file == uuid>
-                <div class='image-studentWork'>
-                <a href="/file/${itemUuid}/${itemversion}/${full}">
-                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='caption'>
-                <#if projectFormat != ""><i>${projectFormat}</i></#if>
-                </p>
+                <div class="image-studentWork">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group">
+                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class="caption">
+                        <#if projectFormat != ""><i>${projectFormat}</i></#if>
+                    </p>
                 </div>
             </#if>
         </#list>
