@@ -1,16 +1,15 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign nameInfo = xml.getAllSubtrees('mods/name')>
-<#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
-<#assign physdesc = xml.getAllSubtrees('mods/physicalDescription')>
-<#assign subject = xml.getAllSubtrees('mods/subject')>
-<#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
-<#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
-<#assign local = xml.getAllSubtrees('local')>
-<#assign copyright = xml.getAllSubtrees('local/creativeCommons')>
 
-<#list courseWork as courseWork>
+<style>
+a[href=""] {
+    color: #4b4842; /* default text color */
+    pointer-events: none;
+}
+</style>
+
+<#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
     <#assign groupProject = courseWork.get('groupProject')>
     <#assign groupMembers = courseWork.get('groupMembers')>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
@@ -23,7 +22,7 @@
         <h2 id="title">${title}</h2>
 
         <dt class="hide">Collection</dt>
-        <#list local as local>
+        <#list xml.getAllSubtrees('local') as local>
             <#assign division = local.get('division')>
             <#assign department = local.get('department')>
             <#assign divisionUrl = "/access/searching.do?doc=%3Cxml%2F%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
@@ -40,13 +39,13 @@
                 <a href="/file/${itemUuid}/${itemversion}/${full}" class="pdf">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
             <#elseif ! full?contains("http://") && ! full?ends_with(".zip")>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" class="img">
+                <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" class="img">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
             </#if>
         </#list>
         </div>
 
-        <#list nameInfo as nameInfo>
+        <#list xml.getAllSubtrees('mods/name') as nameInfo>
             <#assign name = nameInfo.get('namePart')>
             <dt>Description</dt>
             <dd>${name}
@@ -60,7 +59,7 @@
             </dd>
         </#list>
 
-        <#list courseInfo as courseInfo>
+        <#list xml.getAllSubtrees('local/courseInfo') as courseInfo>
             <#assign semester = courseInfo.get('semester')>
             <#assign course = courseInfo.get('course')>
             <#assign faculty = courseInfo.get('faculty')>
@@ -101,7 +100,7 @@
 
         <dd><a href="${courseWorkTypeUrl}">${courseWorkType}</a>
 
-        <#list physdesc as physdesc>
+        <#list xml.getAllSubtrees('mods/physicalDescription') as physdesc>
             <#assign formBroad = physdesc.get('formBroad')>
             <#assign formSpecific = physdesc.get('formSpecific')>
             <#assign formBroadUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3ECourse+work%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3Cdepartment%3EGraphic+Design%3C%2Fdepartment%3E%3C%2Flocal%3E%3Cmods%3E%3CphysicalDescription%3E%3CformBroad%3E${formBroad}%3C%2FformBroad%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
@@ -131,15 +130,11 @@
         </#if>
         </dd>
 
-        <#list copyright as copyright>
+        <#list xml.getAllSubtrees('local/creativeCommons') as copyright>
             <#assign type = copyright.get('type')>
             <#assign typeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EGraphic+Design%3C%2Fdepartment%3E%3CcreativeCommons%3E%3Ctype%3E${type}%3C%2Ftype%3E%3C%2FcreativeCommons%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3&q=&sort=datemodified&dr=AFTER" />
 
             <dd>Copyright authorization: <a href="${typeUrl}">${type}</a></dd>
         </#list>
-
-        <script>
-        $('#images a.img').fancybox();
-        </script>
     </#if>
 </#list>

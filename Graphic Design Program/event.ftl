@@ -61,7 +61,7 @@
                 <dd>Person(s) depicted:
                 <#list names as name>
                     <#-- @todo fix URL -->
-                    <#assign nameUrl = "" />
+                    <#assign nameUrl = "">
                     <#if name != "">
                         <a href="${nameUrl}">${name}</a><#if name_has_next>, </#if>
                     </#if>
@@ -78,14 +78,10 @@
                 <a href="/file/${itemUuid}/${itemversion}/${full}" class="pdf">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
             <#elseif ! full?contains("http://") && ! full?ends_with(".zip")>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" class="img">
+                <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" class="img">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
             </#if>
         </#list>
         </div>
-
-    <script>
-    $('#images a.img').fancybox();
-    </script>
     </#if>
 </#list>
