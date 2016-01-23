@@ -47,8 +47,8 @@
             <#assign description = wrapper.get('description')>
             <#if file == uuid>
                 <div class="image-with-metadata">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='metadata'>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class="metadata">
                         <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
                         <#if semester != "">${semester}<br></#if>
