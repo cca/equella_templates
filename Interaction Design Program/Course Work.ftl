@@ -1,6 +1,6 @@
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if (courseWorkType == "Course work")>
+<#if courseWorkType == "Course work">
 
 <#function escapeAmp str>
     <#-- returns a URI-encoded "&amp;"
@@ -15,11 +15,17 @@
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 
-<dl>
+<style scoped>
+/* disable links that point nowhere */
+a[href=""] {
+  color: #4b4842; /* default text color */
+  pointer-events: none;
+}
+</style>
 
+<dl>
 	<#assign title = xml.get('mods/titleInfo/title')>
 	<h2 id="title">${title}</h2>
-</dl>
 
 	<dt class="hide">Collection</dt>
 	<#assign division = xml.get('local/division')>
@@ -33,7 +39,7 @@
 			<#assign uuid = itemAttachment.get('uuid')>
 			<#assign full = itemAttachment.get('file')>
 			<#if !full?contains("http://") && !full?ends_with(".zip")>
-				<a href="/file/${itemUuid}/${itemversion}/${full}">
+				<a href="/file/${itemUuid}/${itemversion}/${full}" rel="group">
 				<img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
 			</#if>
 		</#list>
@@ -99,5 +105,6 @@
 		<dd>${abstract}</dd>
 	</#if>
 
+</dl>
 </#if>
 </#list>
