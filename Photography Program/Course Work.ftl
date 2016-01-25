@@ -25,7 +25,7 @@
 <dl>
 <#list courseWork as courseWork>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
-    <#if (courseWorkType =="Course work")>
+    <#if courseWorkType == "Course work">
 
     <#list titleInfo as titleInfo>
         <#assign title = titleInfo.get('title')>
@@ -78,12 +78,11 @@
             <#list part as part>
                 <#assign partnumber = part.get('number')>
                 <#if jpgfile == uuid && hidden == false>
-                    <div class='image-studentWork'>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='photoImagelist'>
-                    ${full}
-                    </p>
+                    <div class="image-studentWork">
+                        <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <p class="photoImagelist">
+                        ${full}
+                        </p>
                     </div>
                 </#if>
             </#list>
@@ -181,7 +180,7 @@
     <#list modslevel as mods>
         <#assign abstract = mods.get('abstract')>
         <#if abstract != "">
-            <dd>Description: ${abstract}</dd>
+            <dd>Description:<br><pre>${abstract}</pre></dd>
         </#if>
     </#list>
 
@@ -193,10 +192,10 @@
                 <#-- needs more spacing here -->
                 <br><br>
                 <div class="image-artistDocs">
-                <p class='artistDocs'><i><u>Artist statement</u></i></p>
+                <p class="artistDocs"><i><u>Artist statement</u></i></p>
                 <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>
+                <p class="artistDocs">
                     <#if full != "">
                         ${full}
                     </#if>

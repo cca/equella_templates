@@ -21,7 +21,7 @@
 <dl>
 <#list courseWork as courseWork>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
-    <#if (courseWorkType =="Senior packet")>
+    <#if courseWorkType == "Senior packet">
 
         <#assign title = xml.get('mods/titleInfo/title')>
         <h2 id="title">${title}</h2>
@@ -96,8 +96,8 @@
         <dt>Senior Packet</dt>
 
         <#assign abstract = xml.get('mods/abstract')>
-        <#if (abstract != "")>
-            <dd>Description: ${abstract}</dd>
+        <#if abstract != "">
+            <dd>Description:<br><pre>${abstract}</pre></dd>
         </#if>
 
         <#assign date = xml.getAllSubtrees('local/exhibitWrapper/date')>
@@ -127,10 +127,10 @@
             <#assign full = itemAttachment.get('file')>
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
-            <p class='artistDocs'><i><u>Show card</i></u></p>
-            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+            <p class="artistDocs"><i><u>Show card</i></u></p>
+            <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
             <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
-            <p class='artistDocs'>${full}</p>
+            <p class="artistDocs">${full}</p>
             </div>
         </#if>
         </#list>
@@ -143,10 +143,10 @@
             <#assign full = itemAttachment.get('file')>
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
-            <p class='artistDocs'><i><u>Installation shot</i></u></p>
-            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+            <p class="artistDocs"><i><u>Installation shot</i></u></p>
+            <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
             <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
-            <p class='artistDocs'>${full}</p>
+            <p class="artistDocs">${full}</p>
             </div>
         </#if>
         </#list>
@@ -163,14 +163,13 @@
                         <#assign full = itemAttachment.get('file')>
                         <#assign uuid = itemAttachment.get('uuid')>
                         <div class="image-artistDocs">
-                        <p class='artistDocs'><i><u>Artist statement</u></i></p>
-                        <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                        <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
-                        <p class='artistDocs'>
-                        <#if full != "">
-                            ${full}
-                        </#if>
-                        </p>
+                            <p class="artistDocs"><i><u>Artist statement</u></i></p>
+                            <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
+                            <p class="artistDocs">
+                            <#if full != "">
+                                ${full}
+                            </#if>
+                            </p>
                         </div>
                     </#if>
                 </#list>
@@ -184,10 +183,10 @@
             <#assign full = itemAttachment.get('file')>
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
-            <p class='artistDocs'><i><u>Resume/CV</u></i></p>
+            <p class="artistDocs"><i><u>Resume/CV</u></i></p>
             <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
             <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
-            <p class='artistDocs'>${full}</p>
+            <p class="artistDocs">${full}</p>
             </div>
         </#if>
         </#list>
@@ -200,10 +199,10 @@
             <#assign full = itemAttachment.get('file')>
             <#assign uuid = itemAttachment.get('uuid')>
             <div class="image-artistDocs">
-            <p class='artistDocs'><i><u>Image list</u></i></p>
+            <p class="artistDocs"><i><u>Image list</u></i></p>
             <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
             <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
-            <p class='artistDocs'>${full}</p>
+            <p class="artistDocs">${full}</p>
             </div>
         </#if>
         </#list>
@@ -231,10 +230,10 @@
                 <#assign widthINCH = seniorPacket.get('widthINCH')>
                 <#assign notes = seniorPacket.get('notes')>
                 <#if jpgFile==uuid>
-                <div class='image-photoSeniorPacket'>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                <div class="image-photoSeniorPacket">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
                     <img src="/file/${itemUuid}/${itemversion}/${thumb}"/></a>
-                    <p class='photoImagelist'>
+                    <p class="photoImagelist">
                     <#if title != ""><i>${title}<br></i></#if>
                     <#if semester != "">${semester}<br></#if>
                     <#if formatBroad != "">${formatBroad}<br></#if>
