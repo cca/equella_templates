@@ -89,10 +89,10 @@
             <#assign full = attachment.get('file')>
             <#assign uuid = attachment.get('uuid')>
             <div class="image-artistDocs">
-            <p class='artistDocs'><i><u>Show card</i></u></p>
-            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-            <p class='artistDocs'>${full}</p>
+                <p class="artistDocs"><i><u>Show card</i></u></p>
+                <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
+                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                <p class="artistDocs">${full}</p>
             </div>
         </#if>
         </#list>
@@ -104,10 +104,10 @@
             <#assign full = attachment.get('file')>
             <#assign uuid = attachment.get('uuid')>
             <div class="image-artistDocs">
-            <p class='artistDocs'><i><u>Installation shot</i></u></p>
-            <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+            <p class="artistDocs"><i><u>Installation shot</i></u></p>
+            <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
             <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-            <p class='artistDocs'>${full}</p>
+            <p class="artistDocs">${full}</p>
             </div>
         </#if>
         </#list>
@@ -123,10 +123,10 @@
                     <#assign full = attachment.get('file')>
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Artist statement</u></i></p>
+                    <p class="artistDocs"><i><u>Artist statement</u></i></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>
+                    <p class="artistDocs">
                     <#if full != "">
                         ${full}
                     </#if>
@@ -142,10 +142,10 @@
                 <#assign full = attachment.get('file')>
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs'><i><u>Resume/CV</u></i></p>
+                <p class="artistDocs"><i><u>Resume/CV</u></i></p>
                 <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>${full}</p>
+                <p class="artistDocs">${full}</p>
                 </div>
             </#if>
         </#list>
@@ -156,10 +156,10 @@
                 <#assign full = attachment.get('file')>
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
-                <p class='artistDocs'><i><u>Image list</u></i></p>
+                <p class="artistDocs"><i><u>Image list</u></i></p>
                 <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                <p class='artistDocs'>${full}</p>
+                <p class="artistDocs">${full}</p>
                 </div>
             </#if>
         </#list>
@@ -205,8 +205,5 @@
         </#list>
         </div>
     </dl>
-<script>
-$('.image-with-metadata a').fancybox()
-</script>
 </#if>
 </#list>

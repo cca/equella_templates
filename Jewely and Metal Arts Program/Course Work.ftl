@@ -113,8 +113,5 @@
         </#list>
         </div>
     </dl>
-<script>
-$('.image-with-metadata a').fancybox()
-</script>
 </#if>
 </#list>
