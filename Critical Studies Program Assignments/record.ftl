@@ -70,7 +70,7 @@
     </dd>
 
     <#if description != "">
-        <dd><strong>Description:</strong> ${description}</dd>
+        <dd><strong>Description:</strong><br><pre>${description}</pre></dd>
     </#if>
     <#if references != "">
         <dd><strong>Assignment text / resources:</strong> ${references}</dd>
@@ -94,12 +94,12 @@
     <#list local as local>
         <#assign critiqueStrategy = local.get('critiqueStrategy')>
         <#if critiqueStrategy != "">
-            <dd><strong>Feedback Strategy:</strong> ${critiqueStrategy}</dd>
+            <dd><strong>Feedback Strategy:</strong><br><pre>${critiqueStrategy}</pre></dd>
         </#if>
 
         <#if (skills?size > 0 )>
             <dd><strong>Skills Learning Outcomes:</strong></dd>
-            <dd><ul>
+            <dd><ul class="standard">
             <#list skills as skill>
                 <li>${skill}</li>
             </#list>
@@ -108,7 +108,7 @@
 
         <#if (programLOs?size > 0 )>
             <dd><strong>Knowledge Learning Outcomes:</strong></dd>
-            <dd><ul>
+            <dd><ul class="standard">
             <#list programLOs as programLO>
                 <li>${programLO}</li>
             </#list>
@@ -117,7 +117,7 @@
 
         <#if (ccaLOs?size > 0 )>
             <dd><strong>CCA Learning Outcomes:</strong></dd>
-            <dd><ul>
+            <dd><ul class="standard">
             <#list ccaLOs as ccaLO>
                 <li><a href="/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3ECritical+Studies%3C%2Fdepartment%3E%3CccaLearningOutcome%3E${ccaLO}%3C%2FccaLearningOutcome%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER">${ccaLO}</a></li>
             </#list>
