@@ -43,78 +43,78 @@
 </#list>
 
 <#list assignmentWrapper as assignmentWrapper>
-    <#assign title = assignmentWrapper.get('title')>
-    <#assign description = assignmentWrapper.get('description')>
-    <#assign assignmentDue = assignmentWrapper.get('assignmentDue')>
-    <#assign assignmentDueText = assignmentWrapper.get('assignmentDue_freetext')>
-    <#assign assignmentLength = assignmentWrapper.get('assignmentLength')>
-    <#assign assignmentLengthText = assignmentWrapper.get('assignmentLength_freetext')>
-    <#assign references = assignmentWrapper.get('references')>
-
     <dt>Assignment Information</dt>
-    <#if (description != "")>
-        <dd><strong>Description:</strong> ${description}</dd>
+    <#assign description = assignmentWrapper.get('description')>
+    <#if description != "">
+        <dd><strong>Description:</strong><br><pre>${description}</pre></dd>
     </#if>
-    <#if (assignmentDue != "" || assignmentDue != "other")>
+    <#assign assignmentDue = assignmentWrapper.get('assignmentDue')>
+    <#if assignmentDue != "" || assignmentDue != "other">
         <dd><strong>Assignment occurred during:</strong> ${assignmentDue}</dd>
     </#if>
-    <#if (assignmentDueText != "")>
+    <#assign assignmentDueText = assignmentWrapper.get('assignmentDue_freetext')>
+    <#if assignmentDueText != "">
         <dd><strong>Assignment occurred during:</strong> ${assignmentDueText}</dd>
     </#if>
-    <#if (assignmentLength != "" || assignmentLength != "other")>
+    <#assign assignmentLength = assignmentWrapper.get('assignmentLength')>
+    <#if assignmentLength != "" || assignmentLength != "other">
         <dd><strong>Assignment length:</strong> ${assignmentLength}</dd>
     </#if>
-    <#if (assignmentLengthText != "")>
+    <#assign assignmentLengthText = assignmentWrapper.get('assignmentLength_freetext')>
+    <#if assignmentLengthText != "">
         <dd><strong>Assignment length:</strong> ${assignmentLengthText}</dd>
     </#if>
-    <#if (references != "")>
-        <dd><strong>Assignment references:</strong> ${references}</dd>
+    <#assign references = assignmentWrapper.get('references')>
+    <#if references != "">
+        <dd><strong>Assignment references:</strong><br><pre>${references}</pre></dd>
     </#if>
 
-    <#assign skills = xml.getAllSubtrees('local/skills')>
     <#assign skills_freetext = xml.getAllSubtrees('local/skills_freetext')>
-    <#assign ccaValues = xml.getAllSubtrees('local/ccaValues')>
     <#list local as local>
-        <#assign skillsx = local.get('skills')>
+        <#assign skills = local.list('skills')>
         <#assign skillsText = local.get('skills_freetext')>
-        <#assign thinkingProcesses = local.get('thinkingProcesses')>
-        <#assign critiqueStrategy = local.get('critiqueStrategy')>
-        <#assign ccaValuesx = local.get('ccaValues')>
-        <#assign ccaValuesText = local.get('ccaValues_freetext')>
-        <#if (skillsx != "")>
+        <#if skills?size != 0>
             <dd><strong>Skills used in work:</strong>
-            <#list skills as skills>
-                ${skills}<#if skills_has_next>; </#if>
+            <#list skills as skill>
+                ${skill}<#if skill_has_next>; </#if>
             </#list>
             </dd>
         </#if>
-        <#if (skillsText != "")>
+        <#if skillsText != "">
             <dd><strong>Other skills:</strong> ${skillsText}</dd>
         </#if>
-        <#if (thinkingProcesses != "")>
-            <dd><strong>Thinking Processes:</strong> ${thinkingProcesses}</dd>
-        </#if>
-        <#if (critiqueStrategy != "")>
-            <dd><strong>Critique Strategy:</strong> ${critiqueStrategy}</dd>
+
+        <#assign thinkingProcesses = local.get('thinkingProcesses')>
+        <#if thinkingProcesses != "">
+            <dd><strong>Thinking Processes:</strong><br><pre>${thinkingProcesses}</pre></dd>
         </#if>
 
-        <#if ('/local/assignmentWrapper/programLOWrapper/programLO')!=''>
+        <#assign critiqueStrategy = local.get('critiqueStrategy')>
+        <#if critiqueStrategy != "">
+            <dd><strong>Critique Strategy:</strong><br><pre>${critiqueStrategy}</pre></dd>
+        </#if>
+
+        <#if xml.get('/local/assignmentWrapper/programLOWrapper/programLO') != ''>
             <dd><strong>Program Learning Outcomes:</strong></dd>
+            <ul class="standard">
             <#list assignmentWrapper.getAllSubtrees('programLOWrapper') as programLOWrapper>
                 <#assign programLO = programLOWrapper.get('programLO')>
-                <dd>${programLO}</dd>
+                <li>${programLO}</li>
             </#list>
+            </ul>
         </#if>
 
-        <#if ('/local/assignmentWrapper/ccaLOWrapper/ccaLO')!=''>
+        <#if xml.get('/local/assignmentWrapper/ccaLOWrapper/ccaLO') != ''>
             <dd><strong>CCA Learning Outcomes:</strong></dd>
+            <ul class="standard">
             <#list assignmentWrapper.getAllSubtrees('ccaLOWrapper') as ccaLOWrapper>
                 <#assign ccaLO = ccaLOWrapper.get('ccaLO')>
-                <dd>${ccaLO}</dd>
+                <li>${ccaLO}</li>
             </#list>
+            </ul>
         </#if>
 
-        <#if ('/local/assignmentWrapper/teachStrategyWrapper/teachStrategy')!=''>
+        <#if xml.get('/local/assignmentWrapper/teachStrategyWrapper/teachStrategy') != ''>
             <dd><strong>Teaching Strategies:</strong></dd>
             <#list assignmentWrapper.getAllSubtrees('teachStrategyWrapper') as teachStrategyWrapper>
                 <#assign teachStrategy = teachStrategyWrapper.get('teachStrategy')>
@@ -124,14 +124,16 @@
             </#list>
         </#if>
 
-        <#if (ccaValuesx != "")>
+        <#assign ccaValues = local.list('ccaValues')>
+        <#assign ccaValuesText = local.get('ccaValues_freetext')>
+        <#if ccaValues?size != 0>
             <dd><strong>CCA Values:</strong>
-            <#list ccaValues as ccaValues>
-                ${ccaValues}<#if ccaValues_has_next>; </#if>
+            <#list ccaValues as ccaValue>
+                ${ccaValue}<#if ccaValue_has_next>; </#if>
             </#list>
             </dd>
         </#if>
-        <#if (ccaValuesText != "")>
+        <#if ccaValuesText != "">
             <dd><strong>Other CCA Values:</strong> ${ccaValuesText}</dd>
         </#if>
     </#list>
