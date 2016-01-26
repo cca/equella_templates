@@ -7,7 +7,7 @@
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#list courseWork as courseWork>
     <#assign courseWorkType = courseWork.get('courseWorkType')>
-    <#if (courseWorkType == "Course work")>
+    <#if courseWorkType == "Course work">
     <dl>
         <#assign seniorPacket = xml.getAllSubtrees('local/seniorPacketWrapper')>
         <#assign itemUuid = xml.get('item/@id')>
@@ -44,7 +44,7 @@
         </#list>
 
         <#assign abstract = xml.get('mods/abstract')>
-        <#if (abstract != "")>
+        <#if abstract != "">
             <dd><b>Description</b>:<br><pre>${abstract}</pre></dd>
         </#if>
 
@@ -108,10 +108,10 @@
                     <#else>
                         <#assign url = "/file/${itemUuid}/${itemversion}/${full}">
                     </#if>
-                    <div class='image-with-metadata'>
+                    <div class="image-with-metadata">
                         <#-- rel=group needed for fancybox modal -->
                         <a href="${url}" target="_blank" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                        <p class='metadata'>
+                        <p class="metadata">
                         <#-- p.photoImagelist i sets display: block
                         in our theme -->
                         <#if title != ""><span class="title">${title}</span></#if>
@@ -141,8 +141,5 @@
         </#list>
         </div>
     </dl>
-<script>
-$('.image-with-metadata a').fancybox()
-</script>
 </#if>
 </#list>
