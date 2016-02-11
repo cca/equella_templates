@@ -75,7 +75,7 @@
 
         <#assign abstract = xml.get('mods/abstract')>
         <#if abstract != "">
-            <dd><b>Description</b>: ${abstract}</dd>
+            <dd><b>Description</b>:<br><pre>${abstract}</pre></dd>
         </#if>
 
         <#list xml.getAllSubtrees('local/exhibitWrapper') as exhibitWrapper>
@@ -107,10 +107,10 @@
                     <#assign full = attachment.get('file')>
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Show card</i></u></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <p class="artistDocs"><i><u>Show card</i></u></p>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>${full}</p>
+                    <p class="artistDocs">${full}</p>
                     </div>
                 </#if>
             </#list>
@@ -122,10 +122,10 @@
                     <#assign full = attachment.get('file')>
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Installation shot</i></u></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <p class="artistDocs"><i><u>Installation shot</i></u></p>
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>${full}</p>
+                    <p class="artistDocs">${full}</p>
                     </div>
                 </#if>
             </#list>
@@ -141,10 +141,10 @@
                     <#assign full = attachment.get('file')>
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Artist statement</u></i></p>
+                    <p class="artistDocs"><i><u>Artist statement</u></i></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>
+                    <p class="artistDocs">
                     <#if full != "">
                         ${full}
                     </#if>
@@ -160,24 +160,10 @@
                 <#assign full = attachment.get('file')>
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Resume/CV</u></i></p>
+                    <p class="artistDocs"><i><u>Resume/CV</u></i></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>${full}</p>
-                </div>
-            </#if>
-        </#list>
-
-        <#assign exitPresentation = xml.get('mods/part/number')>
-        <#list attachments as attachment>
-            <#if exitPresentation == attachment.get('uuid')>
-                <#assign full = attachment.get('file')>
-                <#assign uuid = attachment.get('uuid')>
-                <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Exit Review Presentation</u></i></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>${full}</p>
+                    <p class="artistDocs">${full}</p>
                 </div>
             </#if>
         </#list>
@@ -188,10 +174,10 @@
                 <#assign full = attachment.get('file')>
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
-                    <p class='artistDocs'><i><u>Image list</u></i></p>
+                    <p class="artistDocs"><i><u>Image list</u></i></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='artistDocs'>${full}</p>
+                    <p class="artistDocs">${full}</p>
                 </div>
             </#if>
         </#list>
@@ -226,9 +212,9 @@
                 <#-- open-ended description -->
                 <#assign notes = seniorPacket.get('notes')>
                 <#if file == uuid>
-                <div class='image-with-metadata'>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class='metadata'>
+                <div class="image-with-metadata">
+                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <p class="metadata">
                     <#if title != ""><span class="title">${title}</span></#if>
                     <#if date != "">${date}<br></#if>
                     <#if heightINCH != "">${heightINCH}<br></#if>
@@ -262,6 +248,17 @@
                         </#list><br>
                     </#if>
 
+                    <#if formatSpecifics?size != 0>
+                        <b>Materials:</b>&nbsp;
+                        <#list formatSpecifics as formatSpecific>
+                            <#if formatSpecific != 'other...'>
+                                ${formatSpecific}<#if formatSpecific_has_next>, </#if>
+                            <#else>
+                                ${phase}<#if formatSpecific_has_next>, </#if>
+                            </#if>
+                        </#list><br>
+                    </#if>
+
                     <#if tags?size != 0>
                         <b>Concepts:</b>&nbsp;
                         <#list tags as tag>
@@ -271,17 +268,6 @@
                                 ${tag?replace('\\', ': ')}<#if tag_has_next>, </#if>
                             <#else>
                                 ${notes}<#if tag_has_next>, </#if>
-                            </#if>
-                        </#list><br>
-                    </#if>
-
-                    <#if formatSpecifics?size != 0>
-                        <b>Interdisciplinarity:</b>&nbsp;
-                        <#list formatSpecifics as formatSpecific>
-                            <#if formatSpecific != 'other...'>
-                                ${formatSpecific}<#if formatSpecific_has_next>, </#if>
-                            <#else>
-                                ${phase}<#if formatSpecific_has_next>, </#if>
                             </#if>
                         </#list><br>
                     </#if>
