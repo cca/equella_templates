@@ -10,15 +10,17 @@
     <img id="faculty-comment" src="/file/65522e83-d889-466e-ab38-ede1315b4164/1/example-comment.png" alt="example comment" style="display:none;width:97%">
     <br>
 
-    <dd><b>Does the student need to amend their portfolio?</b> Use the button below to contact them.</dd>
-    <#assign username = xml.get('mods/name/subNameWrapper/username')>
+    <dd><b>Does the student need to amend their portfolio?</b> Use the button below to contact Advising.</dd>
+    <!-- @TODO advising will send me different email to use -->
+    <#assign advising = 'advisingrecord@cca.edu'>
     <#assign title = xml.get('mods/titleInfo/title')>
     <#assign root = 'https://vault.cca.edu/login.do?page='>
     <#assign url = root + xml.get('/itemdir')>
+    <#assign name = xml.get('mods/name/namePart')>
     <!-- construct email link with relevant info filled in -->
-    <#assign email = 'mailto:' + username + '@cca.edu?subject=Re:%20' + title?url + '&body=' + 'Link to item in VAULT: '?url + url>
+    <#assign email = 'mailto:' + advising + '@cca.edu?subject=Re:%20' + title?url + '&body=' + 'Link to item in VAULT: '?url + url + '\nStudent: '?url + name>
     <a class="btn btn-info btn-large" href="${email}">
-        <i class="icon-envelope"></i>&nbsp;Email this student
+        <i class="icon-envelope"></i>&nbsp;Email Advising
     </a>
     <br>
 </#if>

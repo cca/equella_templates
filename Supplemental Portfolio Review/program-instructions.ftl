@@ -259,6 +259,7 @@ Lorem ipsum dim sum dipsem
 
 </#switch>
 
+<p>If the link above doesn't work for you, please <a href="mailto:advisingrecord@cca.edu?subject=Supplemental+Portfolio+Review+Instructions">email Academic Advising</a>.</p>
 <br>
 <p>Please Note: Remember to refer to the <a href="https://www.cca.edu/admissions/admitted/registration">Early Registration</a> page on the CCA website for supplemental program submission requirements.</p>
 
