@@ -141,7 +141,7 @@
                     <#assign full = attachment.get('file')>
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
-                    <p class="artistDocs"><i><u>Artist statement</u></i></p>
+                    <p class="artistDocs"><i><u>Senior Thesis</u></i></p>
                     <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="artistDocs">
@@ -153,20 +153,6 @@
                 </#if>
             </#list>
         </#if>
-
-        <#assign resumeCVFile = xml.get('local/artistDocWrapper/resumeCVFile')>
-        <#list attachments as attachment>
-            <#if resumeCVFile == attachment.get('uuid')>
-                <#assign full = attachment.get('file')>
-                <#assign uuid = attachment.get('uuid')>
-                <div class="image-artistDocs">
-                    <p class="artistDocs"><i><u>Resume/CV</u></i></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
-                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class="artistDocs">${full}</p>
-                </div>
-            </#if>
-        </#list>
 
         <#assign imageListFile = xml.get('local/artistDocWrapper/imageListFile')>
         <#list attachments as attachment>
@@ -190,22 +176,18 @@
             <#assign uuid = attachment.get('uuid')>
             <#list xml.getAllSubtrees('local/seniorPacketWrapper') as seniorPacket>
                 <#assign title = seniorPacket.get('title')>
-                <#assign date = seniorPacket.get('date')>
-                <#assign formatBroads = seniorPacket.list('formatBroad')>
-                <#-- formatOther is dimensions -->
-                <#assign dimensions = seniorPacket.get('formatOther')>
-                <#-- these are very much up to departments & phase is often not used  -->
-                <#assign formatSpecifics = seniorPacket.list('formatSpecific')>
-                <#assign phase = seniorPacket.get('phase')>
                 <#-- note: where file is stored & which files we want to
                 display will vary by collection, lowResFile is default for
                 web-ready images like JPGs -->
-                <#assign file = seniorPacket.get('lowResFile')>
-                <#assign techniques = seniorPacket.list('technique')>
-                <#assign techniqueOther = seniorPacket.get('techniqueOther')>
-                <#assign tags = seniorPacket.list('tags')>
+                <#assign file = seniorPacket.get('hiResFile')>
+                <#assign date = seniorPacket.get('date')>
+                <#-- formatOther is dimensions -->
+                <#assign dimensions = seniorPacket.get('formatOther')>
+                <#-- these are very much up to departments & phase is often not used  -->
+                <#assign materials = seniorPacket.list('formatSpecific')>
                 <#-- open-ended description -->
-                <#assign notes = seniorPacket.get('notes')>
+                <#assign description = seniorPacket.get('notes')>
+                <#assign tags = seniorPacket.list('tags')>
                 <#if file == uuid>
                 <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
@@ -213,33 +195,19 @@
                     <#if title != ""><span class="title">${title}</span></#if>
                     <#if date != "">${date}<br></#if>
 
-                    <!-- NOTE: "other" values not implemented for Furniture
-                    leaving them in for now in case the program decides to use them -->
-                    <#if formatBroads?size != 0>
-                        <b>Form(s):</b>&nbsp;
-                        <#list formatBroads as formatBroad>
-                            <#-- dont print other but its actual value,
-                            which is stored elsewhere ("phase" for formatSpecific)
-                            the 2nd "formatBroad_has_next" ensure the comma-sep.
-                            list doesnt get screwed up while we do this -->
-                            <#if formatBroad != 'other...'>
-                                ${formatBroad}<#if formatBroad_has_next>, </#if>
+                    <#if materials?size != 0>
+                        <b>Materials:</b>&nbsp;
+                        <#list materials as material>
+                            <#if material != 'other...'>
+                                ${material}<#if material_has_next>, </#if>
                             <#else>
-                                ${formatOther}<#if formatBroad_has_next>, </#if>
+                                ${phase}<#if material_has_next>, </#if>
                             </#if>
                         </#list><br>
                     </#if>
 
-                    <#if formatSpecifics?size != 0>
-                        <b>Materials:</b>&nbsp;
-                        <#list formatSpecifics as formatSpecific>
-                            <#if formatSpecific != 'other...'>
-                                ${formatSpecific}<#if formatSpecific_has_next>, </#if>
-                            <#else>
-                                ${phase}<#if formatSpecific_has_next>, </#if>
-                            </#if>
-                        </#list><br>
-                    </#if>
+                    <#if description != "">${description}<br></#if>
+                    <#if dimensions != "">${dimensions}<br></#if>
 
                     <#if tags?size != 0>
                         <b>Concepts:</b>&nbsp;
