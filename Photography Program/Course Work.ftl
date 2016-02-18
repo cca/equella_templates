@@ -48,12 +48,14 @@
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
         <#list jpgfileWrapper as jpgfileWrapper>
-            <#-- check if a) user is in Communications
+            <#-- check if
+            a) user doesn't have special "Comm Student Work Viewer Role"
+            b) user is in Communications
             (the Group IDs here are Communications & Communications Workstudy)
-            & b) item isn't specifically marked for sharing
+            & c) item isn't specifically marked for sharing
             no field right now but that looks like "&& jpgfileWrapper.get('shared') != 'yes'")
             hide attachments & image itself if those are both true -->
-            <#if ( user.isMemberOfGroup('8264db8a-5036-0be2-fecb-fd2e2ba80a8e') || user.isMemberOfGroup('7d9339b9-aa7c-49db-80bf-cd6cc713c3ab') ) >
+            <#if ( user.doesntHaveRole('b8b91d93-ede5-4c34-84df-09d5b6bf27e5') && user.isMemberOfGroup('8264db8a-5036-0be2-fecb-fd2e2ba80a8e') || user.isMemberOfGroup('7d9339b9-aa7c-49db-80bf-cd6cc713c3ab') ) >
                 <#-- hide attachments box -->
                 <style>
                 #sc_attachments_div {
