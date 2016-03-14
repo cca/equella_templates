@@ -67,8 +67,8 @@
                 <#assign date = seniorPacket.get('date')>
                 <#-- formatOther is dimensions -->
                 <#assign dimensions = seniorPacket.get('formatOther')>
-                <#-- these are very much up to departments & phase is often not used  -->
                 <#assign materials = seniorPacket.list('formatSpecific')>
+                <#assign relatedCourse = seniorPacket.get('phase')>
                 <#-- open-ended description -->
                 <#assign description = seniorPacket.get('notes')>
                 <#assign tags = seniorPacket.list('tags')>
@@ -77,7 +77,7 @@
                     <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
                     <#if title != ""><span class="title">${title}</span></#if>
-                    <#if date != "">${date}<br></#if>
+                    <#if date != "">(${date})<br></#if>
 
                     <#if materials?size != 0>
                         <b>Materials:</b>&nbsp;
@@ -90,7 +90,7 @@
                         </#list><br>
                     </#if>
 
-                    <#if description != "">${description}<br></#if>
+                    <#if relatedCourse != ""><b>Course</b>:&nbsp;${relatedCourse}<br></#if>
                     <#if dimensions != "">${dimensions}<br></#if>
 
                     <#if tags?size != 0>
@@ -105,6 +105,8 @@
                             </#if>
                         </#list><br>
                     </#if>
+
+                    <#if description != "">${description}<br></#if>
                     </p>
                 </div>
 
