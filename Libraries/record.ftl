@@ -91,7 +91,7 @@
                 <#if partnumber == uuid && partdetail != 'yes' && full?matches('(.tiff?)$', 'i')?size == 0>
                     <!-- <#list full?matches('(.tiff?)$', 'i') as m>${m} </#list>-->
                     <li class="image-with-metadata shorter">
-                        <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group">
+                        <a href="/file/${itemUuid}/${itemversion}/${full?url}" rel="group">
                             <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
                         </a>
                         <#if parttitle != "" || partextent != "">
