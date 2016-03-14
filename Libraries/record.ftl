@@ -63,6 +63,15 @@
     <dd class="collection"><a href="${collectionUrl}">${collectionTitle}</a></dd>
 </#list>
 
+<#if collectionTitle = "Art Collection">
+	<#list attachments.list() as att>
+		<#if att.getType() == "FILE" && mime.getMimeTypeForFilename(att.getFilename()).getType() == "image/jpeg">
+		<img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
+		</#if>
+	</#list>
+</#if>
+
+<#if collectionTitle != "Art Collection">
 <ul class="clearfix">
 <#list itemAttachments as itemAttachment>
     <#assign thumb = itemAttachment.get('thumbnail')>
@@ -80,6 +89,7 @@
             <#assign partdetail = part.get('detail')>
             <#list partnumbers as partnumber>
                 <#if partnumber == uuid && partdetail != 'yes' && full?matches('(.tiff?)$', 'i')?size == 0>
+                    <!-- <#list full?matches('(.tiff?)$', 'i') as m>${m} </#list>-->
                     <li class="image-with-metadata shorter">
                         <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group">
                             <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
@@ -97,6 +107,7 @@
     </#if>
 </#list>
 </ul>
+</#if>
 
 <#list names as name>
     <#assign namePart = name.get('namePart')>
