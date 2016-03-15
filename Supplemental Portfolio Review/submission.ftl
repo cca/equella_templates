@@ -12,14 +12,10 @@
         <#list name.getAllSubtrees('subNameWrapper') as subName>
             <#assign major = subName.get('major')>
             <#assign username = subName.get('username')>
-            <#assign status = subName.get('constituent')>
             <#assign ccaid = subName.get('ccaAffiliated')>
             <#assign majorUrl = "" />
             <#if major != "">
                  — ${major}
-            </#if>
-            <#if status != "">
-                 — ${status}
             </#if>
             <#if username != "">
                  — ${username}
@@ -60,6 +56,7 @@
             <#assign file = wrapper.get('fileA')>
             <#assign title = wrapper.get('title')>
             <#assign format = wrapper.get('format')>
+            <#assign dimensions = wrapper.get('dimensions')>
             <#assign semester = wrapper.get('semester')>
             <#assign description = wrapper.get('description')>
             <#if file == uuid>
@@ -68,6 +65,7 @@
                     <p class="metadata">
                         <#if title != ""><span class="title">${title}</span></#if>
                         <#if format != "">${format}<br></#if>
+                        <#if dimensions != "">${dimensions}<br></#if>
                         <#if semester != "">${semester}<br></#if>
                         <#if description != "">${description}<br></#if>
                     </p>
