@@ -29,23 +29,6 @@
 
     <dd><b>Semester:</b> ${xml.get('local/courseInfo/semester')}</dd>
 
-<#if xml.exists('/local/fileStagingWrappers/fileBstagingWrapper/fileB')>
-    <h3>Course Descriptions</h3>
-    <#list itemAttachments as itemAttachment>
-        <#assign full = itemAttachment.get('file')>
-        <#assign uuid = itemAttachment.get('uuid')>
-        <#list xml.list('/local/fileStagingWrappers/fileBstagingWrapper/fileB') as file>
-            <#if file == uuid>
-                <div class="thumbnail">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                </div>
-            </#if>
-        </#list>
-    </#list>
-
-    <br class="cleafix" />
-</#if>
-
 <#if xml.exists('local/projectWrapper/fileA')>
     <h3>Portfolio</h3>
 

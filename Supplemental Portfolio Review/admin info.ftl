@@ -18,8 +18,6 @@
 
     <#list xml.getAllSubtrees('local/portfolioWaiverWrapper') as portfolioWaiverWrapper>
         <#assign apIbCredits = portfolioWaiverWrapper.list('apIbCredits')>
-        <#assign transferCredits = portfolioWaiverWrapper.get('transferCredits')>
-        <#assign transferCreditNote = portfolioWaiverWrapper.get('transferCreditNote')>
         <#assign ccaPrecollegeNote = portfolioWaiverWrapper.get('ccaPrecollegeNote')>
 
         <dd>
@@ -32,33 +30,10 @@
         </dd>
 
         <#if apIbCredits?size != 0>
-            <dd><strong>AP or IB credits earned:</strong>
+            <dd><strong><abbr title="Advanced Placement">AP</abbr> or <abbr title="International Baccalaureate">IB</abbr> credits earned:</strong>
             <#list apIbCredits as apIbCredit>
                 ${apIbCredit}<#if apIbCredit_has_next>, </#if>
             </#list>
-            </dd>
-        </#if>
-
-        <dd><strong>Any credits transferred:</strong> ${transferCredits}</dd>
-        <dd><strong>Transferred course credits and scores:</strong><br><pre>${transferCreditNote}</pre></dd>
-
-        <#assign files = xml.list('/local/fileStagingWrappers/fileBstagingWrapper/fileB')>
-        <#if files?size != 0>
-            <dd><strong>Course Description Documents:</strong>
-            <ul class="standard">
-            <#list files as file>
-                <#list itemAttachments as itemAttachment>
-                    <#if file == itemAttachment.get('uuid')>
-                        <li>
-                            <#assign filename = itemAttachment.get('file')>
-                            <a href="/file/${itemUuid}/${itemversion}/${filename}">
-                                ${filename}
-                            </a>
-                        </li>
-                    </#if>
-                </#list>
-            </#list>
-            </ul>
             </dd>
         </#if>
 
