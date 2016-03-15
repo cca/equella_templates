@@ -20,9 +20,17 @@
         <#assign apIbCredits = portfolioWaiverWrapper.list('apIbCredits')>
         <#assign transferCredits = portfolioWaiverWrapper.get('transferCredits')>
         <#assign transferCreditNote = portfolioWaiverWrapper.get('transferCreditNote')>
-        <#assign ccaPrecollege = portfolioWaiverWrapper.get('transferCredits')>
+        <#assign ccaPrecollegeNote = portfolioWaiverWrapper.get('ccaPrecollegeNote')>
 
-        <dd><strong>CCA Pre-College program attended?</strong> ${ccaPrecollege}</dd>
+        <dd>
+            <strong>College Courses (including CCA Pre-College):</strong><br>
+            <#if ccaPrecollegeNote != ''>
+                <pre>${ccaPrecollegeNote}</pre>
+            <#else>
+                (none)
+            </#if>
+        </dd>
+
         <#if apIbCredits?size != 0>
             <dd><strong>AP or IB credits earned:</strong>
             <#list apIbCredits as apIbCredit>
@@ -30,6 +38,7 @@
             </#list>
             </dd>
         </#if>
+
         <dd><strong>Any credits transferred:</strong> ${transferCredits}</dd>
         <dd><strong>Transferred course credits and scores:</strong><br><pre>${transferCreditNote}</pre></dd>
 
