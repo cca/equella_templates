@@ -26,10 +26,9 @@ whereas users _who aren't signed in_ show up as ID "guest" -->
 <dt>${xml.get('mods/titleInfo/title')}</dt>
 <br>
 
-<dd class="big">Names:
+<dd class="big">Speakers:
 <#list xml.list('mods/name/namePart') as name>
-	<#assign nameUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${name}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=">
-	&nbsp;<a href="${nameUrl}">${name}</a><#if name_has_next>,</#if>
+	<#assign nameUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${name}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q="><a href="${nameUrl}">${name}</a><#if name_has_next>, </#if>
 </#list>
 </dd>
 
@@ -37,8 +36,7 @@ whereas users _who aren't signed in_ show up as ID "guest" -->
 <#list lectureSeriesWrapper as lectureSeries>
 	<#assign series = lectureSeries.get('series')>
 	<#if series != "">
-		<#assign seriesUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3ClectureSeriesWrapper%3E%3Cseries%3E${series}%3C%2Fseries%3E%3C%2FlectureSeriesWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=">
-		&nbsp;<a href="${seriesUrl}">${series}</a><#if lectureSeries_has_next>,</#if>
+		<#assign seriesUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3ClectureSeriesWrapper%3E%3Cseries%3E${series}%3C%2Fseries%3E%3C%2FlectureSeriesWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q="><a href="${seriesUrl}">${series}</a><#if lectureSeries_has_next>, </#if>
 	</#if>
 </#list>
 </dd>
@@ -47,8 +45,7 @@ whereas users _who aren't signed in_ show up as ID "guest" -->
 <#list xml.getAllSubtrees('mods/origininfo/dateOtherWrapper') as yearOther>
 	<#assign year = yearOther.get('dateOther')>
 	<#if year != "">
-		<#assign yearUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Corigininfo%3E%3CdateOtherWrapper%3E%3CdateOther%3E${year}%3C%2FdateOther%3E%3C%2FdateOtherWrapper%3E%3C%2Forigininfo%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=">
-		&nbsp;<a href="${yearUrl}">${year}</a>
+		<#assign yearUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Corigininfo%3E%3CdateOtherWrapper%3E%3CdateOther%3E${year}%3C%2FdateOther%3E%3C%2FdateOtherWrapper%3E%3C%2Forigininfo%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q="><a href="${yearUrl}">${year}</a>
 	</#if>
 </#list>
 </dd>
