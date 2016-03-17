@@ -36,8 +36,11 @@
         </#list></dd>
     </#if>
 
-    <#if accreditation != "">
-        <dd><b>Used In</b>: ${accreditation}</dd>
+    <#assign accreditations = xml.list('local/accreditation')>
+    <#if accreditations?size != 0>
+        <dd><b>Used In</b>:<br>
+            <#list accreditations as a>${a}<br></#list>
+        </dd>
     </#if>
 
     <#if standards?size != 0>
