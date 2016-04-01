@@ -1,133 +1,90 @@
-<#-- this is an ASC in the collection's contribution wizard -->
+<#--
+this is an ASC in the collection's contribution wizard
+each major has its own instructions for the portfolio
+so we use major as a switch to change the documentation URL
+-->
+
 <#assign major = xml.get('/mods/name/subNameWrapper/major')>
 <#switch major>
 
     <#case "Animation (BFA)">
-        <!-- <#assign url = ''> -->
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/12iCTO9rD6xNVWJm7D5k05u6Z32E7s023hbYu2JvchBo/edit?usp=sharing'>
     	<#break>
 
     <#case "Architecture (BArch)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1VR_B6B-H-3kSIfBOoxRM-TfqPZlpWHr91f0dyh28KRQ/edit?usp=sharing'>
     	<#break>
 
     <#case "Ceramics (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1LVGg9dDFbEn9k7cyKFjzEWDdbyPEb7qdX2v4N5WjbKs/edit?usp=sharing'>
     	<#break>
 
     <#case "Community Arts (BFA)">
-
-    	<#break>
-
-    <#case "Curatorial Practice (MA)">
-
-        <#break>
-
-    <#case "Design (MFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1esZpCFb3l5jO3QOeg_zcSjyf91gg-cNC1JTL1bzOiZ0/edit?usp=sharing'>
     	<#break>
 
     <#case "Fashion Design (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1rf1U6346K8WYTSCibZyU69fnGuBZdbhIiJCWfTaOOjA/edit?usp=sharing'>
     	<#break>
 
     <#case "Film (BFA)">
-
-    	<#break>
-
-    <#case "Fine Arts (MFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/150VdUP9Ts7XKG_p6RJSXpZHvGu4KIRRV8WdpGmn0GV4/edit?usp=sharing'>
     	<#break>
 
     <#case "Furniture (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1y49nLKoxz12VcCSF4BbSl8Usafo8_7ZS5sLglpVgpm4/edit?usp=sharing'>
     	<#break>
 
     <#case "Glass (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1e-6oeuENe-eDYchB_Dwh9kw2J_D_axreLV0u1Y9zFZM/edit?usp=sharing'>
     	<#break>
 
     <#case "Graphic Design (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1F7IUEHsZOQDlmlIf_derIO_Ewa2kFxoXRE8eYfswdVE/edit?usp=sharing'>
     	<#break>
 
     <#case "Illustration (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/16IPT_ZnaF3Udm3L9Pj6KG7SpsM2y6WuaH5zi5QvSVHA/edit?usp=sharing'>
     	<#break>
 
     <#case "Individualized Major (BFA)">
-        <#assign url = 'https://www.cca.edu/'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/11nW4yp2msdZ9ozE6VD1t4XVKoQjqNAZDX3qxx6ZztqQ/edit?usp=sharing'>
     	<#break>
 
     <#case "Industrial Design (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1EQoQlwj-1GLG95um9P2rVbVOBKfRfITm0zOpWa5GS-M/edit?usp=sharing'>
     	<#break>
 
     <#case "Interaction Design (BFA)">
-
-    	<#break>
-
-    <#case "Interaction Design (MDes)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1eY92N0XPbaCsZx4zMDEc77f7JtVw8he9H6F8kbgjcy0/edit?usp=sharing'>
     	<#break>
 
     <#case "Interior Design (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/16_OX4DUwcMBv4ksmrOMUicfeccBunKMF0Jo2E_3yPoM/edit?usp=sharing'>
     	<#break>
 
     <#case "Jewelry / Metal Arts (BFA)">
-
-    	<#break>
-
-    <#case "Master of Architecture (MArch)">
-
-    	<#break>
-
-    <#case "Master of Advanced Architectural Design (MAAD)">
-
-    	<#break>
-
-    <#case "MBA in Civic Innovation">
-
-    	<#break>
-
-    <#case "MBA in Design Strategy">
-
-    	<#break>
-
-    <#case "MBA in Strategic Foresight">
-
-    	<#break>
-
-    <#case "MFA in Comics">
-
-    	<#break>
-
-    <#case "MFA in Film">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1BPs2EHd7QmBd3TzftDq97xhS4u42fDjzdtAkotXjXLE/edit?usp=sharing'>
     	<#break>
 
     <#case "Painting/Drawing (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/18Udpdx1KpStfW8OR3VNr1q3-V0BmFNwIovHiJh_OKaQ/edit?usp=sharing'>
     	<#break>
 
     <#case "Photography (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1JAt8g7TyLFpfS2RllBa8ebiyMHxvQFTVJUvD2rHQFKI/edit?usp=sharing'>
     	<#break>
 
     <#case "Printmaking (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1erqTNVIqAyCUH7EuN4zkENjH0HsMKOqyFkXprU4p_1U/edit?usp=sharing'>
     	<#break>
 
     <#case "Sculpture (BFA)">
-
-    	<#break>
-
-    <#case "Social Practice and Public Forms (MA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/18Bv10YhVKTHgcrlI_eRAieatx8ETBfNbqZ8n9KmOACo/edit?usp=sharing'>
     	<#break>
 
     <#case "Textiles (BFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1N7PZp81GrwIBRhBwpXu3tzDXwgQcPQI4LOo8OpK-iQ8/edit?usp=sharing'>
     	<#break>
 
     <#case "Undecided">
@@ -136,28 +93,22 @@ Undeclared students do not receive a supplemental portfolio review until they ha
 </p>
     	<#break>
 
-    <#case "Visual and Critical Studies (MA)">
-
-    	<#break>
-
     <#case "Visual Studies (BA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1QM7YVEM0GUQN4ME_SScx3aZrI7SzNwf_-NPuaWHydIc/edit?usp=sharing'>
     	<#break>
 
     <#case "Writing and Literature (BA)">
-
-    	<#break>
-
-    <#case "Writing (MFA)">
-
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1ALv8nPvha0hcsH3eyRaGfmjYS8JO20rV8sWpu7CSddw/edit?usp=sharing'>
     	<#break>
 
     <#default>
-        <#assign url = 'https://www.cca.edu/'>
+        <#-- no default URL for now -->
+        <#-- <#assign url = ''> -->
 
 </#switch>
 
-<#if url != ''>
+<#-- guard against URL being undefined (e.g. in <#default> case) -->
+<#if url?exists && url != ''>
     <div class="control">
     <#if major != "Undecided">
         <h3><a href="${url}" target="_blank">${major} Program Instructions</a></h3>
@@ -175,4 +126,4 @@ Undeclared students do not receive a supplemental portfolio review until they ha
 
 <p>If there's no link above or the link doesn't work for you, please <a href="mailto:advisingrecord@cca.edu?subject=Supplemental+Portfolio+Review+Instructions">email Academic Advising</a>.</p>
 
-<p>Please Note: Remember to refer to the <a href="https://www.cca.edu/admissions/admitted/registration">Early Registration</a> page on the CCA website for supplemental program submission requirements.</p>
+<p>Please Note: Refer to the <a href="https://www.cca.edu/admissions/admitted/registration">Early Registration</a> page on the CCA website for supplemental program submission requirements.</p>
