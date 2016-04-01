@@ -8,83 +8,83 @@ so we use major as a switch to change the documentation URL
 <#switch major>
 
     <#case "Animation (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/12iCTO9rD6xNVWJm7D5k05u6Z32E7s023hbYu2JvchBo/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/12iCTO9rD6xNVWJm7D5k05u6Z32E7s023hbYu2JvchBo/preview?usp=sharing'>
     	<#break>
 
     <#case "Architecture (BArch)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1VR_B6B-H-3kSIfBOoxRM-TfqPZlpWHr91f0dyh28KRQ/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1VR_B6B-H-3kSIfBOoxRM-TfqPZlpWHr91f0dyh28KRQ/preview?usp=sharing'>
     	<#break>
 
     <#case "Ceramics (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1LVGg9dDFbEn9k7cyKFjzEWDdbyPEb7qdX2v4N5WjbKs/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1LVGg9dDFbEn9k7cyKFjzEWDdbyPEb7qdX2v4N5WjbKs/preview?usp=sharing'>
     	<#break>
 
     <#case "Community Arts (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1esZpCFb3l5jO3QOeg_zcSjyf91gg-cNC1JTL1bzOiZ0/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1esZpCFb3l5jO3QOeg_zcSjyf91gg-cNC1JTL1bzOiZ0/preview?usp=sharing'>
     	<#break>
 
     <#case "Fashion Design (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1rf1U6346K8WYTSCibZyU69fnGuBZdbhIiJCWfTaOOjA/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1rf1U6346K8WYTSCibZyU69fnGuBZdbhIiJCWfTaOOjA/preview?usp=sharing'>
     	<#break>
 
     <#case "Film (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/150VdUP9Ts7XKG_p6RJSXpZHvGu4KIRRV8WdpGmn0GV4/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/150VdUP9Ts7XKG_p6RJSXpZHvGu4KIRRV8WdpGmn0GV4/preview?usp=sharing'>
     	<#break>
 
     <#case "Furniture (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1y49nLKoxz12VcCSF4BbSl8Usafo8_7ZS5sLglpVgpm4/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1y49nLKoxz12VcCSF4BbSl8Usafo8_7ZS5sLglpVgpm4/preview?usp=sharing'>
     	<#break>
 
     <#case "Glass (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1e-6oeuENe-eDYchB_Dwh9kw2J_D_axreLV0u1Y9zFZM/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1e-6oeuENe-eDYchB_Dwh9kw2J_D_axreLV0u1Y9zFZM/preview?usp=sharing'>
     	<#break>
 
     <#case "Graphic Design (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1F7IUEHsZOQDlmlIf_derIO_Ewa2kFxoXRE8eYfswdVE/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1F7IUEHsZOQDlmlIf_derIO_Ewa2kFxoXRE8eYfswdVE/preview?usp=sharing'>
     	<#break>
 
     <#case "Illustration (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/16IPT_ZnaF3Udm3L9Pj6KG7SpsM2y6WuaH5zi5QvSVHA/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/16IPT_ZnaF3Udm3L9Pj6KG7SpsM2y6WuaH5zi5QvSVHA/preview?usp=sharing'>
     	<#break>
 
     <#case "Individualized Major (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/11nW4yp2msdZ9ozE6VD1t4XVKoQjqNAZDX3qxx6ZztqQ/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/11nW4yp2msdZ9ozE6VD1t4XVKoQjqNAZDX3qxx6ZztqQ/preview?usp=sharing'>
     	<#break>
 
     <#case "Industrial Design (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1EQoQlwj-1GLG95um9P2rVbVOBKfRfITm0zOpWa5GS-M/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1EQoQlwj-1GLG95um9P2rVbVOBKfRfITm0zOpWa5GS-M/preview?usp=sharing'>
     	<#break>
 
     <#case "Interaction Design (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1eY92N0XPbaCsZx4zMDEc77f7JtVw8he9H6F8kbgjcy0/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1eY92N0XPbaCsZx4zMDEc77f7JtVw8he9H6F8kbgjcy0/preview?usp=sharing'>
     	<#break>
 
     <#case "Interior Design (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/16_OX4DUwcMBv4ksmrOMUicfeccBunKMF0Jo2E_3yPoM/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/16_OX4DUwcMBv4ksmrOMUicfeccBunKMF0Jo2E_3yPoM/preview?usp=sharing'>
     	<#break>
 
     <#case "Jewelry / Metal Arts (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1BPs2EHd7QmBd3TzftDq97xhS4u42fDjzdtAkotXjXLE/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1BPs2EHd7QmBd3TzftDq97xhS4u42fDjzdtAkotXjXLE/preview?usp=sharing'>
     	<#break>
 
     <#case "Painting/Drawing (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/18Udpdx1KpStfW8OR3VNr1q3-V0BmFNwIovHiJh_OKaQ/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/18Udpdx1KpStfW8OR3VNr1q3-V0BmFNwIovHiJh_OKaQ/preview?usp=sharing'>
     	<#break>
 
     <#case "Photography (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1JAt8g7TyLFpfS2RllBa8ebiyMHxvQFTVJUvD2rHQFKI/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1JAt8g7TyLFpfS2RllBa8ebiyMHxvQFTVJUvD2rHQFKI/preview?usp=sharing'>
     	<#break>
 
     <#case "Printmaking (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1erqTNVIqAyCUH7EuN4zkENjH0HsMKOqyFkXprU4p_1U/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1erqTNVIqAyCUH7EuN4zkENjH0HsMKOqyFkXprU4p_1U/preview?usp=sharing'>
     	<#break>
 
     <#case "Sculpture (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/18Bv10YhVKTHgcrlI_eRAieatx8ETBfNbqZ8n9KmOACo/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/18Bv10YhVKTHgcrlI_eRAieatx8ETBfNbqZ8n9KmOACo/preview?usp=sharing'>
     	<#break>
 
     <#case "Textiles (BFA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1N7PZp81GrwIBRhBwpXu3tzDXwgQcPQI4LOo8OpK-iQ8/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1N7PZp81GrwIBRhBwpXu3tzDXwgQcPQI4LOo8OpK-iQ8/preview?usp=sharing'>
     	<#break>
 
     <#case "Undecided">
@@ -94,11 +94,11 @@ Undeclared students do not receive a supplemental portfolio review until they ha
     	<#break>
 
     <#case "Visual Studies (BA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1QM7YVEM0GUQN4ME_SScx3aZrI7SzNwf_-NPuaWHydIc/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1QM7YVEM0GUQN4ME_SScx3aZrI7SzNwf_-NPuaWHydIc/preview?usp=sharing'>
     	<#break>
 
     <#case "Writing and Literature (BA)">
-        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1ALv8nPvha0hcsH3eyRaGfmjYS8JO20rV8sWpu7CSddw/edit?usp=sharing'>
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1ALv8nPvha0hcsH3eyRaGfmjYS8JO20rV8sWpu7CSddw/preview?usp=sharing'>
     	<#break>
 
     <#default>
