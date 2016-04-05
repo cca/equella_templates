@@ -23,8 +23,13 @@
             <#if ccaid != "">
                  — ${ccaid}
             </#if>
+            </dd>
+
+            <#assign chosenName = subName.get('staging')>
+            <#if chosenName != ''>
+                <dd><strong>Chosen Name:</strong> ${chosenName}</dd>
+            </#if>
         </#list>
-        <br>
     </#list>
 
     <dd><b>Semester:</b> ${xml.get('local/courseInfo/semester')}</dd>
