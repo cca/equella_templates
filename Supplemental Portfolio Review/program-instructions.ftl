@@ -111,7 +111,7 @@ Undeclared students do not receive a supplemental portfolio review until they ha
 <#if url?exists && url != ''>
     <div class="control">
     <#if major != "Undecided">
-        <h3><a href="${url}" target="_blank">${major} Program Specific Instructions</a></h3>
+        <h3><a href="${url}" target="_blank">${major} Program Specific Information</a></h3>
     </#if>
 
     <p>Open the major program hyperlink in another window for easy reference during the submission process. If the link is broken or there is no text below, please email <a href="mailto:earlyreg@cca.edu">earlyreg@cca.edu</a>.</p>
