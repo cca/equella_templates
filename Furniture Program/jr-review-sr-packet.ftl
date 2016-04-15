@@ -8,7 +8,7 @@
 
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-    <#if courseWorkType == "Senior packet">
+    <#if courseWorkType == "Senior packet" || courseWorkType == "Junior Review">
     <dl>
         <#assign itemUuid = xml.get('item/@id')>
         <#assign itemversion = xml.get('item/@version')>
@@ -181,31 +181,19 @@
                 web-ready images like JPGs -->
                 <#assign file = seniorPacket.get('hiResFile')>
                 <#assign date = seniorPacket.get('date')>
-                <#-- formatOther is dimensions -->
-                <#assign dimensions = seniorPacket.get('formatOther')>
-                <#assign materials = seniorPacket.list('formatSpecific')>
+                <#assign type = seniorPacket.get('formatBroad')>
+                <#assign materials = seniorPacket.get('formatSpecific')>
                 <#assign relatedCourse = seniorPacket.get('phase')>
-                <#-- open-ended description -->
-                <#assign description = seniorPacket.get('notes')>
+                <#assign dimensions = seniorPacket.get('formatOther')>
                 <#assign tags = seniorPacket.list('tags')>
+                <#assign description = seniorPacket.get('notes')>
                 <#if file == uuid>
                 <div class="image-with-metadata">
                     <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
-                    <#if title != ""><span class="title">${title}</span></#if>
-                    <#if date != "">(${date})<br></#if>
-
-                    <#if materials?size != 0>
-                        <b>Materials:</b>&nbsp;
-                        <#list materials as material>
-                            <#if material != 'other...'>
-                                ${material}<#if material_has_next>, </#if>
-                            <#else>
-                                ${phase}<#if material_has_next>, </#if>
-                            </#if>
-                        </#list><br>
-                    </#if>
-
+                    <#if title != ""><span class="title">${title} <#if date != "">(${date})</#if></span></#if>
+                    <#if type != ""><b>Type:</b>&nbsp;${type}<br></#if>
+                    <#if materials != ""><b>Materials:</b>&nbsp;${materials}<br></#if>
                     <#if relatedCourse != ""><b>Course</b>:&nbsp;${relatedCourse}<br></#if>
                     <#if dimensions != "">${dimensions}<br></#if>
 
