@@ -54,14 +54,21 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
       }
     },
     </#if>
+    <#if volume?has_content>
+    {
+      "@id": "#volume${volume}",
+      "@type": "PublicationVolume",
+      <#if date != ''>"datePublished": "${date}",</#if>
+      "volumeNumber": "${volume}",
+      "isPartOf": {
+          "@id": "#periodical"
+      }
+    },
+    </#if>
     {
       "@id": "#periodical",
-      "@type": [
-          <#if volume?has_content>"PublicationVolume",</#if>
-          "Periodical"
-      ],
+      "@type": "Periodical",
       <#if issn?has_content>"issn": "${issn}",</#if>
-      <#if volume?has_content>"volumeNumber": "${volume}",</#if>
       "name": "${publication_title?js_string}"
     },
     {
@@ -79,6 +86,11 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
         <#if issue?has_content>
         {
           "@id": "#issue${issue}"
+        },
+        </#if>
+        <#if volume?has_content>
+        {
+          "@id": "#volume${volume}"
         },
         </#if>
         {
