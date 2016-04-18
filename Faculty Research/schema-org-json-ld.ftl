@@ -105,18 +105,22 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
   ]
 }
 <#elseif publication_type == 'book chapter'>
-<#-- doing a hybrid of
-https://schema.org/Book
-& https://bib.schema.org/Chapter
+<#-- using both
+- https://bib.schema.org/Chapter (exploratory relase, unofficial)
+- https://schema.org/Book
 -->
 {
   "@context":  "http://schema.org/",
-  "@id": "#record",
-  "@type": "Book",
-  "additionalType": "Chapter",
+  "@id": "#chapter",
+  "@type": "Chapter",
   <#if abstract != ''>"description": "${abstract?js_string}",</#if>
-  <#if isbn?has_content>"isbn": "${isbn}",</#if>
-  <#if date != ''>"datePublished": "${date}",</#if>
+  "isPartOf": {
+      "@type": "Book",
+      "@id": "#book",
+      <#if isbn?has_content>"isbn": "${isbn}",</#if>
+      <#if date != ''>"datePublished": "${date}",</#if>
+      "name": "${publication_title}"
+  },
   "author": [
       <#list authors as author>
       {
