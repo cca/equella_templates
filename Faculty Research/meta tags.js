@@ -27,7 +27,7 @@ meta.add('citation_publication_date', date)
 // date added to repository, not authorship date
 var datecreated = xml.get('item/datecreated').split('T')[0].replace('-','/')
 meta.add('citation_online_date', datecreated)
-map('citation_journal_title', 'mods/relatedItem/part/title')
+map('citation_journal_title', 'mods/relatedItem/title')
 
 // NOTE: EQUELLA complains that "attribute must be last part of XPath"
 // which means we can't use paths like part/detail[@type=volume]/number
