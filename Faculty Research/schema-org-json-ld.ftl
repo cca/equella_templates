@@ -35,6 +35,9 @@ for volume & issue number, which are differentiated by a "type" attribute
 <#assign lastpage = xml.get('mods/relatedItem/part/extent/end')>
 
 <script type="application/ld+json">
+<#-- NOTE: cannot have trailing comma in JSON
+so whenever there is an if condition, ensure something comes
+after it without a comma (e.g. "title": "${title}" because we always have that) -->
 <#if publication_type == 'journal article'>
 <#-- using https://schema.org/ScholarlyArticle -->
 {
