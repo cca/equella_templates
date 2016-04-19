@@ -2,7 +2,7 @@
 <#assign itemversion = xml.get('item/@version')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
-<#-- need to change this one to VSCR -->
+<#-- @TODO need to change this one to VSCR, currently H&S division power search -->
 <#assign powerSearch = 'Pe78fd93a-86cd-40a9-9382-e86897646a2d'>
 
 <#list courseWork as courseWork>
