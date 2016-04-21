@@ -1,0 +1,35 @@
+<!-- sort hierarchy nodes by their leading number rather than lexically
+used on the Libraries' Archives subseries hierarchy -->
+<!-- hide initial, unsorted list of nodes -->
+<style>.indent ul { display: none; } </style>
+<script>
+$(function(){
+var numElements = []
+var numbers = []
+var $indent = $('.indent')
+
+$indent.find('ul').eq(0).find('li').each(function() {
+    // parseInt does all the heavy work trimming & ignoring letters
+    var num = parseInt($(this).text())
+    // set number's index value to a clone of the <li> node
+    numElements[num] = $(this).clone()
+    // Object.keys() on above would obviate need for this array of strings
+    numbers.push(num)
+})
+
+// use numerical sort function as a & b are integers
+numbers.sort(function(a, b) { return a - b })
+// remove the old list & create a new one
+$indent.find('ul').eq(0).remove()
+$indent.find('h4').after('<ul></ul>')
+$list = $indent.find('ul').eq(0)
+
+// insert each cloned element, now in correct order
+$.each(numbers, function(index, value) {
+    $list.append(numElements[value])
+})
+// reveal
+$list.show()
+
+})
+</script>

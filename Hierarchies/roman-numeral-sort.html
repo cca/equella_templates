@@ -1,0 +1,68 @@
+<!-- sort hierarchy nodes by their Roman numeral rather than lexically
+used on the Libraries' Archives Series hierarchy -->
+<!-- hide initial, unsorted list of nodes -->
+<style>.indent ul { display: none; } </style>
+<script>
+$(function(){
+/*!
+ * deromanize <https://github.com/jonschlinkert/deromanize>
+ * Based on http://bit.ly/1weeOfY
+ *
+ * Copyright (c) 2014 Jon Schlinkert, contributors.
+ * Licensed under the MIT License
+ */
+var deromanize = function(roman) {
+  roman = roman.toUpperCase().split('');
+  var num = 0;
+  var val = 0;
+
+  var lookup = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  };
+
+  while (roman.length) {
+    val = lookup[roman.shift()];
+    num += val * (val < lookup[roman[0]] ? -1 : 1);
+  }
+
+  return num;
+};
+
+var romanSort = function(a, b) {
+    return deromanize(a) - deromanize(b)
+}
+
+var romanElements = {}
+var romanStrings = []
+var $indent = $('.indent')
+
+$indent.find('ul').eq(0).find('li').each(function() {
+    // "<li>    IX. Foo</li>" => "IX"
+    var name = $(this).text().trim().split('.')[0]
+    // set hash key to Roman numeral & value to a clone of the <li> node
+    romanElements[name] = $(this).clone()
+    // Object.keys() on above would obviate need for this array of strings
+    romanStrings.push(name)
+})
+
+romanStrings.sort(romanSort)
+// remove the old list & create a new one
+$indent.find('ul').eq(0).remove()
+$indent.find('h4').after('<ul></ul>')
+$list = $indent.find('ul').eq(0)
+
+// insert each cloned element, now in correct order
+$.each(romanStrings, function(index, value) {
+    $list.append(romanElements[value])
+})
+// reveal
+$list.show()
+
+})
+</script>
