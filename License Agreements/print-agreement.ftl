@@ -15,7 +15,7 @@
         <li><b>Review</b> the license agreement</li>
         <li><b>Print</b> a copy</li>
         <li><b>Sign</b> the copy</li>
-        <li><b>Upload</b> the signed copy <a href="#p1c3">at the bottom of this form</a></li>
+        <li><b>Upload</b> the signed copy <a href="#p1c3" onclick="location+='#p1c3'; return false;">at the bottom of this form</a></li>
         <li><b>Save</b> this item by pressing the green Save button</li>
     </ul>
     <button style="float:right;" class="btn btn-primary" onclick="window.print();return false">&nbsp;Print&nbsp;<i class="icon-print"></i></button>
