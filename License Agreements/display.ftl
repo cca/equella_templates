@@ -9,6 +9,7 @@
 <#assign personAddress = xml.get('/mods/location/physicalLocation')>
 <#assign telephone = xml.get('/mods/name/subNameWrapper/phone')>
 <#assign email = xml.get('/mods/name/subNameWrapper/email')>
+<#assign paymentReceived = xml.get('mods/noteWrapper/note')>
 
 <dl>
     <#if date != "">
@@ -34,6 +35,10 @@
     </#if>
     <#if title != "">
         <dd><b>Title</b>: ${title}</dd>
+    </#if>
+    <#if paymentReceived != ''>
+        <#assign url = "/searching.do?in=C905e9e64-2d7c-4922-994c-bb467f52f9b2&q=%22${paymentReceived?url}%22">
+        <dd><b>Payment:</b> <a href="${url}">${paymentReceived}.</a></dd>
     </#if>
 
     <dt>Publisher Information</dt>
