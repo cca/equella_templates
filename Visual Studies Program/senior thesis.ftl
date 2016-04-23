@@ -38,6 +38,7 @@
             <#assign majorUrl = "">
                  — <a href="${majorUrl}">${major}</a>
         </#list>
+        <#list name.list('subNameWrapper/minor') as minor> - ${minor} Minor</#list>
         </dd>
     </#list>
 
