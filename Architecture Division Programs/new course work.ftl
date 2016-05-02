@@ -123,7 +123,7 @@
                     <#assign class = class + " comm">
                 </#if>
                 <div class="${class}">
-                    <a href="/file/${itemUuid}/${itemversion}/${file}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${file?url}" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="metadata">
                     <span class="title">${file}</span>
                     <#if format != ''>${format}<br></#if>
