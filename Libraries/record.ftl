@@ -77,7 +77,8 @@
     <#assign thumb = itemAttachment.get('thumbnail')>
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
-    <#if ( ! full?ends_with('.tif') || isLibStaff )>
+    <#-- show TIFF images only to library staff -->
+    <#if ( full?matches('(.tiff?)$', 'i')?size == 0 || isLibStaff )>
         <#list parts as part>
             <#assign parttitle = part.get('title')>
             <#assign partextent = part.get('extent')>
@@ -88,8 +89,7 @@
             or other confidential attachments -->
             <#assign partdetail = part.get('detail')>
             <#list partnumbers as partnumber>
-                <#if partnumber == uuid && partdetail != 'yes' && full?matches('(.tiff?)$', 'i')?size == 0>
-                    <!-- <#list full?matches('(.tiff?)$', 'i') as m>${m} </#list>-->
+                <#if partnumber == uuid && partdetail != 'yes'>
                     <li class="image-with-metadata shorter">
                         <a href="/file/${itemUuid}/${itemversion}/${full?url}" rel="group">
                             <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
@@ -317,8 +317,6 @@
         <dd class="subject">Topic: <a href="${topicUrl}">${topic}</a></dd>
     </#if>
     <#if geographic != ''>
-        <#-- NB: is "geographic" really the best label here?
-        seems kind of obscure, c.f. how "time period" simplifies "temporal" -->
         <dd class="subject">Geographic: <a href="${geographicUrl}">${geographic}</a></dd>
     </#if>
     <#if name != ''>
