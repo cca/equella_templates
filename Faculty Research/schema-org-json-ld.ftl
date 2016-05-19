@@ -106,7 +106,7 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
 }
 <#elseif publication_type == 'book chapter'>
 <#-- using both
-- https://bib.schema.org/Chapter (exploratory relase, unofficial)
+- https://bib.schema.org/Chapter (exploratory release, unofficial)
 - https://schema.org/Book
 -->
 {
