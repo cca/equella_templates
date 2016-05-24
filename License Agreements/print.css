@@ -30,6 +30,7 @@ body button .icon-print {
     #topbar,
     #wizard-navigation,
     .no-print,
+    div.error-receipt,
     #p1c3,
     #p2c3 { /* NOTE: these last 2 are the "Signed Form" attachment controls
     & their IDs may change if more contrib wizard controls are added */
