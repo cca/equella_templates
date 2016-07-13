@@ -6,7 +6,8 @@ whereas users _who aren't signed in_ show up as ID "guest" -->
 <#if uid == 'ed48d1dd-6b07-4e8b-ab80-049bc04496f9' || uid == 'guest'>
     <#-- hide attachments box -->
     <style>
-    #sc_attachments_div {
+    #sc_attachments_div,
+    #sc_attachments_extras {
         display: none;
     }
     </style>
