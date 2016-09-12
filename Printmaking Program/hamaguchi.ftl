@@ -55,10 +55,16 @@
             <dd><b>Description</b>:<br><pre>${abstract}</pre></dd>
         </#if>
 
-        <#-- only show if we actually have something -->
+        <!-- artist's documents -->
         <#assign artistStatementFile = xml.get('local/artistDocWrapper/artistStatementFile')>
-        <#if artistStatementFile != "">
+        <#assign resumeCVFile = xml.get('local/artistDocWrapper/resumeCVFile')>
+        <#assign website = xml.get('mods/location/url')>
+
+        <#if artistStatementFile != '' || resumeCVFile != '' || website != ''>
             <h4><u>Artist Documents</u></h4>
+        </#if>
+
+        <#if artistStatementFile != "">
             <#list attachments as attachment>
                 <#if artistStatementFile == attachment.get('uuid')>
                     <#assign full = attachment.get('file')>
@@ -72,7 +78,6 @@
             </#list>
         </#if>
 
-        <#assign resumeCVFile = xml.get('local/artistDocWrapper/resumeCVFile')>
         <#list attachments as attachment>
             <#if resumeCVFile == attachment.get('uuid')>
                 <#assign full = attachment.get('file')>
@@ -84,6 +89,15 @@
                 </div>
             </#if>
         </#list>
+
+        <#if website != ''>
+            <div class="image-artistDocs"><p class="artistDocs">
+                <i><u>Artist's Website:</u></i>
+                <br><br>
+                <a href="${website}">${website}</a>
+            </p></div>
+        </#if>
+        <!-- end of artist's docs section -->
         <div class="clearfix"></div>
 
         <div class="clearfix">
