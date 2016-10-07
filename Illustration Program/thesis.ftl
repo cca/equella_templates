@@ -8,7 +8,7 @@
 
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-    <#if courseWorkType == "Senior packet">
+    <#if courseWorkType == "Thesis">
     <dl>
         <#assign itemUuid = xml.get('item/@id')>
         <#assign itemversion = xml.get('item/@version')>
@@ -82,104 +82,27 @@
             <dd><b>Description</b>:<br><pre>${abstract}</pre></dd>
         </#if>
 
-        <#list xml.getAllSubtrees('local/exhibitWrapper') as exhibitWrapper>
-            <#assign dates = exhibitWrapper.list('date')>
-            <#assign title = exhibitWrapper.get('title')>
-            <#assign gallery = exhibitWrapper.get('gallery')>
-            <#assign note = exhibitWrapper.get('note')>
-            <#assign datex = exhibitWrapper.get('date')>
-            <#assign galleryUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%2F%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3ESenior+packet%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3CexhibitWrapper%3E%3Cgallery%3E${gallery}%3C%2Fgallery%3E%3C%2FexhibitWrapper%3E%3C%2Flocal%3E%3Cmods%3E%3Cname%3E%3CnamePart%2F%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
-            <#-- only show if we actually have something -->
-            <#if gallery != "" || note != "" || datex != "">
-                <h4><u>Senior Show Information</u></h4>
-                <dd>
-                <#if title != ""><em>${title}</em></#if>
-                <#if gallery != ""> — <a href="${galleryUrl}">${gallery}</a></#if>
-                <#-- note is just a non-CCA gallery in SR Packet template -->
-                <#if note != "">${note}</#if>
-                <#if dates?size != 0> —
-                    <#list dates as date>${date}<#if date_has_next> through </#if>
-                    </#list>
-                </#if>
-                </dd>
-            </#if>
-        </#list>
-
-        <#list xml.getAllSubtrees('local/exhibitWrapper/showcardFile') as showcardFile>
+        <#-- only show if we actually have something -->
+        <#assign artistStatementFile = xml.get('local/artistDocWrapper/artistStatementFile')>
+        <#if artistStatementFile != "">
+            <h4><u>Senior Thesis</u></h4>
             <#list attachments as attachment>
-                <#if showcardFile.get('/') = attachment.get('uuid')>
+                <#if artistStatementFile == attachment.get('uuid')>
                     <#assign full = attachment.get('file')>
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
-                    <p class="artistDocs"><i><u>Show card</i></u></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
-                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class="artistDocs">${full}</p>
+                        <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                        <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <p class="artistDocs">
+                        <#if full != "">
+                            ${full}
+                        </#if>
+                        </p>
                     </div>
                 </#if>
             </#list>
-        </#list>
-
-        <#list xml.getAllSubtrees('local/exhibitWrapper/installationShotFile') as installationShotFile>
-            <#list attachments as attachment>
-                <#if installationShotFile.get('/') = attachment.get('uuid')>
-                    <#assign full = attachment.get('file')>
-                    <#assign uuid = attachment.get('uuid')>
-                    <div class="image-artistDocs">
-                    <p class="artistDocs"><i><u>Installation shot</i></u></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank">
-                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class="artistDocs">${full}</p>
-                    </div>
-                </#if>
-            </#list>
-        </#list>
+        </#if>
         <div class="clearfix"></div>
-
-        <div class="clearfix">
-        <h4><u>Image List</u></h4>
-        <#list attachments as attachment>
-            <#assign full = attachment.get('file')>
-            <#assign uuid = attachment.get('uuid')>
-            <#list xml.getAllSubtrees('local/seniorPacketWrapper') as seniorPacket>
-                <#assign title = seniorPacket.get('title')>
-                <#-- note: where file is stored & which files we want to
-                display will vary by collection, lowResFile is default for
-                web-ready images like JPGs -->
-                <#assign file = seniorPacket.get('hiResFile')>
-                <#assign date = seniorPacket.get('date')>
-                <#-- formatOther is dimensions -->
-                <#assign dimensions = seniorPacket.get('formatOther')>
-                <#assign materials = seniorPacket.list('formatSpecific')>
-                <#-- open-ended description -->
-                <#assign description = seniorPacket.get('notes')>
-                <#if file == uuid>
-                <div class="image-with-metadata">
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class="metadata">
-                    <#if title != ""><span class="title">${title}</span></#if>
-                    <#if date != "">(${date})<br></#if>
-
-                    <#if materials?size != 0>
-                        <b>Media:</b>&nbsp;
-                        <#list materials as material>
-                            <#if material != 'other...'>
-                                ${material}<#if material_has_next>, </#if>
-                            <#else>
-                                ${phase}<#if material_has_next>, </#if>
-                            </#if>
-                        </#list><br>
-                    </#if>
-
-                    <#if dimensions != "">${dimensions}<br></#if>
-                    <#if description != "">${description}<br></#if>
-                    </p>
-                </div>
-
-                </#if>
-            </#list>
-        </#list>
-        </div>
     </dl>
 </#if>
 </#list>
