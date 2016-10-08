@@ -49,7 +49,8 @@
         </#list>
 
         <dd>
-            <b>Career Type(s)</b>: ${xml.get('local/courseWorkWrapper/courseWorkTypeSpecific')}
+            <#assign careers = xml.list('local/courseWorkWrapper/courseWorkTypeSpecific')>
+            <b>Career Type(s)</b>: <#list careers as career>${career}<#if career_has_next>, </#if></#list>
         </dd>
 
         <#list xml.getAllSubtrees('local/courseInfo') as courseInfo>
