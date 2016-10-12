@@ -95,4 +95,11 @@
     </dd>
 </#if>
 
+<#assign abstract = xml.get('mods/abstract')>
+<#if abstract != ''>
+    <dd><b>Abstract</b>:<br>
+<pre>${abstract}</pre>
+    </dd>
+</#if>
+
 </#if>
