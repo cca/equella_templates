@@ -75,7 +75,7 @@ change these variables depending upon collection
 
     <#assign abstract = xml.get('mods/abstract')>
     <#if abstract != "">
-        <dd>Description: ${abstract}</dd>
+        <dd>Description<br><pre>${abstract}</pre></dd>
     </#if>
 
     <#-- print Bio/CV up above rest of attachments to highlight it -->
