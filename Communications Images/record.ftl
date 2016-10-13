@@ -73,7 +73,7 @@
 <#list modslevel as mods>
     <#assign abstract = mods.get('abstract')>
     <#if abstract != "">
-    <dd class="subject">Description: ${abstract}</dd></#if>
+    <dd class="subject">Description:<br><pre>${abstract}</pre></dd></#if>
 </#list>
 <div style="clear:both;"></div>
 
