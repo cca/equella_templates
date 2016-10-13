@@ -90,7 +90,7 @@
 
     <#assign abstract = xml.get('mods/abstract')>
     <#if (abstract != "")>
-        <dd>Description: ${abstract}</dd>
+        <dd>Description:<br><pre>${abstract}</pre></dd>
     </#if>
 
 </#if>
