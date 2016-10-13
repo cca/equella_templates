@@ -85,7 +85,7 @@ hide VAULT's wrapper basically: left, right columns, footer, non-logo stuff up t
     <#if abstract != "" || note != "">
         <dt>Description</dt>
         <dd>${note}</dd><br>
-        <dd>${abstract}</dd><br>
+        <dd><pre>${abstract}</pre></dd><br>
     </#if>
 
     <#-- see the contrib wizard for details on these controls
