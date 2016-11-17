@@ -2,6 +2,8 @@
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign assignmentWrapper = xml.getAllSubtrees('local/assignmentWrapper')>
+<#assign powerSearch = 'P6f96efa5-24ab-4bb8-ad27-169df9f9560d'>
+
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
@@ -13,32 +15,34 @@
     <#assign faculty = courseInfo.get('faculty')>
     <#assign section = courseInfo.get('section')>
     <#assign firstYearDimension = courseInfo.get('firstYearDimension')>
-    <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign firstYearDimensionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CfirstYearDimension%3E${firstYearDimension}%3C%2FfirstYearDimension%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=name&dr=AFTER" />
-    <#assign departmentUrl = "" />
-    <#if (semester != "")>
-    <dt>Course Information</dt>
-    <span id="namestuff"><a href="${semesterUrl}">${semester}</a>
-        <#if department != "undefined" && department != "">
-             — <a href="${departmentUrl}">${department}</a>
-        </#if>
-        <#if firstYearDimension != "undefined" && firstYearDimension != "">
-             — <a href="${firstYearDimensionUrl}">${firstYearDimension}</a>
-        </#if>
-        <#if course != "undefined" && course != "">
-             — <a href="${courseUrl}">${course}</a>
-        </#if>
-        <#if faculty != "undefined" && faculty != "">
-             — <a href="${facultyUrl}">${faculty}</a>
-        </#if>
-        <#if section != "undefined" && section != "">
-             — <a href="${sectionUrl}">${section}</a>
-        </#if>
-    </span>
-    </dd>
+    <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER" />
+    <#assign firstYearDimensionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3CfirstYearDimension%3E${firstYearDimension}%3C%2FfirstYearDimension%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=name&dr=AFTER" />
+    <#if semester != "">
+        <dt>Course Information</dt>
+        <dd>
+            <span id="namestuff"><a href="${semesterUrl}">${semester}</a>
+                <#if firstYearDimension != "undefined" && firstYearDimension != "">
+                     — <a href="${firstYearDimensionUrl}">${firstYearDimension}</a>
+                </#if>
+                <#if course != "undefined" && course != "">
+                     — <a href="${courseUrl}">${course}</a>
+                </#if>
+                <#if faculty != "undefined" && faculty != "">
+                     — <a href="${facultyUrl}">${faculty}</a>
+                </#if>
+                <#if section != "undefined" && section != "">
+                     — <a href="${sectionUrl}">${section}</a>
+                </#if>
+            </span>
+        </dd>
+
+    <#if section != '' && semester != ''>
+        <dd>See <a href="/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=%22${section}%22">student work from this section</a>.</dd>
+    </#if>
+
     </#if>
 </#list>
 
