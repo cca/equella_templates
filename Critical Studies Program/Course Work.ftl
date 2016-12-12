@@ -38,12 +38,18 @@
                  — <a href="${facultyUrl}">${faculty}</a>
                  — <a href="${sectionUrl}">${section}</a>
         </#if>
-        <#assign location = xml.get('mods/location/physicalLocation')>
-        <#if location != ''>
-            <br><br>This course was located in the <a href="/searching.do?in=C75d6b470-f520-45b8-9d28-e899f1c3b580&q=%22Hybrid+Lab%22">${location}</a>.
-        </#if>
     </dd>
     <br>
+
+    <#-- collaborate/Hybrid lab tags -->
+    <#assign tags = xml.list('local/tags')>
+    <#if tags?size != 0>
+        <dd><strong>Tags:</strong>
+            <#list tags as tag>
+                <a href="/searching.do?in=C75d6b470-f520-45b8-9d28-e899f1c3b580&q=%22${tag}%22">${tag}</a><#if tag_has_next>, </#if></#list>.
+        </dd>
+        <br>
+    </#if>
 
     <#assign namePart = xml.get('mods/name/namePart')>
     <#if (namePart != "")>
