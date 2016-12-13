@@ -12,7 +12,21 @@
 
 <dl>
 <#assign title = xml.get('mods/titleInfo/title')>
-<h2 id="title">${title}</h2>
+<dd class="alert alert-warning">
+    <h2 id="title">${title}</h2>
+    <#assign abstract = xml.get('mods/abstract')>
+    <#if abstract != ""><dd class="abstract"><pre>${abstract}</pre></dd></#if>
+</dd>
+
+<#assign answer = xml.get('mods/noteWrapper/note')>
+<#if answer != ''>
+    <dd>
+        <h2>Answer</h2>
+        <dd>
+            <strong><pre>${answer}</pre></strong>
+        </dd>
+    </dd>
+</#if>
 
 <div id="images">
     <#list xml.getAllSubtrees('item/attachments/attachment') as itemAttachment>
@@ -29,7 +43,7 @@
     <#assign categories = internalSupport.list('category')>
     <#assign priority = internalSupport.get('priority')>
         <#if submissionType != "">
-            <dt>Nature of post</dt>
+            <dt>Further Details</dt>
         </#if>
         <dd>
         <#if submissionType != "">
@@ -48,7 +62,6 @@
             </#list>
             </dd>
         </#if>
-
         <dd>
         <#if browsers?size != 0>
             Browser(s) in which issue was encountered:
@@ -58,9 +71,6 @@
         </#if>
         </dd>
 </#list>
-
-<#assign abstract = xml.get('mods/abstract')>
-<#if abstract != ""><dd class="abstract">${abstract}</dd></#if>
 
 <#-- Administrator only information-->
 <#if userIsMemberOf('System Administrators')>
