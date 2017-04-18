@@ -82,11 +82,11 @@
     <#assign groupProject = courseWork.get('groupProject')>
     <#if (groupProject != "")>
         <dd>Project type: ${groupProject}</dd>
-    </#if>
 
-    <#assign groupMembers = courseWork.get('groupMembers')>
-    <#if (groupMembers != "")>
-        <dd>Group members: ${groupMembers}</dd>
+        <#assign groupMembers = courseWork.list('groupConstituents')>
+        <dd>Group members:
+            <#list groupMembers as member>${member}<#if member_has_next>, </#if></#list>
+        </dd>
     </#if>
 
     <#assign abstract = xml.get('mods/abstract')>
