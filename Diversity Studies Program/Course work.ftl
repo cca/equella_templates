@@ -15,8 +15,8 @@
     <a href="${departmentUrl}">${department}</a>
 </dd>
 
-<dt>Creator(s)</dt>
 <#list xml.getAllSubtrees('mods/name') as name>
+    <dt>Creator(s)</dt>
     <#assign namePart = name.get('namePart')>
     <dd>${namePart}
     <#list name.getAllSubtrees('subNameWrapper') as subName>
