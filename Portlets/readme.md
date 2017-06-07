@@ -20,4 +20,4 @@ I'm uncertain if files load in the order they're listed on these pages. It's als
 
 The display order of portlets is user configurable; portlets can be dragged around. We hide the HTML that implements this to prevent users from messing up their home page too much. But putting the portlets in a particular order is difficult; they appear in the order they were created. So if we want to add a _new_ portlet at the top of the dashboard, we have to first _delete all existing portlets_, create the new one, & then recreate the old ones. Yes, it's a mess.
 
-In some places, we work around this with scripts that clone portlet DOM elements and use them to reposition, see "reposition-quick-search.js" for instance. This approach is also imperfect.
+In some places, we work around this with scripts that clone portlet DOM elements and use them to reposition, see "quick-search.js" for instance. This approach is also imperfect.
