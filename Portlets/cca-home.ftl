@@ -39,8 +39,8 @@ taken from: http://freestyle-developments.co.uk/blog/?p=327 -->
 search parameters: order of results, reverse, & offset -->
 <#assign query = ''>
 <#-- retrieve highly rated student work & anything from Undergrad Exhibitions
-note that few items (≈400 as of 7/8/15) have a high rating & more are FYP -->
-<#assign where = "/xml/local/rating IS 'High' OR /xml/local/department IS 'Undergraduate Exhibitions'">
+note that few items (≈400 as of 7/8/15) have a high rating & most are FYP -->
+<#assign where = "/xml/local/rating IS 'High' OR /xml/item/@itemdefid IS '7f0ee0e2-bd15-4182-a83a-1b4c69e181f0'">
 <#assign onlyLive = true>
 <#assign order = rand(0, 2)>
 <#assign reverse = true>
@@ -56,7 +56,7 @@ order: ${order}<br>
 <#-- have to explicitly cast booleans to strings or error occurs, well done Freemarker -->
 reverse: ${reverse?string}<br>
 offset: ${offset}<br>
-<#-- order isn't implemented properly here, the search API takes entirely different
+<#-- order not implemented properly here, the search API takes entirely different
 set of options (reverse, modified, name, rating instead of their enum integers) -->
 <a href="/api/search/?where=${where}&order=${order}&reverse=${reverse?string}&start=${offset}&length=${maxResults}">search results via API</a>
 </div>
