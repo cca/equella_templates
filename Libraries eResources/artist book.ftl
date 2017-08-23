@@ -26,7 +26,7 @@
 <#assign filenames = xml.get('local/courseWorkWrapper/projectTitle')>
 <#assign pages = xml.list('local/courseWorkWrapper/file')?size>
 <#-- points to the root of our Internet Archive Bookreader instance -->
-<#assign iab = 'http://libraries.cca.edu/bookreader/'>
+<#assign iab = 'https://libraries.cca.edu/static/bookreader/index.html'>
 <#-- Bookreader URL — it parses the values passed to it -->
 <#assign url = iab + '?title=' + title?url + '&id=' + id?url + '&version=' + version?url + '&filenames=' + filenames?url + '&pages=' + pages + '#page/1/mode/2up'>
 <#assign catalogUrl = xml.get('mods/relateditem/location')>
