@@ -66,7 +66,7 @@
         </span></dd>
 
     </#if>
-    <#assign studentWorkUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourseinfo%3E${courseinfo}%3C%2Fcourseinfo%3E%3C%2FcourseInfo%3E%3CcourseWorkWrapper%2F%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&dr=AFTER">
+    <#assign studentWorkUrl = "searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourseinfo%3E${courseinfo?replace('&', '%26amp%3B')}%3C%2Fcourseinfo%3E%3C%2FcourseInfo%3E%3CcourseWorkWrapper%2F%3E%3Cdepartment%3EVisual+Studies%3C%2Fdepartment%3E%3C%2Flocal%3E%3Cmods%3E%3Cidentifier%2F%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&type=standard&sort=datemodified&dr=AFTER">
     <dd>Click <a href="${studentWorkUrl}" target="_blank">HERE to see student work</a> from this assignment.</dd>
 </#list>
 
