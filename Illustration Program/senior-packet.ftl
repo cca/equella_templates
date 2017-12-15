@@ -24,10 +24,10 @@
         <#if division != "">
             <dt class="hide">Collection</dt>
             <#-- insert URL for appropriate department here -->
-            <#assign departmentUrl = "">
+            <#assign departmentUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3EIllustration+%28BFA%29%3C%2Fdepartment%3E%3Ctags%2F%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=${powerSearch}&q=">
             <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&dr=AFTER">
             <dd class="collection">
-                <a href="departmentUrl">${encode(department)}</a> | <a href="${divisionUrl}">${encode(division)}</a>
+                <a href="${departmentUrl}">${encode(department)}</a> | <a href="${divisionUrl}">${encode(division)}</a>
             </dd>
         </#if>
 
