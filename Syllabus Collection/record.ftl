@@ -78,5 +78,8 @@
         </#if>
         </dt>
     </#if>
+
+    <#assign portalUrl = "https://portal.cca.edu/courses/?q=${section}&term[0]=${semester}">
+    <dt class="subHeading">View this course in <a href="${portalUrl}">the CCA Portal</a>.</dt>
 </#list>
 </dl>
