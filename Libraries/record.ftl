@@ -59,7 +59,7 @@
 <dt class="hide">Collection</dt>
 <#list collections as collection>
     <#assign collectionTitle = collection.get('title')>
-    <#assign collectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
+    <#assign collectionUrl = "/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
     <dd class="collection"><a href="${collectionUrl}">${collectionTitle}</a></dd>
 </#list>
 
@@ -230,9 +230,9 @@
     <#assign extent = physdesc.get('extent')>
     <#if formBroad != "" || formSpecific != "">
         <#if physdesc_index == 0><dt>Work type &amp; Measurements</dt></#if>
-        <#assign formBroadUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformBroad%3E${formBroad}%3C%2FformBroad%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER">
+        <#assign formBroadUrl = "/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformBroad%3E${formBroad}%3C%2FformBroad%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER">
         <dd><a href="${formBroadUrl}">${formBroad?cap_first}</a>
-        <#assign formSpecificUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformSpecific%3E${formSpecific}%3C%2FformSpecific%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER">
+        <#assign formSpecificUrl = "/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphysicalDescription%3E%3CformSpecific%3E${formSpecific}%3C%2FformSpecific%3E%3C%2FphysicalDescription%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER">
         <#if formSpecific != "">
             — <a href="${formSpecificUrl}">${formSpecific}</a>
         </#if></dd>
@@ -301,15 +301,15 @@
 
 <#list subjects as subject>
     <#assign topic = subject.get('topic')>
-    <#assign topicUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctopic%3E${topic}%3C%2Ftopic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <#assign topicUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctopic%3E${topic}%3C%2Ftopic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign geographic = subject.get('geographic')>
-    <#assign geographicUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cgeographic%3E${geographic}%3C%2Fgeographic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <#assign geographicUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cgeographic%3E${geographic}%3C%2Fgeographic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign name = subject.get('name')>
-    <#assign nameUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E${name}%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER'>
+    <#assign nameUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E${name}%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P4993606e-e026-2c1a-7995-9e8bf088744a&q=&dr=AFTER'>
     <#assign temporal = subject.get('temporal')>
-    <#assign temporalUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <#assign temporalUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign topicCONA = subject.get('topicCONA')>
-    <#assign topicCONAUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3CtopicCONA%3E${topicCONA}%3C%2FtopicCONA%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <#assign topicCONAUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3CtopicCONA%3E${topicCONA}%3C%2FtopicCONA%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#if subject_index == 0 && (topic != '' || geographic != '' || name != '' || temporal != '' || topicCONA != '')>
         <dt>Subject(s)</dt>
     </#if>
@@ -331,7 +331,7 @@
 </#list>
 
 <#assign photoClassification = xml.get('mods/photoClassification')>
-<#assign photoClassificationUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphotoClassification%3E${photoClassification}%3C%2FphotoClassification%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
+<#assign photoClassificationUrl = "/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphotoClassification%3E${photoClassification}%3C%2FphotoClassification%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
 <#if photoClassification != "">
     <div class="clearfix" >
         <dd class="subject">CCA/C subject: <a href="${photoClassificationUrl}">${photoClassification}</a></dd>
