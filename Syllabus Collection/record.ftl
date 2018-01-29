@@ -79,11 +79,14 @@
         </dt>
     </#if>
 
-    <#assign semester_yr = semester?keep_after(' ')?number>
-    <#assign year = .now?date?string("yyyy")?number>
-    <#if (year - semester_yr < 1)>
-        <#assign portalUrl = "https://portal.cca.edu/courses/?q=${section}&term[0]=${semester}">
-        <dt class="subHeading">View this course in <a href="${portalUrl}">the CCA Portal</a>.</dt>
+    <#-- semester might be blank in drafts -->
+    <#if semester != ''>
+        <#assign semester_yr = semester?keep_after(' ')?number>
+        <#assign year = .now?date?string("yyyy")?number>
+        <#if (year - semester_yr < 1)>
+            <#assign portalUrl = "https://portal.cca.edu/courses/?q=${section}&term[0]=${semester}">
+            <dt class="subHeading">View this course in <a href="${portalUrl}">the CCA Portal</a>.</dt>
+        </#if>
     </#if>
 </#list>
 </dl>
