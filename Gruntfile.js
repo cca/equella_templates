@@ -57,7 +57,14 @@ module.exports = function (grunt) {
             files: ['Portlets/*.{css,js,scss}'],
             tasks: ['build']
           }
-      }
+        },
+        jshint: {
+          all: ['Portlets/*.js'],
+          options: {
+              asi: true,
+              laxcomma: true
+          }
+        }
     });
 
     grunt.registerTask('build', [
