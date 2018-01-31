@@ -94,7 +94,13 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         <#assign itemUuid = item.getUuid()>
         <#assign version = item.getVersion()>
         <#assign url = '/items/' + itemUuid + '/' + version + '/'>
-        <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=preview'>
+        <#assign xml = item.getXml()>
+        <#assign thumbUuid = xml.get('item/thumbnail')>
+        <#if thumbUuid != '' && thumbUuid != 'default'>
+            <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/' + thumbUuid?keep_after(':') + '?gallery=preview'>
+        <#else>
+            <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=preview'>
+        </#if>
 
         <#-- check if the first attachment is an image
         this avoids mime types for which we have a generic icon thumbnail
