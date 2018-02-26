@@ -72,6 +72,3 @@
 
 </#list>
 <br/>
-
-<hr>
-<h4><i>Click on the thumbnail below to open the document in Google Drive.</i></h4>
