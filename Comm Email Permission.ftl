@@ -1,6 +1,6 @@
 <#-- only for users in the unique "Communications Student Work Viewer Role"
 generate an email template asking for permission to use the item -->
-<#if user.hasRole('b8b91d93-ede5-4c34-84df-09d5b6bf27e5') || user.getUsername() == 'eric1'>
+<#if user.hasRole('b8b91d93-ede5-4c34-84df-09d5b6bf27e5')>
     <#assign id = item.getUuid()>
     <#assign version = item.getVersion()>
     <#assign item_url = 'https://vault.cca.edu/items/${id}/${version}/'>
