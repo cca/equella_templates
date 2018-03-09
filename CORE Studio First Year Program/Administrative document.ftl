@@ -92,5 +92,4 @@ change these variables depending upon collection
         </#if>
     </#list>
 
-    </dl>
 </#if>
