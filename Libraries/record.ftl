@@ -203,7 +203,7 @@
 
     <#-- note that this refers to the _other_ date assigned above
     prevents us from printing the "date(s)" label twice -->
-    <#if dateCreated == ''>
+    <#if dateCreated == '' && dateother != ''>
         <dt>Date(s)</dt>
     </#if>
     <#-- there's no field even targeting /mods/origininfo/dateOtherWrapper/dateOther
@@ -217,10 +217,12 @@
     <#if dateOtherType != ''>
         <#assign dateOtherStart = dateOther.get('pointStart')>
         <#assign dateOtherEnd = dateOther.get('pointEnd')>
-        <dd class="date">
-            ${dateOtherType?cap_first} date(s): <span class="js-date">${dateOtherStart}</span>
-            <#if dateOtherEnd != ''> - <span class="js-date">${dateOtherEnd}</span></#if>
-        </dd><br>
+        <#if dateOtherStart != '' && dateOtherEnd != ''>
+            <dd class="date">
+                ${dateOtherType?cap_first} date(s): <span class="js-date">${dateOtherStart}</span>
+                <#if dateOtherEnd != ''> - <span class="js-date">${dateOtherEnd}</span></#if>
+            </dd><br>
+        </#if>
     </#if>
 </#list>
 
