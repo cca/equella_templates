@@ -20,9 +20,14 @@
 </#list>
 
 <#list attachments.list() as att>
-    <#if att.getType() == "FILE" && mime.getMimeTypeForFilename(att.getFilename()).getType() == "image/jpeg">
-        <img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
-    </#if>
+	<#attempt>
+		<#assign mimeType = mime.getMimeTypeForFilename(att.getFilename()).getType()>
+		<#if att.getType() == "FILE" && mimeType == "image/jpeg" || mimeType == "image/png">
+	        <img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
+	    </#if>
+	<#recover>
+		<#-- just skip — if we don't know the mime type it's not an image -->
+	</#attempt>
 </#list>
 
 <#list communications as communications>
