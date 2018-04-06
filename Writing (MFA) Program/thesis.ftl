@@ -6,7 +6,7 @@
 
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if courseWorkType == 'Senior packet'>
+<#if courseWorkType == 'Thesis'>
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <h2 id="title">${title}</h2>
@@ -41,15 +41,6 @@
     <#assign genre = xml.get('mods/subject/topic')>
     <#if genre != ''>
         <dd><strong>Genre:</strong> ${genre}</dd>
-    </#if>
-
-    <#assign keywords = xml.list('local/tags')>
-    <#if keywords?size != 0>
-        <dd><strong>Keyword(s):</strong>
-        <#list keywords as keyword>
-                ${keyword}<#if keyword_has_next>, </#if>
-        </#list>
-        </dd>
     </#if>
 
     <#assign abstract = xml.get('mods/abstract')>
