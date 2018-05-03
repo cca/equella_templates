@@ -23,8 +23,8 @@
 
     <dt>Thesis Information</dt>
 
-    <dd><strong>Thesis Committee Chair:</strong> ${xml.get('local/thesisWrapper/reader')}</dd>
-    <dd><strong>Thesis Committee Reader:</strong> ${xml.get('local/thesisWrapper/advisor')}</dd>
+    <dd><strong>Thesis Committee Chair:</strong> ${xml.get('local/thesisWrapper/advisor')}</dd>
+    <dd><strong>Thesis Committee Reader:</strong> ${xml.get('local/thesisWrapper/reader')}</dd>
 
     <#list xml.getAllSubtrees('mods/name') as name>
         <#assign namePart = name.get('namePart')>
