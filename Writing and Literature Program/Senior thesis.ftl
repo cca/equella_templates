@@ -22,6 +22,24 @@
     </dd>
     <br />
 
+    <dt>Creator</dt>
+    <#list xml.getAllSubtrees('mods/name') as name>
+        <#assign namePart = name.get('namePart')>
+        <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q='>
+        <dd><a href="${namePartUrl}">${namePart}</a>
+        <#list name.getAllSubtrees('subNameWrapper') as subName>
+            <#assign major = subName.get('major')>
+            <#assign gradDate = subName.get('gradDate')>
+            <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=">
+            <#assign gradDateUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3CgradDate%3E${gradDate}%3C%2FgradDate%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=">
+            <#if major != ""> — <a href="${majorUrl}">${major}</a></#if>
+            <#if gradDate != "">
+                 — Graduated: <a href="${gradDateUrl}">${gradDate}</a>
+            </#if>
+        </#list>
+        </dd>
+    </#list>
+
     <#list courseInfo as courseInfo>
         <#assign semester = courseInfo.get('semester')>
         <#assign course = courseInfo.get('course')>
