@@ -111,13 +111,14 @@
 
 <#list names as name>
     <#assign namePart = name.get('namePart')>
+    <#assign nameUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign namePartDate = name.get('namePartDate')>
     <#assign role = name.get('role/roleTerm')>
     <#if name_index == 0 && (namePart != "" || namePartDate != "")>
         <dt>Creator(s)</dt>
     </#if>
 
-    <dd>${namePart}
+    <dd><a href="${nameUrl}">${namePart}</a>
     <#if namePartDate != "" && (role == "")>
         (${namePartDate})
     </#if>
