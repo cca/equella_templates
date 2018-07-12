@@ -39,6 +39,11 @@
 
     <dd><b>Type</b>: ${xml.get('/local/courseWorkWrapper/courseWorkType')}</dd>
 
+    <#assign abstract = xml.get('mods/abstract')>
+    <#if (abstract != "")>
+        <dd><b>Description</b>: ${abstract}</dd>
+    </#if>
+
     <#assign outcomes = xml.list('local/assignmentWrapper/ccaLOWrapper/ccaLO')>
     <#if (outcomes?size > 0)>
         <dd><b>CCA Learning Outcomes</b>:
@@ -47,8 +52,11 @@
         </#list></dd>
     </#if>
 
-    <#assign abstract = xml.get('mods/abstract')>
-    <#if (abstract != "")>
-        <dd><b>Description</b>: ${abstract}</dd>
+    <#assign tags = xml.list('local/tags')>
+    <#if (tags?size > 0)>
+        <dd><b>Special Programs/Tags</b>:
+        <#list tags as tag>
+            ${tag}<#if tag_has_next>, </#if>
+        </#list></dd>
     </#if>
 </dl>
