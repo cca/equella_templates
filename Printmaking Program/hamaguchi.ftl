@@ -154,6 +154,8 @@
                             </#list><br>
                         </#if>
 
+                        <#-- these next 2 are no longer collected
+                        but will be present in older records -->
                         <#if paperSize != ""><b>Paper size:</b> ${paperSize}<br></#if>
                         <#if imageSize != ""><b>Image size:</b> ${imageSize}<br></#if>
                         <#if dimensions != ""><b>Dimensions:</b> ${dimensions}<br></#if>
