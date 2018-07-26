@@ -307,13 +307,12 @@
     <#assign topicUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctopic%3E${topic}%3C%2Ftopic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign geographic = subject.get('geographic')>
     <#assign geographicUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cgeographic%3E${geographic}%3C%2Fgeographic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <!-- this doesn't work because there's nothign in the PS -->
     <#assign name = subject.get('name')>
     <#assign nameUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E${name}%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign temporal = subject.get('temporal')>
+    <!-- add mods/relatedItem/title condition to this link -->
     <#assign temporalUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
-    <#assign topicCONA = subject.get('topicCONA')>
-    <#assign topicCONAUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3CtopicCONA%3E${topicCONA}%3C%2FtopicCONA%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
-    <#if subject_index == 0 && (topic != '' || geographic != '' || name != '' || temporal != '' || topicCONA != '')>
         <dt>Subject(s)</dt>
     </#if>
     <#if topic != ''>
@@ -327,9 +326,6 @@
     </#if>
     <#if temporal != "">
         <dd class="subject">Time period: <a href="${temporalUrl}">${temporal}</a></dd>
-    </#if>
-    <#if topicCONA != "">
-        <dd class="subject">Depicted subject: <a href="${topicCONAUrl}">${topicCONA}</a></dd>
     </#if>
 </#list>
 
