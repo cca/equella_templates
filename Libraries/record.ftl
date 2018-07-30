@@ -309,12 +309,10 @@
     <#assign geographicUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cgeographic%3E${geographic}%3C%2Fgeographic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <!-- this doesn't work because there's nothign in the PS -->
     <#assign name = subject.get('name')>
-    <#assign nameUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E${name}%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <#assign nameUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E%22${name}%22%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign temporal = subject.get('temporal')>
-    <!-- add mods/relatedItem/title condition to this link -->
-    <#assign temporalUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
-        <dt>Subject(s)</dt>
-    </#if>
+    <#assign temporalUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <dt>Subject(s)</dt>
     <#if topic != ''>
         <dd class="subject">Topic: <a href="${topicUrl}">${topic}</a></dd>
     </#if>
