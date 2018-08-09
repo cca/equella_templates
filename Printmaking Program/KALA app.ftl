@@ -86,7 +86,7 @@
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
                     <p class='artistDocs'><i><u>Artist statement</u></i></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <a href="/file/${itemUuid}/${itemversion}/${full?url}" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class='artistDocs'>
                     <#if full != "">
@@ -106,7 +106,7 @@
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
                 <p class='artistDocs'><i><u>Letter of Intent</i></u></p>
-                <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                <a href="/file/${itemUuid}/${itemversion}/${full?url}" target="_blank">
                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                 <p class='artistDocs'>${full}</p>
                 </div>
@@ -120,7 +120,7 @@
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
                     <p class='artistDocs'><i><u>Resume/CV</u></i></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank">
+                    <a href="/file/${itemUuid}/${itemversion}/${full?url}" target="_blank">
                     <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class='artistDocs'>${full}</p>
                 </div>

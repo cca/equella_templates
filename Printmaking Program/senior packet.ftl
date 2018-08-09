@@ -106,7 +106,7 @@
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
                         <p class="artistDocs"><i><u>Show card</i></u></p>
-                        <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <a href="/file/${itemUuid}/${itemversion}/${full?url}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                         <p class="artistDocs">${full}</p>
                     </div>
                 </#if>
@@ -120,7 +120,7 @@
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
                         <p class="artistDocs"><i><u>Installation shot</i></u></p>
-                        <a href="/file/${itemUuid}/${itemversion}/${full}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <a href="/file/${itemUuid}/${itemversion}/${full?url}" rel="group" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                         <p class="artistDocs">${full}</p>
                     </div>
                 </#if>
@@ -138,7 +138,7 @@
                     <#assign uuid = attachment.get('uuid')>
                     <div class="image-artistDocs">
                         <p class="artistDocs"><i><u>Artist statement</u></i></p>
-                        <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <a href="/file/${itemUuid}/${itemversion}/${full?url}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                         <#if full != ""><p class="artistDocs">${full}</p></#if>
                     </div>
                 </#if>
@@ -152,7 +152,7 @@
                 <#assign uuid = attachment.get('uuid')>
                 <div class="image-artistDocs">
                     <p class="artistDocs"><i><u>Resume/CV</u></i></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                    <a href="/file/${itemUuid}/${itemversion}/${full?url}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
                     <p class="artistDocs">${full}</p>
                 </div>
             </#if>
@@ -191,7 +191,7 @@
                     <#if attachment.get('@type') == 'remote'>
                         <#assign url = full>
                     <#else>
-                        <#assign url = "/file/${itemUuid}/${itemversion}/${full}">
+                        <#assign url = "/file/${itemUuid}/${itemversion}/${full?url}">
                     </#if>
                     <div class="image-with-metadata">
                         <#-- rel=group needed for fancybox modal -->

@@ -106,7 +106,7 @@
                     <#if attachment.get('@type') == 'remote'>
                         <#assign url = full>
                     <#else>
-                        <#assign url = "/file/${itemUuid}/${itemversion}/${full}">
+                        <#assign url = "/file/${itemUuid}/${itemversion}/${full?url}">
                     </#if>
                     <div class="image-with-metadata">
                         <#-- rel=group needed for fancybox modal -->
