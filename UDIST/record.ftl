@@ -2,6 +2,7 @@
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
+<#assign search_url = 'https://vault.cca.edu/searching.do?in=C53426dda-dbd4-4a32-9155-4f6edaf64340&q='>
 
 <dl>
 <#assign title = xml.get('mods/titleInfo/title')>
@@ -13,7 +14,6 @@
     <dd>${namePart}
     <#list name.getAllSubtrees('subNameWrapper') as subName>
         <#assign major = subName.get('major')>
-        <#-- @todo fill in URL -->
         <#assign majorUrl = "" />
         <#if (major != "")>
              — ${major}
@@ -23,7 +23,7 @@
 
 <#list local as local>
     <#assign academicLevel = local.get('academicLevel')>
-    <#assign academicLevelUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CacademicLevel%3E${academicLevel}%3C%2FacademicLevel%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
+    <#assign academicLevelUrl = "${search_url}%22${academicLevel?url}%22" />
         <#if (academicLevel != "")>
             — <a href="${academicLevelUrl}">${academicLevel}</a>
         </#if>
@@ -35,11 +35,10 @@
     <#assign course = courseInfo.get('course')>
     <#assign faculty = courseInfo.get('faculty')>
     <#assign section = courseInfo.get('section')>
-    <#-- @todo what Power Search is this? -->
-    <#assign courseUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Ccourse%3E${course}%3C%2Fcourse%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign semesterUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csemester%3E${semester}%3C%2Fsemester%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign facultyUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Cfaculty%3E${faculty}%3C%2Ffaculty%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
-    <#assign sectionUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%3E%3Csection%3E${section}%3C%2Fsection%3E%3C%2FcourseInfo%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=P6f96efa5-24ab-4bb8-ad27-169df9f9560d&q=&sort=datemodified&dr=AFTER" />
+    <#assign courseUrl = "${search_url}%22${course}%22">
+    <#assign semesterUrl = "${search_url}%22${semester}%22">
+    <#assign facultyUrl = "${search_url}%22${faculty}%22">
+    <#assign sectionUrl = "${search_url}%22${section}%22">
     <#if (semester != "")>
         <dt>Course Info</dt>
         <span id="namestuff">
@@ -47,14 +46,15 @@
             — <a href="${courseUrl}">${course}</a>
             — <a href="${facultyUrl}">${faculty}</a>
             — <a href="${sectionUrl}">${section}</a>
-            </span>
+        </span>
     </#if>
 </#list>
 
 <dt>Project Description</dt>
 <#assign formBroad = xml.get('mods/physicalDescription/formBroad')>
 <#if (formBroad != "")>
-    <dd>Work type: ${formBroad}</dd>
+    <#assign formBroadUrl = "${search_url}%22${formBroad}%22">
+    <dd>Work type: <a href="${formBroadUrl}">${formBroad}</a></dd>
 </#if>
 
 <#list courseWork as courseWork>
@@ -62,19 +62,22 @@
     <#if (materials?size > 0)>
         <dd>Material(s):
             <#list materials as material>
-                ${material}<#if material_has_next>; </#if>
+                <#assign materialUrl = "${search_url}%22${material}%22">
+                <a href="${materialUrl}">${material}</a><#if material_has_next>; </#if>
             </#list>
         </dd>
     </#if>
 
     <#assign materialsText = courseWork.get('materials_freetext')>
     <#if (materialsText != "")>
-        <dd>Other materials: ${materialsText}</dd>
+        <#assign materialsTextUrl = "${search_url}%22${materialsText}%22">
+        <dd>Other materials: <a href="${materialsTextUrl}">${materialsText}</a></dd>
     </#if>
 
     <#assign groupProject = courseWork.get('groupProject')>
     <#if (groupProject != "")>
-        <dd>Project type: ${groupProject}</dd>
+        <#assign groupProjectUrl = "${search_url}%22${groupProject}%22">
+        <dd>Project type: <a href="${groupProjectUrl}">${groupProject}</a></dd>
     </#if>
 
     <#assign abstract = xml.get('mods/abstract')>
