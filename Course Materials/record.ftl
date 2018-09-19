@@ -14,27 +14,44 @@
     <#list xml.getAllSubtrees('local/courseInfo') as courseInfo>
         <#assign semester = courseInfo.get('semester')>
         <#assign course = courseInfo.get('course')>
+        <#assign department = courseInfo.get('department')>
+        <#assign division = xml.get('local/division')>
         <#assign faculty = courseInfo.get('faculty')>
         <#assign section = courseInfo.get('section')>
+        <#assign courseName = courseInfo.get('courseName')>
+        <#assign departmentUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${department}%22">
+        <#assign divisionUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${division}%22">
+        <#assign courseNameUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${courseName}%22">
         <#assign courseUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${course}%22">
         <#assign semesterUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${semester}%22">
         <#assign facultyUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${faculty}%22">
         <#assign sectionUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${section}%22">
         <dt>Course Information</dt>
-        <span id="coursestuff">
-            <#if semester != "">
-                <a href="${semesterUrl}">${semester}</a>
+        <dt class="subHeading">
+            <a href="${semesterUrl}">${semester}</a>
+            <#if division != "undefined">
+                | <a href="${divisionUrl}">${division}</a>
             </#if>
-            <#if course != "">
-                — <a href="${courseUrl}">${course}</a>
+            <#if department != "undefined">
+                | <a href="${departmentUrl}">${department}</a>
+            </#if></dt><br/>
+            <dt class="subHeading">
+            <#if courseName != "undefined">
+                <a href="${courseNameUrl}">${courseName}</a>
             </#if>
-            <#if faculty != "">
-                — <a href="${facultyUrl}">${faculty}</a>
+            <#if course != "undefined">
+                | <a href="${courseUrl}">${course}</a>
             </#if>
-            <#if section != "">
-                — <a href="${sectionUrl}">${section}</a>
+            <#if section != "undefined">
+                | <a href="${sectionUrl}">${section}</a>
             </#if>
-        </span>
+        </dt><br>
+
+        <#if faculty != "undefined">
+            <dt class="subHeading">
+                <a href="${facultyUrl}">${faculty}</a>
+            </dt><br>
+        </#if>
     </#list>
 
     <dd><b>Type</b>: ${xml.get('/local/courseWorkWrapper/courseWorkType')}</dd>
