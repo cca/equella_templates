@@ -74,7 +74,13 @@
 <p><span class="highlight">In cases where the above criteria are not met, or when the Content requested requires an exceptional amount of work on the part of the Owner, additional fees may be charged.</span></p>
 
 <h2><u>X. Acknowledgement; Source Citation</u></h2>
-<p>Acknowledgement for use of Content shall reference: California College of the Arts Libraries. <span class="highlight">Preferred attribution and source for Content is: from the ${collection} at California College of the Arts Libraries, San Francisco, California.</span> Abbreviations may be substituted to conform with editorial style.</p>
+
+<#-- special case for Mudflats where RS must be credited, too -->
+<#if collection == 'Robert Sommer Mudflats Collection'>
+    <p>Acknowledgement for use of Content shall reference: California College of the Arts Libraries. <span class="highlight">Preferred attribution and source for Content is: Photograph(s) by Robert Sommer. From the ${collection} at California College of the Arts Libraries, San Francisco, California.</span> Abbreviations may be substituted to conform with editorial style.</p>
+<#else>
+    <p>Acknowledgement for use of Content shall reference: California College of the Arts Libraries. <span class="highlight">Preferred attribution and source for Content is: from the ${collection} at California College of the Arts Libraries, San Francisco, California.</span> Abbreviations may be substituted to conform with editorial style.</p>
+</#if>
 
 <h2><u>XI. Assignment and Transfer</u></h2>
 <p>Except as specifically stated in this agreement, parties may not assign, directly or indirectly, all or part of its rights or obligations under this Agreement without the prior written consent of the other party, which consent shall not be unreasonably withheld or delayed. The right to renegotiate terms is reserved if the nature of the assignee is substantially different.</p>
