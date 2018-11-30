@@ -22,7 +22,6 @@
         <#assign department = xml.get('local/department')>
         <#if division != "">
             <dt class="hide">Collection</dt>
-            <#-- insert URL for appropriate department here -->
             <#assign departmentUrl = "/access/searching.do?in=C5da0fa82-2a72-4014-8b5e-66f604f98d22&q=&type=standard&dr=AFTER">
             <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&dr=AFTER">
             <dd class="collection">
@@ -39,13 +38,8 @@
             <dd><b>Creator:</b> <a href="${namePartUrl}">${namePart}</a>
             <#list xml.getAllSubtrees('mods/name/subNameWrapper') as subName>
                 <#assign major = subName.get('major')>
-                <#assign gradDate = subName.get('gradDate')>
                 <#assign majorUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3Cmajor%3E${major}%3C%2Fmajor%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
-                <#assign gradDateUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CsubNameWrapper%3E%3CgradDate%3E${gradDate}%3C%2FgradDate%3E%3C%2FsubNameWrapper%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
                 <#if major != ""> — <a href="${majorUrl}">${major}</a></#if>
-                <#if gradDate != "">
-                     — Graduated: <a href="${gradDateUrl}">${gradDate}</a>
-                </#if>
             </#list>
             </dd>
         </#list>
@@ -54,51 +48,6 @@
         <#if (abstract != "")>
             <dd><b>Description</b>:<br><pre>${abstract}</pre></dd>
         </#if>
-
-        <!-- artist's documents -->
-        <#assign artistStatementFile = xml.get('local/artistDocWrapper/artistStatementFile')>
-        <#assign resumeCVFile = xml.get('local/artistDocWrapper/resumeCVFile')>
-        <#assign website = xml.get('mods/location/url')>
-
-        <#if artistStatementFile != '' || resumeCVFile != '' || website != ''>
-            <h4><u>Artist Documents</u></h4>
-        </#if>
-
-        <#if artistStatementFile != "">
-            <#list attachments as attachment>
-                <#if artistStatementFile == attachment.get('uuid')>
-                    <#assign full = attachment.get('file')>
-                    <#assign uuid = attachment.get('uuid')>
-                    <div class="image-artistDocs">
-                        <p class="artistDocs"><i><u>Artist statement</u></i></p>
-                        <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                        <#if full != ""><p class="artistDocs">${full}</p></#if>
-                    </div>
-                </#if>
-            </#list>
-        </#if>
-
-        <#list attachments as attachment>
-            <#if resumeCVFile == attachment.get('uuid')>
-                <#assign full = attachment.get('file')>
-                <#assign uuid = attachment.get('uuid')>
-                <div class="image-artistDocs">
-                    <p class="artistDocs"><i><u>Resume/CV</u></i></p>
-                    <a href="/file/${itemUuid}/${itemversion}/${full}" target="_blank"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class="artistDocs">${full}</p>
-                </div>
-            </#if>
-        </#list>
-
-        <#if website != ''>
-            <div class="image-artistDocs"><p class="artistDocs">
-                <i><u>Artist's Website:</u></i>
-                <br><br>
-                <a href="${website}">${website}</a>
-            </p></div>
-        </#if>
-        <!-- end of artist's docs section -->
-        <div class="clearfix"></div>
 
         <div class="clearfix">
         <h4><u>Image List</u></h4>
@@ -123,8 +72,6 @@
                 <#assign dimensions = seniorPacket.get('depthINCH')>
                 <#-- only shows for technique = "video" -->
                 <#assign duration = seniorPacket.get('duration')>
-                <#-- tags/keywords -->
-                <#assign tags = seniorPacket.list('tags')>
                 <#-- Description -->
                 <#assign notes = seniorPacket.get('notes')>
                 <#if file == uuid || videoFile == uuid>
@@ -154,8 +101,6 @@
                             </#list><br>
                         </#if>
 
-                        <#-- these next 2 are no longer collected
-                        but will be present in older records -->
                         <#if paperSize != ""><b>Paper size:</b> ${paperSize}<br></#if>
                         <#if imageSize != ""><b>Image size:</b> ${imageSize}<br></#if>
                         <#if dimensions != ""><b>Dimensions:</b> ${dimensions}<br></#if>
