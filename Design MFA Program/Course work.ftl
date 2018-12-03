@@ -21,7 +21,7 @@
         <#assign department = xml.get('local/department')>
         <#if division != "">
             <dt class="hide">Collection</dt>
-            <#assign departmentUrl = "/access/searching.do?in=C8faafb5c-7617-4c17-80f7-b9db9b0fd06f&q=&type=standard&dr=AFTER">
+            <#assign departmentUrl = "/access/searching.do?in=C5a7d71f7-9ffc-41f0-a2ee-2761e78feb11&q=&type=standard&dr=AFTER">
             <#assign divisionUrl = "/access/searching.do?in=${powerSearch}&q=&dr=AFTER">
             <dd class="collection">
                 <a href="${departmentUrl}">${department}</a> | <a href="${divisionUrl}">${division}</a>
