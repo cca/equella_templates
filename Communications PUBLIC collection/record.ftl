@@ -32,7 +32,6 @@
 
 <#list communications as communications>
 	<#assign submissionType = communications.get('submissionType')>
-	<#assign configID = communications.get('configID')>
 	<#assign issuuLink = communications.get('note')>
 	<#if submissionType == "press image">
 		<#list itemAttachments as itemAttachment>
@@ -65,8 +64,7 @@
 		</#list>
 		</div>
 	<#elseif (submissionType=="publication") && (issuuLink!="")>
-		<div data-configid="${configID}" style="width: 525px; height: 525px;" class="issuuembed"></div>
-		<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
+		${issuuLink}
 	</#if>
 </#list>
 <div style="clear:both;"></div>
