@@ -32,7 +32,7 @@
 
 <#list communications as communications>
 	<#assign submissionType = communications.get('submissionType')>
-	<#assign issuuLink = communications.get('note')>
+	<#assign issuuEmbed = communications.get('note')>
 	<#if submissionType == "press image">
 		<#list itemAttachments as itemAttachment>
 			<#assign full = itemAttachment.get('file')>
@@ -54,7 +54,7 @@
 				</#list>
 			</#list>
 		</#list>
-	<#elseif (submissionType=="document") || ((submissionType=="publication") && (issuuLink==""))>
+	<#elseif (submissionType == "document" || (submissionType == "publication" && issuuEmbed == ""))>
 		<div id="images">
 		<#list itemAttachments as itemAttachment>
 			<#assign full = itemAttachment.get('file')>
@@ -63,8 +63,8 @@
 			<img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
 		</#list>
 		</div>
-	<#elseif (submissionType=="publication") && (issuuLink!="")>
-		${issuuLink}
+	<#elseif (submissionType == "publication" && issuuEmbed != "")>
+		${issuuEmbed?replace("<iframe", "<iframe style='width:100%;height:500px'")}
 	</#if>
 </#list>
 <div style="clear:both;"></div>
