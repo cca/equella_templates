@@ -81,9 +81,14 @@
             <dd><b>Medium</b>: ${medium}</dd>
         </#if>
 
+        <#assign discipline = xml.get('mods/genreWrapper/genre')>
+        <#if (discipline != "")>
+            <dd><b>Discipline</b>: ${discipline}</dd>
+        </#if>
+
         <#assign dimensions = xml.get('mods/physicalDescription/extent')>
         <#if (dimensions != "")>
-            <dd><b>Dimensions</b>: ${dimensions}</dd>
+            <dd><b>Dimensions or Length</b>: ${dimensions}</dd>
         </#if>
 
         <#assign abstract = xml.get('mods/abstract')>
