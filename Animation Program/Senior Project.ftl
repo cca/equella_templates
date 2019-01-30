@@ -10,7 +10,6 @@
 <#assign name = xml.getAllSubtrees('mods/name')>
 <#assign subNameWrapper = xml.getAllSubtrees('mods/name/subNameWrapper')>
 <#assign physdesc = xml.getAllSubtrees('mods/physicalDescription')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign courseInfo = xml.getAllSubtrees('local/courseInfo')>
 <#assign courseWork = xml.getAllSubtrees('local/courseWorkWrapper')>
 <#assign local = xml.getAllSubtrees('local')>
@@ -113,6 +112,12 @@
          — ${assignTopic}
     </#if>
     </dd>
+
+    <#assign abstract = xml.get('mods/abstract')>
+    <#if abstract != "">
+        <dd><pre>${abstract}</pre></dd>
+    </#if>
+
     <#if selfEval != "">
         <dd>Self evaluation: ${selfEval}</dd>
     </#if>
