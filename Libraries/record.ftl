@@ -1,6 +1,6 @@
 <#assign archivesWrappers = xml.getAllSubtrees('local/archivesWrapper')>
 <#assign collections = xml.getAllSubtrees('mods/relatedItem')>
-<#assign dateOthers = xml.getAllSubtrees('mods/origininfo/dateOtherWrapper')>
+<#assign dateOtherWrappers = xml.getAllSubtrees('mods/origininfo/dateOtherWrapper')>
 <#assign dates = xml.getAllSubtrees('mods/origininfo/dateCreatedWrapper')>
 <#assign genreWrappers = xml.getAllSubtrees('mods/genreWrapper')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
@@ -175,18 +175,18 @@
     </#if>
 
     <#if dateCreated != "">
-        <dd class="date clearfix">
+        <dd class="date">
         <#-- NOTE: if you want nicely formatted dates with month names
         the _month value only_ needs to be wrapped in a .js-date tag -->
         Date created: <span class="js-date">${dateCreated}</span>
         <#if datequalifier != "">
              (${datequalifier})
         </#if>
-        </dd>
+    </dd>
     </#if>
 
     <#if dateStart != "" || dateEnd != "">
-        <dd class="date clearfix">
+        <dd class="date">
         <#if dateStart != "">
             Date range: <span class="js-date">${dateStart}</span>
         </#if>
@@ -196,38 +196,36 @@
         <#if dateEnd != "">
             <span class="js-date">${dateEnd}</span>
         </#if>
-        </dd>
+    </dd>
     </#if>
 </#list>
-<br>
 
-<#list dateOthers as dateOther>
-    <#assign dateother = dateOther.get('dateOther')>
-    <#assign dateOtherType = dateOther.get('dateOther/@type')>
-    <#assign dateOtherqualifier = dateOther.get('dateOther/@qualifier')>
+<#list dateOtherWrappers as dateOtherWrapper>
+    <#assign dateOther = dateOtherWrapper.get('dateOther')>
+    <#assign dateOtherStart = dateOtherWrapper.get('pointStart')>
+    <#assign dateOtherEnd = dateOtherWrapper.get('pointEnd')>
+    <#-- to figure out if we have anything, concatenate all the child text nodes -->
+    <#assign dateOtherText = dateOther + dateOtherStart + dateOtherEnd>
+    <#assign dateOtherType = dateOtherWrapper.get('dateOther/@type')>
+    <#assign dateOtherqualifier = dateOtherWrapper.get('dateOther/@qualifier')>
 
     <#-- note that this refers to the _other_ date assigned above
-    prevents us from printing the "date(s)" label twice -->
-    <#if dateCreated == '' && dateother != ''>
+    to prevent us from printing the "date(s)" label twice -->
+    <#if dateCreated == '' && dateOtherText != ''>
         <dt>Date(s)</dt>
     </#if>
-    <#-- there's no field even targeting /mods/origininfo/dateOtherWrapper/dateOther
-     in the Libraries collection contribution wizard, this could never be true -->
-    <#if dateother != ''>
-        <dd class="date">${dateOtherType?cap_first} date: <span class="js-date">${dateother}</span>
+    <#-- two types: 1) singleton "date other" -->
+    <#if dateOther != ''>
+        <dd class="date">${dateOtherType?cap_first} date: <span class="js-date">${dateOther}</span>
             <#if dateOtherqualifier != ""> (${dateOtherqualifier})</#if>
-        </dd><br>
+        </dd>
     </#if>
-    <#-- for the way CSP items format their exhibition dates -->
-    <#if dateOtherType != ''>
-        <#assign dateOtherStart = dateOther.get('pointStart')>
-        <#assign dateOtherEnd = dateOther.get('pointEnd')>
-        <#if dateOtherStart != '' && dateOtherEnd != ''>
-            <dd class="date">
-                ${dateOtherType?cap_first} date(s): <span class="js-date">${dateOtherStart}</span>
-                <#if dateOtherEnd != ''> - <span class="js-date">${dateOtherEnd}</span></#if>
-            </dd><br>
-        </#if>
+    <#-- 2) start/end date with a type, includes Capp St items -->
+    <#if dateOtherStart != '' || dateOtherEnd != ''>
+        <dd class="date">
+            ${dateOtherType?cap_first} date(s): <span class="js-date">${dateOtherStart}</span>
+            <#if dateOtherEnd != ''> - <span class="js-date">${dateOtherEnd}</span></#if>
+        </dd>
     </#if>
 </#list>
 
