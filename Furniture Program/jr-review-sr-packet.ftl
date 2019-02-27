@@ -87,7 +87,9 @@
             <#assign galleryUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%2F%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3ESenior+packet%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3CexhibitWrapper%3E%3Cgallery%3E${gallery}%3C%2Fgallery%3E%3C%2FexhibitWrapper%3E%3C%2Flocal%3E%3Cmods%3E%3Cname%3E%3CnamePart%2F%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
             <#-- only show if we actually have something -->
             <#if gallery != "" || note != "" || datex != "">
-                <h4><u>Senior Show Information</u></h4>
+                <#-- this looks fancy but item is either _Senior_ Packet or _Junior_ Review
+                so we can just use the first 6 letters of the courseWorkType -->
+                <h4><u>${courseWorkType[0..5]} Show Information</u></h4>
                 <dd>
                 <#if title != ""><em>${title}</em></#if>
                 <#if gallery != ""> — <a href="${galleryUrl}">${gallery}</a></#if>
