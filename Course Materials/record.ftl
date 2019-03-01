@@ -27,22 +27,21 @@
         <#assign facultyUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${faculty}%22">
         <#assign sectionUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${section}%22">
         <dt>Course Information</dt>
-        <dt class="subHeading">
+        <dt class="subHeading" style="line-height:150%">
             <a href="${semesterUrl}">${semester}</a>
-            <#if division != "undefined">
+            <#if division != "">
                 | <a href="${divisionUrl}">${division}</a>
+            </#if><br>
+            <#if department != "">
+                <a href="${departmentUrl}">${department}</a>
             </#if>
-            <#if department != "undefined">
-                | <a href="${departmentUrl}">${department}</a>
-            </#if></dt><br/>
-            <dt class="subHeading">
-            <#if courseName != "undefined">
-                <a href="${courseNameUrl}">${courseName}</a>
+            <#if courseName != "">
+                | <a href="${courseNameUrl}">${courseName}</a>
             </#if>
-            <#if course != "undefined">
+            <#if course != "">
                 | <a href="${courseUrl}">${course}</a>
             </#if>
-            <#if section != "undefined">
+            <#if section != "">
                 | <a href="${sectionUrl}">${section}</a>
             </#if>
         </dt><br>
