@@ -63,55 +63,15 @@
     <dd class="collection"><a href="${collectionUrl}">${collectionTitle}</a></dd>
 </#list>
 
-<#if collectionTitle = "Art Collection">
-	<#list attachments.list() as att>
-        <#attempt>
-            <#if att.getType() == "FILE" && mime.getMimeTypeForFilename(att.getFilename()).getType() == "image/jpeg">
-                <img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
-            </#if>
-        <#recover>
-            <#-- just skip — if we don't know the mime type it's not an image -->
-        </#attempt>
-	</#list>
-</#if>
-
-<#if collectionTitle != "Art Collection">
-<ul class="clearfix">
-<#list itemAttachments as itemAttachment>
-    <#assign thumb = itemAttachment.get('thumbnail')>
-    <#assign full = itemAttachment.get('file')>
-    <#assign uuid = itemAttachment.get('uuid')>
-    <#-- show TIFF images only to library staff -->
-    <#if ( full?matches('(.tiff?)$', 'i')?size == 0 || isLibStaff )>
-        <#list parts as part>
-            <#assign parttitle = part.get('title')>
-            <#assign partextent = part.get('extent')>
-            <#-- there can be multiple attachments per part
-            each one's UUID is in mods/part/number -->
-            <#assign partnumbers = part.list('number')>
-            <#-- partdetail is used to hide speaker release forms
-            or other confidential attachments -->
-            <#assign partdetail = part.get('detail')>
-            <#list partnumbers as partnumber>
-                <#if partnumber == uuid && partdetail != 'yes'>
-                    <li class="image-with-metadata shorter">
-                        <a href="/file/${itemUuid}/${itemversion}/${full?url}" rel="group">
-                            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
-                        </a>
-                        <#if parttitle != "" || partextent != "">
-                            <p class="metadata">
-                            <#if parttitle != ""><em>${parttitle}</em><br></#if>
-                            <#if partextent != ""> ${partextent}</#if>
-                            </p>
-                        </#if>
-                    </li>
-                </#if>
-            </#list>
-        </#list>
-    </#if>
+<#list attachments.list() as att>
+    <#attempt>
+        <#if att.getType() == "FILE" && mime.getMimeTypeForFilename(att.getFilename()).getType() == "image/jpeg">
+            <img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
+        </#if>
+    <#recover>
+        <#-- just skip — if we don't know the mime type it's not an image -->
+    </#attempt>
 </#list>
-</ul>
-</#if>
 
 <#list names as name>
     <#assign namePart = name.get('namePart')>
@@ -271,21 +231,23 @@
     <dd>${toc}</dd>
 </#if>
 
-<#list noteWrappers as noteWrapper>
-    <#assign note = noteWrapper.get('note')>
-    <#assign noteType = noteWrapper.get('note/@type')>
-    <!-- noteType filter if =funding only show for College + Library Admins -->
-    <#if note != "">
-        <#if noteWrapper_index == 0><dt>Notes</dt></#if>
-        <#if noteType != "">
-            <dd>${noteType?cap_first}:
-            ${note}
-            </dd>
-        <#elseif noteType == "">
-            <dd>${note}</dd>
+<#-- only show notes to college administrators -->
+<#if userIsMemberOf('College Administrators') || userIsMemberOf('System Administrators')>
+    <#list noteWrappers as noteWrapper>
+        <#assign note = noteWrapper.get('note')>
+        <#assign noteType = noteWrapper.get('note/@type')>
+        <#if note != "">
+            <#if noteWrapper_index == 0><dt>Notes</dt></#if>
+            <#if noteType != "">
+                <dd>${noteType?cap_first}:
+                ${note}
+                </dd>
+            <#elseif noteType == "">
+                <dd>${note}</dd>
+            </#if>
         </#if>
-    </#if>
-</#list>
+    </#list>
+</#if>
 
 <div class="clearfix">
 <#list originInfos as originInfo>
