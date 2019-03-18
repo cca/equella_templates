@@ -12,7 +12,7 @@
 
 <#list courseWork as courseWork>
 <#assign courseWorkType = courseWork.get('courseWorkType')>
-<#if (courseWorkType == "Workshops / Events")>
+<#if (courseWorkType == "Workshop / Events")>
 <dl>
     <#assign title = xml.get('mods/titleInfo/title')>
     <#assign subTitle = xml.get('mods/titleInfo/subTitle')>

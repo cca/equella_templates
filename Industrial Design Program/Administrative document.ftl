@@ -4,7 +4,7 @@ change these variables depending upon collection
 <#-- the UUID for the divisional Power Search, this one is Design Division -->
 <#assign powerSearch = 'P3ee81fed-6f99-4179-a7b9-d7e96ca6d4c3'>
 <#-- UUID for specific collection, begins with C -->
-<#assign collectionID = 'C55d9d02d-7e61-49e7-8ec5-ebbb938480d7'>
+<#assign collectionID = 'C5b07c041-2353-4712-92d0-a71eed9201da'>
 
 <#assign courseWorkType = xml.get('local/courseWorkWrapper/courseWorkType')>
 <#if courseWorkType == "Administrative document" || courseWorkType == "Program Portfolio document">
