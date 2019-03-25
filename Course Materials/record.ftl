@@ -20,11 +20,11 @@
         <#assign section = courseInfo.get('section')>
         <#assign courseName = courseInfo.get('courseName')>
         <#assign departmentUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${department}%22">
-        <#assign divisionUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${division}%22">
-        <#assign courseNameUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${courseName}%22">
-        <#assign courseUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${course}%22">
+        <#assign divisionUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${division?url}%22">
+        <#assign courseNameUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${courseName?url}%22">
+        <#assign courseUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${course?url}%22">
         <#assign semesterUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${semester}%22">
-        <#assign facultyUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${faculty}%22">
+        <#assign facultyUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${faculty?url}%22">
         <#assign sectionUrl = "/access/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=%22${section}%22">
         <dt>Course Information</dt>
         <dt class="subHeading" style="line-height:150%">
