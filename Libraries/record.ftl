@@ -78,7 +78,6 @@
 <#if collectionTitle != "Art Collection">
 <ul class="clearfix">
 <#list itemAttachments as itemAttachment>
-    <#assign thumb = itemAttachment.get('thumbnail')>
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
     <#-- show TIFF images only to library staff -->
@@ -96,7 +95,11 @@
                 <#if partnumber == uuid && partdetail != 'yes'>
                     <li class="image-with-metadata shorter">
                         <a href="/file/${itemUuid}/${itemversion}/${full?url}" rel="group">
-                            <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
+                            <#if full?ends_with(".pdf") || full?ends_with(".PDF")>
+                                <img src="/file/ad812d22-e473-493f-9f15-9538a8830da6/1/pdf.png">
+                            <#else>
+                                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
+                            </#if>
                         </a>
                         <#if parttitle != "" || partextent != "">
                             <p class="metadata">
