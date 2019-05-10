@@ -33,7 +33,12 @@
         <#assign full = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
         <a href="/file/${itemUuid}/${itemversion}/${full}">
-        <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+            <#if full?ends_with(".pdf") || full?ends_with(".PDF")>
+                <img src="/file/ad812d22-e473-493f-9f15-9538a8830da6/1/pdf.png">
+            <#else>
+                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
+            </#if>
+        </a>
     </#list>
 </div>
 
