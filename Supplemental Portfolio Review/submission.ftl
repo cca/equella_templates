@@ -10,13 +10,8 @@
         <#assign namePart = name.get('namePart')>
         <dd><strong>Student:</strong> ${namePart}
         <#list name.getAllSubtrees('subNameWrapper') as subName>
-            <#assign major = subName.get('major')>
             <#assign username = subName.get('username')>
             <#assign ccaid = subName.get('ccaAffiliated')>
-            <#assign majorUrl = "" />
-            <#if major != "">
-                 — ${major}
-            </#if>
             <#if username != "">
                  — ${username}
             </#if>
@@ -24,10 +19,13 @@
                  — ${ccaid}
             </#if>
             </dd>
-
             <#assign chosenName = subName.get('staging')>
             <#if chosenName != ''>
                 <dd><strong>Chosen Name:</strong> ${chosenName}</dd>
+            </#if>
+            <#assign major = subName.get('major')>
+            <#if major != ''>
+                <dd><strong>Program of Study:</strong> ${major}</dd>
             </#if>
         </#list>
     </#list>
