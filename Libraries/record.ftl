@@ -307,7 +307,13 @@
 </#list>
 </div>
 
-<#if subjects?size != 0>
+<#-- don't show header if we have an empty <subject/> node -->
+<#assign allSubjectText = ''>
+<#list subjects as subject>
+    <#assign allSubjectText += subject.get('*')>
+</#list>
+
+<#if subjects?size != 0 && allSubjectText != ''>
     <dt>Subject(s)</dt>
 </#if>
 
