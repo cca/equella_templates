@@ -75,7 +75,7 @@ so we use major as a switch to change the documentation URL
         <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1JAt8g7TyLFpfS2RllBa8ebiyMHxvQFTVJUvD2rHQFKI/preview?usp=sharing'>
     	<#break>
 
-    <#case "Printmaking (BFA)">
+    <#case "Printmedia (BFA)">
         <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1erqTNVIqAyCUH7EuN4zkENjH0HsMKOqyFkXprU4p_1U/preview?usp=sharing'>
     	<#break>
 
