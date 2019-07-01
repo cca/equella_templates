@@ -11,6 +11,7 @@
 <#assign version = xml.get('item/@version')>
 <#assign attachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign formBroad = xml.get('mods/physicalDescription/formBroad')>
+<#assign abstract = xml.get('mods/abstract')>
 
 <#if formBroad == "artists' books (books)"><dl>
 <style>
@@ -19,8 +20,6 @@
     display: block;
 }
 </style>
-
-<p><a href="javascript:location = location.origin + "></a></p>
 
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
@@ -55,6 +54,11 @@
 <p>
     View an excerpt of this work as <a href="${url}" target="_blank">an interactive flipbook</a>. To see the complete work, visit the library. Find its location <a href="${catalogUrl}" target="_blank">via the library catalog</a>.
 </p>
+
+<#if abstract != ''>
+    <h3>Description</h3>
+    <p><pre>${abstract}</pre></p>
+</#if>
 
 <h3>The Artists' Books Collection</h3>
 <p>This book is part of the CCA Libraries <cite>Artists' Books Collection</cite>, comprised of approximately 340 unique works. The collection includes works by faculty members, students, alumni, and internationally recognized artists. <a href="https://library.cca.edu/cgi-bin/koha/opac-search.pl?q=(su:%7BArtists%27%20books%20collection.%7D)">The Artists' Books Collection</a>, housed in the Meyer and Simpson Libraries, was developed to support study and teaching of bookworks as an art form. The collection is non-circulating but browsable within the library by request.</p>

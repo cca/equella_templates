@@ -4,6 +4,7 @@
 <#assign parts = xml.list('mods/part/number')>
 <#assign configID = xml.get('mods/identifier')>
 <#assign formBroad = xml.get('mods/physicalDescription/formBroad')>
+<#assign abstract = xml.get('mods/abstract')>
 
 <#if formBroad == ""><dl class="clearfix">
 
@@ -48,5 +49,10 @@
         </dd>
     </#if>
 </#list>
+
+<#if abstract != ''>
+	<h3>Description</h3>
+    <p><pre>${abstract}</pre></p>
+</#if>
 
 </dl></#if>
