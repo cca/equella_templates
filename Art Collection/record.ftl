@@ -350,7 +350,7 @@
 </#list>
 
 <#if xml.exists('mods/location')>
-    <dt class="loc">Location</dt>
+    <dt>Location</dt>
     <#list locations as location>
         <#assign physicalLocation = location.get('physicalLocation')>
         <#assign copyInformations = location.getAllSubtrees('copyInformation')>
@@ -359,7 +359,7 @@
             <#assign sublocationDetail = copyInformation.get('sublocationDetail')>
             <#assign shelfLocator = copyInformation.get('shelfLocator')>
             <#if sublocation != "" || sublocationDetail != "" || shelfLocator != "" || physicalLocation != "">
-                <dd class="loc">
+                <dd>
                     <#if physicalLocation != "">${physicalLocation}</#if>
                     <#if sublocation != "">— ${sublocation}</#if>
                     <#if sublocationDetail != "">— ${sublocationDetail}</#if>
