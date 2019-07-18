@@ -42,9 +42,20 @@
         <#-- try to hack around switch to FYCST dept code in Fall 2019
         translate FYCST-#### sections into their equivalent CORES-### format -->
         <#if section?contains('FYCST')>
-            <#assign sectionOtherVersion = 'CORES' + section?substring(5, 9) + section?substring(10)>
+            <#-- handling leading zero section codes in a PITA
+            for FYCST, if it's less than 10 we need to add a leading zero for CORES
+            for CORES, if it's less than 10 we strip a leading zero -->
+            <#assign code = section?substring(11)>
+            <#if code?number < 10>
+                <#assign code = '0' + code>
+            </#if>
+            <#assign sectionOtherVersion = 'CORES' + section?substring(5, 9) + '-' + code>
         <#else>
-            <#assign sectionOtherVersion = 'FYCST' + section?substring(5, 9) + '0' + section?substring(9)>
+            <#assign code = section?substring(10)>
+            <#if code?number < 10>
+                <#assign code = code?number?string>
+            </#if>
+            <#assign sectionOtherVersion = 'FYCST' + section?substring(5, 9) + '0-' + code>
         </#if>
 
         <#assign firstYearDimension = courseInfo.get('firstYearDimension')>
