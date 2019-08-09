@@ -72,7 +72,8 @@
     <#if (tags?size > 0)>
         <dd><b>Special Programs/Tags</b>:
         <#list tags as tag>
-            ${tag}<#if tag_has_next>, </#if>
+            <#assign tagUrl = '/searching.do?in=Ca2c779ec-2bda-4a4c-a68f-d63a149c6d7d&q=&quot;${tag?trim?url}&quot;'>
+            <a href="${tagUrl}">${tag}</a><#if tag_has_next>, </#if>
         </#list></dd>
     </#if>
 </dl>
