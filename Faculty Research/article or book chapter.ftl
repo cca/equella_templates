@@ -2,6 +2,16 @@
     <#return '/access/searching.do?in=Ce96ccf65-0098-44bb-bec0-6e1cd5466046&q=' + str?url>
 </#function>
 
+<div class="item-title-and-desc">
+	<h2 class="item-title-unselectable" data-itemuuid="${item.getUuid()}" data-itemversion="${item.getVersion()}">${xml.get('/mods/titleInfo/title')}</h2>
+
+	<h3 class="item-description-title">Description</h3>
+    <#assign abstract = xml.get('mods/abstract')>
+    <#if abstract != ''>
+		<p class="item-description">${abstract?replace('\n', '<br>')}</p>
+    </#if>
+</div>
+
 <h3>Details</h3>
 
 <#assign authors = xml.getAllSubtrees('mods/name')>
@@ -34,5 +44,18 @@
     <#assign numUrl = search(num)>
     <dd>
         <b>${numType?upper_case}</b>:&nbsp;<a href="${numUrl}">${num}</a>
+    </dd>
+</#if>
+<#assign doi = xml.get('mods/identifier')>
+<#if doi != ''>
+    <dd>
+        <#-- if it is a URL then hyperlink it -->
+        <b>DOI:&nbsp;<#if doi?starts_with('http')><a href="${doi}"></#if>${doi}<#if doi?starts_with('http')></a></#if></b>
+    </dd>
+</#if>
+<#assign url = xml.get('mods/location/url')>
+<#if url != ''>
+    <dd>
+        <b>Other URL:&nbsp;<a href="${url}">${url}</a></b>
     </dd>
 </#if>

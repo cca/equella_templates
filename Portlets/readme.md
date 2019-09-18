@@ -2,7 +2,7 @@
 
 These are not templates used in Collection Definition > Display but to display "portlets" on the dashboard, they can be edited and deleted on the [/access/portaladmin.do](https://vault.cca.edu/access/portaladmin.do) page.
 
-Since many assets used in the portals (images, items, scripts, etc.) reference items only on the live server, it's not really possible for us to dump the same portlet code into dev for testing. We can test portlets by displaying developmental ones only to ourselves and can hiding the live portlets by wrapping them in:
+Since many assets used in the portals (images, items, scripts, etc.) reference items only on the live server, it's not really possible for us to dump the same portlet code into dev for testing. We can test portlets by displaying developmental ones only to ourselves and can hide the live portlets by wrapping them in:
 
 ```html
 <#if ! user.hasRole('ROLE_SYSTEM_ADMINISTRATOR')>

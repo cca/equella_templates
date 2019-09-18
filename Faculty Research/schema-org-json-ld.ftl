@@ -31,6 +31,8 @@ for volume & issue number, which are differentiated by a "type" attribute
     </#if>
 </#list>
 <#assign abstract = xml.get('mods/abstract')>
+<#assign doi = xml.get('mods/identifier')>
+<#assign url = xml.get('mods/location/url')>
 <#assign firstpage = xml.get('mods/relatedItem/part/extent/start')>
 <#assign lastpage = xml.get('mods/relatedItem/part/extent/end')>
 
@@ -98,6 +100,8 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
         }
       ],
       <#if abstract != ''>"description": "${abstract?js_string}",</#if>
+      <#if doi != '' && doi?starts_with('http')>"sameAs": "${doi?js_string}",</#if>
+      <#if url != ''>"sameAs": "${url?js_string}",</#if>
       <#if firstpage != ''>"pageEnd": "${firstpage}",</#if>
       <#if lastpage != ''>"pageStart": "${lastpage}",</#if>
       "name": "${title}"
@@ -129,6 +133,8 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
       }<#if author_has_next>,</#if>
       </#list>
   ],
+  <#if url != ''>"sameAs": "${url?js_string}",</#if>
+  <#if doi != '' && doi?starts_with('http')>"sameAs": "${doi?js_string}",</#if>
   <#if firstpage != ''>"pageStart": "${firstpage}",</#if>
   <#if lastpage != ''>"pageEnd": "${lastpage}",</#if>
   "name": "${title?js_string}"
