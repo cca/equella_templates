@@ -1,5 +1,6 @@
 // primarily for Google Scholar inclusion
 // see pp. 8-9 of EQUELLA Discoverability Guide
+// https://scholar.google.com/intl/en/scholar/inclusion.html#indexing
 
 // light abstraction over meta.add() API method
 function map (field, xpath) {
