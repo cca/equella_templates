@@ -65,13 +65,11 @@
 
 <#if collectionTitle = "Art Collection">
 	<#list attachments.list() as att>
-        <#attempt>
-            <#if att.getType() == "FILE" && mime.getMimeTypeForFilename(att.getFilename()).getType() == "image/jpeg">
-                <img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
-            </#if>
-        <#recover>
-            <#-- just skip — if we don't know the mime type it's not an image -->
-        </#attempt>
+        <#-- work around null mime type exception -->
+        <#assign mimeType = mime.getMimeTypeForFilename(att.getFilename())!"">
+        <#if att.getType() == "FILE" && mimeType != "" && mimeType.getType()?starts_with("image/")>
+            <img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
+        </#if>
 	</#list>
 </#if>
 
