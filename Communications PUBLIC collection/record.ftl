@@ -1,33 +1,26 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign name = xml.getAllSubtrees('mods/name')>
 <#assign titleInfo = xml.getAllSubtrees('mods/titleInfo')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
-<#assign date = xml.getAllSubtrees('mods/origininfo/dateCreatedWrapper')>
-<#assign origin = xml.getAllSubtrees('mods/origininfo')>
-<#assign local = xml.getAllSubtrees('local')>
 <#assign communications = xml.getAllSubtrees('local/communicationsWrapper')>
 <#assign jpgWrapper = xml.getAllSubtrees('local/communicationsWrapper/filesWrapper/jpgWrapper')>
 <#assign tiffWrapper = xml.getAllSubtrees('local/communicationsWrapper/filesWrapper/tiffWrapper')>
 
-
 <dl>
-
 <#list titleInfo as titleInfo>
-	<#assign title = titleInfo.get('title')>
-		<h2 id="title"><em>${title}</em></h2>
+	<h2 id="title"><em>${titleInfo.get('title')}</em></h2>
 </#list>
 
 <#list attachments.list() as att>
-	<#attempt>
-		<#assign mimeType = mime.getMimeTypeForFilename(att.getFilename()).getType()>
-		<#if att.getType() == "FILE" && mimeType == "image/jpeg" || mimeType == "image/png">
+	<#-- sometimes users upload a file of unknown mime type e.g.
+	https://vault.cca.edu/items/c2ea9f23-9484-4038-99b7-31f14d6854cd/1/
+	!"" means mimeType will default to empty string in these instances
+	otherwise a "FreeMarker template error: The following has evaluated to null
+	or missing" is thrown, even inside an attempt/recover block -->
+		<#assign mimeType = mime.getMimeTypeForFilename(att.getFilename())!"">
+		<#if att.getType() == "FILE" && mimeType != "" && mimeType.getType()?starts_with("image/")>
 	        <img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
 	    </#if>
-	<#recover>
-		<#-- just skip — if we don't know the mime type it's not an image -->
-	</#attempt>
 </#list>
 
 <#list communications as communications>
@@ -112,12 +105,10 @@
 		</#if>
 	</#if>
 
-	<#list modslevel as mods>
-		<#assign abstract = mods.get('abstract')>
-		<#assign toc = mods.get('tableOfContents')>
-		<#if abstract==""><#else>
-			<dd>Description: <pre>${abstract}</pre></dd>
-		</#if>
-	</#list>
+	<#assign abstract = xml.get('mods/abstract')>
+	<#if abstract != "">
+		<dd><strong>Description</strong>: <pre>${abstract}</pre></dd>
+	</#if>
 
 </#list>
+</dl>
