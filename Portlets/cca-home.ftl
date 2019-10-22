@@ -109,8 +109,9 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         <#assign filename = item.getXml().get('item/attachments/attachment/file')>
         <#-- filename check is to prevent remote/link attachments -->
         <#if thumb != "" && ! filename?starts_with('http')>
-            <#assign mimetype = mime.getMimeTypeForFilename(filename).getType()>
-            <#if mimetype?substring(0, 5) == 'image'>
+            <#-- work around null mime type exception -->
+            <#assign mimetype = mime.getMimeTypeForFilename(filename)!"">
+            <#if mimetype != "" && mimetype.getType()?starts_with('image')>
                 <#assign count = count + 1>
                 <a href="${url}" title="${name}"
                 onclick="_gaq.push(['_trackEvent', 'gallery', 'item', 'student work']);">
@@ -152,8 +153,9 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
             <#assign thumb = item.getXml().get('item/attachments/attachment/thumbnail')>
             <#assign filename = item.getXml().get('item/attachments/attachment/file')>
             <#if thumb != "" && ! filename?starts_with('http')>
-                <#assign mimetype = mime.getMimeTypeForFilename(filename).getType()>
-                <#if mimetype?substring(0, 5) == 'image'>
+                <#-- work around null mime type exception -->
+                <#assign mimetype = mime.getMimeTypeForFilename(filename)!"">
+                <#if mimetype != "" && mimetype.getType()?starts_with('image')>
                     <#assign count = count + 1>
                     <a href="${url}" title="${name}"
                     onclick="_gaq.push(['_trackEvent', 'gallery', 'item', 'library collections']);">
@@ -192,8 +194,9 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
             <#assign thumb = item.getXml().get('item/attachments/attachment/thumbnail')>
             <#assign filename = item.getXml().get('item/attachments/attachment/file')>
             <#if thumb != "" && ! filename?starts_with('http')>
-                <#assign mimetype = mime.getMimeTypeForFilename(filename).getType()>
-                <#if mimetype?substring(0, 5) == 'image'>
+                <#-- work around null mime type exception -->
+                <#assign mimetype = mime.getMimeTypeForFilename(filename)!"">
+                <#if mimetype != "" && mimetype.getType()?starts_with('image')>
                     <#assign count = count + 1>
                     <a href="${url}" title="${name}"
                     onclick="_gaq.push(['_trackEvent', 'gallery', 'item', 'campus planning']);">
