@@ -1,3 +1,8 @@
+<#function escapeAmp str>
+    <#-- returns a URI-encoded "&amp;"
+    because we are passing XML in the URI, we have to escape this way -->
+    <#return str?replace('&', '%26amp%3B')>
+</#function>
 <#assign archivesWrappers = xml.getAllSubtrees('local/archivesWrapper')>
 <#assign collections = xml.getAllSubtrees('mods/relatedItem')>
 <#assign dateOtherWrappers = xml.getAllSubtrees('mods/origininfo/dateOtherWrapper')>
@@ -116,7 +121,7 @@
 
 <#list names as name>
     <#assign namePart = name.get('namePart')>
-    <#assign nameUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <#assign nameUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E%22${escapeAmp(namePart)}%22%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign namePartDate = name.get('namePartDate')>
     <#assign role = name.get('role/roleTerm')>
     <#if name_index == 0 && (namePart != "" || namePartDate != "")>
