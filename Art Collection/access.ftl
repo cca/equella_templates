@@ -9,3 +9,5 @@
         <br><br><b>Sharing setting</b>: ${xml.get('local/viewLevel')}.
     </dd>
 </#if>
+<#-- close <dl> from record.ftl -->
+</dl>

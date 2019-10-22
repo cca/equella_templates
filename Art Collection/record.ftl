@@ -3,15 +3,10 @@
 <#assign dateOthers = xml.getAllSubtrees('mods/origininfo/dateOtherWrapper')>
 <#assign dates = xml.getAllSubtrees('mods/origininfo/dateCreatedWrapper')>
 <#assign genreWrappers = xml.getAllSubtrees('mods/genreWrapper')>
-<#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#assign itemUuid = xml.get('item/@id')>
-<#assign itemversion = xml.get('item/@version')>
 <#assign locations = xml.getAllSubtrees('mods/location')>
-<#assign modslevel = xml.getAllSubtrees('mods')>
 <#assign names = xml.getAllSubtrees('mods/name')>
 <#assign noteWrappers = xml.getAllSubtrees('mods/noteWrapper')>
 <#assign originInfos = xml.getAllSubtrees('mods/originInfo')>
-<#assign parts = xml.getAllSubtrees('mods/part')>
 <#assign physdescNotes = xml.getAllSubtrees('mods/physicalDescriptionNote')>
 <#assign physdescs = xml.getAllSubtrees('mods/physicalDescription')>
 <#assign powerSearch = 'P9f4a3509-8c49-6db9-de96-bb168bf80752'>
@@ -64,13 +59,11 @@
 </#list>
 
 <#list attachments.list() as att>
-    <#attempt>
-        <#if att.getType() == "FILE" && mime.getMimeTypeForFilename(att.getFilename()).getType() == "image/jpeg">
-            <img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
-        </#if>
-    <#recover>
-        <#-- just skip — if we don't know the mime type it's not an image -->
-    </#attempt>
+    <#-- work around null mime type exception -->
+    <#assign mimeType = mime.getMimeTypeForFilename(att.getFilename())!"">
+    <#if att.getType() == "FILE" && mimeType != "" && mimeType.getType()?starts_with("image/")>
+        <img src="${utils.getItemUrl(currentItem) + att.getFilename()}" width="450" />
+    </#if>
 </#list>
 
 <#list names as name>
@@ -374,3 +367,5 @@
     <br>
     <dd><strong class="text-error">This is a minimal record, to be completed later. Some fields may be missing.</strong></dd>
 </#if>
+
+<#-- <dl> is closed after access.ftl -->
