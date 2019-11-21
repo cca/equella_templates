@@ -75,19 +75,15 @@ whereas users _who aren't signed in_ show up as ID "guest" -->
 	</#if>
 </#list>
 
-<#list lectureSeriesWrapper as lectureSeries>
-	<#assign releaseType = lectureSeries.get('releaseType')>
-	<#assign releaseForm = lectureSeries.get('releaseForm')>
-	<#assign haveRelease = lectureSeries.get('haveRelease')>
-	<dd class="big">
-    	<#if haveRelease == "">
-            <i>No release form on file</i>
-    	<#elseif haveRelease != "">
-    		<#assign releaseTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3ClectureSeriesWrapper%3E%3CreleaseType%3E${releaseType}%3C%2FreleaseType%3E%3C%2FlectureSeriesWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=">
-    		Permitted release: <a href="${releaseTypeUrl}">${releaseType}</a>
-    	</#if>
-	</dd>
-</#list>
+<#assign releaseType = xml.get('local/lectureSeriesWrapper/releaseType')>
+<dd class="big">
+	<#if releaseType == "">
+        <i>No release form on file</i>
+	<#elseif releaseType != "">
+		<#assign releaseTypeUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3ClectureSeriesWrapper%3E%3CreleaseType%3E${releaseType}%3C%2FreleaseType%3E%3C%2FlectureSeriesWrapper%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Paaa268f2-21b8-4499-9651-af0e298a604d&q=">
+		Permitted release: <a href="${releaseTypeUrl}">${releaseType}</a>
+	</#if>
+</dd>
 
 <#assign abstract = xml.get('mods/abstract')>
 <#if abstract != "">
