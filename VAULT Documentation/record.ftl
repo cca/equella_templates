@@ -37,7 +37,8 @@
 <#list modslevel as mods>
 	<#assign abstract = mods.get('abstract')>
 	<#if abstract==""><#else>
-		<dd class="abstract">Description: ${abstract}</dd>
+		<dt>Description</dt>
+		<dd class="abstract"><pre>${abstract}</pre></dd>
 	</#if>
 </#list>
 
@@ -45,7 +46,7 @@
 <#list local as local>
 	<#assign departmentX = local.get('department')>
 	<#assign viewLevel = local.get('viewLevel')>
-		<dd>Department(s):
+		<dd><b>Department(s)</b>:
 		<#list dept as dept>${dept}<#if dept_has_next>, </#if>
 		</#list></dd>
 
