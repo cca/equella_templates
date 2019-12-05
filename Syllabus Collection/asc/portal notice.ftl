@@ -5,7 +5,7 @@
         Here is the documentation on how to upload syllabi.</a></strong> The
         basic steps are:</p>
     <ol>
-        <li><a href="https://portal.cca.edu/login/">Login</a> to Portal</li>
+        <li><a href="https://portal.cca.edu/login/?next=/">Login</a> to Portal</li>
         <li>Select one of your classes from the <b>My Classes</b> list on the
             home page</li>
         <li>Select <b>Edit</b> and then <b>Upload Syllabi</b></li>
@@ -24,3 +24,12 @@
     display: none !important;
 }
 </style>
+<script>
+// disable annoying dialog that stops you before navigating away
+$(document).ready(()=>{
+    $('#wizard-controls a').click(()=>{
+        window.onbeforeunload = null
+        return true
+    })
+})
+</script>
