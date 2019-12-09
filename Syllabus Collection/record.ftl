@@ -83,8 +83,10 @@
     <#if semester != ''>
         <#assign semester_yr = semester?keep_after(' ')?number>
         <#assign year = .now?date?string("yyyy")?number>
+        <!-- we only have Portal pages for ≈ the past year -->
         <#if (year - semester_yr < 1)>
-            <#assign portalUrl = "https://portal.cca.edu/courses/?q=${section}&term[0]=${semester}">
+            <#assign base = "https://portal.cca.edu/courses/sec">
+            <#assign portalUrl = "${base}/${section}_AP_${semester?replace(' ', '_')}">
             <dt class="subHeading">View this course in <a href="${portalUrl}">the CCA Portal</a>.</dt>
         </#if>
     </#if>
