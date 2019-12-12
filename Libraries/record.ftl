@@ -148,7 +148,7 @@
         <#assign description = subName.get('description')>
         <span id="namestuff">
             <#if affiliation != "" && affiliation != "CCAC" && affiliation != "CSAC" && affiliation != "CCA">
-                ${affiliation} -
+                ${affiliation}
             </#if>
             <#if constituent != "">
                 ${constituent}
