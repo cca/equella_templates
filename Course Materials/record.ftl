@@ -44,13 +44,19 @@
             <#if section != "">
                 | <a href="${sectionUrl}">${section}</a>
             </#if>
-        </dt><br>
+        </dt>
 
-        <#if faculty != "undefined">
+        <#if faculty != "undefined" && faculty != ''>
             <dt class="subHeading">
                 <a href="${facultyUrl}">${faculty}</a>
             </dt><br>
         </#if>
+
+        <#assign root = '/searching.do?in=all&q='>
+        <#assign search = '"' + semester + '" "' + section + '" "course work"' >
+        <div>
+            <p><strong><a class="text-error" href="${root + search?url}" target="_blank">See Related Course Work</a></strong>. Note that there may not be any student work from the course archived in VAULT.</p>
+        </div>
     </#list>
 
     <dd><b>Type</b>: ${xml.get('/local/courseWorkWrapper/courseWorkType')}</dd>
