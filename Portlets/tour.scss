@@ -1,12 +1,19 @@
-body {
-    #startTourBtn {
-        color:#b35;
-        top: 31px;
-    }
+#startTourBtn {
+    color:#b35;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    text-align: right;
+    top: 31px;
+    z-index: 10;
 
-    .tour-backdrop {
-        opacity: .5;
+    &:hover {
+        text-decoration: underline;
     }
+}
+
+.tour-backdrop {
+    opacity: .5;
 }
 
 .suggestion {
