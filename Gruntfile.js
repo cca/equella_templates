@@ -23,7 +23,7 @@ module.exports = function (grunt) {
             },
             files: {
                 'dist/dashboard-non-cca.min.css': 'Portlets/dashboard-non-cca.scss',
-                'dist/dashboard-cca.min.css': 'Portlets/dashboard-cca.scss'
+                'dist/dashboard-student-work.min.css': 'Portlets/dashboard-cca.scss'
             }
           }
         },
