@@ -5,7 +5,9 @@
         // since loading them in fancybox crashes the browser
         $('.image-with-metadata a').filter(function(){
             return !this.href.match(/(\.tiff?)$/i)
-        }).fancybox();
+        })
+        .attr('href', (i, href) => href + '?.vi=fancy')
+        .fancybox();
     }
 
     // fancybox not loaded for anonymous users, we manually insert
@@ -15,7 +17,7 @@
         // URL has an EQUELLA version number in it
         // but prior version libraries should still be available
         $('<link>').attr({
-            href: 'p/r/6.4.r1330/com.tle.web.sections.standard/css/jquerylib/fancybox/jquery.fancybox.css',
+            href: 'p/r/2019.2.0/com.equella.core/css/jquerylib/fancybox/jquery.fancybox.css',
             rel: 'stylesheet',
             type: 'text/css'
         }).appendTo('head');

@@ -101,7 +101,7 @@ hide header at first, then reveal if a URL attachment shows up -->
 EQUELLA already comes with jQuery.fancybox script
 see http://fancybox.net -->
 <script>
-jQuery('.image-photoSeniorPacket a img').parent().not('.largeFile').fancybox();
+jQuery('.image-photoSeniorPacket a img').parent().not('.largeFile').attr('href', (i, href) => href + '?.vi=fancy').fancybox();
 </script>
 
 <style>

@@ -3,6 +3,6 @@ $(function(){
     // little tricky here, but we're filtering to _only_ jpg/png images
     $('#images a, .image-studentWork a').filter(function(){
         return this.href.match(/(\.(jpe?g|png)?)$/i)
-    }).fancybox()
+    }).attr('href', (i, href) => href + '?.vi=fancy').fancybox()
 })
 </script>
