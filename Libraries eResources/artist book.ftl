@@ -61,7 +61,7 @@
 </#if>
 
 <h3>The Artists' Books Collection</h3>
-<p>This book is part of the CCA Libraries <cite>Artists' Books Collection</cite>, comprised of approximately 340 unique works. The collection includes works by faculty members, students, alumni, and internationally recognized artists. <a href="https://library.cca.edu/cgi-bin/koha/opac-search.pl?q=(su:%7BArtists%27%20books%20collection.%7D)">The Artists' Books Collection</a>, housed in the Meyer and Simpson Libraries, was developed to support study and teaching of bookworks as an art form. The collection is non-circulating but browsable within the library by request.</p>
+<p>This book is part of the CCA Libraries <cite>Artists' Books Collection</cite>, comprised of approximately 340 unique works. The collection includes works by faculty members, students, alumni, and internationally recognized artists. <a href="https://library.cca.edu/cgi-bin/koha/opac-search.pl?q=an%3A513033">The Artists' Books Collection</a>, housed in the Meyer and Simpson Libraries, was developed to support study and teaching of bookworks as an art form. The collection is non-circulating but browsable within the library by request.</p>
 <p>You will find digital excerpts of many artist books <a href="/hierarchy.do?topic=a7b976d5-5316-44da-b06e-7374cd100075&page=1">in VAULT</a>. The online bookreader attempts to capture the diverse and intriguing nature of the book as art form. Enjoy!</p>
 
 <#-- if non-library staff, we remove the attachments section at bottom of pg -->
