@@ -13,7 +13,8 @@
 <#assign formBroad = xml.get('mods/physicalDescription/formBroad')>
 <#assign abstract = xml.get('mods/abstract')>
 
-<#if formBroad == "artists' books (books)"><dl>
+<#if formBroad == "artists' books (books)">
+<dl>
 <style>
 /* undo the terribly annoying display: inline in our theme */
 .itemsummary-layout .area p {
@@ -78,4 +79,5 @@
     </style>
 </#if>
 
-</dl></#if>
+</dl>
+</#if>

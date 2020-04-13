@@ -6,7 +6,7 @@
 <#assign formBroad = xml.get('mods/physicalDescription/formBroad')>
 <#assign abstract = xml.get('mods/abstract')>
 
-<#if formBroad == ""><dl class="clearfix">
+<#if formBroad != "artists' books (books)"><dl class="clearfix">
 
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
@@ -38,7 +38,7 @@
 
 	<#if location != "">
         <#if relateditem_index == 0>
-            <dt>Library Catalog Link</dt>
+            <dt>External Link</dt>
         </#if>
         <dd>
             <em>
