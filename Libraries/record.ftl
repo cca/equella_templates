@@ -95,7 +95,7 @@
             or other confidential attachments -->
             <#assign partdetail = part.get('detail')>
             <#list partnumbers as partnumber>
-                <#if partnumber == uuid && partdetail != 'yes'>
+                <#if partnumber == uuid && (partdetail != 'yes' || isLibStaff || userIsMemberOf('Faculty Governance') || userIsMemberOf('College Administrators'))>
                     <li class="image-with-metadata shorter">
                         <a href="/file/${itemUuid}/${itemversion}/${full?url}" rel="group">
                             <#if full?ends_with(".pdf") || full?ends_with(".PDF")>
@@ -104,10 +104,11 @@
                                 <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
                             </#if>
                         </a>
-                        <#if parttitle != "" || partextent != "">
+                        <#if parttitle != "" || partextent != "" || partdetail == 'yes'>
                             <p class="metadata">
                             <#if parttitle != ""><em>${parttitle}</em><br></#if>
-                            <#if partextent != ""> ${partextent}</#if>
+                            <#if partextent != ""> ${partextent}<br></#if>
+                            <#if partdetail == 'yes'><strong>Confidentail document</strong>, please consider this before sharing.</#if>
                             </p>
                         </#if>
                     </li>
@@ -423,4 +424,18 @@
 <#if xml.get('local/theme') == 'minimal'>
     <br>
     <dd><strong class="text-error">This is a minimal record, to be completed later. Some fields may be missing.</strong></dd>
+</#if>
+
+<#-- if non-library staff, we remove the attachments section at bottom of pg -->
+<#if !isLibStaff>
+    <script>
+    $(function(){$('#sc_attachments_div, #sc_attachments_extras, .area h3:last-of-type').remove()})
+    </script>
+    <style>
+    #sc_attachments_div,
+    #sc_attachments_extras,
+    .area h3:last-of-type {
+        display: none;
+    }
+    </style>
 </#if>
