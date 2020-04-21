@@ -143,7 +143,7 @@
     <#list name.getAllSubtrees('subNameWrapper') as subName>
         <#assign affiliation = subName.get('affiliation')>
         <#assign gradDate = subName.get('gradDate')>
-        <#assign department = subName.get('department')>
+        <#assign departments = subName.list('department')>
         <#assign major = subName.get('major')>
         <#assign constituent = subName.get('constituent')>
         <#assign description = subName.get('description')>
@@ -154,8 +154,10 @@
             <#if constituent != "">
                 ${constituent}
             </#if>
-            <#if department != "">
-                - ${department}
+            <#if departments?size != 0>
+                - <#list departments as dept>
+                ${dept}<#if dept_has_next>, </#if>
+                </#list>
             </#if>
             <#if major != "">
                 - ${major}
@@ -218,7 +220,7 @@
 
     <#-- note that this refers to the _other_ date assigned above
     to prevent us from printing the "date(s)" label twice -->
-    <#if dateCreated == '' && dateOtherText != ''>
+    <#if xml.get('mods/origininfo/dateCreatedWrapper/dateCreated') == '' && dateOtherText != ''>
         <dt>Date(s)</dt>
     </#if>
     <#-- two types: 1) singleton "date other" -->
