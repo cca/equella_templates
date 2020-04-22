@@ -108,7 +108,7 @@
                             <p class="metadata">
                             <#if parttitle != ""><em>${parttitle}</em><br></#if>
                             <#if partextent != ""> ${partextent}<br></#if>
-                            <#if partdetail == 'yes'><strong>Confidentail document</strong>, please consider this before sharing.</#if>
+                            <#if partdetail == 'yes'><strong>Confidential document</strong>, please consider this before sharing.</#if>
                             </p>
                         </#if>
                     </li>
