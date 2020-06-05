@@ -43,6 +43,11 @@ so we use major as a switch to change the documentation URL
         <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1F7IUEHsZOQDlmlIf_derIO_Ewa2kFxoXRE8eYfswdVE/preview?usp=sharing'>
     	<#break>
 
+    <#case "History of Art and Visual Culture (BA)">
+        <#-- this is identical to older program name "Visual Studies" below -->
+        <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1QM7YVEM0GUQN4ME_SScx3aZrI7SzNwf_-NPuaWHydIc/preview?usp=sharing'>
+    	<#break>
+
     <#case "Illustration (BFA)">
         <#assign url = 'https://docs.google.com/a/cca.edu/document/d/16IPT_ZnaF3Udm3L9Pj6KG7SpsM2y6WuaH5zi5QvSVHA/preview?usp=sharing'>
     	<#break>
@@ -94,6 +99,7 @@ Undeclared students do not receive a supplemental portfolio review until they ha
     	<#break>
 
     <#case "Visual Studies (BA)">
+        <#-- this is identical to newer HAAVC program name above -->
         <#assign url = 'https://docs.google.com/a/cca.edu/document/d/1QM7YVEM0GUQN4ME_SScx3aZrI7SzNwf_-NPuaWHydIc/preview?usp=sharing'>
     	<#break>
 

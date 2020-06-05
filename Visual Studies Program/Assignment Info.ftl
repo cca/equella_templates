@@ -14,7 +14,7 @@
 </#function>
 
 <#-- Administrator only information-->
-<#if userIsMemberOf("System Administrators") || userIsMemberOf("Library Administrator") || userIsMemberOf("College Administrators") || userIsMemberOf("Visual Studies Administrator") || userIsMemberOf("Visual Studies Faculty")>
+<#if userIsMemberOf("System Administrators") || userIsMemberOf("Library Administrator") || userIsMemberOf("College Administrators") || userIsMemberOf("History of Art and Visual Culture Administrator") || userIsMemberOf("History of Art and Visual Culture Faculty")>
 
     <#assign courseinfo = xml.get('local/courseInfo/courseinfo')>
     <#if courseinfo != ''>
