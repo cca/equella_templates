@@ -15,7 +15,7 @@ if we load via portlet settings, it fires twice for System Administrators -->
 <div id="mainPageBox">
     <div id="mainTabs">
         <a data-target="#communications" class="mainTab active" onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'communications']);">Communications</a>
-        <a data-target="#libraryCollections" class="mainTab" onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'library collections']);">Library Collections</a>
+        <a data-target="#libraryCollections" class="mainTab" onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'library collections']);">Libraries' Collections</a>
         <a href="/searching.do?in=Cf75326ab-977c-4873-8987-eaa419ecb773&q=&type=gallery" class="mainTab" onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'campus planning']);">Campus Planning: Spatial Benchmarking</a>
     </div>
 

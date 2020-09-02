@@ -71,7 +71,7 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
         Student Work</a>
         <a data-target="#libraryCollections" class="tab"
         onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'library collections']);">
-        Library Collections</a>
+        Libraries' Collections</a>
         <a data-target="#campusPlanning" class="tab"
         onclick="_gaq.push(['_trackEvent', 'gallery', 'tab', 'campus planning']);">
         Campus Planning: Spatial Benchmarking</a>
