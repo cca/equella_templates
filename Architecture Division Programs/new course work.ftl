@@ -106,9 +106,13 @@
     <#if groupProjectNumber != "">
         <dd><strong>Group members' contribution</strong>: ${groupProjectNumber}</dd>
     </#if>
-
     <#if groupConstituents?size != 0>
         <dd><strong>Group members were</strong>: <#list groupConstituents as constituent>${constituent}<#if constituent_has_next>, </#if></#list></dd>
+    </#if>
+
+    <#assign tags = xml.list('local/tags')>
+    <#if tags?size != 0>
+        <dd><strong>Tags</strong>: <#list tags as tag><a href="/access/searching.do?in=${powerSearch}&q=%22${escapeAmp(tag)}%22">${tag}</a><#if tag_has_next>, </#if></#list>.</dd>
     </#if>
 
     <#list itemAttachments as itemAttachment>
