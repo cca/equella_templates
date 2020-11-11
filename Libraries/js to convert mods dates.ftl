@@ -1,10 +1,8 @@
 <script>
 (function($) {
 // JS to convert MODS dates
-// hash for converting number to name
-// put null first so array is essentially indexed from 1
-var months = [null
-	, "January"
+// hash for converting month number to name
+var months = ["January"
 	, "February"
 	, "March"
 	, "April"
@@ -17,30 +15,29 @@ var months = [null
 	, "November"
 	, "December"
 ]
-// run on each date
-$('.js-date').each(function(i, el) {
-	// text is like "2015-02-22"
-	// wish we could use Intl.DateTimeFormat but sometimes we're missing the day
-	// which means we can't make a complete JavaScript Date object
-	var dates = $(el).text().split('-')
+function dateFormat (text) {
+	// text is YYYY-MM-DD date like "2015-02-22"
+	// we cannot use Intl.DateTimeFormat because date is sometimes incomplete
+	// be careful that day and/or month could be null/missing
+	var dates = text.split('-')
 	var year = dates[0]
 	var month_num = parseInt(dates[1], 10)
-	// below guarding against any piece being missing
-	var month = months[month_num]
-	var day = dates[2]
-	var formattedDate = ''
+	var month = month_num && months[month_num - 1]
+	var day = parseInt(dates[2], 10)
 
 	// we assume we have at least a year
 	if (day && month) {
-		formattedDate = month + ' ' + day + ', ' + year
+		return month + ' ' + day + ', ' + year
 	} else if (month) {
-		formattedDate = month + ', ' + year
+		return month + ', ' + year
 	} else {
-		formattedDate = year
+		return year
 	}
+}
+// run on each date
+$('.js-date').each((i, el) => $(el).text(dateFormat($(el).text())))
 
-	$(el).text(formattedDate)
-})
-
+// testing (uncomment & run):
+// dateFormat('2020-05-09') === 'May 9, 2020'; dateFormat('2020-05') === 'May, 2020'; dateFormat('2020') === '2020';
 })(jQuery)
 </script>
