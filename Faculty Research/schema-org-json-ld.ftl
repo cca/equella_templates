@@ -36,14 +36,15 @@ for volume & issue number, which are differentiated by a "type" attribute
 <#assign firstpage = xml.get('mods/relatedItem/part/extent/start')>
 <#assign lastpage = xml.get('mods/relatedItem/part/extent/end')>
 
-<script type="application/ld+json">
 <#-- NOTE: cannot have trailing comma in JSON
 so whenever there is an if condition, ensure something comes
 after it without a comma (e.g. "title": "${title}" because we always have that) -->
+<script type="application/ld+json">
 <#if publication_type == 'journal article'>
 <#-- using https://schema.org/ScholarlyArticle -->
 {
   "@context": "http://schema.org",
+  "@type": "ScholarlyArticle",
   "@graph": [
     <#if issue?has_content>
     {
@@ -71,7 +72,7 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
       "@id": "#periodical",
       "@type": "Periodical",
       <#if issn?has_content>"issn": "${issn}",</#if>
-      "name": "${publication_title?js_string}"
+      "name": "${publication_title?json_string}"
     },
     {
       "@id": "#article",
@@ -80,7 +81,7 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
           <#list authors as author>
           {
               "@type": "Person",
-              "name": "${author?js_string}"
+              "name": "${author?json_string}"
           }<#if author_has_next>,</#if>
           </#list>
       ],
@@ -99,9 +100,9 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
           "@id": "#periodical"
         }
       ],
-      <#if abstract != ''>"description": "${abstract?js_string}",</#if>
-      <#if doi != '' && doi?starts_with('http')>"sameAs": "${doi?js_string}",</#if>
-      <#if url != ''>"sameAs": "${url?js_string}",</#if>
+      <#if abstract != ''>"description": "${abstract?json_string}",</#if>
+      <#if doi != '' && doi?starts_with('http')>"sameAs": "${doi?json_string}",</#if>
+      <#if url != ''>"sameAs": "${url?json_string}",</#if>
       <#if firstpage != ''>"pageEnd": "${firstpage}",</#if>
       <#if lastpage != ''>"pageStart": "${lastpage}",</#if>
       "name": "${title}"
@@ -110,14 +111,14 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
 }
 <#elseif publication_type == 'book chapter'>
 <#-- using both
-- https://bib.schema.org/Chapter (exploratory release, unofficial)
+- https://schema.org/Chapter
 - https://schema.org/Book
 -->
 {
   "@context":  "http://schema.org/",
   "@id": "#chapter",
   "@type": "Chapter",
-  <#if abstract != ''>"description": "${abstract?js_string}",</#if>
+  <#if abstract != ''>"description": "${abstract?json_string}",</#if>
   "isPartOf": {
       "@type": "Book",
       "@id": "#book",
@@ -129,15 +130,15 @@ after it without a comma (e.g. "title": "${title}" because we always have that) 
       <#list authors as author>
       {
           "@type": "Person",
-          "name": "${author?js_string}"
+          "name": "${author?json_string}"
       }<#if author_has_next>,</#if>
       </#list>
   ],
-  <#if url != ''>"sameAs": "${url?js_string}",</#if>
-  <#if doi != '' && doi?starts_with('http')>"sameAs": "${doi?js_string}",</#if>
+  <#if url != ''>"sameAs": "${url?json_string}",</#if>
+  <#if doi != '' && doi?starts_with('http')>"sameAs": "${doi?json_string}",</#if>
   <#if firstpage != ''>"pageStart": "${firstpage}",</#if>
   <#if lastpage != ''>"pageEnd": "${lastpage}",</#if>
-  "name": "${title?js_string}"
+  "name": "${title?json_string}"
 }
 </#if>
 </script>
