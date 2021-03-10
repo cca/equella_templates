@@ -30,8 +30,10 @@
     <#list xml.getAllSubtrees('mods/name') as name>
         <#assign namePart = name.get('namePart')>
         <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&sort=datemodified&dr=AFTER'>
-        <dt>Creator</dt>
-        <dd><a href="${namePartUrl}">${namePart}</a></dd>
+        <#if namePart != "">
+            <dt>Creator</dt>
+            <dd><a href="${namePartUrl}">${namePart}</a></dd>
+        </#if>
     </#list>
 
     <#assign courseInfo = xml.getSubtree('local/courseInfo')>
