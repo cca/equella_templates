@@ -16,8 +16,8 @@
   "devDependencies": {
     "grunt": "^1.2.1",
     "grunt-contrib-clean": "^2.0",
-    "grunt-contrib-jshint": "^2.1",
-    "grunt-contrib-sass": "^1.0",
+    "grunt-contrib-jshint": "^3.0.0",
+    "grunt-contrib-sass": "^2.0.0",
     "grunt-contrib-uglify": "^5.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "load-grunt-tasks": "^5.1"
