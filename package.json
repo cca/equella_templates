@@ -2,7 +2,11 @@
   "name": "equella_templates",
   "version": "1.0.0",
   "description": "Freemarker templates for VAULT",
-  "scripts": {},
+  "scripts": {
+    "test": "grunt jshint",
+    "build": "grunt build",
+    "watch": "grunt watch"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cca/equella_templates.git"
@@ -20,6 +24,7 @@
     "grunt-contrib-sass": "^2.0.0",
     "grunt-contrib-uglify": "^5.0.0",
     "grunt-contrib-watch": "^1.1.0",
-    "load-grunt-tasks": "^5.1"
+    "load-grunt-tasks": "^5.1",
+    "sass": "^1.32.12"
   }
 }

@@ -18,8 +18,7 @@ module.exports = function (grunt) {
         sass: {
           dist: {
             options: {
-              style: 'compressed',
-              sourcemap: 'none'
+              style: 'compressed'
             },
             files: {
                 'dist/dashboard-non-cca.min.css': 'Portlets/dashboard-non-cca.scss',
@@ -43,8 +42,7 @@ module.exports = function (grunt) {
             },
             options: {
                 compress: {
-                    drop_console: true,
-                    warnings: true
+                    drop_console: true
                 },
                 mangle: {
                     toplevel: true
