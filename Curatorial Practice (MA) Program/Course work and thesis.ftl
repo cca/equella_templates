@@ -13,7 +13,7 @@
         <#assign itemUuid = xml.get('item/@id')>
         <#assign itemversion = xml.get('item/@version')>
         <#assign attachments = xml.getAllSubtrees('item/attachments/attachment')>
-        <#assign powerSearch = 'Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4'>
+        <#assign powerSearch = 'Pe78fd93a-86cd-40a9-9382-e86897646a2d'>
 
         <#assign title = xml.get('mods/titleInfo/title')>
         <h2 id="title">${title}</h2>

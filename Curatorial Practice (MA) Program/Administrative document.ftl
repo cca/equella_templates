@@ -2,7 +2,7 @@
 change these variables depending upon collection
 -->
 <#-- the UUID for the divisional Power Search, this one is Fine Arts -->
-<#assign powerSearch = 'Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4'>
+<#assign powerSearch = 'Pe78fd93a-86cd-40a9-9382-e86897646a2d'>
 <#-- UUID for specific collection, begins with C -->
 <#assign collectionID = 'C1f552949-5e43-4600-9a55-ec5b0249019c'>
 
