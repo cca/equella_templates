@@ -342,25 +342,28 @@
     </#if>
 </#list>
 
-<#if xml.exists('mods/location')>
-    <dt>Location</dt>
-    <#list locations as location>
-        <#assign physicalLocation = location.get('physicalLocation')>
-        <#assign copyInformations = location.getAllSubtrees('copyInformation')>
-        <#list copyInformations as copyInformation>
-            <#assign sublocation = copyInformation.get('sublocation')>
-            <#assign sublocationDetail = copyInformation.get('sublocationDetail')>
-            <#assign shelfLocator = copyInformation.get('shelfLocator')>
-            <#if sublocation != "" || sublocationDetail != "" || shelfLocator != "" || physicalLocation != "">
-                <dd>
-                    <#if physicalLocation != "">${physicalLocation}</#if>
-                    <#if sublocation != "">— ${sublocation}</#if>
-                    <#if sublocationDetail != "">— ${sublocationDetail}</#if>
-                    <#if shelfLocator != "">— ${shelfLocator}</#if>
-                </dd>
-            </#if>
+<#--  per arph, hide location from unauthenticated users  -->
+<#if user.getUsername() != 'guest'>
+    <#if xml.exists('mods/location')>
+        <dt>Location</dt>
+        <#list locations as location>
+            <#assign physicalLocation = location.get('physicalLocation')>
+            <#assign copyInformations = location.getAllSubtrees('copyInformation')>
+            <#list copyInformations as copyInformation>
+                <#assign sublocation = copyInformation.get('sublocation')>
+                <#assign sublocationDetail = copyInformation.get('sublocationDetail')>
+                <#assign shelfLocator = copyInformation.get('shelfLocator')>
+                <#if sublocation != "" || sublocationDetail != "" || shelfLocator != "" || physicalLocation != "">
+                    <dd>
+                        <#if physicalLocation != "">${physicalLocation}</#if>
+                        <#if sublocation != "">— ${sublocation}</#if>
+                        <#if sublocationDetail != "">— ${sublocationDetail}</#if>
+                        <#if shelfLocator != "">— ${shelfLocator}</#if>
+                    </dd>
+                </#if>
+            </#list>
         </#list>
-    </#list>
+    </#if>
 </#if>
 
 <#if xml.get('local/theme') == 'minimal'>
