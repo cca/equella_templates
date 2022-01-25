@@ -28,7 +28,7 @@
 <#assign filenames = xml.get('local/courseWorkWrapper/projectTitle')>
 <#assign pages = xml.list('local/courseWorkWrapper/file')?size>
 <#-- points to the root of our Internet Archive Bookreader instance -->
-<#assign iab = 'https://libraries.cca.edu/static/bookreader/index.html'>
+<#assign iab = 'https://digitalscholarship.cca.edu/bookreader/index.html'>
 <#assign params = '?title=' + title?url + '&id=' + id?url + '&version=' + version?url + '&filenames=' + filenames?url + '&pages=' + pages + '#page/1/mode/2up'>
 <#assign url = iab + params>
 <#assign catalogUrl = xml.get('mods/relateditem/location')>
@@ -36,8 +36,7 @@
 <#-- show admins links for testing dev versions of bookreader -->
 <#if userIsMemberOf('System Administrators')>
     <p>
-        <a href="${'http://localhost:8080/' + params}">test on localhost</a> |
-        <a href="${iab?replace('.cca.', '-dev.cca.') + params}">test on libraries-dev</a>
+        <a href="${iab?replace('digitalscholarship.', 'libraries-libep.') + params}">test on lib staging</a>
     </p>
 </#if>
 
