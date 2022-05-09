@@ -15,6 +15,6 @@ Grunt tasks automate some tedious work. Once you have node, npm, and grunt insta
 - [Freemarker Manual](http://freemarker.org/docs/)
 - EQUELLA Script API reference (no public link, download inside server admin site)
 
-# LICENSE
+## LICENSE
 
 [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
