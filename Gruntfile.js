@@ -2,7 +2,7 @@
 module.exports = function (grunt) {
     'use strict';
     // load all grunt tasks
-    require('load-grunt-tasks')(grunt);
+    require('load-grunt-tasks')(grunt)
 
     grunt.initConfig({
         clean: {
@@ -18,6 +18,7 @@ module.exports = function (grunt) {
         sass: {
           dist: {
             options: {
+              'no-source-map': true,
               style: 'compressed'
             },
             files: {
@@ -63,15 +64,15 @@ module.exports = function (grunt) {
               laxcomma: true
           }
         }
-    });
+    })
 
     grunt.registerTask('build', [
         'clean',
         'sass',
         'uglify'
-    ]);
+    ])
 
     grunt.registerTask('default', [
         'build'
-    ]);
-};
+    ])
+}
