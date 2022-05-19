@@ -83,6 +83,7 @@
 <#list itemAttachments as itemAttachment>
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
+    <#assign type = itemAttachment.get('@type')>
     <#-- show TIFF images only to library staff -->
     <#if ( full?matches('(.tiff?)$', 'i')?size == 0 || isLibStaff )>
         <#list parts as part>
@@ -96,22 +97,37 @@
             <#assign partdetail = part.get('detail')>
             <#list partnumbers as partnumber>
                 <#if partnumber == uuid && (partdetail != 'yes' || isLibStaff || userIsMemberOf('Faculty Governance') || userIsMemberOf('College Administrators'))>
-                    <li class="image-with-metadata shorter">
-                        <a href="/file/${itemUuid}/${itemversion}/${full?url}" rel="group">
-                            <#if full?ends_with(".pdf") || full?ends_with(".PDF")>
-                                <img src="/file/ad812d22-e473-493f-9f15-9538a8830da6/1/pdf.png">
-                            <#else>
-                                <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
-                            </#if>
-                        </a>
-                        <#if parttitle != "" || partextent != "" || partdetail == 'yes'>
-                            <p class="metadata">
-                            <#if parttitle != ""><em>${parttitle}</em><br></#if>
-                            <#if partextent != ""> ${partextent}<br></#if>
-                            <#if partdetail == 'yes'><strong>Confidential document</strong>, please consider this before sharing.</#if>
-                            </p>
+                    <#-- <attachment type="remote"> means it's a URL and the <file> child element
+                    is a URL instead of a filename -->
+                    <#if type == 'remote'>
+                        <#-- Panopto embed e.g. for commencement videos -->
+                        <#if full?contains('ccarts.hosted.panopto.com/Panopto/Pages/Viewer')>
+                            <iframe style="height:294.7px; width:524px;" src="${full?replace('Viewer', 'Embed')}&autoplay=false&offerviewer=true&showtitle=false&showbrand=false&captions=false&interactivity=none" height="405" width="720" allowfullscreen></iframe>
+                        <#else>
+                            <li class="image-with-metadata shorter">
+                                <a href="${full}" rel="group">
+                                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
+                                </a>
+                            </li>
                         </#if>
-                    </li>
+                    <#else>
+                        <li class="image-with-metadata shorter">
+                            <a href="/file/${itemUuid}/${itemversion}/${full?url}" rel="group">
+                                <#if full?lower_case?ends_with('.pdf')>
+                                    <img src="/file/ad812d22-e473-493f-9f15-9538a8830da6/1/pdf.png">
+                                <#else>
+                                    <img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/>
+                                </#if>
+                            </a>
+                            <#if parttitle != "" || partextent != "" || partdetail == 'yes'>
+                                <p class="metadata">
+                                <#if parttitle != ""><em>${parttitle}</em><br></#if>
+                                <#if partextent != ""> ${partextent}<br></#if>
+                                <#if partdetail == 'yes'><strong>Confidential document</strong>, please consider this before sharing.</#if>
+                                </p>
+                            </#if>
+                        </li>
+                    </#if>
                 </#if>
             </#list>
         </#list>
