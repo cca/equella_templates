@@ -19,12 +19,12 @@
   "homepage": "https://github.com/cca/equella_templates#readme",
   "devDependencies": {
     "grunt": "^1.5.3",
-    "grunt-contrib-clean": "^2.0",
-    "grunt-contrib-jshint": "^3.0.0",
+    "grunt-contrib-clean": "^2.0.1",
+    "grunt-contrib-jshint": "^3.2.0",
     "grunt-contrib-sass": "^2.0.0",
-    "grunt-contrib-uglify": "^5.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
-    "load-grunt-tasks": "^5.1",
-    "sass": "^1.32.12"
+    "load-grunt-tasks": "^5.1.0",
+    "sass": "^1.53.0"
   }
 }
