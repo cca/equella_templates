@@ -93,19 +93,16 @@
         <#list exhibitWrapper as exhibitWrapper>
             <#assign gallery = exhibitWrapper.get('gallery')>
             <#assign note = exhibitWrapper.get('note')>
-            <#assign dates = exhibitWrapper.list('date')>
+            <#assign date = exhibitWrapper.get('date')>
             <#assign galleryUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3CcourseInfo%2F%3E%3CcourseWorkWrapper%3E%3CcourseWorkType%3ESenior+packet%3C%2FcourseWorkType%3E%3C%2FcourseWorkWrapper%3E%3Cdepartment%3E${department}%3C%2Fdepartment%3E%3CexhibitWrapper%3E%3Cgallery%3E${gallery}%3C%2Fgallery%3E%3C%2FexhibitWrapper%3E%3C%2Flocal%3E%3Cmods%3E%3Cname%3E%3CnamePart%2F%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER" />
             <#-- only show if we actually have something -->
-            <#if gallery != "" || note != "" || dates?size != 0>
+            <#if gallery != "" || note != "" || date != "">
                 <h4 style="color: #666;"><u>Senior Show Information</u></h4>
                 <dd>
                 <#if gallery != ""><a href="${galleryUrl}">${gallery}</a></#if>
                 <#-- note is just a non-CCA gallery in SR Packet template -->
-                <#if note != "">${note}</#if>
-                <#if dates?size != 0> —
-                    <#list dates as date>${date}<#if date_has_next> through </#if>
-                    </#list>
-                </#if>
+                <#if note != ""><br>${note}</#if>
+                <#if date != ""><br>${exhibitWrapper.getAll("date")?join(" through ")}</#if>
                 </dd>
             </#if>
         </#list>
