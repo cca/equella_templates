@@ -5,7 +5,6 @@
 </#function>
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
-<#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
 <#assign powerSearch = 'Pafcc42be-462c-483e-b2ed-98ffcd15ff3d'>
 
 <#list xml.getAllSubtrees('local/courseWorkWrapper') as courseWork>
@@ -115,11 +114,12 @@
         <dd><strong>Tags</strong>: <#list tags as tag><a href="/access/searching.do?in=${powerSearch}&q=%22${escapeAmp(tag)}%22">${tag}</a><#if tag_has_next>, </#if></#list>.</dd>
     </#if>
 
-    <#list itemAttachments as itemAttachment>
+    <#list xml.getAllSubtrees('item/attachments/attachment') as itemAttachment>
         <#assign file = itemAttachment.get('file')>
         <#assign uuid = itemAttachment.get('uuid')>
+        <#assign type = itemAttachment.get('@type')>
         <#list xml.getAllSubtrees('mods/part') as part>
-            <#if part.get('number') == uuid>
+            <#if part.get('number') == uuid && type != 'zip'>
                 <#assign format = part.get('wrapperOther/format')>
                 <#assign formatSpecific = part.get('wrapperOther/formatSpecific')>
                 <#assign assignNumber = part.get('wrapperOther/assignNumber')>
