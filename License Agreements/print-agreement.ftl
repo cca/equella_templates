@@ -30,7 +30,7 @@
     <button style="float:right;" class="btn btn-primary" onclick="window.print();return false">&nbsp;Print&nbsp;<i class="icon-print"></i></button>
 </div>
 
-<p><span class="highlight">This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date") between California College of the Arts, 5212 Broadway, Oakland, California, 94618 ("Owner") and ${publisher} ("Publisher").</span></p>
+<p><span class="highlight">This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date") between California College of the Arts, 1111 8th St, San Francisco, CA 94107 ("Owner") and ${publisher} ("Publisher").</span></p>
 <p>In consideration of the mutual promises contained herein and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties agree as follows:</p>
 
 <h2><u>I. Licensed Material Content; Grant of License</u></h2>
@@ -68,7 +68,7 @@
 <p>When the agreement is terminated, Publisher must destroy the Content as originally delivered by Owner, along with any derivatives created in the process of realizing the Book and associated advertising, publicity, etc.</p>
 
 <h2><u>IX. Fees</u></h2>
-<p>For use of Content as established in this Agreement, Publisher shall make payment to Owner as specified below. Payment shall be by check, payable to California College of the Arts, sent to Business Services Office, attn: Ken Tanzer, California College of the Arts, 1111 8th Street, San Francisco CA 94107.</p>
+<p>For use of Content as established in this Agreement, Publisher shall make payment to Owner as specified below. Payment shall be by check, payable to California College of the Arts, sent to Business Services Office, California College of the Arts, 1111 8th Street, San Francisco CA 94107.</p>
 <p><span class="highlight">Specified fees: negotiated by project</span></p>
 <p style="margin-left:3em;"><span class="highlight">For publications created for educational purposes, by not-for-profit institutions, compensation will be delivery of one copy of the "Content" as a finished product, in hardcover if so published, to the "Owner" within two months of release date.</span></p>
 <p><span class="highlight">In cases where the above criteria are not met, or when the Content requested requires an exceptional amount of work on the part of the Owner, additional fees may be charged.</span></p>
@@ -132,10 +132,10 @@
         <p><strong>If to Owner:</strong></p>
         <p>CCA Libraries<br>
         California College of the Arts<br>
-        5212 Broadway<br>
-        Oakland<br>
+        1111 8th St<br>
+        San Francisco<br>
         California<br>
-        94618</p>
+        94107</p>
     </div>
 
     <div class="right">
@@ -159,9 +159,8 @@
 </div>
 
 <p>Print Name: Annemarie Haar<br>
-Title: Director of Libraries, California College of the Arts<br>
-Address: 5212 Broadway Oakland CA 94618<br>
-Telephone No.: 510-594-3657<br>
+Title: Associate Vice President, Instructional Services, California College of the Arts<br>
+Address: 1111 8th St San Francisco CA 94107<br>
 E-mail: <a href="mailto:ahaar@cca.edu" target="_blank">ahaar@cca.edu</a></p>
 
 <div class="clearfix">
