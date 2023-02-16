@@ -22,8 +22,7 @@ module.exports = function (grunt) {
               style: 'compressed'
             },
             files: {
-                'dist/dashboard-non-cca.min.css': 'Portlets/dashboard-non-cca.scss',
-                'dist/dashboard-student-work.min.css': 'Portlets/dashboard-cca.scss'
+                'dist/dashboard-non-cca.min.css': 'Portlets/dashboard-non-cca.scss'
             }
           }
         },
@@ -33,11 +32,6 @@ module.exports = function (grunt) {
                     'dist/non-cca-home.min.js': [
                         'Portlets/quick-search.js'
                         , 'Portlets/non-cca-home.js'
-                    ],
-                    'dist/cca-home.min.js': [
-                        'Portlets/quick-search.js'
-                        , 'Portlets/cca-home.js'
-                        , 'Portlets/tour.js'
                     ]
                 }
             },
