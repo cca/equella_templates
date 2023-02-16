@@ -28,31 +28,24 @@
 <#assign filenames = xml.get('local/courseWorkWrapper/projectTitle')>
 <#assign pages = xml.list('local/courseWorkWrapper/file')?size>
 <#-- points to the root of our Internet Archive Bookreader instance -->
-<#assign iab = 'https://digitalscholarship.cca.edu/bookreader/index.html'>
+<#assign iab = 'https://vault.cca.edu/file/79e553bc-a84c-4610-b6d7-190a90dbb268/1/bookreader.zip/index.html'>
 <#assign params = '?title=' + title?url + '&id=' + id?url + '&version=' + version?url + '&filenames=' + filenames?url + '&pages=' + pages + '#page/1/mode/2up'>
 <#assign url = iab + params>
-<#assign catalogUrl = xml.get('mods/relateditem/location')>
+<#assign externalUrl = xml.get('mods/relateditem/location')>
 
-<#-- show admins links for testing dev versions of bookreader -->
-<#if userIsMemberOf('System Administrators')>
-    <p>
-        <a href="${iab?replace('digitalscholarship.', 'libraries-libep.') + params}">test on lib staging</a>
-    </p>
-</#if>
+<#list attachments as attachment>
+    <#assign file = attachment.get('file')>
+    <#-- first page of book -->
+    <#if file?contains(filenames + '1.JPG')>
+        <div class="thumbnail" style="text-align:left"><a href="${url}" target="_blank">
+        <img src="/file/${id}/${version}/_THUMBS/${file}_PREVIEW_.jpeg" alt="${title}" style="max-width:250px;height:auto">
+        </a></div>
+        <#break>
+    </#if>
+</#list>
 
-<div class="thumbnail" style="text-align:left">
-	<a href="${url}" target="_blank">
-		<#list attachments as attachment>
-			<#assign file = attachment.get('file')>
-			<#-- first page of book -->
-			<#if file?contains(filenames + '1.JPG')>
-				<img src="/file/${id}/${version}/_THUMBS/${file}_PREVIEW_.jpeg" alt="${title}" style="max-width:250px;height:auto">
-			</#if>
-		</#list>
-	</a>
-</div>
 <p>
-    View an excerpt of this work as <a href="${url}" target="_blank">an interactive flipbook</a>. To see the complete work, visit the library. Find its location <a href="${catalogUrl}" target="_blank">via the library catalog</a>.
+    View an excerpt of this work as <a href="${url}" target="_blank">an interactive flipbook</a>. To see the complete work, visit the library. Find its location <a href="${externalUrl}" target="_blank">here</a>.
 </p>
 
 <#if abstract != ''>
@@ -65,7 +58,7 @@
 <p>You will find digital excerpts of many artist books <a href="/hierarchy.do?topic=a7b976d5-5316-44da-b06e-7374cd100075&page=1">in VAULT</a>. The online bookreader attempts to capture the diverse and intriguing nature of the book as art form. Enjoy!</p>
 
 <#-- if non-library staff, we remove the attachments section at bottom of pg -->
-<#if ! userIsMemberOf('System Administrators') && ! userIsMemberOf('Libraries') && ! userIsMemberOf('Library Contributors') && ! userIsMemberOf('Library Workstudy') && ! userIsMemberOf('Library Administrator')>
+<#if ! userIsMemberOf('System Administrators') && ! userIsMemberOf('Libraries')>
     <script>
     $(function{}($('#sc_attachments_div, #sc_attachments_extras, .area h3:last-of-type').remove()))
     </script>
