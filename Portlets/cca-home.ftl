@@ -164,46 +164,4 @@ set of options (reverse, modified, name, rating instead of their enum integers) 
             </#if>
         </#list>
     </div>
-
-    <#--
-        Campus Planning tab
-
-        again, searchAdvanced parameters inherit values from 1st usage
-        we only need to redefine the "where" value, pointing to CP collection
-    -->
-    <#assign where = "/xml/item/@itemdefid IS 'f75326ab-977c-4873-8987-eaa419ecb773'">
-    <#assign search = utils.searchAdvanced(query, where, onlyLive, order, reverse, offset, maxResults)>
-    <#assign results = search.getResults()>
-
-    <div id="campusPlanning" style="display:none">
-        <#assign count = 0>
-        <#list results as item>
-            <#-- Campus Planning items tend to have _wider_ thumbnails
-            for some reason, giving them fewer total ensures more consistent
-            number of rows across the 3 tabs -->
-            <#if count = 16>
-                <#break>
-            </#if>
-            <#-- item information -->
-            <#assign name = item.getName()>
-            <#assign itemUuid = item.getUuid()>
-            <#assign version = item.getVersion()>
-            <#assign url = '/items/' + itemUuid + '/' + version + '/'>
-            <#assign thumbUrl = '/thumbs/' + itemUuid + '/' + version + '/?gallery=preview'>
-
-            <#assign thumb = item.getXml().get('item/attachments/attachment/thumbnail')>
-            <#assign filename = item.getXml().get('item/attachments/attachment/file')>
-            <#if thumb != "" && ! filename?starts_with('http')>
-                <#-- work around null mime type exception -->
-                <#assign mimetype = mime.getMimeTypeForFilename(filename)!"">
-                <#if mimetype != "" && mimetype.getType()?starts_with('image')>
-                    <#assign count = count + 1>
-                    <a href="${url}" title="${name}"
-                    onclick="_gaq.push(['_trackEvent', 'gallery', 'item', 'campus planning']);">
-                    <img src="${thumbUrl}" /></a>
-                </#if>
-            </#if>
-        </#list>
-    </div> <#-- end campus planning -->
-
 </div> <#-- end wrapper -->

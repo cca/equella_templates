@@ -19,38 +19,41 @@ see Web Assets collection to find these -->
         </#if>
     </div>
 
+    <#--  dashboard images URL  -->
+    <#assign dashboardImagesUUID = "1b004418-0315-4fd9-9245-d2092ac8e6c6">
+    <#assign dashboardImagesURL = "//vault.cca.edu/items/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/">
     <div id="communications" class="imgContainer">
-        <a href="//vault.cca.edu/items/63b16c33-1187-4a72-bfc1-02886463e9d2/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/SFcampus03.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/SFcampus03.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/f90ffbc1-d648-41cc-9c3f-0c2a79d89990/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/13_CCA-Martinez-Oakland.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/13_CCA-Martinez-Oakland.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/092e8fa5-7a9a-419d-b16e-a5978c4da7e0/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/10_CCA_ArchStudio.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/10_CCA_ArchStudio.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/d9a46034-9456-44fb-bf29-0b78a7c4510e/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/12_CCA-Student-Center.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/12_CCA-Student-Center.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/017d392b-3678-4480-b1e3-e398995b5db9/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/11_CCA-Wattis-exterior.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/11_CCA-Wattis-exterior.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/96c2d9ea-5811-4672-8aaa-707af5a339e8/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/09_CCA-Nave-interior.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/09_CCA-Nave-interior.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/c05ed9b7-6ae1-44db-bd42-32b3649468a5/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/08_CCA-Nave-interior.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/08_CCA-Nave-interior.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/135c3377-8b72-4a46-8781-8a588d8d0d26/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/07_CCA-GradCenter.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/07_CCA-GradCenter.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/b3ab986a-9fe2-420b-8d27-c13c09b0771a/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/05_CCA-Wattis.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/05_CCA-Wattis.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/95fe2008-dbac-4bfb-b7ed-9bc31d5d83d4/1/">
-            <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/06_CCA-GradCenter.jpg/thumbnail.jpg">
+        <a href="${dashboardImagesURL}">
+            <img src="//vault.cca.edu/file/${dashboardImagesUUID}/1/_TILES/06_CCA-GradCenter.jpg/thumbnail.jpg">
         </a>
-        <a href="//vault.cca.edu/items/01d7929b-ae0e-4bcb-8e86-bd3d5437fbe9/1/">
+        <a href="${dashboardImagesURL}">
             <img src="//vault.cca.edu/file/1b004418-0315-4fd9-9245-d2092ac8e6c6/1/_TILES/04_CCA-Nave-interior.jpg/thumbnail.jpg">
         </a>
     </div>
