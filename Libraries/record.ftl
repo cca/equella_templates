@@ -85,7 +85,7 @@
     <#assign uuid = itemAttachment.get('uuid')>
     <#assign type = itemAttachment.get('@type')>
     <#-- show TIFF images only to library staff -->
-    <#if ( full?matches('(.tiff?)$', 'i')?size == 0 || isLibStaff )>
+    <#if ( full?matches('(.tiff?)$', 'i')?size == 0 || isLibStaff || xml.get('local/viewLevel') == 'public' )>
         <#list parts as part>
             <#assign parttitle = part.get('title')>
             <#assign partextent = part.get('extent')>
