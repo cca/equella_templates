@@ -40,8 +40,8 @@
 <h2><u>II. Delivery of Content to Publisher</u></h2>
 <p>Owner will provide the Content to the Publisher in the following manner:</p>
 <ul class="standard">
-	<li>File Transfer. Copies of the Content may be provided through electronic transfer such as email; or</li>
-	<li>Physical Media. Copies of the Content may be provided on physical media (e.g., CD or DVD).</li>
+    <li>File Transfer. Copies of the Content may be provided through electronic transfer such as email; or</li>
+    <li>Physical Media. Copies of the Content may be provided on physical media (e.g., CD or DVD).</li>
 </ul>
 
 <h2><u>III. Authorized Use of Content</u></h2>
