@@ -12,7 +12,7 @@
 <#assign collection = xml.get('mods/relatedItem/title')>
 
 <#--  un-comment when printing out for migration to Dropbox Send  -->
-<#--  <style>.area p { font-size: 12pt; }</style>  -->
+<style>.area p { font-size: 12pt; }</style>
 
 <div class="control alert no-print clearfix">
     <ul class="standard">
@@ -33,12 +33,19 @@
     <button style="float:right;" class="btn btn-primary" onclick="window.print();return false">&nbsp;Print&nbsp;<i class="icon-print"></i></button>
 </div>
 
-<p><span class="highlight">This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date")
-between California College of the Arts, 1111 8th St, San Francisco, CA 94107 ("Owner") and ${publisher} ("Publisher").</span></p>
+<p><span class="highlight">This License Agreement (this "Agreement") is made effective as of _________________________________________ (the "Effective Date")
+between California College of the Arts, 1111 8th St, San Francisco, CA 94107 ("Owner") and _________________________________________ ("Publisher").</span></p>
 <p>In consideration of the mutual promises contained herein and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties agree as follows:</p>
 
 <h2><u>I. Licensed Material Content; Grant of License</u></h2>
-<p><span class="highlight">The materials that are the subject of this Agreement shall consist of: ${extent}</span> (hereinafter referred to as the "Content").</p>
+<p><span class="highlight">The materials that are the subject of this Agreement shall consist of: _________________________________________</span> (hereinafter referred to as the "Content").</p>
+<p>URLs for the Content are as follows:</p>
+<ul class="standard">
+    <li>URL 1: ______________________________________________________</li>
+    <li>URL 2: ______________________________________________________</li>
+    <li>URL 3: ______________________________________________________</li>
+    <li>URL 4: ______________________________________________________</li>
+</ul>
 <p>Publisher acknowledges that the copyright and title to the Content and any trademarks or service marks relating thereto remain with Owner and/or its suppliers. Publisher shall not have right, title or interest in the Content except as expressly set forth in this Agreement. Owner hereby grants to Publisher non-exclusive use of the Content in accordance with this Agreement.</p>
 
 <h2><u>II. Delivery of Content to Publisher</u></h2>
@@ -49,7 +56,7 @@ between California College of the Arts, 1111 8th St, San Francisco, CA 94107 ("O
 </ul>
 
 <h2><u>III. Authorized Use of Content</u></h2>
-<p>Content is to be used for the purpose of producing, distributing and exploiting video release of the documentary currently entitled ${title} ("Documentary") by Publisher.</p>
+<p>Content is to be used for the purpose of producing, distributing and exploiting video release of the documentary currently entitled _________________________________________ ("Documentary") by Publisher.</p>
 <p>In connection with advertising, publicizing, exhibiting and exploiting the Documentary, Content may be used in whole or in part in any and all media, devices, processes and technology now known or hereafter devised except as restricted in Section IV.</p>
 
 <h2><u>IV. Specific Restrictions on Use of Content</u></h2>
@@ -76,7 +83,7 @@ between California College of the Arts, 1111 8th St, San Francisco, CA 94107 ("O
 <p><span class="highlight">In cases where the above criteria are not met, or when the Content requested requires an exceptional amount of work on the part of the Owner, additional fees may be charged.</span></p>
 
 <h2><u>X. Acknowledgement; Source Citation</u></h2>
-<p>Acknowledgement for use of Content shall reference: California College of the Arts Libraries. <span class="highlight">Preferred attribution and source for Content is: from the ${collection} at California College of the Arts Libraries, San Francisco, California.</span> Abbreviations may be substituted to conform with editorial style.</p>
+<p>Acknowledgement for use of Content shall reference: California College of the Arts Libraries. <span class="highlight">Preferred attribution and source for Content is: from the _________________________________________ at California College of the Arts Libraries, San Francisco, California.</span> Abbreviations may be substituted to conform with editorial style.</p>
 
 <h2><u>XI. Assignment and Transfer</u></h2>
 <p>Except as specifically stated in this agreement, parties may not assign, directly or indirectly, all or part of its rights or obligations under this Agreement without the prior written consent of the
@@ -140,10 +147,10 @@ other party, which consent shall not be unreasonably withheld or delayed. The ri
 
     <div class="right">
         <p><strong>If to Publisher:</strong></p>
-        <p>${name}, representing<br>
-        ${publisher}<br>
+        <p>_________________________________________, representing<br>
+        _________________________________________<br>
         <#-- display line breaks in address with <pre> tag -->
-        <pre>${publisherAddress}</pre></p>
+        <pre>_________________________________________</pre></p>
     </div>
 </div>
 
@@ -171,10 +178,10 @@ E-mail: <a href="mailto:ahaar@cca.edu" target="_blank">ahaar@cca.edu</a></p>
     </p>
     <p class="right">DATE: _________________________</p>
 </div>
-<p>Print Name: ${name}</p>
-<p>Title: ${title}</p>
+<p>Print Name: _________________________________________</p>
+<p>Title: _________________________________________</p>
 <p>Address:</p>
 <#-- display line breaks in address with <pre> tag -->
-<p><pre>${personAddress}</pre></p>
-<p>Telephone No.: ${telephone}</p>
-<p>E-mail: ${email}</p>
+<p><pre>_________________________________________</pre></p>
+<p>Telephone No.: _________________________________________</p>
+<p>E-mail: _________________________________________</p>
