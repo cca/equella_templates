@@ -11,6 +11,9 @@
 <#assign email = xml.get('/mods/name/subNameWrapper/email')>
 <#assign collection = xml.get('mods/relatedItem/title')>
 
+<#--  un-comment when printing out for migration to Dropbox Send  -->
+<#--  <style>.area p { font-size: 12pt; }</style>  -->
+
 <div class="control alert no-print clearfix">
     <ul class="standard">
         <li><b>Review</b> the license agreement</li>
@@ -30,7 +33,8 @@
     <button style="float:right;" class="btn btn-primary" onclick="window.print();return false">&nbsp;Print&nbsp;<i class="icon-print"></i></button>
 </div>
 
-<p><span class="highlight">This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date") between California College of the Arts, 1111 8th St, San Francisco, CA 94107 ("Owner") and ${publisher} ("Publisher").</span></p>
+<p><span class="highlight">This License Agreement (this "Agreement") is made effective as of ${date} (the "Effective Date")
+between California College of the Arts, 1111 8th St, San Francisco, CA 94107 ("Owner") and ${publisher} ("Publisher").</span></p>
 <p>In consideration of the mutual promises contained herein and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties agree as follows:</p>
 
 <h2><u>I. Licensed Material Content; Grant of License</u></h2>
@@ -167,10 +171,10 @@ E-mail: <a href="mailto:ahaar@cca.edu" target="_blank">ahaar@cca.edu</a></p>
     </p>
     <p class="right">DATE: _________________________</p>
 </div>
-<p>Print Name: ${name}<br>
-Title: ${title}<br>
-Address:<br>
+<p>Print Name: ${name}</p>
+<p>Title: ${title}</p>
+<p>Address:</p>
 <#-- display line breaks in address with <pre> tag -->
-<pre>${personAddress}</pre><br>
-Telephone No.: ${telephone}<br>
-E-mail: ${email}</p>
+<p><pre>${personAddress}</pre></p>
+<p>Telephone No.: ${telephone}</p>
+<p>E-mail: ${email}</p>
