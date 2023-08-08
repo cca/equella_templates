@@ -422,20 +422,24 @@
     <dt>Location</dt>
     <#list locations as location>
         <#assign physicalLocation = location.get('physicalLocation')>
-        <#assign copyInformations = location.getAllSubtrees('copyInformation')>
-        <#list copyInformations as copyInformation>
-            <#assign sublocation = copyInformation.get('sublocation')>
-            <#assign sublocationDetail = copyInformation.get('sublocationDetail')>
-            <#assign shelfLocator = copyInformation.get('shelfLocator')>
-            <#if sublocation != "" || sublocationDetail != "" || shelfLocator != "" || physicalLocation != "">
-                <dd>
-                    <#if physicalLocation != "">${physicalLocation}</#if>
-                    <#if sublocation != "">— ${sublocation}</#if>
-                    <#if sublocationDetail != "">— ${sublocationDetail}</#if>
-                    <#if shelfLocator != "">— ${shelfLocator}</#if>
-                </dd>
-            </#if>
-        </#list>
+        <#if location.exists('copyInformation')>
+            <#assign copyInformations = location.getAllSubtrees('copyInformation')>
+            <#list copyInformations as copyInformation>
+                <#assign sublocation = copyInformation.get('sublocation')>
+                <#assign sublocationDetail = copyInformation.get('sublocationDetail')>
+                <#assign shelfLocator = copyInformation.get('shelfLocator')>
+                <#if sublocation != "" || sublocationDetail != "" || shelfLocator != "" || physicalLocation != "">
+                    <dd>
+                        <#if physicalLocation != "">${physicalLocation}</#if>
+                        <#if sublocation != "">— ${sublocation}</#if>
+                        <#if sublocationDetail != "">— ${sublocationDetail}</#if>
+                        <#if shelfLocator != "">— ${shelfLocator}</#if>
+                    </dd>
+                </#if>
+            </#list>
+        <#else>
+            <dd>${physicalLocation}</dd>
+        </#if>
     </#list>
 </#if>
 
