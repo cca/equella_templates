@@ -342,8 +342,8 @@
     </#if>
 </#list>
 
-<#--  per arph, hide location from unauthenticated users  -->
-<#if user.getUsername() != 'guest'>
+<#-- hide location from all but College Admins  -->
+<#if userIsMemberOf('College Administrators') || userIsMemberOf('System Administrators')>
     <#if xml.exists('mods/location')>
         <dt>Location</dt>
         <#list locations as location>
