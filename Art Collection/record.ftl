@@ -262,6 +262,16 @@
 </#list>
 </div>
 
+<#-- don't show header if we have an empty <subject/> node -->
+<#assign allSubjectText = ''>
+<#list subjects as subject>
+    <#assign allSubjectText += subject.get('*')>
+</#list>
+
+<#if subjects?size != 0 && allSubjectText != ''>
+    <dt>Subject(s)</dt>
+</#if>
+
 <#list subjects as subject>
     <#assign topic = subject.get('topic')>
     <#assign topicUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctopic%3E${topic}%3C%2Ftopic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
@@ -271,7 +281,6 @@
     <#assign nameUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cname%3E%22${name}%22%3C%2Fname%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign temporal = subject.get('temporal')>
     <#assign temporalUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
-    <dt>Subject(s)</dt>
     <#if topic != ''>
         <dd class="subject">Topic: <a href="${topicUrl}">${topic}</a></dd>
     </#if>
