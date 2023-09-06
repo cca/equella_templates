@@ -5,7 +5,6 @@
 <#assign genreWrappers = xml.getAllSubtrees('mods/genreWrapper')>
 <#assign locations = xml.getAllSubtrees('mods/location')>
 <#assign names = xml.getAllSubtrees('mods/name')>
-<#assign noteWrappers = xml.getAllSubtrees('mods/noteWrapper')>
 <#assign originInfos = xml.getAllSubtrees('mods/originInfo')>
 <#assign physdescNotes = xml.getAllSubtrees('mods/physicalDescriptionNote')>
 <#assign physdescs = xml.getAllSubtrees('mods/physicalDescription')>
@@ -226,11 +225,14 @@
 
 <#-- only show notes to college administrators -->
 <#if userIsMemberOf('College Administrators') || userIsMemberOf('System Administrators')>
-    <#list noteWrappers as noteWrapper>
+    <#list xml.getAllSubtrees('mods/noteWrapper') as noteWrapper>
         <#assign note = noteWrapper.get('note')>
         <#assign noteType = noteWrapper.get('note/@type')>
         <#if note != "">
-            <#if noteWrapper_index == 0><dt>Notes</dt></#if>
+            <#if noteWrapper_index == 0>
+                <dt>Notes</dt>
+                <div class="alert" style="margin:.5em 0;">Notes are only shown to College Administrators.</div>
+            </#if>
             <#if noteType != "">
                 <dd>${noteType?cap_first}:
                 ${note}
@@ -355,6 +357,7 @@
 <#if userIsMemberOf('College Administrators') || userIsMemberOf('System Administrators')>
     <#if xml.exists('mods/location')>
         <dt>Location</dt>
+        <div class="alert" style="margin:.5em 0;">Location information is only shown to College Administrators.</div>
         <#list locations as location>
             <#assign physicalLocation = location.get('physicalLocation')>
             <#assign copyInformations = location.getAllSubtrees('copyInformation')>
