@@ -80,12 +80,13 @@
 
 <#if collectionTitle != "Art Collection">
 <ul class="clearfix">
+<#assign hasTiff = false>
 <#list itemAttachments as itemAttachment>
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
     <#assign type = itemAttachment.get('@type')>
     <#-- show TIFF images only to library staff or shared visitors (whose ID is an email address) -->
-    <#if ( full?matches('(.tiff?)$', 'i')?size == 0 || isLibStaff || user.getID()?contains('@') || xml.get('local/viewLevel') == 'public' )>
+    <#if ( full?matches('(.tiff?)$', 'i')?size == 0 || isLibStaff || user.getID()?contains('@') )>
         <#list parts as part>
             <#assign parttitle = part.get('title')>
             <#assign partextent = part.get('extent')>
@@ -131,9 +132,14 @@
                 </#if>
             </#list>
         </#list>
+    <#else>
+        <#assign hasTiff = true>
     </#if>
 </#list>
 </ul>
+    <#if hasTiff>
+        <p>This item has TIFF images that are only available to CCA Libraries staff. If you would like access to them, reach out to <a href="mailto:vault@cca.edu?subject=VAULT+TIFF+Access+Request&body=${'https://vault.cca.edu/items/'?url + itemUuid + '%2F' + itemversion + '%2F'}">vault@cca.edu</a>. Please include a link to the item in your message.</p>
+    </#if>
 </#if>
 
 <#list names as name>
