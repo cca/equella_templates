@@ -138,7 +138,7 @@
 </#list>
 </ul>
     <#if hasTiff>
-        <p>This item has TIFF images that are only available to CCA Libraries staff. If you would like access to them, reach out to <a href="mailto:vault@cca.edu?subject=VAULT+TIFF+Access+Request&body=${'https://vault.cca.edu/items/'?url + itemUuid + '%2F' + itemversion + '%2F'}">vault@cca.edu</a>. Please include a link to the item in your message.</p>
+        <p>This item has TIFF images that are only available to CCA Libraries staff. If you would like access to them, reach out to <a href="mailto:vault@cca.edu?subject=VAULT%20TIFF%20Access%20Request&body=${'https://vault.cca.edu/items/'?url + itemUuid + '%2F' + itemversion + '%2F'}">vault@cca.edu</a>. Please include a link to the item in your message.</p>
     </#if>
 </#if>
 
