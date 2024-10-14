@@ -32,11 +32,11 @@
   </#list>
   <#return false>
 </#function>
-<#assign isLibStaff = false>
-<#assign groups = ['Library Contributors', 'Library Administrator', 'Library Workstudy', 'System Administrators']>
+<#assign tiffAccess = false>
+<#assign groups = ['Communications', 'Library Contributors', 'Library Administrator', 'Library Workstudy', 'System Administrators']>
 <#list groups as group>
     <#if userIsMemberOf(group)>
-        <#assign isLibStaff = true>
+        <#assign tiffAccess = true>
         <#break>
     </#if>
 </#list>
@@ -85,8 +85,8 @@
     <#assign full = itemAttachment.get('file')>
     <#assign uuid = itemAttachment.get('uuid')>
     <#assign type = itemAttachment.get('@type')>
-    <#-- show TIFF images only to library staff or shared visitors (whose ID is an email address) -->
-    <#if ( full?matches('(.tiff?)$', 'i')?size == 0 || isLibStaff || user.getID()?contains('@') )>
+    <#-- show TIFF images only to Communications, Libraries, or shared visitors (whose ID is an email address) -->
+    <#if ( full?matches('(.tiff?)$', 'i')?size == 0 || tiffAccess || user.getID()?contains('@') )>
         <#list parts as part>
             <#assign parttitle = part.get('title')>
             <#assign partextent = part.get('extent')>
@@ -97,7 +97,7 @@
             or other confidential attachments -->
             <#assign partdetail = part.get('detail')>
             <#list partnumbers as partnumber>
-                <#if partnumber == uuid && (partdetail != 'yes' || isLibStaff || userIsMemberOf('Faculty Governance') || userIsMemberOf('College Administrators'))>
+                <#if partnumber == uuid && (partdetail != 'yes' || tiffAccess || userIsMemberOf('Faculty Governance') || userIsMemberOf('College Administrators'))>
                     <#-- <attachment type="remote"> means it's a URL and the <file> child element
                     is a URL instead of a filename -->
                     <#if type == 'remote'>
@@ -454,8 +454,8 @@
     <dd><strong class="text-error">This is a minimal record, to be completed later. Some fields may be missing.</strong></dd>
 </#if>
 
-<#-- if non-library staff, we remove the attachments section at bottom of pg -->
-<#if !isLibStaff>
+<#-- to hide TIFFs, we remove the attachments section at bottom of pg -->
+<#if !tiffAccess>
     <script>
     $(function(){$('#sc_attachments_div, #sc_attachments_extras, .area h3:last-of-type').remove()})
     </script>
