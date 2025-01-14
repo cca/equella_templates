@@ -1,5 +1,5 @@
 <#function encode str>
-    <#-- 2 encodings:
+    <#-- 2 uses:
     1) return a URI-encoded "&amp;"
     because we pass XML in the URI, we have to escape this way
     2) encode "+" e.g. in course titles like "Form + Space"    -->
@@ -115,59 +115,61 @@
         </#list>
         </div>
 
-        <div class="clearfix">
-        <h4><u>Image List</u></h4>
-        <#list attachments as attachment>
-            <#assign full = attachment.get('file')>
-            <#assign uuid = attachment.get('uuid')>
-            <#list seniorPacket as seniorPacket>
-                <#assign title = seniorPacket.get('title')>
-                <#assign logLine = seniorPacket.get('notes')>
-                <#assign date = seniorPacket.get('date')>
-                <#assign categories = seniorPacket.list('formatBroad')>
-                <#assign formatOther = seniorPacket.get('formatOther')>
-                <#assign duration = seniorPacket.get('duration')>
-                <#-- multiple files, this just gets the first one -->
-                <#assign image = seniorPacket.get('lowResFile')>
-                <#assign video = seniorPacket.get('hiResFile')>
-                <#assign synopsis = seniorPacket.get('process')>
-                <#if image == uuid>
-                <#-- get link for related video -->
-                <#list attachments as attachment>
-                    <#if attachment.get('uuid') == video>
-                        <#assign videoFile = attachment.get('file')>
-                        <#assign url = '/file/${itemUuid}/${itemversion}/${videoFile}'>
+        <#if attachments?size != 0>
+            <div class="clearfix">
+            <h4><u>Works</u></h4>
+            <#list attachments as attachment>
+                <#assign full = attachment.get('file')>
+                <#assign uuid = attachment.get('uuid')>
+                <#list seniorPacket as seniorPacket>
+                    <#assign title = seniorPacket.get('title')>
+                    <#assign logLine = seniorPacket.get('notes')>
+                    <#assign date = seniorPacket.get('date')>
+                    <#assign categories = seniorPacket.list('formatBroad')>
+                    <#assign formatOther = seniorPacket.get('formatOther')>
+                    <#assign duration = seniorPacket.get('duration')>
+                    <#-- multiple files, this just gets the first one -->
+                    <#assign image = seniorPacket.get('lowResFile')>
+                    <#assign video = seniorPacket.get('hiResFile')>
+                    <#assign synopsis = seniorPacket.get('process')>
+                    <#if image == uuid>
+                    <#-- get link for related video -->
+                    <#list attachments as attachment>
+                        <#if attachment.get('uuid') == video>
+                            <#assign videoFile = attachment.get('file')>
+                            <#assign url = '/file/${itemUuid}/${itemversion}/${videoFile}'>
+                        </#if>
+                    </#list>
+                    <div class="image-with-metadata">
+                        <a href="${url}" target="_blank" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
+                        <p class="metadata">
+                        <#if title != ""><span class="title">${title}</span></#if>
+                        <#if logLine != ""><em>${logLine}</em><br></#if>
+                        <#if date != "">${date}<br></#if>
+                        <#if duration != ""><b>Duration</b>:&nbsp;${duration}<br></#if>
+                        <#if categories?size != 0>
+                            <b>Categories:</b>&nbsp;
+                            <#list categories as category>
+                                <#-- dont print other but its actual value,
+                                which is stored elsewhere ("phase" for formatSpecific)
+                                the 2nd "formatBroad_has_next" ensure the comma-sep.
+                                list doesnt get screwed up while we do this -->
+                                <#if category != 'other...'>
+                                    ${category}<#if category_has_next>, </#if>
+                                <#else>
+                                    ${formatOther}<#if category_has_next>, </#if>
+                                </#if>
+                            </#list><br>
+                        </#if>
+                        <#if synopsis != "">${synopsis}<br></#if>
+                        </p>
+                    </div>
+
                     </#if>
                 </#list>
-                <div class="image-with-metadata">
-                    <a href="${url}" target="_blank" rel="group"><img src="/thumbs/${itemUuid}/${itemversion}/${uuid}"/></a>
-                    <p class="metadata">
-                    <#if title != ""><span class="title">${title}</span></#if>
-                    <#if logLine != ""><em>${logLine}</em><br></#if>
-                    <#if date != "">${date}<br></#if>
-                    <#if duration != ""><b>Duration</b>:&nbsp;${duration}<br></#if>
-                    <#if categories?size != 0>
-                        <b>Categories:</b>&nbsp;
-                        <#list categories as category>
-                            <#-- dont print other but its actual value,
-                            which is stored elsewhere ("phase" for formatSpecific)
-                            the 2nd "formatBroad_has_next" ensure the comma-sep.
-                            list doesnt get screwed up while we do this -->
-                            <#if category != 'other...'>
-                                ${category}<#if category_has_next>, </#if>
-                            <#else>
-                                ${formatOther}<#if category_has_next>, </#if>
-                            </#if>
-                        </#list><br>
-                    </#if>
-                    <#if synopsis != "">${synopsis}<br></#if>
-                    </p>
-                </div>
-
-                </#if>
             </#list>
-        </#list>
-        </div>
+            </div>
+        </#if>
     </dl>
 </#if>
 </#list>
