@@ -71,7 +71,7 @@
     <#assign accreditation = xml.get('local/accreditation')>
     <#if accreditation != ''>
         <dd>
-            <#-- @todo why doesn't this work?!? -->
+            <#-- TODO why doesn't this work?!? -->
             <#assign accreditationUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Caccreditation%3E${accreditation}%3C%2Faccreditation%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER'>
             Flagged for ${accreditation}
         </dd>

@@ -24,7 +24,7 @@
         <#list xml.getAllSubtrees('mods/name') as name>
             <dt>Alumnus</dt>
             <#assign namePart = name.get('namePart')>
-            <#-- @todo all URLs will need updating
+            <#-- TODO all URLs will need updating
             should point at Design Division PS -->
             <#assign namePartUrl = '/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Cname%3E%3CnamePart%3E${namePart}%3C%2FnamePart%3E%3C%2Fname%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
             <dd><a href="${namePartUrl}">${namePart}</a>
@@ -73,7 +73,7 @@
 
     <#if accreditation != ''>
         <dd>
-            <#-- @todo why doesn't this work?!? -->
+            <#-- TODO why doesn't this work?!? -->
             <#assign accreditationUrl = '/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Caccreditation%3E${accreditation}%3C%2Faccreditation%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pc121f09c-8ea9-4bc9-90bf-8467c37a4ec4&q=&sort=datemodified&dr=AFTER'>
             Flagged for ${accreditation}
         </dd>

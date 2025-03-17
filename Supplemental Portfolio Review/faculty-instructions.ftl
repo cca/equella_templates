@@ -11,7 +11,7 @@
     <br>
 
     <dd><b>Does the student need to amend their portfolio?</b> Use the button below to contact Advising.</dd>
-    <!-- @TODO advising will send me different email to use -->
+    <!-- TODO advising will send me different email to use -->
     <#assign advising = 'advisingrecord@cca.edu'>
     <#assign title = xml.get('mods/titleInfo/title')>
     <#assign root = 'https://vault.cca.edu/login.do?page='>

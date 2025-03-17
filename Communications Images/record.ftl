@@ -22,7 +22,7 @@
     <#if (topics?size > 0)>
         <dd class="subject">Subject(s):
         <#list topics as topic>
-        <#-- @todo check that this link works -->
+        <#-- TODO check that this link works -->
         <#assign topicUrl = "/access/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctopic%3E${topic}%3C%2Ftopic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=P04c5d28c-713c-37fe-5e33-6c0ee78651f0&q=&dr=AFTER">
             <#if topic != "">
                 <a href="${topicUrl}">${topic}</a><#if topic_has_next>; </#if>

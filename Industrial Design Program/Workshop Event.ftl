@@ -75,7 +75,7 @@
 
     <#list local as local>
         <#assign objective = local.get('objective')>
-        <#-- @todo fix this URL -->
+        <#-- TODO fix this URL -->
         <#assign objectiveUrl = "">
         <dd><a href="${objectiveUrl}">${objective}</a>
     </#list>
@@ -83,7 +83,7 @@
     <#list xml.getAllSubtrees('mods/origininfo') as origininfo>
         <#assign dateCreated = origininfo.get('dateCreatedWrapper/dateCreated')>
         <#assign semesterCreated = origininfo.get('semesterCreated')>
-        <#-- @todo fix this URL -->
+        <#-- TODO fix this URL -->
         <#assign semesterCreatedUrl = "">
          — <#if semesterCreated != "">
             Date:

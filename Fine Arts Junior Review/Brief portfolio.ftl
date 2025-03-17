@@ -15,7 +15,7 @@ office in Fall 2020 to deal with remote learning. -->
         <h2 id="title">Junior Review Portfolio</h2>
 
     <#assign name = xml.get('mods/name/namePart')>
-    <#-- @TODO indentNoLine adds deceptive blue coloring
+    <#-- TODO indentNoLine adds deceptive blue coloring
     makes this look like a link when it's not -->
     <#if name != "">
         <dt class="indentNoLine">${name}

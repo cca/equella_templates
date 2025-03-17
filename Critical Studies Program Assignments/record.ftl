@@ -48,7 +48,7 @@
         </dd>
     </#if>
 
-    <#-- @todo no student work currently but when it's available check that this works
+    <#-- TODO no student work currently but when it's available check that this works
     <#assign studentWorkUrl = "/access/searching.do?doc=%3Cxml%3E%3Clocal%3E%3Cdepartment%3ECritical+Studies%3C%2Fdepartment%3E%3CcourseInfo%3E%3Ccourseinfo%3E${courseinfo}%3C%2Fcourseinfo%3E%3C%2FcourseInfo%3E%3CcourseWorkWrapper%2F%3E%3C%2Flocal%3E%3C%2Fxml%3E&in=Pe78fd93a-86cd-40a9-9382-e86897646a2d&q=&sort=datemodified&dr=AFTER" />
    <dd>See <a href="${studentWorkUrl}">student work from this assignment</a>.</dd> -->
 </#list>

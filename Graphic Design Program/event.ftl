@@ -27,7 +27,7 @@
         <#assign objective = xml.getAllSubtrees('local/objective')>
         <#list local as local>
             <#assign objectivex = local.get('objective')>
-            <#-- @todo fix this URL -->
+            <#-- TODO fix this URL -->
             <#assign objectiveUrl = "" />
             <#if objectivex != "">
             <dd>Event type:
@@ -60,7 +60,7 @@
             <#if (names?size > 0)>
                 <dd>Person(s) depicted:
                 <#list names as name>
-                    <#-- @todo fix URL -->
+                    <#-- TODO fix URL -->
                     <#assign nameUrl = "">
                     <#if name != "">
                         <a href="${nameUrl}">${name}</a><#if name_has_next>, </#if>

@@ -6,7 +6,7 @@
 <#if xml.get('local/courseWorkWrapper/courseWorkType') == 'Course work'>
 <dl>
 
-<#-- @todo what PS does Diversity Studies go in? -->
+<#-- TODO what PS does Diversity Studies go in? -->
 <#assign powerSearch = ''>
 
 <#assign title = xml.get('mods/titleInfo/title')>

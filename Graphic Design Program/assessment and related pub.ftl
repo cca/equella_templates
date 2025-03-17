@@ -15,7 +15,7 @@
     <#list local as local>
         <#assign accreditation = local.get('accreditation')>
         <#assign rating = local.get('rating')>
-        <#-- @todo fix these URLs -->
+        <#-- TODO fix these URLs -->
         <#assign accreditationUrl = "" />
         <#assign ratingUrl = "" />
             <br>

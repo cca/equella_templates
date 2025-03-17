@@ -1,7 +1,7 @@
 <#--
 change these variables depending upon collection
 -->
-<#-- @TODO: no division for this collection… -->
+<#-- TODO: no division for this collection… -->
 <#assign powerSearch = 'all'>
 <#-- UUID for specific collection, begins with C -->
 <#assign collectionID = 'C53426dda-dbd4-4a32-9155-4f6edaf64340'>

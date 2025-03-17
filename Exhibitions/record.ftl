@@ -6,7 +6,7 @@
 <#assign itemUuid = xml.get('item/@id')>
 <#assign itemversion = xml.get('item/@version')>
 <#assign itemAttachments = xml.getAllSubtrees('item/attachments/attachment')>
-<#-- @TODO points at Syllabus Collection power search & is only used
+<#-- TODO points at Syllabus Collection power search & is only used
 for courseInfo dynamic links—is this a sensible decision?
 only 1 item right now sponsored by course anyways, low priority
 https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
@@ -22,7 +22,7 @@ https://vault.cca.edu/items/223fd80a-c540-49d5-b359-9c29bee548de/1/ -->
     <#assign sponsor = exhibitWrapper.get('sponsor')>
     <#assign showType = exhibitWrapper.get('@type')>
     <#assign dates = exhibitWrapper.list('date')>
-    <#-- @TODO fix these URLs -->
+    <#-- TODO fix these URLs -->
     <#assign galleryUrl = "">
     <#assign semesterUrl = "">
     <#assign showTypeUrl = "">
