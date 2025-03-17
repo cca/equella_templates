@@ -75,5 +75,11 @@
         <br>
     </#if>
 
+    <#assign process = xml.get('local/courseWorkWrapper/process')>
+    <#if (process != "")>
+        <dt>Process Details</dt>
+        <dd>${process}</dd>
+    </#if>
+
 </#list>
 </#if>
