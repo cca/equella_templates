@@ -8,4 +8,4 @@
     <dd>${accessCondition}</dd>
 </#if>
 
-<dd><hr></dd>
+<hr>
