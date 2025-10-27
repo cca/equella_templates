@@ -71,6 +71,12 @@
     <#if workType == ""><em>no work type selected</em><#else>
          — <a href="${workTypeUrl}">${workType}</a>
     </#if>
+
+    <#assign credits = xml.get('mods/tableOfContents')>
+    <#if credits != "">
+        <dt>Credits</dt>
+        <dd>${credits}</dd>
+    </#if>
 </dl>
 </#if>
 </#list>

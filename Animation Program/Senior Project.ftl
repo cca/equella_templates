@@ -152,6 +152,17 @@
             </#if>
         </#list>
     </#list>
+
+    <#assign credits = xml.get('mods/tableOfContents')>
+    <#if credits != "">
+        <dt>Credits</dt>
+        <dd>${credits}</dd>
+    </#if>
+
+    <#assign tags = xml.list('local/tags')>
+    <#if (tags?size > 0)>
+        <p><b>Methods & software used</b>: <#list tags as tag>${tag}<#if tag_has_next>, </#if></#list></p>
+    </#if>
 </dl>
 </#if>
 </#list>
