@@ -348,6 +348,7 @@
 <#list subjects as subject>
     <#assign topic = subject.get('topic')>
     <#assign topicUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctopic%3E${escapeAmp(topic)}%3C%2Ftopic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
+    <#assign topicCona = subject.get('topicCona')>
     <#assign geographic = subject.get('geographic')>
     <#assign geographicUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Cgeographic%3E%22${geographic}%22%3C%2Fgeographic%3E%3C%2Fsubject%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#assign name = subject.get('name')>
@@ -356,6 +357,10 @@
     <#assign temporalUrl = '/searching.do?doc=%3Cxml%3E%3Cmods%3E%3Csubject%3E%3Ctemporal%3E${temporal}%3C%2Ftemporal%3E%3C%2Fsubject%3E%3CrelatedItem%3E%3Ctitle%3E${collectionTitle}%3C%2Ftitle%3E%3C%2FrelatedItem%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER'>
     <#if topic != ''>
         <dd class="subject">Topic: <a href="${topicUrl}">${topic}</a></dd>
+    </#if>
+    <#if topicCona != ''>
+        <#-- no link, topicCona isn't in our metadata schema but was used in CSP records -->
+        <dd class="subject">Topic: ${topicCona}</dd>
     </#if>
     <#if geographic != ''>
         <dd class="subject">Geographic: <a href="${geographicUrl}">${geographic}</a></dd>
@@ -367,6 +372,7 @@
         <dd class="subject">Time period: <a href="${temporalUrl}">${temporal}</a></dd>
     </#if>
 </#list>
+<#if subjects?size != 0 && allSubjectText != ''><br class="clear"></#if>
 
 <#assign photoClassification = xml.get('mods/photoClassification')>
 <#assign photoClassificationUrl = "/searching.do?doc=%3Cxml%3E%3Cmods%3E%3CphotoClassification%3E${photoClassification}%3C%2FphotoClassification%3E%3C%2Fmods%3E%3C%2Fxml%3E&in=${powerSearch}&q=&dr=AFTER">
