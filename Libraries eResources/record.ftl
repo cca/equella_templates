@@ -11,6 +11,12 @@
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
 
+<#assign creator = xml.get('mods/name/namePart')>
+<#if creator != ''>
+	<dt>Creator(s)</dt>
+	<dd>${creator}</dd>
+</#if>
+
 <#if parts?size != 0>
 	<ul class="thumbnails">
 	<#list attachments as attachment>

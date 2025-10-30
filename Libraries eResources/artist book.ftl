@@ -25,6 +25,12 @@
 <#assign title = xml.get('mods/titleInfo/title')>
 <h2 id="title">${title}</h2>
 
+<#assign creator = xml.get('mods/name/namePart')>
+<#if creator != ''>
+	<dt>Creator(s)</dt>
+	<dd>${creator}</dd>
+</#if>
+
 <#assign filenames = xml.get('local/courseWorkWrapper/projectTitle')>
 <#assign pages = xml.list('local/courseWorkWrapper/file')?size>
 <#-- points to the root of our Internet Archive Bookreader instance -->
