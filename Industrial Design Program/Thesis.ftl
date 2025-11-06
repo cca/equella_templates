@@ -122,6 +122,11 @@
                 </#list>
             </#if>
         </#list>
+
+        <#assign theme = xml.get("local/theme")>
+        <#if theme != "">
+                — Theme: ${theme}
+        </#if>
         </dd>
 
         <#list modslevel as mods>
