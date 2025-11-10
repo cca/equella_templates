@@ -5,9 +5,9 @@
 <div class="item-title-and-desc">
 	<h2 class="item-title-unselectable" data-itemuuid="${item.getUuid()}" data-itemversion="${item.getVersion()}">${xml.get('/mods/titleInfo/title')}</h2>
 
-	<h3 class="item-description-title">Description</h3>
     <#assign abstract = xml.get('mods/abstract')>
     <#if abstract != ''>
+        <h3 class="item-description-title">Description</h3>
 		<p class="item-description">${abstract?replace('\n', '<br>')}</p>
     </#if>
 </div>
