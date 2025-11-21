@@ -121,7 +121,7 @@
         <#list xml.getAllSubtrees('mods/part') as part>
             <#if part.get('number') == uuid && type != 'zip'>
                 <#assign format = part.get('wrapperOther/format')>
-                <#assign formatSpecific = part.get('wrapperOther/formatSpecific')>
+                <#assign formatSpecifics = part.list('wrapperOther/formatSpecific')>
                 <#assign assignNumber = part.get('wrapperOther/assignNumber')>
                 <#assign exerciseNumber = part.get('wrapperOther/exerciseNumber')>
                 <#assign flag = part.get('wrapperOther/flaggedFor')>
@@ -136,7 +136,7 @@
                     <p class="metadata">
                     <span class="title">${file}</span>
                     <#if format != ''>${format}<br></#if>
-                    <#if formatSpecific != ''>${formatSpecific}<br></#if>
+                    <#if formatSpecifics?size != 0><#list formatSpecifics as formatSpecific>${formatSpecific}<#if formatSpecific_has_next>, </#if></#list><br></#if>
                     <#if assignNumber != ''>Assgn: ${assignNumber}<br></#if>
                     <#if exerciseNumber != ''>Exercise: ${exerciseNumber}<br></#if>
                     </p>
