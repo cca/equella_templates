@@ -297,7 +297,7 @@
 </#if>
 <#if toc!= "">
     <dt>Table of Contents</dt>
-    <dd>${toc}</dd>
+    <dd><pre>${toc}</pre></dd>
 </#if>
 
 <#list noteWrappers as noteWrapper>
